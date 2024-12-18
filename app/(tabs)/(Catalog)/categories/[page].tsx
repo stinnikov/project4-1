@@ -1,5 +1,6 @@
 "use client"
 import { useLocalSearchParams, usePathname, Stack, useRouter } from 'expo-router';
+import TakeProductsLine from '@/app/components/TakeProductsLine'
 import CategoryList from '@/app/components/CategoryList';
 import { categories } from '@/app/data/categories';
 import { Category } from '@/app/interfaces/Category';
@@ -28,14 +29,8 @@ export default function(){
 
     return(
         <View style={{flex : 1}}>
-            <TouchableOpacity onPress={() => router.push({
-                pathname:'./products/[page]',
-                params:{
-                    page:subCategory,
-                }
-                })}>TAKE PRODUCTS
-            </TouchableOpacity>
-            <CategoryList categories={subCategories} router={router} parentLink='./' title={titleName}></CategoryList>
+            <TakeProductsLine router={router} categoryId={subCategory as string}></TakeProductsLine>
+            <CategoryList categories={subCategories} router={router} parentLink='./'></CategoryList>
             </View>
         )
 }
