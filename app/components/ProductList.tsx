@@ -1,9 +1,8 @@
 // ProductList.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '../interfaces/Product';
-import ProductCard from './ProductCard';
-import { Stack, Router } from 'expo-router';
+import { Router } from 'expo-router';
 
 interface ProductListProps {
     products: Product[];
@@ -12,11 +11,13 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products, router }) => {
+
     const renderProduct = ({ item }: { item: Product }) => (
         <TouchableOpacity onPress={() => router?.push( {
-            pathname: "./product/[product]",
+
+            pathname: "./product/[productId]",
             params: { 
-                product: item.id,
+                productId: item.id,
             },
           } )} 
         style={styles.product}>

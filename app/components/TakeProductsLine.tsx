@@ -10,15 +10,24 @@ interface TakeProductsLineProps{
 
 const TakeProductsLine: React.FC<TakeProductsLineProps> = ({categoryId, router}) => {
     return(
+        console.log(categoryId),
         <TouchableOpacity onPress={() => { router.push( {
-            pathname: "./products/[page]",
+            pathname: "../products/productList?categoryId=[categoryId]",
             params: { 
-                page: categoryId,
+                categoryId: categoryId,
             },
           }  )}} style={productStyles.product}>
-            <Text>TAKE PRODUCTS</Text>
+            <Text style={styles.lineName}>Взять все продукты категории</Text>
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create(
+    {
+        lineName:{
+            fontSize: 18,
+        }
+    }
+)
 
 export default TakeProductsLine;

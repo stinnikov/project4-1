@@ -15,25 +15,8 @@ interface ProductCardProps {
 let imageWidth: number = 0;
 let imageHeight: number = 0;
 
-const BottomTab = () => {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.bottomTab}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Кнопка 1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Кнопка 2</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Кнопка 3</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, visible, imageUrl }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, imageUrl }) => {
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
     if(imageUrl)
     useEffect(() => {
@@ -55,13 +38,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, visible, imageUrl })
         return {
                 width: imageWidth, // Ширина изображения
                 height: imageHeight, // Высота изображения
-                borderRadius: 20, // Закругляем углы
-                borderWidth: 0, // Ширина обводки
-                borderColor: '#fff', // Цвет обводки
-                shadowColor: '#000', // Цвет тени
-                shadowOpacity: 0.5, // Прозрачность тени
-                shadowRadius: 3, // Радиус размытия тени
-                elevation: 5, // Эффект тени для Android
         }
     }
 
@@ -74,8 +50,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, visible, imageUrl })
 
                 <Line></Line>
 
-                <View style={imageStyle()}>
-                    <Image source={{ uri: 'https://khakaskosmetika.ru/upload/resize_cache/iblock/37d/450_450_140cd750bba9870f18aada2478b24840a/bdvh27sfg152dtk98fbxnlxickexwcb3.jpg' }} style={imageStyle()} />
+                <View>
+                    <Image source={{ uri: imageUrl }} style={imageStyle()} />
                 </View>
 
                 <Line></Line>
@@ -97,12 +73,6 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
         alignItems:'center',
-        borderRadius: 10,
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        margin: 10,
-        overflow: 'hidden',
       },
     container:{
         flex:1,
@@ -122,7 +92,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-end',
         alignItems: 'center',
         elevation: 5, // Для Android, чтобы добавить тень
-        shadowColor: '#000', // Для iOS
+        boxShadow: '#000', // Для iOS
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 2,
@@ -144,17 +114,6 @@ const styles = StyleSheet.create({
     buttonText: {
      fontSize: 16,
     },
-    bottomTab: {
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        elevation: 5, // Для Android, чтобы добавить тень
-        shadowColor: '#000', // Для iOS
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-      },
 });
 
 export default ProductCard;

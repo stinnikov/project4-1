@@ -5,13 +5,11 @@ import { products } from '@/app/data/products';
 
 export default function(){
 
-    const { page: categoryId } = useLocalSearchParams();
-   
-    const productsByCategoryId = products.filter(i => i.categoryIds.includes(categoryId.toString()));
+    const { categoryId } = useLocalSearchParams();
 
-    let subSubCategories = categories.filter(cat => cat.depth == 2);
+    console.log("categoryId: " + categoryId)
 
-    let titleName: string|undefined;
+    const productsByCategoryId = products.filter(i => i.categoryIds.includes(categoryId?.toString()));
 
     return( 
             <ProductList products={productsByCategoryId} router={router()}></ProductList>

@@ -4,7 +4,6 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native
 import { Category } from '../interfaces/Category';
 import { Link, Stack, useRouter, Router } from 'expo-router';
 import { productStyles } from '../styles/productStyles';
-import { categoryStyles } from '../styles/categoryStyles';
 
 interface CategoryListProps {
     categories: Category[];
@@ -13,15 +12,15 @@ interface CategoryListProps {
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ categories, parentLink, router }) => {
-    
     const renderCategory = ({ item }: { item: Category }) => (
         <TouchableOpacity onPress={() => { router.push( {
-            pathname: item.depth == 2 ? "./products/[childlink]" : `./${parentLink}/[childlink]/page`,
+            pathname: item.depth == 2 ? "../products/products?categoryId=[categoryId]&categoryDepth=[categoryDepth]" : `./${parentLink}/categories?categoryId=[categoryId]&categoryDepth=[categoryDepth]`,
             params: { 
-              childlink: item.id,
+              categoryId: item.id,
+              categoryDepth: item.depth,
              },
-          }  )}} style={categoryStyles.category}>
-            <Text>{item.name}</Text>
+          }  )}} style={styles.category}>
+            <Text style={styles.categoryName}>{item.name}</Text>
         </TouchableOpacity>
     );
 
@@ -34,5 +33,19 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, parentLink, rou
             />
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    category: {
+        padding: 20,
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
+    },
+    categoryName: {
+        fontSize: 18,
+    },
+});
 
 export default CategoryList;
