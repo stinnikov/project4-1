@@ -3,18 +3,23 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '../interfaces/Product';
 import ProductCard from './ProductCard';
-import { Stack } from 'expo-router';
+import { Stack, Router } from 'expo-router';
 
 interface ProductListProps {
     products: Product[];
     title?:string;
+    router?: Router;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, title: titleName }) => {
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
+const ProductList: React.FC<ProductListProps> = ({ products, router }) => {
     const renderProduct = ({ item }: { item: Product }) => (
-        <TouchableOpacity onPress={() => setSelectedProduct(item)} style={styles.product}>
+        <TouchableOpacity onPress={() => router?.push( {
+            pathname: "./product/[product]",
+            params: { 
+                product: item.id,
+            },
+          } )} 
+        style={styles.product}>
             <Text style={styles.productName}>{item.name}</Text>
         </TouchableOpacity>
     );
@@ -26,14 +31,6 @@ const ProductList: React.FC<ProductListProps> = ({ products, title: titleName })
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
             />
-            {selectedProduct && (
-                <ProductCard
-                    product={selectedProduct}
-                    visible={!!selectedProduct}
-                    onClose={() => setSelectedProduct(null)}
-                />
-            )}
-            <Stack.Screen options={{title:titleName}}></Stack.Screen>
         </View>
     );
 };

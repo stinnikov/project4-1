@@ -1,4 +1,4 @@
-import { useLocalSearchParams, usePathname, Stack, useGlobalSearchParams } from 'expo-router';
+import { useLocalSearchParams, usePathname, Stack, useGlobalSearchParams, useRouter as router } from 'expo-router';
 import ProductList from '@/app/components/ProductList';
 import { categories } from '@/app/data/categories';
 import { products } from '@/app/data/products';
@@ -14,5 +14,5 @@ export default function(){
     let titleName: string|undefined;
 
     return( 
-            <ProductList products={productsByCategoryId}></ProductList>
+            <ProductList products={productsByCategoryId} router={router()}></ProductList>
 )}

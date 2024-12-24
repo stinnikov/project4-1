@@ -16,7 +16,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, parentLink, rou
     
     const renderCategory = ({ item }: { item: Category }) => (
         <TouchableOpacity onPress={() => { router.push( {
-            pathname: item.depth == 2 ? (`./products/[childlink]`) as string : (parentLink + '/[childlink]/page') as string,
+            pathname: item.depth == 2 ? "./products/[childlink]" : `./${parentLink}/[childlink]/page`,
             params: { 
               childlink: item.id,
              },
@@ -27,13 +27,11 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, parentLink, rou
 
 
     return (
-        <View style={categoryStyles.container}>
             <FlatList
                 data={categories}
                 renderItem={renderCategory}
                 keyExtractor={(item) => item.id}
             />
-        </View>
     );
 };
 

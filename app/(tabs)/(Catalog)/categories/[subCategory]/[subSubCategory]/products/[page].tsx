@@ -15,5 +15,5 @@ export default function(){
     let titleName: string|undefined;
 
     return( 
-            <ProductList products={productsByCategoryId}></ProductList>
+            <ProductList products={productsByCategoryId} router={router()}></ProductList>
 )}

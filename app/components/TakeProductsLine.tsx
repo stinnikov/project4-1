@@ -11,7 +11,7 @@ interface TakeProductsLineProps{
 const TakeProductsLine: React.FC<TakeProductsLineProps> = ({categoryId, router}) => {
     return(
         <TouchableOpacity onPress={() => { router.push( {
-            pathname: `./products/[page]` as string,
+            pathname: "./products/[page]",
             params: { 
                 page: categoryId,
             },
