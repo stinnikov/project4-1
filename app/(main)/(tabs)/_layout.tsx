@@ -37,7 +37,7 @@ export default function TabLayout() {
 		>
 			<Tabs.Screen name="(Catalog)" options={{
 				
-				title: "Catalog",
+				title: "Каталог",
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.CatalogIcon fill={focused ? color: 'black'}></svgIcons.CatalogIcon>
@@ -46,13 +46,13 @@ export default function TabLayout() {
 			/>
 
 			< Tabs.Screen name="favourites" options={{
-				title: 'Favorites',
+				title: 'Избранное',
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color: '#000'}></svgIcons.FavoritesIcon>
 				),
 			}} />
 			<Tabs.Screen name="(index)" options={{
-				title:'Main',
+				title:'Главная',
 				
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
@@ -61,7 +61,7 @@ export default function TabLayout() {
 				),
 			}} />
 			< Tabs.Screen name="profile" options={{
-				title: 'Profile',
+				title: 'Профиль',
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.ProfileIcon fill={focused ? color: 'none'}></svgIcons.ProfileIcon>
@@ -69,7 +69,7 @@ export default function TabLayout() {
 			}} />
 			< Tabs.Screen name="basket" options={{
 				headerShown: headerShown,
-				title: 'Basket',
+				title: 'Корзина',
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.BasketIcon stroke={focused ? color: '#000'}></svgIcons.BasketIcon>
 				),

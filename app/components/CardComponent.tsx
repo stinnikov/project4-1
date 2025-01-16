@@ -21,6 +21,7 @@ function navigateToCategory(item: Category, router: Router)
         pathname: '/(main)/(tabs)/(Catalog)/categories/[categoryId]',
         params: { 
           categoryId: item.id,
+          
           categoryDepth: item.depth,
          },
     })

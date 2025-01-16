@@ -13,19 +13,19 @@ import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 
 interface CategoryListScreenProps{
     router: Router,
-    currentCategory: Category | undefined,
+    currentCategory: Category,
     data: Category[],
     topGoodsData?: Product[],
 }
 
 function renderScreen({item} : {item: CategoryListScreenProps}){
-    const title: string = item.currentCategory?.name ?? 'Каталог';
+    const title: string = item.currentCategory?.name ?? '';
     
     return(
         <View>
             <View>
                 <BlockComponent 
-                    content={<ScreenHeaderComponent title={title} router={router}/>}
+                    content={<ScreenHeaderComponent title={item.currentCategory?.name} router={router}/>}
                     contentStyle={{paddingBottom:0}}
                 />
             </View>

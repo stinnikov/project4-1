@@ -10,17 +10,11 @@ export default function(){
 
     const { productId } = useLocalSearchParams();
 
-    const [Product,setProduct] = useState<Product>({"id": "60470940-b9fe-11ea-80c9-002590bc5b5f",
-        "name": "Professional Estel XTRO EX/NY Пигмент прямого действия для волос Желтый 100мл ",
-        "price": 510,
-        "unit": "штука",
-        "description": "Описание отсутствует",
-        "imageUrl": "https://api.hk19.ru/goods_photos/115%C2%A0124.jpg",
-        "categoryIds": [
-          "72a9eeff-080b-444d-bb47-569470455e98",
-          "24510936-8140-43e3-87d5-a0b87d066aee",
-          "057e0e57-768e-407b-afb7-91f23d180571"
-        ]});
+    const [Product,setProduct] = useState<Product>({"id": '',
+        "name": '',
+        "price": '',
+        "description": "",
+        "imageUrl": ''});
         useEffect(()=>{
             const getEntries = async()=>{
                 let prod:Product;

@@ -13,9 +13,9 @@ import ProductListComponent from "../components/ProductListComponent";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 
 interface ProductListScreenProps{
-    router: Router,
     data: Product[],
     categoryName: string,
+    router: Router,
 }
 
 function renderScreen({item} : {item: ProductListScreenProps}){

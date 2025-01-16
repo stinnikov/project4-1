@@ -17,32 +17,32 @@ interface BarComponentProps {
     style?: StyleProp<ViewStyle>
 }
 
-const BarComponent: React.FC<BarComponentProps> = ({ text, textStyle, leftIcon, rightIcon, style }) => {
+const BarComponent: React.FC<BarComponentProps> = (props) => {
 
-    if ((leftIcon !== undefined) && (rightIcon !== undefined))
+    if ((props.leftIcon !== undefined) && (props.rightIcon !== undefined))
         return (
-            <TouchableOpacity style={[styles.container, style]}>
+            <TouchableOpacity style={[styles.container, props.style]}>
                 <View style={styles.leftIconContainer}>
-                    {leftIcon}
+                    {props.leftIcon}
                 </View>
 
                 <View style={styles.textContainer}>
-                    <Text style={[styles.text, textStyle]}>
-                        {text}
+                    <Text style={[styles.text, props.textStyle]}>
+                        {props.text}
                     </Text>
                 </View>
 
                 <View style={styles.rightIconContainer}>
-                    {rightIcon}
+                    {props.rightIcon}
                 </View>
             </TouchableOpacity>
         )
     else {
         return (
-            <TouchableOpacity style={[styles.container, style]}>
+            <TouchableOpacity style={[styles.container, props.style]}>
                 <View style={styles.textContainer}>
-                    <Text style={[styles.text, textStyle]}>
-                        {text}
+                    <Text style={[styles.text, props.textStyle]}>
+                        {props.text}
                     </Text>
                 </View>
             </TouchableOpacity>
