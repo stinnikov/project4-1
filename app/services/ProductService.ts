@@ -1,0 +1,32 @@
+import { Product } from "../interfaces/Product";
+
+
+
+
+const ipv4 = 'http://192.168.0.87:5055';
+
+
+export const getProductsByCategoryId = async (catId: string) => {
+    try {
+        const response = await fetch(`${ipv4}/getProductsByCategoryId?categoryId=${catId}`)
+
+        const mappedResponse: Product[] = await response.json();
+
+        return mappedResponse;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+export const getSingleProductById = async (prodId: string) => {
+    try {
+        const response = await fetch(`${ipv4}/getSingleProductById?Id=${prodId}`)
+
+        const mappedResponse: Product = await response.json();
+
+        return mappedResponse;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
