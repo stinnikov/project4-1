@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle, StyleProp, TextStyle } from 'react-native';
+import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
 import commonStyles from '../styles/commonStyles';
 
 // Оптимизированный компонент блока

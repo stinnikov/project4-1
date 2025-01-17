@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, Linking } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity, Text } from "react-native";
 import { Category } from "../interfaces/Category";
-import { Href, router, Router, ScreenProps } from "expo-router";
+import { Router } from "expo-router";
 import BlockComponent from "./BlockComponent";
 import svgIcons from "@/assets/icons/svgIcons";
 import commonStyles from "../styles/commonStyles";

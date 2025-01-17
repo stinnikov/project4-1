@@ -1,16 +1,9 @@
-import  React, { useMemo } from "react";
+import  React from "react";
 import { FlatList, View, StyleSheet } from "react-native";
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import SearchComponent from "../components/SearchComponent";
-import BlockComponent from "../components/BlockComponent";
-import TopGoodsComponent from "../components/TopGoodsComponent";
-import { products } from "../data/products";
 import { router, Router, useRouter } from "expo-router";
-import CategoryListComponent from "../components/CategoryListComponent";
-import { Category } from "../interfaces/Category";
 import { Product } from "../interfaces/Product";
 import ProductListComponent from "../components/ProductListComponent";
-import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 
 interface ProductListScreenProps{
     data: Product[],

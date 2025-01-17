@@ -1,6 +1,5 @@
 import { Category } from "../interfaces/Category";
-
-const ipv4 = 'http://192.168.0.87:5055';
+import { ipv4 } from "../data/tempData";
 
 export const getCategoriesDepthZero = async () => {
     try {

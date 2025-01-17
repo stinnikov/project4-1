@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { View, StyleSheet, StyleProp, ViewStyle, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, Text } from "react-native";
 import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
 import commonStyles from "../styles/commonStyles";

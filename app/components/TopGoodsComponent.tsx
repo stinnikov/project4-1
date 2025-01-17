@@ -1,14 +1,10 @@
-import React, { useMemo, memo, useRef, useState } from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, ImageBackground, PanResponder, ViewStyle } from "react-native";
+import React from "react";
+import { View, StyleSheet, FlatList, Text, ViewStyle } from "react-native";
 import { router, Router } from "expo-router";
 import { Product } from "../interfaces/Product";
 import commonStyles from "../styles/commonStyles";
-import { products } from "../data/products";
-import CardComponent from "./CardComponent";
 import BlockComponent from "./BlockComponent";
 import { StyleProp } from "react-native";
-import ProductCardComponent from "./ProductCardComponent";
-import ProductListCardComponent from "./ProductListCardComponent";
 import TopGoodsCardComponent from "./TopGoodsCardComponent";
 
 interface TopGoodsComponentProps {

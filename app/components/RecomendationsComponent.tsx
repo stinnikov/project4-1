@@ -3,7 +3,6 @@ import { View, StyleSheet, FlatList, TouchableOpacity, Text, ImageBackground, Pa
 import { Router } from "expo-router";
 import { Product } from "../interfaces/Product";
 import commonStyles from "../styles/commonStyles";
-import { products } from "../data/products";
 import CardComponent from "./CardComponent";
 import BlockComponent from "./BlockComponent";
 

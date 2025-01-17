@@ -1,5 +1,5 @@
-import { useLocalSearchParams, usePathname, Stack, useGlobalSearchParams, useRouter } from 'expo-router';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { View, StyleSheet } from 'react-native';
 import { Product } from '@/app/interfaces/Product';
 import ProductCardComponent from '@/app/components/ProductCardComponent';
 import { useState,useEffect } from 'react';

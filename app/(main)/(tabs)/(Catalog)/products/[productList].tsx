@@ -1,11 +1,8 @@
-import { useLocalSearchParams, usePathname, Stack, useGlobalSearchParams, useRouter as router } from 'expo-router';
-
-
+import { useLocalSearchParams, useRouter as router } from 'expo-router';
 import ProductListScreen from '@/app/screens/ProductListScreen';
 import { useState,useEffect } from 'react';
 import { getProductsByCategoryId } from '@/app/services/ProductService';
 import { Product } from '@/app/interfaces/Product';
-import { Category } from '@/app/interfaces/Category';
 import { getCategoryNameById } from '@/app/services/CategoryService';
 
 

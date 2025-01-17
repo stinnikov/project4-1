@@ -1,9 +1,8 @@
-import React, {useMemo} from "react";
-import { View, StyleSheet, Text, TouchableOpacity, ImageBackground, StyleProp, ViewStyle, ImageStyle, Image, TextStyle } from "react-native";
-import { useRouter, Href, Router} from "expo-router";
+import React from "react";
+import { View, StyleSheet, Text, TouchableOpacity, ImageBackground, StyleProp, ViewStyle, ImageStyle, TextStyle } from "react-native";
+import { Router } from "expo-router";
 import commonStyles from "../styles/commonStyles";
 import { Category } from "../interfaces/Category";
-import { Product } from "../interfaces/Product";
 
 interface CardComponentProps<T>{
     item: T,

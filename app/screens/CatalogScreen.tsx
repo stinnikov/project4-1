@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text, ScrollView, FlatList, StatusBar} from "react-native";
-import { Stack, Router } from "expo-router";
+import React from "react";
+import { View, StyleSheet, FlatList} from "react-native";
+import {  Router } from "expo-router";
 import CategoryCardListComponent from "../components/CategoryCardListComponent";
 import { Category } from "../interfaces/Category";
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import TopComponent from "../components/TopComponent";
 import BlockComponent from "../components/BlockComponent";
-import TopGoodsComponent from "../components/TopGoodsComponent";
-import commonStyles from "../styles/commonStyles";
-import { products } from "../data/products";
 
 interface CatalogScreenProps{
     data: Category[];

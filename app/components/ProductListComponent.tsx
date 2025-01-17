@@ -2,10 +2,9 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, } from 'react-native';
 import { Product } from '../interfaces/Product';
-import { Router, useRouter } from 'expo-router';
+import { Router } from 'expo-router';
 import commonStyles from '../styles/commonStyles';
 import ProductListCardComponent from './ProductListCardComponent';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import svgIcons from '@/assets/icons/svgIcons';
 
 

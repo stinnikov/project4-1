@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Text, Button, TouchableOpacity, ScrollView, ImageBackground, Pressable } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, Pressable } from "react-native";
 import ProductDescription from "./markup/productDescription";
 import { Product } from "../interfaces/Product";
 import { router, Router } from "expo-router";

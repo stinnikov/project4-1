@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, StyleProp, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
 import commonStyles from "../styles/commonStyles";
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 interface BarComponentProps {
     text?: string,

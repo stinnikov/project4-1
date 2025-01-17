@@ -1,9 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import commonStyles from "../styles/commonStyles";
-import Icon from 'react-native-vector-icons/FontAwesome'
 import BarComponent from "./BarComponent";
-import BlockComponent from "./BlockComponent";
 import svgIcons from "@/assets/icons/svgIcons";
 
 interface DeliveryBarComponentProps {

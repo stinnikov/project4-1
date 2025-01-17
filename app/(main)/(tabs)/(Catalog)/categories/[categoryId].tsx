@@ -1,7 +1,6 @@
 "use client"
 import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen} from 'expo-router';
-import { categories } from '@/app/data/categories';
-import { products } from '@/app/data/products';
+import { products } from '@/app/data/tempData';
 import CategoryListScreen from '@/app/screens/CategoryListScreen';
 import { Category } from '@/app/interfaces/Category';
 import { useState,useEffect } from 'react';

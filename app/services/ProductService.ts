@@ -1,9 +1,6 @@
 import { Product } from "../interfaces/Product";
+import { ipv4 } from "../data/tempData";
 
-
-
-
-const ipv4 = 'http://192.168.0.87:5055';
 
 
 export const getProductsByCategoryId = async (catId: string) => {

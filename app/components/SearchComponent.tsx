@@ -1,9 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Dimensions } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import commonStyles from "../styles/commonStyles";
 import BarComponent from "./BarComponent";
-import BlockComponent from "./BlockComponent";
 import svgIcons from "@/assets/icons/svgIcons";
 
 interface SearchComponentProps {

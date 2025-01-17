@@ -1,6 +1,6 @@
 import { Router } from "expo-router";
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import svgIcons from "@/assets/icons/svgIcons";
 import commonStyles from "../styles/commonStyles";
 

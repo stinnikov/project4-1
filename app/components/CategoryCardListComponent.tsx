@@ -1,17 +1,17 @@
 
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, } from 'react-native';
+import { View, Text, FlatList, StyleSheet, } from 'react-native';
 import { Category } from '../interfaces/Category';
-import { Router, useRouter } from 'expo-router';
+import { Router } from 'expo-router';
 import commonStyles from '../styles/commonStyles';
 import CardComponent from './CardComponent';
+import { ipv4 } from '../data/tempData';
 
 interface CategoryCardListProps {
     data: Category[];
     isMainScreen:boolean;
     router: Router;
 }
-const ipv4 = 'http://192.168.0.87:5055';
 
 function ListHeader(){
     return(
