@@ -36,6 +36,7 @@ function navigateToProductList(item: Category, router: Router){
     )    
 }
 
+
 function takeAllProducts({props }: { props: CategoryListProps; }){
     if(isCategory(props.item))
     {
@@ -52,6 +53,7 @@ function takeAllProducts({props }: { props: CategoryListProps; }){
         )
     }
 }
+
 
 function isCategory(item: any): item is Category{
     return item && typeof item.id === 'string' && typeof item.depth === 'number';

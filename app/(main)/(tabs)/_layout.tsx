@@ -12,7 +12,7 @@ const iconSize : number = 30;
 
 const iconLabelShown: boolean = true;
 
-const iconLabelFontSize: number = 14;
+const iconLabelFontSize: number = 11;
 
 const headerShown : boolean = false;
 
@@ -26,7 +26,6 @@ export default function TabLayout() {
 				tabBarActiveTintColor: iconColor,
 				tabBarShowLabel: iconLabelShown,
 				tabBarStyle: {
-					alignItems:'center',
 					flexDirection:'row',
 				},
 				
@@ -67,7 +66,7 @@ export default function TabLayout() {
 					<svgIcons.ProfileIcon fill={focused ? color: 'none'}></svgIcons.ProfileIcon>
 				),
 			}} />
-			< Tabs.Screen name="basket" options={{
+			< Tabs.Screen name="(basket)" options={{
 				headerShown: headerShown,
 				title: 'Корзина',
 				tabBarIcon: ({ color, focused }) => (

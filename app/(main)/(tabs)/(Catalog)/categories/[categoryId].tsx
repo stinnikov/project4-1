@@ -1,5 +1,5 @@
 "use client"
-import { useLocalSearchParams, usePathname, Stack, useRouter} from 'expo-router';
+import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen} from 'expo-router';
 import { categories } from '@/app/data/categories';
 import { products } from '@/app/data/products';
 import CategoryListScreen from '@/app/screens/CategoryListScreen';
@@ -14,8 +14,8 @@ import ProductListScreen from '@/app/screens/ProductListScreen';
 export default function(){
     const router = useRouter();
     const { categoryId, categoryDepth } = useLocalSearchParams();
-    const[Products, setProducts] = useState<Product[]>([]);
-    const [Categories,setCategories] = useState<Category[]>([]);
+    const[Products, setProducts] = useState<any>(undefined);
+    const [Categories,setCategories] = useState<any>(undefined);
 
     useEffect(()=>{
         const getEntries = async()=>{
@@ -54,7 +54,7 @@ export default function(){
     const [currentCategory, setCategory] = useState<Category>();
 
     useEffect(()=>{
-        const getEntries = async()=>{
+        async function getEntries(){
             let cat:Category;
             if(typeof(categoryId)=="string")
             {
@@ -70,11 +70,8 @@ export default function(){
         }
         getEntries();
     },[]);
-    
-    const topGoodsData = products.slice(0,20);
 
-    
-    
+    const topGoodsData = products.slice(0,20);
     if(currentCategory && Categories)
     {
         if(Categories.length === 0 && Products)
@@ -95,5 +92,9 @@ export default function(){
                 router={router}
             />
         )
+    }
+    else
+    {
+        SplashScreen.hide();
     }
 }
