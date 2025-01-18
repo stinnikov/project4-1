@@ -83,7 +83,7 @@ const SettingsIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-		fill={props.fill ?? "none"}
+			fill={props.fill ?? "none"}
 			stroke="#000"
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -141,7 +141,7 @@ const BasketIcon = (props: SvgProps) => (
 			d="M12.33 26.625a2.057 2.057 0 1 0 0-4.114 2.057 2.057 0 0 0 0 4.114ZM21.928 26.625a2.057 2.057 0 1 0 0-4.114 2.057 2.057 0 0 0 0 4.114Z"
 		/>
 		<Path
-		fill={props.fill ?? 'none'}
+			fill={props.fill ?? 'none'}
 			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -149,7 +149,7 @@ const BasketIcon = (props: SvgProps) => (
 			d="M3.417 4h2.742l4.805 15.083h10.964"
 		/>
 		<Path
-		fill={props.fill ?? 'none'}
+			fill={props.fill ?? 'none'}
 			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -163,13 +163,18 @@ const BackArrowIcon = (props: SvgProps) => (
 	<Svg
 		width={24}
 		height={24}
-		viewBox="0 0 24 24"
+		rotation={180}
 		fill="none"
+		viewBox="0 0 24 24"
 		{...props}
 	>
 		<Path
-			fill={props.fill ?? "#000"}
-			d="m4 10-.707.707L2.586 10l.707-.707L4 10Zm17 8a1 1 0 0 1-2 0h2ZM8.293 15.707l-5-5 1.414-1.414 5 5-1.414 1.414Zm-5-6.414 5-5 1.414 1.414-5 5-1.414-1.414ZM4 9h10v2H4V9Zm17 7v2h-2v-2h2Zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5V9Z"
+			fill={props.fill ?? "none"}
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={2}
+			d="m8 20 8-8-8-8"
 		/>
 	</Svg>
 )
@@ -188,14 +193,14 @@ const SortIcon = (props: SvgProps) => (
 
 const CircleIcon = (props: SvgProps) => (
 	<Svg
-	  width={30}
-	  height={30}
-	  fill="none"
-	  viewBox="0 0 30 30"
-	  {...props}
+		width={30}
+		height={30}
+		fill="none"
+		viewBox="0 0 30 30"
+		{...props}
 	>
-	  <Circle cx={15} cy={15} r={13} fill={props.fill !== 'none' ? props.fill : 'black'} />
+		<Circle cx={15} cy={15} r={13} fill={props.fill !== 'none' ? props.fill : 'black'} />
 	</Svg>
-  )
+)
 
 export default { ProfileIcon, CatalogIcon, FavoritesIcon, ArrowRightIcon, SettingsIcon, PickUpIcon, ClockIcon, BasketIcon, BackArrowIcon, SortIcon, CircleIcon }
