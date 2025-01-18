@@ -29,3 +29,5 @@ export const getSingleProductById = async (prodId: string) => {
         console.error(error);
     }
 }
+
+export default () => { };

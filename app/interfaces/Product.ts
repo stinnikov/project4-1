@@ -7,4 +7,6 @@ export interface Product {
     imageUrl: string;
 }
 
+export default () => { };
+
 

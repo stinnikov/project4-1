@@ -26,7 +26,7 @@ export const getCategoriesById = async (id: string) => {
         console.error(error);
     }
 }
-export const getCategoryById = async(id: string) => {
+export const getCategoryById = async (id: string) => {
     try {
         const response = await fetch(`${ipv4}/getCategoryById?id=${id}`)
 
@@ -34,7 +34,7 @@ export const getCategoryById = async(id: string) => {
 
         return mappedResponse;
     }
-    catch(error){
+    catch (error) {
         console.error(error);
     }
 }
@@ -50,3 +50,5 @@ export const getCategoryNameById = async (id: string) => {
         console.error(error);
     }
 }
+
+export default () => { };
