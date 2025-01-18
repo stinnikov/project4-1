@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProductListScreen;
+export default React.memo(ProductListScreen);
