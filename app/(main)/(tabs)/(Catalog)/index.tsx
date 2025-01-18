@@ -1,37 +1,40 @@
 "use client"
 import { ScrollView, View, StyleSheet, StatusBar } from 'react-native'
-import { useLocalSearchParams, usePathname, Stack, useRouter as router } from 'expo-router';
-import CategoryCardListComponent from '@/app/components/CategoryCardListComponent';
-import { categories } from '@/app/data/categories';
+import { Stack, useRouter as router } from 'expo-router';
 import CatalogScreen from '@/app/screens/CatalogScreen';
-import MainScreen from '@/app/screens/MainScreen';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Category } from '@/app/interfaces/Category';
 import { getCategoriesDepthZero } from '@/app/services/CategoryService';
 
 export default function () {
-    const { category } = useLocalSearchParams();
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    const [Categories,setCategories] = useState<Category[]>([]);
-
-
-
-
-    useEffect(()=>{
-        const getEntries = async()=>{
-            const cats = await getCategoriesDepthZero();
-            if(cats!==undefined)
-            setCategories(cats);
+    useEffect(() => {
+        const getEntries = async () => {
+            try {
+                const cats = await getCategoriesDepthZero();
+                if (cats !== undefined)
+                    setCategories(cats);
+            }
+            finally {
+                setLoading(false);
+            }
         }
         getEntries();
-    },[])
+    }, [])
 
-    return (
-        <View style={{flex:1}}>
-            <CatalogScreen data={Categories} router={router()}></CatalogScreen>
-            <Stack initialRouteName=''></Stack>
-        </View>
-    )
+    if (loading) {
+
+    }
+
+    if (categories)
+        return (
+            <View style={{ flex: 1 }}>
+                <CatalogScreen categories={categories} router={router()}></CatalogScreen>
+                <Stack initialRouteName=''></Stack>
+            </View>
+        )
 }
 
 const styles = StyleSheet.create({

@@ -1,49 +1,45 @@
 import { useLocalSearchParams, useRouter as router } from 'expo-router';
 import ProductListScreen from '@/app/screens/ProductListScreen';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getProductsByCategoryId } from '@/app/services/ProductService';
 import { Product } from '@/app/interfaces/Product';
 import { getCategoryNameById } from '@/app/services/CategoryService';
 
 
-export default function(){
+export default function () {
 
-    const { categoryId } = useLocalSearchParams();
+    const { productList: categoryId } = useLocalSearchParams();
+    const [categoryName, setCategoryName] = useState<string>('');
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    if (typeof categoryId === 'string') {
+        useEffect(() => {
+            const getEntries = async () => {
+                try {
+                    var [getProductsResponse, getCategoryNameResponse] = await Promise.all(
+                        [getProductsByCategoryId(categoryId),
+                        getCategoryNameById(categoryId)])
 
-
-
-    const [CategoryName,setCategoryName] = useState<string>('');
-            useEffect(()=>{
-                const getEntries = async()=>{
-                    let prods:Product[]=[];
-                    if(typeof(categoryId)=="string")
-                    {
-                        var temp = await getCategoryNameById(categoryId)
-                        if(temp!==undefined)
-                        {
-                            setCategoryName(temp);
-                        }
+                    if (getProductsResponse && getCategoryNameResponse) {
+                        setProducts(getProductsResponse);
+                        setCategoryName(getCategoryNameResponse)
                     }
                 }
-                getEntries();
-            },[])
-    
-    const [Products,setProducts] = useState<Product[]>([]);
-            useEffect(()=>{
-                const getEntries = async()=>{
-                    let prods:Product[]=[];
-                    if(typeof(categoryId)=="string")
-                    {
-                        var temp = await getProductsByCategoryId(categoryId)
-                        if(temp!==undefined)
-                        {
-                            prods = temp;
-                            setProducts(prods);
-                        }
-                    }
+                finally {
+                    setLoading(false);
                 }
-                getEntries();
-            },[])
-    return( 
-            <ProductListScreen data={Products} router={router()} categoryName={CategoryName}></ProductListScreen>
-)}
+            }
+            getEntries();
+        }, [])
+    }
+
+
+    if (loading) {
+
+    }
+
+    if (categoryName && products)
+        return (
+            <ProductListScreen products={products} categoryName={categoryName} router={router()}></ProductListScreen>
+        )
+}

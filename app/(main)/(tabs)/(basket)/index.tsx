@@ -8,7 +8,7 @@ export default function BasketScreen() {
 	const router = useRouter();
 	return (
 		<View style={styles.container}>
-			<ProductListComponent 
+			<ProductListComponent
 				data={products}
 				router={router}
 			/>
@@ -20,8 +20,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'green',
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	text: {
 		color: '#fff',
