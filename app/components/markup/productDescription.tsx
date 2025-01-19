@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import commonStyles from '@/app/styles/commonStyles';
+import commonStyles from '@/app/styles/styles';
 
 
 

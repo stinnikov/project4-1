@@ -3,42 +3,42 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet, } from 'react-native';
 import { Category } from '../interfaces/Category';
 import { Router } from 'expo-router';
-import commonStyles from '../styles/commonStyles';
+import { commonStyles, dimensionsStyles } from '../styles/styles';
 import CardComponent from './CardComponent';
 import { ipv4 } from '../data/tempData';
 
 interface CategoryCardListProps {
     data: Category[];
-    isMainScreen:boolean;
+    isMainScreen: boolean;
     router: Router;
 }
 
-function ListHeader(){
-    return(
+function ListHeader() {
+    return (
         <Text style={styles.listTitle}>Категории</Text>
     )
 }
 
 function renderCategory({ item, router }: { item: Category, router: Router }) {
-    return(
-        <CardComponent 
+    return (
+        <CardComponent
             item={item}
-            router={router} 
+            router={router}
             titleText={item.name}
-            textStyle={{color:'white'}}
+            textStyle={{ color: 'white' }}
             imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
-            style={{height: commonStyles.categoryCard.height, width:commonStyles.categoryCard.width}}
-            />
+            style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
+        />
     )
 }
 
 
 const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
     return (
-        <View style={styles.container}>          
-            <FlatList style={styles.list}
+        <View style={styles.container}>
+            <FlatList
                 data={props.data}
-                renderItem={({item}) => renderCategory({item: item, router: props.router})}
+                renderItem={({ item }) => renderCategory({ item: item, router: props.router })}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
@@ -54,10 +54,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    list:{
-    },
-
-    listTitle:{
+    listTitle: {
         fontSize: commonStyles.listTitle.fontSize,
         fontWeight: commonStyles.listTitle.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
@@ -65,8 +62,8 @@ const styles = StyleSheet.create({
     },
 
     column: {
-        gap: commonStyles.categoryCard.gap,
-        marginBottom: commonStyles.categoryCard.gap,
+        gap: 10,
+        marginBottom: 10,
     },
 });
 

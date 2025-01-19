@@ -4,7 +4,7 @@ import { Category } from "../interfaces/Category";
 import { Router } from "expo-router";
 import BlockComponent from "./BlockComponent";
 import svgIcons from "@/assets/icons/svgIcons";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, colorsStyles } from "../styles/styles";
 
 interface CategoryListProps {
     currentCategory: Category | undefined, // current category
@@ -44,9 +44,9 @@ function takeAllProducts({ props }: { props: CategoryListProps; }) {
                 style={styles.container}
                 onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
             >
-                <Text style={[styles.categoryTextContainer, { color: commonStyles.mainBrightColor.color }]}>Все продукты категории</Text>
+                <Text style={[styles.categoryTextContainer, { color: colorsStyles.mainBrightColor.color }]}>Все продукты категории</Text>
                 <View style={styles.rightIconContainer}>
-                    <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={commonStyles.mainBrightColor.color} width={20} height={20}></svgIcons.ArrowRightIcon>
+                    <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color} width={20} height={20}></svgIcons.ArrowRightIcon>
                 </View>
             </TouchableOpacity>
         )
@@ -110,9 +110,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        minHeight: commonStyles.categoryListElement.minHeight,
-        borderTopWidth: commonStyles.categoryListElement.borderWidth,
-        borderColor: commonStyles.categoryListElement.borderColor,
+        minHeight: 38,
+        borderTopWidth: 2,
+        borderColor: colorsStyles.mainGreyColor.color,
     },
     categoryTextContainer: {
         flex: 0.89,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     rightIcon: {
-        paddingRight: commonStyles.categoryListElement.marginRight,
+        paddingRight: 16,
     },
 })
 

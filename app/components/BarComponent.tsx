@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, StyleProp, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles, colorsStyles } from "../styles/styles";
 
 interface BarComponentProps {
     text?: string,
@@ -53,11 +53,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
 
-        height: commonStyles.bar.height,
-        
-        borderWidth: commonStyles.bar.borderWidth,
-        borderRadius: commonStyles.bar.borderRadius,
+        height: dimensionsStyles.bar.height,
 
+        borderRadius: commonStyles.general.borderRadius,
     },
 
     leftIconContainer: {
@@ -77,8 +75,8 @@ const styles = StyleSheet.create({
 
     text: {
         alignContent: 'center',
-        padding: commonStyles.barText.padding,
-        fontSize: commonStyles.barText.fontSize,
+        padding: commonStyles.general.padding,
+        fontSize: 17,
         fontFamily: commonStyles.text.fontFamily,
         zIndex: 999,
         position: 'absolute',
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     },
 
     rightIcon: {
-        marginRight: commonStyles.bar.margin,
+        marginRight: commonStyles.general.margin,
     },
 })
 
