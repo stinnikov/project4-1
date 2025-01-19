@@ -1,6 +1,5 @@
 "use client"
 import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen } from 'expo-router';
-import { products } from '@/app/data/tempData';
 import CategoryListScreen from '@/app/screens/CategoryListScreen';
 import { Category } from '@/app/interfaces/Category';
 import { useState, useEffect } from 'react';
@@ -8,6 +7,7 @@ import { getCategoriesById, getCategoryNameById, getCategoryById } from '@/app/s
 import { getProductsByCategoryId } from '@/app/services/ProductService';
 import { Product } from '@/app/interfaces/Product';
 import ProductListScreen from '@/app/screens/ProductListScreen';
+import LoadingScreen from '@/app/screens/LoadingScreen';
 
 export default function () {
     const router = useRouter();
@@ -45,7 +45,7 @@ export default function () {
     }
 
     if (loading) {
-        SplashScreen.hideAsync();
+        return (<LoadingScreen></LoadingScreen>)
     }
 
 
