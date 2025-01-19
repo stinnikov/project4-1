@@ -16,7 +16,7 @@ function renderDeliveryBar() {
                     leftIcon={<svgIcons.PickUpIcon></svgIcons.PickUpIcon>}
                     rightIcon={<svgIcons.ArrowRightIcon></svgIcons.ArrowRightIcon>}
                     text='Адрес'
-                    style={{ backgroundColor: 'white' }}
+                    style={styles.bar}
                     iconSize={24}
                 />
             </View>
@@ -26,7 +26,7 @@ function renderDeliveryBar() {
                     leftIcon={<svgIcons.ClockIcon></svgIcons.ClockIcon>}
                     rightIcon={<svgIcons.ArrowRightIcon></svgIcons.ArrowRightIcon>}
                     text='Время'
-                    style={{ backgroundColor: 'white' }}
+                    style={styles.bar}
                     iconSize={24}
                 />
             </View>
@@ -49,8 +49,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         rowGap: 10,
         paddingBottom: 10,
-    }
-
+    },
+    bar: {
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+    },
 })
 
 export default DeliveryBarComponent;

@@ -5,6 +5,7 @@ import ProductCardComponent from '@/app/components/ProductCardComponent';
 import { useState, useEffect } from 'react';
 import { getSingleProductById } from '@/app/services/ProductService';
 import ProductCardScreen from '@/app/screens/ProductCardScreen';
+import LoadingScreen from '@/app/screens/LoadingScreen';
 
 export default function () {
 
@@ -32,7 +33,7 @@ export default function () {
     }
 
     if (loading) {
-
+        return (<LoadingScreen></LoadingScreen>)
     }
 
     if (product) {
