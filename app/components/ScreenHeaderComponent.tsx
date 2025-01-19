@@ -2,7 +2,7 @@ import { Router } from "expo-router";
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import svgIcons from "@/assets/icons/svgIcons";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles } from "../styles/styles";
 
 interface ScreenHeaderProps {
     title: string,

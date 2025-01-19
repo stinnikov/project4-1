@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, } from 'react-native';
 import { Product } from '../interfaces/Product';
 import { Router } from 'expo-router';
-import commonStyles from '../styles/commonStyles';
+import { commonStyles, dimensionsStyles } from '../styles/styles';
 import ProductListCardComponent from './ProductListCardComponent';
 import svgIcons from '@/assets/icons/svgIcons';
 
@@ -15,11 +15,12 @@ interface ProductListProps {
 
 function ListHeader() {
     return (
-        <TouchableOpacity style={{ 
-            flexDirection: 'row', 
-            alignItems: 'center', 
-            minHeight: 30, 
-            marginBottom: 16 }}>
+        <TouchableOpacity style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            minHeight: 30,
+            marginBottom: 16
+        }}>
             <svgIcons.SortIcon width={20} height={20}></svgIcons.SortIcon>
             <Text style={styles.listTitle}>Сортировка</Text>
         </TouchableOpacity>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
 
     list: {
         padding: 16,
-        paddingTop:0,
+        paddingTop: 0,
     },
 
     listTitle: {
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
         fontFamily: commonStyles.text.fontFamily,
     },
     productCard: {
-        height: commonStyles.productListCard.height,
-        width: commonStyles.productListCard.width,
+        height: dimensionsStyles.productListCard.height,
+        width: dimensionsStyles.productListCard.width,
     },
     column: {
         gap: 10,

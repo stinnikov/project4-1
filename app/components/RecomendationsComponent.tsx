@@ -2,7 +2,7 @@ import React, { useMemo, memo, useRef, useState } from "react";
 import { View, StyleSheet, FlatList, TouchableOpacity, Text, ImageBackground, PanResponder } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "../interfaces/Product";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, colorsStyles, dimensionsStyles } from "../styles/styles";
 import CardComponent from "./CardComponent";
 import BlockComponent from "./BlockComponent";
 
@@ -40,8 +40,8 @@ const RecomendationComponent: React.FC<RecomendationComponentProps> = React.memo
                     nestedScrollEnabled={true}
                     bounces={false}
                     getItemLayout={(data, index) => ({
-                        length: commonStyles.recsCard.width,
-                        offset: commonStyles.recsCard.width * index,
+                        length: dimensionsStyles.recsCard.width,
+                        offset: dimensionsStyles.recsCard.width * index,
                         index
                     }
                     )}
@@ -57,7 +57,6 @@ const RecomendationComponent: React.FC<RecomendationComponentProps> = React.memo
         />
     );
 });
-
 
 const styles = StyleSheet.create({
     container: {
@@ -75,11 +74,11 @@ const styles = StyleSheet.create({
         paddingTop: 0,
     },
     card: {
-        height: commonStyles.recsCard.height,
+        height: dimensionsStyles.recsCard.height,
 
-        paddingLeft: commonStyles.recsCard.padding,
+        paddingLeft: commonStyles.general.padding,
 
-        width: commonStyles.recsCard.width,
+        width: dimensionsStyles.recsCard.width,
     },
     cardTitle: {
 
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         paddingRight: 0,
         paddingLeft: 0,
         paddingTop: 0,
-        paddingBottom: commonStyles.block.padding,
+        paddingBottom: commonStyles.general.padding,
     }
 })
 

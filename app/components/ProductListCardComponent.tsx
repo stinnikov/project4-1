@@ -2,16 +2,15 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
 import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 
-interface ProductListCardProps{
+interface ProductListCardProps {
     data: Product,
     router: Router,
 }
 
-function navigateToProduct(item: Product, router: Router)
-{
+function navigateToProduct(item: Product, router: Router) {
     router.push(
         {
             pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
@@ -23,58 +22,58 @@ function navigateToProduct(item: Product, router: Router)
 }
 
 const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
-    return(
+    return (
         <View style={[cardStyles.container]}>
-            <TouchableOpacity onPress={() => {navigateToProduct(props.data, props.router)}}>
-                <ImageBackground style={cardStyles.imageBackground} imageStyle={cardStyles.image} source={{uri: props.data.imageUrl}}></ImageBackground>
+            <TouchableOpacity onPress={() => { navigateToProduct(props.data, props.router) }}>
+                <ImageBackground style={cardStyles.imageBackground} imageStyle={cardStyles.image} source={{ uri: props.data.imageUrl }}></ImageBackground>
                 <Text style={cardStyles.text}>{props.data.name}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={cardStyles.bottomButtonBlock}>
                 <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                <Text style={{color: commonStyles.basketButtonText.color}}>В корзину</Text>
+                <Text style={{ color: colorsStyles.mainWhiteColor.color }}>В корзину</Text>
             </TouchableOpacity>
         </View>
     )
-} 
+}
 
 const cardStyles = StyleSheet.create({
-    container:{
-        flex:1,
-        borderRadius:12,
-        justifyContent:'space-between',
+    container: {
+        flex: 1,
+        borderRadius: 12,
+        justifyContent: 'space-between',
         backgroundColor: 'white',
     },
-    imageTitleBlock:{
-        height:commonStyles.productsCardImageBackground.height, 
-        width:commonStyles.productsCardImageBackground.width
+    imageTitleBlock: {
+        height: dimensionsStyles.productsCardImageBackground.height,
+        width: dimensionsStyles.productsCardImageBackground.width
     },
-    text:{
-        padding: commonStyles.cardTitle.padding,
-        fontSize: commonStyles.productListCard.fontSize,
-        fontWeight: commonStyles.productListCard.fontWeight,
+    text: {
+        padding: textStyles.cardTitle.padding,
+        fontSize: textStyles.productListCardText.fontSize,
+        fontWeight: textStyles.productListCardText.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        color:commonStyles.cardTitle.color,
-        alignSelf:'flex-start',
+        color: textStyles.cardTitle.color,
+        alignSelf: 'flex-start',
     },
-    imageBackground:{
-        width: '100%', 
-        height: commonStyles.productsCardImageBackground.height
+    imageBackground: {
+        width: dimensionsStyles.productsCardImageBackground.width,
+        height: dimensionsStyles.productsCardImageBackground.height
     },
-    image:{
-        borderTopLeftRadius: commonStyles.image.borderRadius,
-        borderTopRightRadius:commonStyles.image.borderRadius,
-        resizeMode:'contain',
+    image: {
+        borderTopLeftRadius: commonStyles.general.borderRadius,
+        borderTopRightRadius: commonStyles.general.borderRadius,
+        resizeMode: 'contain',
     },
     bottomButtonBlock: {
         flexDirection: 'row',
-        minHeight:28,
+        minHeight: 28,
         borderRadius: 12,
         margin: 8,
         marginBottom: 10,
         justifyContent: 'center',
         alignItems: 'center',
         gap: 0,
-        backgroundColor: commonStyles.basketButton.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     }
 })
 

@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, FlatList, Text, ViewStyle } from "react-native";
 import { router, Router } from "expo-router";
 import { Product } from "../interfaces/Product";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles } from "../styles/styles";
 import BlockComponent from "./BlockComponent";
 import { StyleProp } from "react-native";
 import TopGoodsCardComponent from "./TopGoodsCardComponent";
@@ -39,8 +39,8 @@ function renderTopGoodsList(props: TopGoodsComponentProps) {
                 bounces={false}
                 nestedScrollEnabled={true}
                 getItemLayout={(data, index) => ({
-                    length: commonStyles.topGoodsCard.width,
-                    offset: commonStyles.topGoodsCard.width * index,
+                    length: dimensionsStyles.topGoodsCard.width,
+                    offset: dimensionsStyles.topGoodsCard.width * index,
                     index
                 }
                 )}
@@ -51,12 +51,7 @@ function renderTopGoodsList(props: TopGoodsComponentProps) {
 
 const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) => {
     return (
-        <BlockComponent
-            contentStyle={[styles.contentStyle, props.style]}
-
-            content={renderTopGoodsList(props)}
-        />
-
+        renderTopGoodsList(props)
     );
 });
 
@@ -64,7 +59,7 @@ const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) =
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        
+
     },
     list: {
         flexDirection: 'row',
@@ -76,20 +71,6 @@ const styles = StyleSheet.create({
         marginBottom: commonStyles.listTitle.margin,
         paddingLeft: commonStyles.listTitle.padding,
     },
-    productCard: {
-        height: commonStyles.topGoodsCard.height,
-        width: commonStyles.topGoodsCard.width + commonStyles.topGoodsCard.padding,
-        paddingLeft: commonStyles.topGoodsCard.padding,
-    },
-    contentStyle: {
-        padding: 0,
-        paddingRight: 0,
-        paddingLeft: 0,
-        paddingTop: commonStyles.topGoodsBlock.padding,
-        paddingBottom: commonStyles.topGoodsBlock.padding,
-        borderRadius: commonStyles.topGoodsBlock.borderRadius,
-        backgroundColor: commonStyles.mainGreyColor.color,
-    }
 })
 
 export default React.memo(TopGoodsComponent);

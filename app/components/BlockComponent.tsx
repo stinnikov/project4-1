@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
-import commonStyles from '../styles/commonStyles';
+import { commonStyles } from '../styles/styles';
 
 // Оптимизированный компонент блока
 
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingRight: commonStyles.block.padding,
-    paddingLeft: commonStyles.block.padding,
+    paddingTop: commonStyles.general.padding,
+    paddingBottom: commonStyles.general.padding,
+    paddingRight: commonStyles.general.padding,
+    paddingLeft: commonStyles.general.padding,
     // Дополнительные стили для контента, если необходимо
   },
 });
