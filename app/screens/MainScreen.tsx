@@ -4,7 +4,6 @@ import { Router } from "expo-router";
 import { Category } from "../interfaces/Category";
 import { Product } from "../interfaces/Product";
 import RecomendationsComponent from "../components/RecomendationsComponent";
-import { products } from "../data/tempData";
 import TopGoodsComponent from "../components/TopGoodsComponent";
 import TopComponent from "../components/TopComponent";
 
@@ -21,20 +20,20 @@ function renderScreen(props: MainScreenProps) {
                 <TopComponent></TopComponent>
             </View>
 
-            <View>
+            {/* <View>
                 <RecomendationsComponent
                     router={props.router}
-                    data={products.slice(0, 20)}
+                    data={}
                 />
             </View>
 
             <View>
                 <TopGoodsComponent
-                    data={props.topGoodsData ?? products.slice(0, 20)}
+                    data={}
                     router={props.router}
                     
                 />
-            </View>
+            </View> */}
         </View>
     )
 }

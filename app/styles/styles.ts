@@ -1,9 +1,21 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, ColorValue } from 'react-native';
 const deviceWidth: number = Dimensions.get("window").width;
 const deviceHeight: number = Dimensions.get("window").height;
 
 const widthUnit = deviceWidth / 100;
 const heightUnit = deviceHeight / 100;
+
+const colors: {
+  mainWhiteColor: ColorValue,
+  mainGreyColor: ColorValue,
+  mainBrightColor: ColorValue,
+  mainDarkColor: ColorValue,
+} = {
+  mainWhiteColor: 'white',
+  mainGreyColor: '#d9d9d9',
+  mainBrightColor: '#7000E2',
+  mainDarkColor: 'black',
+};
 
 export const commonStyles = StyleSheet.create({
 
@@ -36,6 +48,29 @@ export const commonStyles = StyleSheet.create({
 
 });
 
+
+
+export const colorsStyles = StyleSheet.create({
+  mainDarkColor: {
+    color: colors.mainDarkColor,
+  },
+  mainWhiteColor: {
+    color: colors.mainWhiteColor,
+  },
+
+  mainGreyColor: {
+    color: colors.mainGreyColor,
+  },
+
+  mainBrightColor: {
+    color: colors.mainBrightColor,
+  },
+
+  basketButtonColor: {
+    color: colors.mainBrightColor,
+  },
+})
+
 export const textStyles = StyleSheet.create({
   productListCardText: {
     fontSize: 14,
@@ -48,26 +83,16 @@ export const textStyles = StyleSheet.create({
     fontWeight: 'thin',
     color: 'black',
   },
-})
-
-export const colorsStyles = StyleSheet.create({
-  mainBlackColor: {
-    color: 'black',
+  basketButtonText: {
+    fontSize: 18,
+    fontWeight: 'regular',
+    fontFamily: commonStyles.text.fontFamily,
+    color: colors.mainWhiteColor,
   },
-  mainWhiteColor: {
-    color: "white",
-  },
-
-  mainGreyColor: {
-    color: '#d9d9d9',
-  },
-
-  mainBrightColor: {
-    color: '#7000E2',
-  },
-
-  basketButtonColor: {
-    color: '#7000E2',
+  basketButtonMiniText: {
+    fontSize: 14,
+    fontFamily: commonStyles.text.fontFamily,
+    color: colors.mainWhiteColor,
   },
 })
 

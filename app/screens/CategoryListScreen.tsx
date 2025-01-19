@@ -3,8 +3,6 @@ import { FlatList, View, StyleSheet, Text } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "../components/SearchComponent";
 import BlockComponent from "../components/BlockComponent";
-import TopGoodsComponent from "../components/TopGoodsComponent";
-import { products } from "../data/tempData";
 import { Router, SplashScreen } from "expo-router";
 import CategoryListComponent from "../components/CategoryListComponent";
 import { Category } from "../interfaces/Category";
@@ -30,14 +28,6 @@ function renderScreen(props: CategoryListScreenProps) {
             <View>
                 <BlockComponent
                     content={<SearchComponent />}
-                />
-            </View>
-
-            <View>
-                <TopGoodsComponent
-                    data={products.slice(0, 20)}
-                    router={props.router}
-                    isMainScreen={false}
                 />
             </View>
 
