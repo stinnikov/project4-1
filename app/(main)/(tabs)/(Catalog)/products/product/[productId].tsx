@@ -30,7 +30,7 @@ export default function () {
     }
 
     if (loading) {
-        return LoadingScreen();
+        return <LoadingScreen></LoadingScreen>;
     }
 
     if (product) {

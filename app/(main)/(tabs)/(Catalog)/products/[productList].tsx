@@ -42,9 +42,7 @@ export default function () {
     }, [categoryId]); // Зависимость от categoryId
 
     if (loading) {
-        return (
-            LoadingScreen()
-        )
+        return <LoadingScreen></LoadingScreen>;
     }
 
     if (categoryName && products) {
