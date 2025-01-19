@@ -1,33 +1,35 @@
-import React, {useState} from "react";
-import { TextInput, View, StyleSheet, Text, Button } from "react-native";
-
+import React, { useState } from "react";
+import { TextInput, View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
+import { commonStyles, colorsStyles } from "../styles/styles";
 export const LoginScreen: React.FC = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
-    return(
+    return (
         <View style={styles.container}>
             <View style={styles.form}>
                 <Text style={styles.textTitle}>Login</Text>
 
-                <View style={{padding:10}}>
+                <View style={{ padding: 10 }}>
                     <Text style={styles.textInputTitle}>Login</Text>
                     <TextInput
                         style={styles.textInput}
                         value={login}
-                        onChangeText={setLogin}
+                        onChangeText={(text) => setLogin(text)}
                     />
 
                     <Text style={styles.textInputTitle}>Password</Text>
                     <TextInput
                         style={styles.textInput}
                         value={password}
-                        onChangeText={setPassword}
+                        onChangeText={(text) => setPassword(text)}
                         keyboardType='visible-password'
                     />
                 </View>
-                <View style={{padding:10}}>
-                    <Button title="Login" color='black'></Button>
+                <View style={{ padding: 10 }}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -36,35 +38,50 @@ export const LoginScreen: React.FC = () => {
 
 const styles = StyleSheet.create(
     {
-        container:{
-            flex:1,
-            padding:10,
-            backgroundColor:'#FFFAFA',
-            alignContent:'stretch',
-            justifyContent:'center',
-            alignItems:'stretch',
+        container: {
+            flex: 1,
+            padding: 10,
+            backgroundColor: '#FFFAFA',
+            alignContent: 'stretch',
+            justifyContent: 'center',
+            alignItems: 'stretch',
         },
-        textInput:{
+        textInput: {
             borderWidth: 1,
             borderColor: 'black',
-            borderRadius:4,
-            backgroundColor:'#FFFAFA',
-            padding:10,
-            fontSize:18,
+            borderRadius: 4,
+            backgroundColor: '#FFFAFA',
+            padding: 10,
+            fontSize: 18,
         },
-        textInputTitle:{
-            fontSize:18,
-            borderColor:'black',
-            padding:10,
+        textInputTitle: {
+            fontSize: 18,
+            borderColor: 'black',
+            fontWeight: 'semibold',
+            fontFamily: commonStyles.text.fontFamily,
+            padding: 10,
         },
-        textTitle:{
-            borderBottomWidth: 1,
-            borderColor: '#ccc',
-            fontSize:22,
-            padding:10,
+        textTitle: {
+            fontSize: 26,
+            fontWeight: 'semibold',
+            fontFamily: commonStyles.text.fontFamily,
+            padding: 10,
+            alignSelf: 'center',
         },
-        form:{
-            alignContent:'stretch',
+        button: {
+            backgroundColor: colorsStyles.mainDarkColor.color,
+            minHeight: 36,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        buttonText: {
+            fontSize: 18,
+            color: colorsStyles.mainWhiteColor.color,
+            fontWeight: 'semibold',
+            fontFamily: commonStyles.text.fontFamily
+        },
+        form: {
+            alignContent: 'stretch',
         }
     }
 )
