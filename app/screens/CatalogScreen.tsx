@@ -26,7 +26,9 @@ function renderScreen(props: CatalogScreenProps) {
                         data={props.categories}
                         isMainScreen={false}
                         router={props.router}
-                    />}>
+                    />}
+                    contentStyle={{ backgroundColor: 'white' }}
+                >
                 </BlockComponent>
             </View>
         </View>

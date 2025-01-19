@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text } from "react-native";
 import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 import { getSingleProductById } from '@/app/services/ProductService';
 
@@ -36,50 +36,54 @@ function navigateToProduct(item: Product, router: Router, isMainScreen?: boolean
 }
 
 const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
-    const [Product, setProduct] = useState<Product>({
-        "id": "",
-        "name": "",
-        "price": '',
-        "description": "",
-        "imageUrl": ""
-    });
+    const [product, setProduct] = useState<Product | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean>(true);
     useEffect(() => {
         const getEntries = async () => {
-            let prod: Product;
+            try {
 
-            if (typeof (props.data.id) == "string") {
-                var temp = await getSingleProductById(props.data.id)
-                if (temp !== undefined) {
-                    prod = temp;
-                    setProduct(prod);
+                if (typeof (props.data.id) == "string") {
+                    var getProductResponse = await getSingleProductById(props.data.id)
+                    if (getProductResponse) {
+                        setProduct(getProductResponse);
+                    }
                 }
+            }
+            finally {
+                setLoading(false);
             }
         }
         getEntries();
     }, [])
-    return (
-        <View style={[cardStyles.container]}>
-            <View style={cardStyles.imageTitleBlock}>
-                <TouchableOpacity
-                    onPress={() => { navigateToProduct(props.data, props.router, props.isMainScreen) }}>
-                    <ImageBackground
-                        source={{ uri: Product.imageUrl }}
-                        style={[cardStyles.imageBackground]}
-                        imageStyle={[cardStyles.image]}>
-                    </ImageBackground>
-                    <Text style={cardStyles.title}>{Product.name}</Text>
+
+    if (loading) {
+        // логика
+    }
+
+    if (product)
+        return (
+            <View style={[cardStyles.container]}>
+                <View style={cardStyles.imageTitleBlock}>
+                    <TouchableOpacity
+                        onPress={() => { navigateToProduct(props.data, props.router, props.isMainScreen) }}>
+                        <ImageBackground
+                            source={{ uri: product.imageUrl }}
+                            style={[cardStyles.imageBackground]}
+                            imageStyle={[cardStyles.image]}>
+                        </ImageBackground>
+                        <Text style={cardStyles.title}>{product.name}</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={cardStyles.bottomButtonBlock}>
+                    <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
+                    <Text style={{
+                        fontSize: 14,
+                        fontFamily: commonStyles.text.fontFamily,
+                        color: colorsStyles.mainWhiteColor.color
+                    }}>В корзину</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={cardStyles.bottomButtonBlock}>
-                <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                <Text style={{
-                    fontSize: 14,
-                    fontFamily: commonStyles.text.fontFamily,
-                    color: commonStyles.basketButtonText.color
-                }}>В корзину</Text>
-            </TouchableOpacity>
-        </View>
-    )
+        )
 }
 
 const cardStyles = StyleSheet.create({
@@ -92,26 +96,26 @@ const cardStyles = StyleSheet.create({
         marginRight: -4,
     },
     imageTitleBlock: {
-        height: commonStyles.topGoodsCard.height,
-        width: commonStyles.topGoodsCard.width
+        height: dimensionsStyles.topGoodsCard.height,
+        width: dimensionsStyles.topGoodsCard.width
     },
+
     title: {
-        padding: commonStyles.cardTitle.padding,
-        fontSize: commonStyles.topGoodsCard.fontSize,
-        fontWeight: commonStyles.topGoodsCard.fontWeight,
+        padding: textStyles.cardTitle.padding,
+        fontSize: 14,
+        fontWeight: 'semibold',
         fontFamily: commonStyles.text.fontFamily,
         color: commonStyles.text.color,
-
         alignSelf: 'flex-start',
     },
     imageBackground: {
-        width: commonStyles.topGoodsImageBackground.width,
-        height: commonStyles.topGoodsImageBackground.height,
+        width: dimensionsStyles.topGoodsImageBackground.width,
+        height: dimensionsStyles.topGoodsImageBackground.height,
         overflow: 'hidden',
     },
     image: {
-        borderTopLeftRadius: commonStyles.image.borderRadius,
-        borderTopRightRadius: commonStyles.image.borderRadius,
+        borderTopLeftRadius: commonStyles.general.borderRadius,
+        borderTopRightRadius: commonStyles.general.borderRadius,
         resizeMode: 'contain',
     },
     bottomButtonBlock: {
@@ -123,7 +127,7 @@ const cardStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 0,
-        backgroundColor: commonStyles.basketButton.color,
+        backgroundColor: colorsStyles.basketButtonColor.color,
     }
 })
 

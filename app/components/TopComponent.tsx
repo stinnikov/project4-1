@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import DeliveryBarComponent from "./DeliveryBarComponent";
 import SearchComponent from "./SearchComponent";
 import BlockComponent from "./BlockComponent";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, colorsStyles } from "../styles/styles";
 
 
 function renderDelivery() {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     deliveryBlock: {
-        backgroundColor: commonStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainGreyColor.color,
     },
     search: {
         justifyContent: 'center',

@@ -3,43 +3,43 @@ import { Image } from 'react-native';
 import { Tabs, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/assets/icons/svgIcons';
-import commonStyles from '@/app/styles/commonStyles';
+import { commonStyles, colorsStyles } from '@/app/styles/styles';
 
 
-const iconColor: string = `${commonStyles.mainBrightColor.color}`;
+const iconColor: string = `${colorsStyles.mainBrightColor.color}`;
 
-const iconSize : number = 30;
+const iconSize: number = 30;
 
 const iconLabelShown: boolean = true;
 
 const iconLabelFontSize: number = 11;
 
-const headerShown : boolean = false;
+const headerShown: boolean = false;
 
 
 export default function TabLayout() {
 	return (
 		<Tabs
-			
+
 			screenOptions={{
-				tabBarAllowFontScaling:false,
+				tabBarAllowFontScaling: false,
 				tabBarActiveTintColor: iconColor,
 				tabBarShowLabel: iconLabelShown,
 				tabBarStyle: {
-					flexDirection:'row',
+					flexDirection: 'row',
 				},
-				
-				tabBarLabelStyle:{
-					fontSize:iconLabelFontSize,
+
+				tabBarLabelStyle: {
+					fontSize: iconLabelFontSize,
 				}
 			}}
 		>
 			<Tabs.Screen name="(Catalog)" options={{
-				
+
 				title: "Каталог",
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.CatalogIcon fill={focused ? color: 'black'}></svgIcons.CatalogIcon>
+					<svgIcons.CatalogIcon fill={focused ? color : 'black'}></svgIcons.CatalogIcon>
 				),
 			}}
 			/>
@@ -47,15 +47,15 @@ export default function TabLayout() {
 			< Tabs.Screen name="favourites" options={{
 				title: 'Избранное',
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.FavoritesIcon stroke={focused ? color: '#000'}></svgIcons.FavoritesIcon>
+					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
 				),
 			}} />
 			<Tabs.Screen name="(index)" options={{
-				title:'Главная',
-				
+				title: 'Главная',
+
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.CircleIcon fill={focused ? color: 'none'}></svgIcons.CircleIcon>
+					<svgIcons.CircleIcon fill={focused ? color : 'none'}></svgIcons.CircleIcon>
 					//заменить иконку на лого
 				),
 			}} />
@@ -63,14 +63,14 @@ export default function TabLayout() {
 				title: 'Профиль',
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.ProfileIcon fill={focused ? color: 'none'}></svgIcons.ProfileIcon>
+					<svgIcons.ProfileIcon fill={focused ? color : 'none'}></svgIcons.ProfileIcon>
 				),
 			}} />
 			< Tabs.Screen name="(basket)" options={{
 				headerShown: headerShown,
 				title: 'Корзина',
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.BasketIcon stroke={focused ? color: '#000'}></svgIcons.BasketIcon>
+					<svgIcons.BasketIcon stroke={focused ? color : '#000'}></svgIcons.BasketIcon>
 				),
 			}} />
 		</Tabs >

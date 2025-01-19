@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, colorsStyles } from "../styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/assets/icons/svgIcons";
 
@@ -42,7 +42,7 @@ const DeliveryBarComponent: React.FC<DeliveryBarComponentProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         alignContent: 'center',
-        backgroundColor: commonStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainGreyColor.color,
     },
     row: {
         flex: 1,

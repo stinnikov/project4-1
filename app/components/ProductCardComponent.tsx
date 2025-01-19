@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, 
 import ProductDescription from "./markup/productDescription";
 import { Product } from "../interfaces/Product";
 import { router, Router } from "expo-router";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles, colorsStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 
 interface ProductCardProps {
@@ -18,7 +18,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
     return (
         <ScrollView contentContainerStyle={styles.card}>
             <View style={styles.containter}>
-                <View style={{ height: commonStyles.productCardImage.height, width: commonStyles.productCardImage.width }}>
+                <View style={{ height: dimensionsStyles.productCardImage.height, width: dimensionsStyles.productCardImage.width }}>
                     <ImageBackground source={{ uri: props.product.imageUrl }}
                         imageStyle={{ width: '100%', height: '100%' }}
                         style={{ width: '100%', height: '100%', backgroundColor: '#fff' }}
@@ -34,7 +34,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
                             borderRadius: 100,
                             shadowRadius: 24,
                             shadowOpacity: 0.2,
-                            backgroundColor: commonStyles.mainGreyColor.color,
+                            backgroundColor: colorsStyles.mainGreyColor.color,
                         }}
                             onPress={() => { router.canGoBack() && router.back() }}
                         >
@@ -50,7 +50,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
                             width: 36,
                             shadowRadius: 24,
                             shadowOpacity: 0.2,
-                            backgroundColor: commonStyles.mainGreyColor.color,
+                            backgroundColor: colorsStyles.mainGreyColor.color,
                             borderRadius: 100,
                         }}>
                             <svgIcons.FavoritesIcon width={24} height={24}></svgIcons.FavoritesIcon>
@@ -70,7 +70,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
                                 fontSize: 18,
                                 fontWeight: 'regular',
                                 fontFamily: commonStyles.text.fontFamily,
-                                color: commonStyles.basketButtonText.color,
+                                color: colorsStyles.mainWhiteColor.color,
                             }}>В корзину</Text>
 
                             <svgIcons.BasketIcon height={20} width={20} stroke={'#FFF'}></svgIcons.BasketIcon>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     containter: {
         borderBottomWidth: 12,
-        borderColor: commonStyles.mainGreyColor.color,
+        borderColor: colorsStyles.mainGreyColor.color,
     },
     title: {
         flex: 1,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 4,
-        backgroundColor: commonStyles.basketButton.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     }
 
 });

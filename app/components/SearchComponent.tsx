@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import commonStyles from "../styles/commonStyles";
+import { commonStyles, dimensionsStyles, colorsStyles } from "../styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/assets/icons/svgIcons";
 
@@ -35,23 +35,22 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     searchBar: {
-        marginRight: commonStyles.searchBar.marginRight
+        marginRight: 10,
     },
     settings: {
-        height: commonStyles.bar.height,
-        width: commonStyles.bar.height,
+        height: dimensionsStyles.bar.height,
+        width: dimensionsStyles.bar.height,
 
         justifyContent: 'center',
         alignItems: 'center',
 
-        backgroundColor: commonStyles.searchSettings.backgroundColor,
+        backgroundColor: colorsStyles.mainGreyColor.color,
 
-        borderWidth: commonStyles.bar.borderWidth,
-        borderRadius: commonStyles.bar.borderRadius,
+        borderRadius: commonStyles.general.borderRadius,
     },
     settingsIcon: {
         position: 'absolute',
-        color: 'black',
+        color: colorsStyles.mainBlackColor.color,
     },
 })
 
