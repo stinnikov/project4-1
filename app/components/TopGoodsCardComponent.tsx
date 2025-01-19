@@ -76,11 +76,7 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
                 </View>
                 <TouchableOpacity style={cardStyles.bottomButtonBlock}>
                     <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                    <Text style={{
-                        fontSize: 14,
-                        fontFamily: commonStyles.text.fontFamily,
-                        color: colorsStyles.mainWhiteColor.color
-                    }}>В корзину</Text>
+                    <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
                 </TouchableOpacity>
             </View>
         )

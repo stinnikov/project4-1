@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         position: 'absolute',
-        color: colorsStyles.mainBlackColor.color,
+        color: colorsStyles.mainDarkColor.color,
     },
 })
 

@@ -30,7 +30,7 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
             </TouchableOpacity>
             <TouchableOpacity style={cardStyles.bottomButtonBlock}>
                 <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                <Text style={{ color: colorsStyles.mainWhiteColor.color }}>В корзину</Text>
+                <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
             </TouchableOpacity>
         </View>
     )
@@ -73,7 +73,7 @@ const cardStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 0,
-        backgroundColor: colorsStyles.mainWhiteColor.color,
+        backgroundColor: colorsStyles.mainBrightColor.color,
     }
 })
 
