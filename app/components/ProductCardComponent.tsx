@@ -7,7 +7,7 @@ import commonStyles from "../styles/commonStyles";
 import svgIcons from "@/assets/icons/svgIcons";
 
 interface ProductCardProps {
-    data: Product,
+    product: Product,
     router: Router,
 }
 
@@ -19,9 +19,9 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
         <ScrollView contentContainerStyle={styles.card}>
             <View style={styles.containter}>
                 <View style={{ height: commonStyles.productCardImage.height, width: commonStyles.productCardImage.width }}>
-                    <ImageBackground source={{ uri: props.data.imageUrl }}
+                    <ImageBackground source={{ uri: props.product.imageUrl }}
                         imageStyle={{ width: '100%', height: '100%' }}
-                        style={{ width: '100%', height: '100%', backgroundColor: '#fff'}}
+                        style={{ width: '100%', height: '100%', backgroundColor: '#fff' }}
                         resizeMode="contain">
                         <Pressable style={{
                             margin: 16, // default margin
@@ -32,45 +32,45 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
                             alignItems: 'center', // иконка посередине
                             justifyContent: 'center',
                             borderRadius: 100,
-                            shadowRadius:24,
-                            shadowOpacity:0.2,
+                            shadowRadius: 24,
+                            shadowOpacity: 0.2,
                             backgroundColor: commonStyles.mainGreyColor.color,
                         }}
-                            onPress={() => { router.canGoBack() && router.back()  }}
+                            onPress={() => { router.canGoBack() && router.back() }}
                         >
                             <svgIcons.ArrowRightIcon rotation={180}></svgIcons.ArrowRightIcon>
                         </Pressable>
                         <Pressable style={{
-                            direction:'rtl', 
+                            direction: 'rtl',
                             margin: 16,
-                            justifyContent:'center',
-                            alignItems:'center',
-                            alignSelf:'flex-end',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            alignSelf: 'flex-end',
                             height: 36, // чуть больше размера иконки
                             width: 36,
-                            shadowRadius:24,
-                            shadowOpacity:0.2,
+                            shadowRadius: 24,
+                            shadowOpacity: 0.2,
                             backgroundColor: commonStyles.mainGreyColor.color,
                             borderRadius: 100,
-                            }}>
+                        }}>
                             <svgIcons.FavoritesIcon width={24} height={24}></svgIcons.FavoritesIcon>
                         </Pressable>
                     </ImageBackground>
                 </View>
                 <View style={styles.title}>
-                    <Text style={styles.titleText}>{props.data.name}</Text>
+                    <Text style={styles.titleText}>{props.product.name}</Text>
                 </View>
 
                 <View style={styles.price}>
-                    <Text style={styles.priceText}>{props.data.price}</Text>
+                    <Text style={styles.priceText}>{props.product.price}</Text>
 
-                    <View style={{ flex: 1, height: '100%', direction: 'rtl', justifyContent:'center' }}>
+                    <View style={{ flex: 1, height: '100%', direction: 'rtl', justifyContent: 'center' }}>
                         <TouchableOpacity style={styles.bottomButtonBlock}>
                             <Text style={{
                                 fontSize: 18,
                                 fontWeight: 'regular',
                                 fontFamily: commonStyles.text.fontFamily,
-                                color:commonStyles.basketButtonText.color,
+                                color: commonStyles.basketButtonText.color,
                             }}>В корзину</Text>
 
                             <svgIcons.BasketIcon height={20} width={20} stroke={'#FFF'}></svgIcons.BasketIcon>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        gap:15,
+        gap: 15,
 
 
     },
@@ -130,20 +130,20 @@ const styles = StyleSheet.create({
     },
     bottomButtonBlock: {
         flexDirection: 'row',
-        minHeight:28,
+        minHeight: 28,
         borderRadius: 12,
-        marginTop:8,
-        paddingTop:8,
-        paddingBottom:8,
-        paddingLeft:10,
-        paddingRight:10,
+        marginTop: 8,
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 10,
+        paddingRight: 10,
         marginBottom: 8,
         justifyContent: 'center',
         alignItems: 'center',
         gap: 4,
         backgroundColor: commonStyles.basketButton.color,
     }
-    
+
 });
 
 

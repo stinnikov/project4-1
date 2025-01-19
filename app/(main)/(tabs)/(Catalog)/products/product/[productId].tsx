@@ -2,49 +2,47 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
 import { Product } from '@/app/interfaces/Product';
 import ProductCardComponent from '@/app/components/ProductCardComponent';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getSingleProductById } from '@/app/services/ProductService';
+import ProductCardScreen from '@/app/screens/ProductCardScreen';
 
-export default function(){
-    
-
+export default function () {
     const { productId } = useLocalSearchParams();
-
-    const [Product,setProduct] = useState<Product>({"id": '',
-        "name": '',
-        "price": '',
-        "description": "",
-        "imageUrl": ''});
-        useEffect(()=>{
-            const getEntries = async()=>{
-                let prod:Product;
-                
-                if(typeof(productId)=="string")
-                {
-                    var temp= await getSingleProductById(productId)
-                    if(temp!==undefined)
-                    {
-                        prod = temp;
-                        setProduct(prod);
+    const router = useRouter();
+    const [product, setProduct] = useState<Product | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean>(true);
+    if (typeof productId === 'string') {
+        useEffect(() => {
+            const getEntries = async () => {
+                try {
+                    var getProductResponse = await getSingleProductById(productId)
+                    if (getProductResponse) {
+                        setProduct(getProductResponse);
                     }
+                }
+                finally {
+                    setLoading(false);
                 }
             }
             getEntries();
-        },[])
-        
-    const router = useRouter();
+        }, [])
+    }
 
-    
+    if (loading) {
 
+    }
 
-    return( 
-        <View style={styles.container}>
-            <ProductCardComponent data={Product as Product} router={router} ></ProductCardComponent>
-        </View>
-)}
+    if (product) {
+        return (
+            <View style={styles.container}>
+                <ProductCardScreen product={product} router={router} ></ProductCardScreen>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
     },
 })

@@ -6,3 +6,5 @@ export interface Category {
     link?: string;
     subcats?: Category[];
 }
+
+export default () => { };

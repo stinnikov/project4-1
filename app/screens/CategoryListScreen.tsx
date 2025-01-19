@@ -1,53 +1,51 @@
-import React from "react";
-import { FlatList, View, StyleSheet } from "react-native";
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import React, { useState, useEffect } from "react";
+import { FlatList, View, StyleSheet, Text } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "../components/SearchComponent";
 import BlockComponent from "../components/BlockComponent";
 import TopGoodsComponent from "../components/TopGoodsComponent";
 import { products } from "../data/tempData";
-import { router, Router } from "expo-router";
+import { Router, SplashScreen } from "expo-router";
 import CategoryListComponent from "../components/CategoryListComponent";
 import { Category } from "../interfaces/Category";
 import { Product } from "../interfaces/Product";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
+import { getCategoriesById, getCategoryById } from "../services/CategoryService";
 
-interface CategoryListScreenProps{
+interface CategoryListScreenProps {
     router: Router,
     currentCategory: Category,
-    data: Category[],
-    topGoodsData?: Product[],
+    categories: Category[],
 }
 
-function renderScreen({item} : {item: CategoryListScreenProps}){
-    const title: string = item.currentCategory?.name ?? '';
-    
-    return(
+function renderScreen(props: CategoryListScreenProps) {
+    return (
         <View>
             <View>
-                <BlockComponent 
-                    content={<ScreenHeaderComponent title={item.currentCategory?.name} router={router}/>}
-                    contentStyle={{paddingBottom:0}}
+                <BlockComponent
+                    content={<ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />}
+                    contentStyle={{ paddingBottom: 0 }}
                 />
             </View>
             <View>
-                <BlockComponent 
+                <BlockComponent
                     content={<SearchComponent />}
                 />
             </View>
 
             <View>
-                <TopGoodsComponent 
-                    data={item.topGoodsData ?? products.slice(0,20)}
-                    router={router}
+                <TopGoodsComponent
+                    data={products.slice(0, 20)}
+                    router={props.router}
                     isMainScreen={false}
                 />
             </View>
 
             <View>
-                <CategoryListComponent 
-                    item={item.currentCategory}
-                    data={item.data}
-                    router={router}
+                <CategoryListComponent
+                    currentCategory={props.currentCategory}
+                    data={props.categories}
+                    router={props.router}
                 />
             </View>
         </View>
@@ -57,24 +55,27 @@ function renderScreen({item} : {item: CategoryListScreenProps}){
 
 const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props: CategoryListScreenProps) => {
     const DATA: CategoryListScreenProps[] = [
-        {currentCategory: props.currentCategory, router: router, data:props.data}
+        props,
     ]
 
-    return(
-        <SafeAreaProvider style={{flex:1}}>
-            <SafeAreaView style={{flex: 1}} edges={['top']}>
+    return (
+        <SafeAreaProvider style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <FlatList
                     data={DATA}
-                    renderItem={renderScreen}
-                    />
+                    renderItem={() => renderScreen(props)}
+                />
             </SafeAreaView>
         </SafeAreaProvider>
-    )}
+    )
+
+}
+
 );
 
 const styles = StyleSheet.create({
-    topGoods:{
-        flex:1
+    topGoods: {
+        flex: 1
     }
 })
 

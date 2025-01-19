@@ -16,14 +16,15 @@ function back(router: Router) {
 }
 const ScreenHeaderComponent: React.FC<ScreenHeaderProps> = (props) => {
     return (
-        <View style={{ minHeight: 28, width: '100%', gap: 10, flexDirection: 'row', alignItems: 'center' }}>
-            <Pressable onPress={() => { back(props.router) }}>
-                <svgIcons.ArrowRightIcon rotation={180}></svgIcons.ArrowRightIcon>
+        <View>
+            <Pressable style={{ minHeight: 28, width: '100%', gap: 14, flexDirection: 'row', alignItems: 'center' }} onPress={() => { back(props.router) }}>
+                <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
+                <Text style={{
+                    fontSize: 20,
+                    fontFamily: commonStyles.text.fontFamily,
+                    color: 'black'
+                }}>{props?.title[0]?.toLocaleUpperCase() + props?.title?.slice(1, props.title.length)?.toLocaleLowerCase()}</Text>
             </Pressable>
-            <Text style={{ 
-                fontSize: 20, 
-                fontFamily: commonStyles.text.fontFamily, 
-                color: 'black' }}>{props?.title[0]?.toLocaleUpperCase() + props?.title?.slice(1,props.title.length)?.toLocaleLowerCase()}</Text>
         </View >
     )
 }

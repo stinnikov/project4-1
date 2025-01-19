@@ -1,99 +1,73 @@
 "use client"
-import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen} from 'expo-router';
+import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen } from 'expo-router';
 import { products } from '@/app/data/tempData';
 import CategoryListScreen from '@/app/screens/CategoryListScreen';
 import { Category } from '@/app/interfaces/Category';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getCategoriesById, getCategoryNameById, getCategoryById } from '@/app/services/CategoryService';
 import { getProductsByCategoryId } from '@/app/services/ProductService';
-import ProductList from '../products/[productList]';
 import { Product } from '@/app/interfaces/Product';
 import ProductListScreen from '@/app/screens/ProductListScreen';
 
-export default function(){
+export default function () {
     const router = useRouter();
     const { categoryId, categoryDepth } = useLocalSearchParams();
-    const[Products, setProducts] = useState<any>(undefined);
-    const [Categories,setCategories] = useState<any>(undefined);
+    const [currentCategory, setCategory] = useState<Category | undefined>(undefined);
+    const [categories, setCategories] = useState<Category[] | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [products, setProducts] = useState<Product[] | undefined>(undefined);
 
-    useEffect(()=>{
-        const getEntries = async()=>{
-            let cats:Category[]=[];
-            if(typeof(categoryId)=="string")
-            {
-                var temp= await getCategoriesById(categoryId)
-                if(temp!==undefined)
-                {
-                    cats = temp;
-                    setCategories(cats);
+    if (typeof categoryId === 'string') {
+        useEffect(() => {
+            const getEntries = async () => {
+                try {
+                    const [currentCatResponse, currentCatSubCatsResponse] = await Promise.all(
+                        [getCategoryById(categoryId),
+                        getCategoriesById(categoryId)]
+                    );
+
+                    if (currentCatResponse && currentCatSubCatsResponse) {
+                        if (currentCatSubCatsResponse.length === 0) {
+                            const getProductsResponse = await getProductsByCategoryId(categoryId);
+                            if (getProductsResponse)
+                                setProducts(getProductsResponse);
+                        }
+                        setCategory(currentCatResponse);
+                        setCategories(currentCatSubCatsResponse);
+                    }
                 }
-
-            }
-            
-        }
-        getEntries();
-    },[]);
-    
-    useEffect(()=>{
-        const getEntries = async()=>{
-            let prods:Product[] =[];
-            if(typeof(categoryId)=="string")
-            {
-                var temp = await getProductsByCategoryId(categoryId)
-                if(temp!==undefined)
-                {
-                    prods = temp;
-                    setProducts(prods);
+                finally {
+                    setLoading(false);
                 }
             }
-        }
-        getEntries();
-    },[])
-    
-    const [currentCategory, setCategory] = useState<Category>();
+            getEntries();
+        }, [])
+    }
 
-    useEffect(()=>{
-        async function getEntries(){
-            let cat:Category;
-            if(typeof(categoryId)=="string")
-            {
-                var temp= await getCategoryById(categoryId)
-                if(temp!==undefined)
-                {
-                    cat = temp;
-                    setCategory(cat);
-                }
+    if (loading) {
+        SplashScreen.hideAsync();
+    }
 
-            }
-            
-        }
-        getEntries();
-    },[]);
 
-    const topGoodsData = products.slice(0,20);
-    if(currentCategory && Categories)
-    {
-        if(Categories.length === 0 && Products)
-        {
-            return(
-                <ProductListScreen 
-                    data={Products}
-                    categoryName={currentCategory.name}
-                    router={router}
-                />
-            )
+    if (currentCategory && categories) {
+        if (categories.length === 0) {
+            if (products)
+                return (
+                    <ProductListScreen
+                        products={products}
+                        categoryName={currentCategory.name}
+                        router={router}
+                    />
+                )
         }
-        return(
-            <CategoryListScreen  
+
+        return (
+            <CategoryListScreen
                 currentCategory={currentCategory}
-                data={Categories}
-                topGoodsData={topGoodsData}
+                categories={categories}
                 router={router}
             />
         )
     }
-    else
-    {
-        SplashScreen.hide();
-    }
+
 }
