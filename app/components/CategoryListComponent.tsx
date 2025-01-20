@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from "react-native";
 import { Category } from "../interfaces/Category";
 import { Router } from "expo-router";
 import BlockComponent from "./BlockComponent";
@@ -14,93 +14,80 @@ interface CategoryListProps {
 
 
 
-function navigate(item: Category, router: Router) {
-    router.push({
-        pathname: '/(main)/(tabs)/(Catalog)/categories/[categoryId]',
-        params: {
-            categoryId: item.id,
-            categoryDepth: item.depth,
-        },
-    })
-}
 
-function navigateToProductList(item: Category, router: Router) {
-    router.push(
-        {
-            pathname: '/(main)/(tabs)/(Catalog)/products/[productList]',
-            params: {
-                productList: item.id,
-                categoryId: item.id,
+
+const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
+    function navigate({ item }: { item: Category }) {
+        if (props.currentCategory)
+            props.router.push({
+                pathname: '/(main)/(tabs)/(Catalog)/categories/[categoryId]',
+                params: {
+                    categoryId: item.id,
+                    categoryDepth: item.depth,
+                },
+            })
+    }
+
+    function navigateToProductList(item: Category, router: Router) {
+        router.push(
+            {
+                pathname: '/(main)/(tabs)/(Catalog)/products/[productList]',
+                params: {
+                    productList: item.id,
+                    categoryId: item.id,
+                }
             }
+        )
+    }
+
+    function takeAllProducts() {
+        if (isCategory(props.currentCategory)) {
+            return (
+                <TouchableOpacity
+                    style={styles.container}
+                    onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
+                >
+                    <Text style={[styles.categoryTextContainer, { color: colorsStyles.mainBrightColor.color }]}>Все продукты категории</Text>
+                    <View style={styles.rightIconContainer}>
+                        <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color} width={20} height={20}></svgIcons.ArrowRightIcon>
+                    </View>
+                </TouchableOpacity>
+            )
         }
-    )
-}
+    }
 
 
-function takeAllProducts({ props }: { props: CategoryListProps; }) {
-    if (isCategory(props.currentCategory)) {
+    function isCategory(item: any): item is Category {
+        return item && typeof item.id === 'string' && typeof item.depth === 'number';
+    }
+
+    function renderCategory({ item }: { item: Category }) {
         return (
             <TouchableOpacity
                 style={styles.container}
-                onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
-            >
-                <Text style={[styles.categoryTextContainer, { color: colorsStyles.mainBrightColor.color }]}>Все продукты категории</Text>
+                onPress={() => { navigate({ item }) }}>
+                <Text style={styles.categoryTextContainer}>{item.name}</Text>
                 <View style={styles.rightIconContainer}>
-                    <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color} width={20} height={20}></svgIcons.ArrowRightIcon>
+                    <svgIcons.ArrowRightIcon style={styles.rightIcon} width={20} height={20}></svgIcons.ArrowRightIcon>
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
-}
 
-
-function isCategory(item: any): item is Category {
-    return item && typeof item.id === 'string' && typeof item.depth === 'number';
-}
-
-function renderCategory({ item, props }: { item: Category, props: CategoryListProps; }) {
-    return (
-        <TouchableOpacity
-            style={styles.container}
-            onPress={() => navigate(item, props.router)}
-        >
-            <Text style={styles.categoryTextContainer}>{item.name}</Text>
-            <View style={styles.rightIconContainer}>
-                <svgIcons.ArrowRightIcon style={styles.rightIcon} width={20} height={20}></svgIcons.ArrowRightIcon>
-            </View>
-        </TouchableOpacity>
-    );
-}
-
-function renderList(props: CategoryListProps) {
-    if (props.currentCategory == undefined) {
+    function renderList() {
         return (
             <FlatList
                 data={props.data}
-                renderItem={({ item }) => renderCategory({ item: item, props: props })}
+                renderItem={renderCategory}
+                ListHeaderComponent={takeAllProducts}
                 keyExtractor={item => item.id}
             />
         )
     }
-    else {
-        return (
-            <FlatList
-                data={props.data}
-                renderItem={({ item }) => renderCategory({ item: item, props: props })}
-                ListHeaderComponent={({ item }) => takeAllProducts({ props: props })}
-                keyExtractor={item => item.id}
-            />
-        )
-    }
-
-}
-
-const CategoryListComponent: React.FC<CategoryListProps> = ({ currentCategory: item, data, router }) => {
-
 
     return (
         <BlockComponent
-            content={renderList({ currentCategory: item, data, router, })}
+            content={renderList()}
         />
     )
 }

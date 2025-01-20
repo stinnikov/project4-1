@@ -10,21 +10,21 @@ interface ProductListCardProps {
     router: Router,
 }
 
-function navigateToProduct(item: Product, router: Router) {
-    router.push(
-        {
-            pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
-            params: {
-                productId: item.id,
-            }
-        }
-    )
-}
-
 const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
+    function navigateToProduct() {
+        props.router.push(
+            {
+                pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
+                params: {
+                    productId: props.data.id,
+                }
+            }
+        )
+    }
+
     return (
         <View style={[cardStyles.container]}>
-            <TouchableOpacity onPress={() => { navigateToProduct(props.data, props.router) }}>
+            <TouchableOpacity onPress={navigateToProduct}>
                 <ImageBackground style={cardStyles.imageBackground} imageStyle={cardStyles.image} source={{ uri: props.data.imageUrl }}></ImageBackground>
                 <Text style={cardStyles.text}>{props.data.name}</Text>
             </TouchableOpacity>

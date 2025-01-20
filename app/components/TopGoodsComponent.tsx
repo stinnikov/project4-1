@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text, ViewStyle } from "react-native";
-import { router, Router } from "expo-router";
+import { Router } from "expo-router";
 import { Product } from "../interfaces/Product";
 import { commonStyles, dimensionsStyles } from "../styles/styles";
 import BlockComponent from "./BlockComponent";
@@ -14,24 +14,26 @@ interface TopGoodsComponentProps {
     isMainScreen?: boolean,
 }
 
-function renderProduct({ item, props }: { item: Product, props: TopGoodsComponentProps }) {
-    return (
-        <TopGoodsCardComponent
-            data={item}
-            router={router}
-            isMainScreen={props.isMainScreen}
-        />
-    );
-}
 
-function renderTopGoodsList(props: TopGoodsComponentProps) {
+
+const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) => {
+    function renderProduct({ item }: { item: Product }) {
+        return (
+            <TopGoodsCardComponent
+                data={item}
+                router={props.router}
+                isMainScreen={props.isMainScreen}
+            />
+        );
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.listTitle}>Топ товары</Text>
             <FlatList
                 style={styles.list}
                 data={props.data}
-                renderItem={(item) => renderProduct({ item: item.item, props: props })}
+                renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -46,12 +48,6 @@ function renderTopGoodsList(props: TopGoodsComponentProps) {
                 )}
             />
         </View>
-    )
-}
-
-const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) => {
-    return (
-        renderTopGoodsList(props)
     );
 });
 

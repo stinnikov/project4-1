@@ -8,7 +8,7 @@ interface DeliveryBarComponentProps {
     addr?: string,
 }
 
-function renderDeliveryBar() {
+const DeliveryBarComponent: React.FC<DeliveryBarComponentProps> = (props) => {
     return (
         <View style={[styles.row]}>
             <View style={{ flex: 1 }}>
@@ -31,11 +31,6 @@ function renderDeliveryBar() {
                 />
             </View>
         </View>
-    );
-}
-const DeliveryBarComponent: React.FC<DeliveryBarComponentProps> = (props) => {
-    return (
-        renderDeliveryBar()
     )
 }
 

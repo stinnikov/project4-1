@@ -11,15 +11,13 @@ interface ProductCardProps {
     router: Router,
 }
 
-function handlePressBackButton(router: Router) {
-    router.canGoBack() && router.back();
-}
-
-function handlePressFavoritesButton() {
-
-}
-
 const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
+    function handlePressFavoritesButton() {
+
+    }
+    function handlePressBackButton() {
+        props.router.canGoBack() && props.router.back();
+    }
     const DATA: ProductCardProps[] = [
         props,
     ]
@@ -27,12 +25,12 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
         <View style={{ flex: 1 }}>
             <View style={{ flexDirection: 'row', width: '100%', position: 'absolute', zIndex: 999, minHeight: 50, alignItems: 'center', justifyContent: 'space-between' }}>
                 <Pressable style={styles.icon}
-                    onPress={() => handlePressBackButton(props.router)}>
+                    onPress={handlePressBackButton}>
                     <svgIcons.BackArrowIcon></svgIcons.BackArrowIcon>
                 </Pressable>
 
                 <Pressable style={styles.icon}
-                    onPress={() => handlePressFavoritesButton()}>
+                    onPress={handlePressFavoritesButton}>
                     <svgIcons.FavoritesIcon></svgIcons.FavoritesIcon>
                 </Pressable>
             </View>

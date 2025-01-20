@@ -13,35 +13,37 @@ interface ProductListProps {
     router: Router;
 }
 
-function ListHeader() {
-    return (
-        <TouchableOpacity style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            minHeight: 30,
-            marginBottom: 16
-        }}>
-            <svgIcons.SortIcon width={20} height={20}></svgIcons.SortIcon>
-            <Text style={styles.listTitle}>Сортировка</Text>
-        </TouchableOpacity>
-    )
-}
 
-function renderProduct({ item, router }: { item: Product, router: Router }) {
-    return (
-        <ProductListCardComponent
-            data={item}
-            router={router}
-        />
-    )
-}
 
-const ProductListComponent: React.FC<ProductListProps> = ({ data, router }) => {
+const ProductListComponent: React.FC<ProductListProps> = (props) => {
+    function ListHeader() {
+        return (
+            <TouchableOpacity style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                minHeight: 30,
+                marginBottom: 16
+            }}>
+                <svgIcons.SortIcon width={20} height={20}></svgIcons.SortIcon>
+                <Text style={styles.listTitle}>Сортировка</Text>
+            </TouchableOpacity>
+        )
+    }
+
+    function renderProduct({ item }: { item: Product }) {
+        return (
+            <ProductListCardComponent
+                data={item}
+                router={props.router}
+            />
+        )
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <FlatList style={styles.list}
-                data={data}
-                renderItem={({ item }) => renderProduct({ item: item, router: router })}
+                data={props.data}
+                renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
                 removeClippedSubviews={true}

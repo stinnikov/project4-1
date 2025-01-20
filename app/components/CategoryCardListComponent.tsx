@@ -13,32 +13,31 @@ interface CategoryCardListProps {
     router: Router;
 }
 
-function ListHeader() {
-    return (
-        <Text style={styles.listTitle}>Категории</Text>
-    )
-}
-
-function renderCategory({ item, router }: { item: Category, router: Router }) {
-    return (
-        <CardComponent
-            item={item}
-            router={router}
-            titleText={item.name}
-            textStyle={{ color: 'white' }}
-            imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
-            style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
-        />
-    )
-}
-
-
 const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
+    function ListHeader() {
+        return (
+            <Text style={styles.listTitle}>Категории</Text>
+        )
+    }
+
+    function renderCategory({ item }: { item: Category }) {
+        return (
+            <CardComponent
+                item={item}
+                router={props.router}
+                titleText={item.name}
+                textStyle={{ color: 'white' }}
+                imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
+                style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
+            />
+        )
+    }
+
     return (
         <View style={styles.container}>
             <FlatList
                 data={props.data}
-                renderItem={({ item }) => renderCategory({ item: item, router: props.router })}
+                renderItem={renderCategory}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
                 showsVerticalScrollIndicator={false}

@@ -15,14 +15,14 @@ export const LoginScreen: React.FC = () => {
                     <TextInput
                         style={styles.textInput}
                         value={login}
-                        onChangeText={(text) => setLogin(text)}
+                        onChangeText={setLogin}
                     />
 
                     <Text style={styles.textInputTitle}>Password</Text>
                     <TextInput
                         style={styles.textInput}
                         value={password}
-                        onChangeText={(text) => setPassword(text)}
+                        onChangeText={setPassword}
                         keyboardType='visible-password'
                     />
                 </View>
@@ -31,6 +31,8 @@ export const LoginScreen: React.FC = () => {
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
+
+                <Text>{login}</Text>
             </View>
         </View>
     )

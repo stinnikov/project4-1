@@ -8,7 +8,7 @@ interface SearchComponentProps {
     text?: string,
 }
 
-function renderSearch() {
+const SearchComponent: React.FC<SearchComponentProps> = (props) => {
     return (
         <View style={styles.container}>
             <BarComponent
@@ -20,12 +20,6 @@ function renderSearch() {
                 <svgIcons.SettingsIcon></svgIcons.SettingsIcon>
             </TouchableOpacity>
         </View>
-    )
-}
-
-const SearchComponent: React.FC<SearchComponentProps> = (props) => {
-    return (
-        renderSearch()
     )
 }
 

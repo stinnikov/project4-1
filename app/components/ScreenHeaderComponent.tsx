@@ -9,15 +9,17 @@ interface ScreenHeaderProps {
     router: Router,
 }
 
-function back(router: Router) {
-    if (router.canGoBack()) {
-        router.back();
-    }
-}
+
 const ScreenHeaderComponent: React.FC<ScreenHeaderProps> = (props) => {
+    function handlePressBackButton() {
+        if (props.router.canGoBack()) {
+            props.router.back();
+        }
+    }
+
     return (
         <View>
-            <Pressable style={{ minHeight: 28, width: '100%', gap: 14, flexDirection: 'row', alignItems: 'center' }} onPress={() => { back(props.router) }}>
+            <Pressable style={{ minHeight: 28, width: '100%', gap: 14, flexDirection: 'row', alignItems: 'center' }} onPress={handlePressBackButton}>
                 <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
                 <Text style={{
                     fontSize: 20,

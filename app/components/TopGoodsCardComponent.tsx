@@ -12,30 +12,30 @@ interface TopGoodsCardProps {
     isMainScreen?: boolean,
 }
 
-function navigateToProduct(item: Product, router: Router, isMainScreen?: boolean) {
-    if (isMainScreen == false) {
-        router.push(
-            {
-                pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
-                params: {
-                    productId: item.id,
-                }
-            }
-        )
-    }
-    else {
-        router.push(
-            {
-                pathname: '/(main)/(tabs)/(index)/topGoods/[topGoodId]',
-                params: {
-                    topGoodId: item.id,
-                }
-            }
-        )
-    }
-}
-
 const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
+    function navigateToProduct() {
+        if (props.isMainScreen == false) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
+                    params: {
+                        productId: props.data.id,
+                    }
+                }
+            )
+        }
+        else {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(index)/topGoods/[topGoodId]',
+                    params: {
+                        topGoodId: props.data.id,
+                    }
+                }
+            )
+        }
+    }
+
     const [product, setProduct] = useState<Product | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
     useEffect(() => {
@@ -65,7 +65,7 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
             <View style={[cardStyles.container]}>
                 <View style={cardStyles.imageTitleBlock}>
                     <TouchableOpacity
-                        onPress={() => { navigateToProduct(props.data, props.router, props.isMainScreen) }}>
+                        onPress={navigateToProduct}>
                         <ImageBackground
                             source={{ uri: product.imageUrl }}
                             style={[cardStyles.imageBackground]}
