@@ -7,14 +7,14 @@ import MainScreen from "@/app/screens/MainScreen";
 
 const categories: Category[] = [];
 
-const Index = () => {
+const Home = () => {
   var router = useRouter();
-	return (
-    <View style={{flex:1}}>
-			  <MainScreen router={router}></MainScreen>
-        <Stack initialRouteName=""></Stack>
-      </View>
-	);
+  return (
+    <View style={{ flex: 1 }}>
+      <MainScreen router={router}></MainScreen>
+      <Stack initialRouteName=""></Stack>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default Home;

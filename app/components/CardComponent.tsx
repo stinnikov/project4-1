@@ -16,7 +16,7 @@ interface CardComponentProps<T> {
 
 function navigateToCategory(item: Category, router: Router) {
     router.push({
-        pathname: '/(main)/(tabs)/(Catalog)/categories/[categoryId]',
+        pathname: '/(main)/(tabs)/(catalog)/categories/[categoryId]',
         params: {
             categoryId: item.id,
 

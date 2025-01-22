@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
-import RegisterScreen from '../screens/RegisterScreen';
+import RegisterScreen from '@/app/screens/RegisterScreen';
 
 export const Register = () => {
 
   return (
-      <RegisterScreen></RegisterScreen>
+    <RegisterScreen></RegisterScreen>
   );
 };
 

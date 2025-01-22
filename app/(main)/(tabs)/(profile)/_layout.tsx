@@ -1,6 +1,6 @@
 import { Stack } from "expo-router"
 
-export default function CatalogLayout() {
+export default function CategoryLayout() {
     return (
         <Stack screenOptions={{ headerShown: false }} />
     )

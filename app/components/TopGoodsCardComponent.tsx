@@ -5,6 +5,7 @@ import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 import { getSingleProductById } from '@/app/services/ProductService';
+import LoadingScreen from "../screens/LoadingScreen";
 
 interface TopGoodsCardProps {
     data: Product,
@@ -17,7 +18,7 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
         if (props.isMainScreen == false) {
             props.router.push(
                 {
-                    pathname: '/(main)/(tabs)/(Catalog)/products/product/[productId]',
+                    pathname: '/(main)/(tabs)/(catalog)/product/[productId]',
                     params: {
                         productId: props.data.id,
                     }
@@ -27,9 +28,9 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
         else {
             props.router.push(
                 {
-                    pathname: '/(main)/(tabs)/(index)/topGoods/[topGoodId]',
+                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
                     params: {
-                        topGoodId: props.data.id,
+                        productId: props.data.id,
                     }
                 }
             )
@@ -57,7 +58,7 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
     }, [])
 
     if (loading) {
-        // логика
+        return <LoadingScreen />
     }
 
     if (product)

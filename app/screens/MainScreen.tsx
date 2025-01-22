@@ -6,18 +6,19 @@ import { Product } from "../interfaces/Product";
 import RecomendationsComponent from "../components/RecomendationsComponent";
 import TopGoodsComponent from "../components/TopGoodsComponent";
 import TopComponent from "../components/TopComponent";
-
+import UserPanelComponent from "../components/UserPanelComponent";
+import { prods } from "../data/tempData";
 interface MainScreenProps {
     categoriesData?: Category[];
     topGoodsData?: Product[];
     router: Router;
 }
 
-function renderScreen(props: MainScreenProps) {
+function renderScreen({ item }: { item: MainScreenProps }) {
     return (
         <View>
             <View>
-                <TopComponent></TopComponent>
+                <UserPanelComponent></UserPanelComponent>
             </View>
 
             {/* <View>
@@ -46,7 +47,7 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
         <View style={{ flex: 1 }}>
             <FlatList
                 data={DATA}
-                renderItem={({ item }) => renderScreen(item)}
+                renderItem={renderScreen}
             />
         </View>
     )

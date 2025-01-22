@@ -9,12 +9,14 @@ const colors: {
   mainWhiteColor: ColorValue,
   mainGreyColor: ColorValue,
   mainBrightColor: ColorValue,
+  mainBlackColor: ColorValue,
   mainDarkColor: ColorValue,
 } = {
   mainWhiteColor: 'white',
   mainGreyColor: '#d9d9d9',
   mainBrightColor: '#7000E2',
-  mainDarkColor: 'black',
+  mainBlackColor: 'black',
+  mainDarkColor: '#36424C'
 };
 
 export const commonStyles = StyleSheet.create({
@@ -51,8 +53,8 @@ export const commonStyles = StyleSheet.create({
 
 
 export const colorsStyles = StyleSheet.create({
-  mainDarkColor: {
-    color: colors.mainDarkColor,
+  mainBlackColor: {
+    color: colors.mainBlackColor,
   },
   mainWhiteColor: {
     color: colors.mainWhiteColor,
@@ -64,6 +66,10 @@ export const colorsStyles = StyleSheet.create({
 
   mainBrightColor: {
     color: colors.mainBrightColor,
+  },
+
+  mainDarkColor: {
+    color: colors.mainDarkColor,
   },
 
   basketButtonColor: {
@@ -135,6 +141,14 @@ export const dimensionsStyles = StyleSheet.create(
       height: heightUnit * 15,
       width: widthUnit * 45,
     },
+    bonusCard: {
+      width: widthUnit * 94,
+      height: heightUnit * 25,
+    },
+    circleStory: {
+      height: 94,
+      width: 94,
+    }
   }
 )
 

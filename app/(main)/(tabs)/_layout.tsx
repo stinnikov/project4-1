@@ -6,7 +6,7 @@ import svgIcons from '@/assets/icons/svgIcons';
 import { commonStyles, colorsStyles } from '@/app/styles/styles';
 
 
-const iconColor: string = `${colorsStyles.mainBrightColor.color}`;
+const iconColor: string = colorsStyles.mainBrightColor.color.toString();
 
 const iconSize: number = 30;
 
@@ -20,7 +20,7 @@ const headerShown: boolean = false;
 export default function TabLayout() {
 	return (
 		<Tabs
-
+			initialRouteName='(home)'
 			screenOptions={{
 				tabBarAllowFontScaling: false,
 				tabBarActiveTintColor: iconColor,
@@ -34,7 +34,7 @@ export default function TabLayout() {
 				}
 			}}
 		>
-			<Tabs.Screen name="(Catalog)" options={{
+			<Tabs.Screen name="(catalog)" options={{
 
 				title: "Каталог",
 				headerShown: headerShown,
@@ -44,13 +44,13 @@ export default function TabLayout() {
 			}}
 			/>
 
-			< Tabs.Screen name="favourites" options={{
+			< Tabs.Screen name="(favourites)" options={{
 				title: 'Избранное',
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
 				),
 			}} />
-			<Tabs.Screen name="(index)" options={{
+			<Tabs.Screen name="(home)" options={{
 				title: 'Главная',
 
 				headerShown: headerShown,
@@ -59,7 +59,7 @@ export default function TabLayout() {
 					//заменить иконку на лого
 				),
 			}} />
-			< Tabs.Screen name="profile" options={{
+			< Tabs.Screen name="(profile)" options={{
 				title: 'Профиль',
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
