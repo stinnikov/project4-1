@@ -13,11 +13,11 @@ const SearchComponent: React.FC<SearchComponentProps> = (props) => {
         <View style={styles.container}>
             <BarComponent
                 text="Поиск"
-                style={{ backgroundColor: '#cfcfcf', padding: 16, flex: 1 }}
+                style={{ backgroundColor: colorsStyles.mainGreyColor.color, padding: 16, flex: 1, height: dimensionsStyles.bar.height * 1.1 }}
                 textStyle={{ color: '#7d7d7d' }}
             />
             <TouchableOpacity style={styles.settings} onPress={() => { }}>
-                <svgIcons.SettingsIcon></svgIcons.SettingsIcon>
+                <svgIcons.SettingsIcon stroke={'#7d7d7d'}></svgIcons.SettingsIcon>
             </TouchableOpacity>
         </View>
     )
@@ -32,8 +32,9 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     settings: {
-        height: dimensionsStyles.bar.height,
-        width: dimensionsStyles.bar.height,
+        height: dimensionsStyles.bar.height * 1.1,
+
+        width: dimensionsStyles.bar.height * 1.1,
 
         justifyContent: 'center',
         alignItems: 'center',

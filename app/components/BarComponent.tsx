@@ -14,6 +14,8 @@ interface BarComponentProps {
 
     iconSize?: number,
     style?: StyleProp<ViewStyle>
+
+
 }
 
 const BarComponent: React.FC<BarComponentProps> = (props) => {

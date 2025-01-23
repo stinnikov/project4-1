@@ -6,6 +6,7 @@ import { Router, SplashScreen } from "expo-router";
 import ProductListComponent from "../components/ProductListComponent";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 import { Product } from "../interfaces/Product";
+import { colorsStyles } from "../styles/styles";
 
 interface ProductListScreenProps {
     products: Product[],
@@ -48,7 +49,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
     ]
 
     return (
-        <SafeAreaProvider style={{ flex: 1 }}>
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <FlatList
                     data={DATA}

@@ -3,6 +3,7 @@ import ProductListComponent from '@/app/components/ProductListComponent';
 import { Text, View, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Product } from '@/app/interfaces/Product';
+import { colorsStyles } from '@/app/styles/styles';
 
 export default function BasketScreen() {
 	const router = useRouter();
@@ -40,7 +41,7 @@ export default function BasketScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'green',
+		backgroundColor: colorsStyles.mainGreyColor.color,
 	},
 	text: {
 		color: '#fff',

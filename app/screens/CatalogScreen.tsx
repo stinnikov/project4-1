@@ -4,11 +4,10 @@ import { Router, SplashScreen } from "expo-router";
 import CategoryCardListComponent from "../components/CatalogScreenComponents/CategoryCardListComponent";
 import { Category } from "../interfaces/Category";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { getCategoriesDepthZero } from "../services/CategoryService";
-import DeliveryBarComponent from "../components/DeliveryBarComponent";
-import { SearchBar } from "react-native-screens";
 import SearchComponent from "../components/SearchComponent";
 import { colorsStyles } from "../styles/styles";
+import RecomendationsComponent from "../components/RecomendationsComponent";
+import { prods } from "../data/tempData";
 
 interface CatalogScreenProps {
     categories: Category[],
@@ -17,12 +16,18 @@ interface CatalogScreenProps {
 
 
 function renderScreen({ item }: { item: CatalogScreenProps }) {
+    const data = [{}, {}, {}, {}, {}]
     return (
         <View style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <View style={{ margin: 16 }}>
-                <DeliveryBarComponent />
                 <SearchComponent />
             </View>
+
+            <RecomendationsComponent
+                data={prods}
+                router={item.router}
+            />
+
             <View style={{ margin: 16 }}>
                 <CategoryCardListComponent
                     data={item.categories}

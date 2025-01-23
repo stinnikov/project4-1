@@ -6,7 +6,14 @@ export default function RootLayout() {
     loadFonts.loadFontSourceSansPro();
     loadFonts.loadFontMontserrat();
     return (
-        <Stack screenOptions={{ headerShown: false, statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString() }}>
+        <Stack
+            screenOptions={
+                {
+                    headerShown: false,
+                    statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString()
+                }}
+        >
+
         </Stack>
     );
 }

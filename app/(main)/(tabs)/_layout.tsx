@@ -39,7 +39,7 @@ export default function TabLayout() {
 				title: "Каталог",
 				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.CatalogIcon fill={focused ? color : 'black'}></svgIcons.CatalogIcon>
+					<svgIcons.CatalogIcon stroke={focused ? color : 'black'}></svgIcons.CatalogIcon>
 				),
 			}}
 			/>

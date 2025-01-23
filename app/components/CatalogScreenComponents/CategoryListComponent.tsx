@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         minHeight: 38,
         borderTopWidth: 2,
-        borderColor: colorsStyles.mainGreyColor.color,
+        borderColor: '#cfcfcf',
     },
     categoryTextContainer: {
         flex: 0.89,

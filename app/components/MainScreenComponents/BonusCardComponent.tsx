@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground, ImageSourcePropType, Text } from 'react-native'
-import { colorsStyles, commonStyles, dimensionsStyles } from '../../styles/styles'
+import { colorsStyles, dimensionsStyles, commonStyles } from '@/app/styles/styles'
 
 interface BonusCardProps {
 
@@ -10,7 +10,7 @@ const BonusCardComponent: React.FC<BonusCardProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Text style={styles.cardText} >1000</Text>
+                <Text style={styles.cardText}>1000</Text>
             </View>
         </View>
     )
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         borderRadius: 16,
-
     },
     card: {
         borderRadius: 24,

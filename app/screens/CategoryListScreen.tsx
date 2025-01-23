@@ -8,7 +8,7 @@ import { Category } from "../interfaces/Category";
 import { Product } from "../interfaces/Product";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 import { getCategoriesById, getCategoryById } from "../services/CategoryService";
-import { commonStyles } from "../styles/styles";
+import { colorsStyles, commonStyles } from "../styles/styles";
 
 interface CategoryListScreenProps {
     router: Router,
@@ -18,7 +18,7 @@ interface CategoryListScreenProps {
 
 function renderScreen(props: CategoryListScreenProps) {
     return (
-        <View>
+        <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <View style={{ margin: commonStyles.general.margin }}>
                 <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
             </View>
@@ -44,7 +44,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
     ]
 
     return (
-        <SafeAreaProvider style={{ flex: 1 }}>
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <FlatList
                     data={DATA}

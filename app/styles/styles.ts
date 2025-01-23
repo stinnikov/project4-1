@@ -13,8 +13,8 @@ const colors: {
   mainDarkColor: ColorValue,
 } = {
   mainWhiteColor: 'white',
-  mainGreyColor: '#d9d9d9',
-  mainBrightColor: '#7000E2',
+  mainGreyColor: '#eeeeee',
+  mainBrightColor: '#69006D',
   mainBlackColor: 'black',
   mainDarkColor: '#36424C'
 };
@@ -122,7 +122,7 @@ export const dimensionsStyles = StyleSheet.create(
     },
     productListCard: {
       width: widthUnit * 43,
-      height: heightUnit * 32.3,
+      height: heightUnit * 43,
     },
     productCard: {
       width: widthUnit * 100,
@@ -143,11 +143,14 @@ export const dimensionsStyles = StyleSheet.create(
     },
     bonusCard: {
       width: widthUnit * 94,
-      height: heightUnit * 25,
+      height: heightUnit * 29,
     },
     circleStory: {
       height: 94,
       width: 94,
+    },
+    couponsAndPromotions: {
+      height: heightUnit * 10,
     }
   }
 )

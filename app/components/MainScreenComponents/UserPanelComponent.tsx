@@ -28,8 +28,8 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
                 <Text style={styles.name}>Имя пользователя</Text>
 
                 <View style={styles.buttons}>
-                    <SvgIcons.FavoritesIcon stroke={'#fff'}></SvgIcons.FavoritesIcon>
-                    <SvgIcons.FavoritesIcon stroke={'#fff'}></SvgIcons.FavoritesIcon>
+                    <SvgIcons.NotificationsIcon width={24} height={24} stroke={'#fff'}></SvgIcons.NotificationsIcon>
+                    <SvgIcons.ProfileSettingsIcon width={24} height={24} stroke={'#fff'}></SvgIcons.ProfileSettingsIcon>
                 </View>
 
             </View>

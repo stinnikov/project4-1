@@ -11,6 +11,7 @@ import SpecialsForUserComponent from "../components/MainScreenComponents/Special
 import NewOffersForUserComponent from "../components/MainScreenComponents/NewOffersForUserComponent";
 import TopGoodsComponent from "../components/TopGoodsComponent";
 import { colorsStyles, commonStyles } from "../styles/styles";
+import PromotionsAndCouponsComponent from "../components/MainScreenComponents/PromotionsAndCoupons";
 
 
 interface MainScreenProps {
@@ -28,11 +29,13 @@ function renderScreen({ item }: { item: MainScreenProps }) {
             <View style={styles.card}>
                 <BonusCardComponent></BonusCardComponent>
             </View>
-            <View>
+            <View style={styles.specialsForUser}>
                 <SpecialsForUserComponent></SpecialsForUserComponent>
             </View>
-            <View style={styles.newOffers}>
-                <NewOffersForUserComponent></NewOffersForUserComponent>
+            <View style={{ backgroundColor: colorsStyles.mainGreyColor.color }}>
+                <View style={styles.newOffers}>
+                    <NewOffersForUserComponent></NewOffersForUserComponent>
+                </View>
             </View>
             <View style={styles.topGoods}>
                 <TopGoodsComponent
@@ -40,14 +43,9 @@ function renderScreen({ item }: { item: MainScreenProps }) {
                     router={item.router}
                 />
             </View>
-        </View>
-    )
-}
-
-function renderTop() {
-    return (
-        <View style={{ backgroundColor: 'red', flex: 1 }}>
-
+            <View style={styles.couponsAndPromotions}>
+                <PromotionsAndCouponsComponent />
+            </View>
         </View>
     )
 }
@@ -60,6 +58,7 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <FlatList
+                    overScrollMode="never"
                     data={DATA}
                     bounces={false}
                     onEndReachedThreshold={10}
@@ -73,24 +72,34 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: colorsStyles.mainDarkColor.color,
     },
     userPanel: {
-        marginBottom: commonStyles.general.margin,
         backgroundColor: colorsStyles.mainDarkColor.color,
     },
     card: {
-        marginVertical: commonStyles.general.margin,
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 16,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     newOffers: {
-        marginVertical: commonStyles.general.margin,
+        paddingBottom: commonStyles.general.margin,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
+    },
+    specialsForUser: {
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     topGoods: {
-        marginVertical: commonStyles.general.margin,
+        paddingBottom: commonStyles.general.margin,
         backgroundColor: colorsStyles.mainGreyColor.color,
     },
-
+    couponsAndPromotions: {
+    }
 })
 
 export default React.memo(MainScreen);

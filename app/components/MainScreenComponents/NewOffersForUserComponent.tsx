@@ -10,13 +10,13 @@ const NewOffersForUserComponent: React.FC<NewOffersForUserProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>Новинки</Text>
                 <View style={styles.imageContainer}>
                     <ImageBackground
                         source={{ uri: '' }}
                         style={styles.imageBackground}
-                        resizeMode='contain'
-                    />
+                        resizeMode='contain'>
+                        <Text style={styles.imageBackgroundText}>Новинки</Text>
+                    </ImageBackground>
                 </View>
             </View>
         </View>
@@ -29,27 +29,35 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
+
     },
     title: {
         fontSize: commonStyles.listTitle.fontSize,
         fontWeight: commonStyles.listTitle.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        marginVertical: commonStyles.listTitle.margin,
+        marginVertical: 8,
         paddingLeft: commonStyles.listTitle.padding,
     },
     imageContainer: {
-        width: 380,
-        height: 80,
+        width: '100%',
+        height: '100%',
+        paddingHorizontal: 16,
+        paddingTop: 16,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center'
     },
     imageBackground: {
         width: '100%',
-        height: '100%',
-        borderRadius: 14,
-        alignSelf: 'center',
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        height: dimensionsStyles.couponsAndPromotions.height,
+        backgroundColor: 'purple',
+        borderRadius: commonStyles.general.borderRadius,
+    },
+    imageBackgroundText: {
+        fontSize: 16,
+        color: 'white',
+        marginLeft: 16,
+        marginTop: 8,
     }
 })
 

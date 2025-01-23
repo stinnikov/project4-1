@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, Pressable } from "react-native";
 import ProductDescription from "./temp/productDescription";
 import { Product } from "../interfaces/Product";
-import { router, Router } from "expo-router";
+import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 
@@ -24,18 +24,18 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flexDirection: 'row', width: '100%', position: 'absolute', zIndex: 999, minHeight: 50, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Pressable style={styles.icon}
+                <Pressable style={[styles.icon, { paddingRight: 2 }]}
                     onPress={handlePressBackButton}>
-                    <svgIcons.BackArrowIcon></svgIcons.BackArrowIcon>
+                    <svgIcons.BackArrowIcon width={20} height={20}></svgIcons.BackArrowIcon>
                 </Pressable>
 
-                <Pressable style={styles.icon}
+                <Pressable style={[styles.icon]}
                     onPress={handlePressFavoritesButton}>
-                    <svgIcons.FavoritesIcon></svgIcons.FavoritesIcon>
+                    <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
                 </Pressable>
             </View>
 
-            <ScrollView contentContainerStyle={styles.card}>
+            <ScrollView overScrollMode="never" contentContainerStyle={styles.card}>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         <ImageBackground source={{ uri: props.product.imageUrl }}
@@ -91,15 +91,16 @@ const styles = StyleSheet.create({
     },
     icon: {
         margin: 16, // default margin
-        paddingRight: 2,
-        height: 36, // чуть больше размера иконки
-        width: 36,
-        alignItems: 'center', // иконка посередине
+        height: 30, // чуть больше размера иконки
+        width: 30,
+        alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 100,
+        elevation: 5,
+        shadowOffset: { width: 0, height: 6 },
         shadowRadius: 24,
         shadowOpacity: 0.2,
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     title: {
         flex: 1,

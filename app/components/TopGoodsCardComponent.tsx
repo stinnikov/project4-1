@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text } from "react-native";
 import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
+import styles, { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
 import { getSingleProductById } from '@/app/services/ProductService';
 import LoadingScreen from "../screens/LoadingScreen";
@@ -64,21 +64,23 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
     if (product)
         return (
             <View style={[cardStyles.container]}>
-                <View style={cardStyles.imageTitleBlock}>
-                    <TouchableOpacity
-                        onPress={navigateToProduct}>
-                        <ImageBackground
-                            source={{ uri: product.imageUrl }}
-                            style={[cardStyles.imageBackground]}
-                            imageStyle={[cardStyles.image]}>
-                        </ImageBackground>
-                        <Text style={cardStyles.title}>{product.name}</Text>
+                <View style={cardStyles.content}>
+                    <View style={cardStyles.imageTitleBlock}>
+                        <TouchableOpacity
+                            onPress={navigateToProduct}>
+                            <ImageBackground
+                                source={{ uri: product.imageUrl }}
+                                style={[cardStyles.imageBackground]}
+                                imageStyle={[cardStyles.image]}>
+                            </ImageBackground>
+                            <Text style={cardStyles.title}>{product.name}</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={cardStyles.bottomButtonBlock}>
+                        <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
+                        <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={cardStyles.bottomButtonBlock}>
-                    <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                    <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
-                </TouchableOpacity>
             </View>
         )
 }
@@ -86,9 +88,16 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
 const cardStyles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    content: {
+        margin: 16,
         borderRadius: 12,
         justifyContent: 'space-between',
-        backgroundColor: 'white',
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+        elevation: 5,
+        shadowRadius: 10,
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 6 },
         marginLeft: 16,
         marginRight: -4,
     },

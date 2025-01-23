@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         fontSize: commonStyles.listTitle.fontSize,
         fontWeight: commonStyles.listTitle.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        marginVertical: commonStyles.listTitle.margin,
+        marginVertical: 8,
         paddingLeft: commonStyles.listTitle.padding,
     },
     listContent: {
