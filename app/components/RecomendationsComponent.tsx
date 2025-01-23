@@ -4,7 +4,6 @@ import { Router } from "expo-router";
 import { Product } from "../interfaces/Product";
 import { commonStyles, colorsStyles, dimensionsStyles } from "../styles/styles";
 import CardComponent from "./CardComponent";
-import BlockComponent from "./BlockComponent";
 
 interface RecomendationComponentProps {
     data: Product[];
@@ -25,36 +24,27 @@ const RecomendationComponent: React.FC<RecomendationComponentProps> = React.memo
         );
     }
 
-    function renderRecList() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.listTitle}>Рекомендации</Text>
-                <FlatList
-                    style={styles.list}
-                    data={memoizedData}
-                    renderItem={renderProduct}
-                    keyExtractor={(item) => item.id}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    initialNumToRender={5}
-                    nestedScrollEnabled={true}
-                    bounces={false}
-                    getItemLayout={(data, index) => ({
-                        length: dimensionsStyles.recsCard.width,
-                        offset: dimensionsStyles.recsCard.width * index,
-                        index
-                    }
-                    )}
-                />
-            </View>
-        )
-    }
-
     return (
-        <BlockComponent
-            content={renderRecList()}
-            contentStyle={styles.contentStyle}
-        />
+        <View style={styles.container}>
+            <Text style={styles.listTitle}>Рекомендации</Text>
+            <FlatList
+                style={styles.list}
+                data={memoizedData}
+                renderItem={renderProduct}
+                keyExtractor={(item) => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                initialNumToRender={5}
+                nestedScrollEnabled={true}
+                bounces={false}
+                getItemLayout={(data, index) => ({
+                    length: dimensionsStyles.recsCard.width,
+                    offset: dimensionsStyles.recsCard.width * index,
+                    index
+                }
+                )}
+            />
+        </View>
     );
 });
 

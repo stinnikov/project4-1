@@ -13,96 +13,94 @@ interface ProductListCardProps {
 
 const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
     const navigation = useNavigation();
-    const currentTab = navigation.getParent()?.getState();
+    const currentTabIndex = navigation.getParent()?.getState().index;
 
     function navigateToProduct() {
-        switch (currentTab?.index) {
-            case 0: {
-                props.router.push(
-                    {
-                        pathname: '/(main)/(tabs)/(catalog)/product/[productId]',
-                        params: {
-                            productId: props.data.id,
-                        }
+        if (currentTabIndex === 0) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(catalog)/product/[productId]',
+                    params: {
+                        productId: props.data.id,
                     }
-                )
-            }
-            case 1: {
-                props.router.push(
-                    {
-                        pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
-                        params: {
-                            productId: props.data.id,
-                        }
+                }
+            )
+        }
+        else if (currentTabIndex === 1) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
+                    params: {
+                        productId: props.data.id,
                     }
-                )
-            }
-            case 2: {
-                props.router.push(
-                    {
-                        pathname: '/(main)/(tabs)/(home)/product/[productId]',
-                        params: {
-                            productId: props.data.id,
-                        }
+                }
+            )
+        }
+        else if (currentTabIndex === 2) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
+                    params: {
+                        productId: props.data.id,
                     }
-                )
-            }
-            case 3: {
-                props.router.push(
-                    {
-                        pathname: '/(main)/(tabs)/(profile)/product/[productId]',
-                        params: {
-                            productId: props.data.id,
-                        }
+                }
+            )
+        }
+        else if (currentTabIndex === 3) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(profile)/product/[productId]',
+                    params: {
+                        productId: props.data.id,
                     }
-                )
-            }
-            case 4: {
-                props.router.push(
-                    {
-                        pathname: '/(main)/(tabs)/(basket)/product/[productId]',
-                        params: {
-                            productId: props.data.id,
-                        }
+                }
+            )
+        }
+        else if (currentTabIndex === 4) {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(basket)/product/[productId]',
+                    params: {
+                        productId: props.data.id,
                     }
-                )
-            }
+                }
+            )
         }
     }
 
 
 
     return (
-        <View style={[cardStyles.container]}>
+        <View style={[styles.container]}>
+            {/* <svgIcons.FavoritesIcon style={{ position: 'absolute' }}></svgIcons.FavoritesIcon> */}
             <TouchableOpacity onPress={navigateToProduct}>
-                <ImageBackground style={cardStyles.imageBackground} imageStyle={cardStyles.image} source={{ uri: props.data.imageUrl }}></ImageBackground>
-                <Text style={cardStyles.text}>{props.data.name}</Text>
+                <ImageBackground style={styles.productImageBackground} imageStyle={styles.productImage} source={{ uri: props.data.imageUrl }}></ImageBackground>
+                <Text style={styles.productNameText}>{props.data.name}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={cardStyles.bottomButtonBlock} onPress={() => { addFavoriteProduct(props.data.id) }}>
+
+            <View style={styles.priceContainer}>
+                <Text style={styles.priceText}>{props.data.price}</Text>
+            </View>
+
+            <TouchableOpacity style={styles.bottomButtonContainer}>
                 <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
                 <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', borderRadius: 12 }}
-                onPress={() => { getFavouritesProducts() }}>
-                <Text>TEST</Text>
             </TouchableOpacity>
         </View>
     )
 }
 
-const cardStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         borderRadius: 12,
-        justifyContent: 'space-between',
-        backgroundColor: 'white',
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     imageTitleBlock: {
         height: dimensionsStyles.productsCardImageBackground.height,
         width: dimensionsStyles.productsCardImageBackground.width
     },
-    text: {
+    productNameText: {
         padding: textStyles.cardTitle.padding,
         fontSize: textStyles.productListCardText.fontSize,
         fontWeight: textStyles.productListCardText.fontWeight,
@@ -110,16 +108,23 @@ const cardStyles = StyleSheet.create({
         color: textStyles.cardTitle.color,
         alignSelf: 'flex-start',
     },
-    imageBackground: {
+    priceContainer: {
+        paddingHorizontal: 16,
+    },
+    priceText: {
+        fontFamily: commonStyles.text.fontFamily,
+    },
+    productImageBackground: {
+        alignSelf: 'center',
         width: dimensionsStyles.productsCardImageBackground.width,
         height: dimensionsStyles.productsCardImageBackground.height
     },
-    image: {
+    productImage: {
         borderTopLeftRadius: commonStyles.general.borderRadius,
         borderTopRightRadius: commonStyles.general.borderRadius,
         resizeMode: 'contain',
     },
-    bottomButtonBlock: {
+    bottomButtonContainer: {
         flexDirection: 'row',
         minHeight: 28,
         borderRadius: 12,

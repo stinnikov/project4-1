@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native'
 import CircleStoryComponent, { CircleStoryProps } from './CircleStoryComponent'
-import { colorsStyles } from '../styles/styles'
+import { colorsStyles, commonStyles } from '../../styles/styles'
 import SvgIcons from '@/assets/icons/svgIcons';
 import BonusCardComponent from './BonusCardComponent';
 
@@ -25,11 +25,11 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
         <View style={styles.container}>
             <View style={styles.nameAndButtons}>
 
-                <Text style={styles.name}>User Name</Text>
+                <Text style={styles.name}>Имя пользователя</Text>
 
                 <View style={styles.buttons}>
-                    <SvgIcons.FavoritesIcon></SvgIcons.FavoritesIcon>
-                    <SvgIcons.FavoritesIcon></SvgIcons.FavoritesIcon>
+                    <SvgIcons.FavoritesIcon stroke={'#fff'}></SvgIcons.FavoritesIcon>
+                    <SvgIcons.FavoritesIcon stroke={'#fff'}></SvgIcons.FavoritesIcon>
                 </View>
 
             </View>
@@ -42,9 +42,7 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
                     contentContainerStyle={styles.listContent}
                 />
             </View>
-            <View style={styles.card}>
-                <BonusCardComponent></BonusCardComponent>
-            </View>
+
         </View>
     )
 }
@@ -52,7 +50,6 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
     },
 
     nameAndButtons: {
@@ -62,7 +59,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     name: {
-        fontSize: 24,
+        fontSize: 20,
+        fontFamily: commonStyles.text.fontFamily,
+        color: colorsStyles.mainWhiteColor.color,
     },
     buttons: {
         flexDirection: 'row',
@@ -76,11 +75,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: 16,
     },
-    card: {
-        marginVertical: 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 })
 
 export default UserPanelComponent;

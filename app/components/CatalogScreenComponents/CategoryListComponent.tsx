@@ -1,10 +1,9 @@
 import React from "react";
 import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from "react-native";
-import { Category } from "../interfaces/Category";
+import { Category } from "@/app/interfaces/Category";
 import { Router } from "expo-router";
-import BlockComponent from "./BlockComponent";
 import svgIcons from "@/assets/icons/svgIcons";
-import { commonStyles, colorsStyles } from "../styles/styles";
+import { colorsStyles } from "@/app/styles/styles";
 
 interface CategoryListProps {
     currentCategory: Category | undefined, // current category
@@ -74,20 +73,12 @@ const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
         );
     }
 
-    function renderList() {
-        return (
-            <FlatList
-                data={props.data}
-                renderItem={renderCategory}
-                ListHeaderComponent={takeAllProducts}
-                keyExtractor={item => item.id}
-            />
-        )
-    }
-
     return (
-        <BlockComponent
-            content={renderList()}
+        <FlatList
+            data={props.data}
+            renderItem={renderCategory}
+            ListHeaderComponent={takeAllProducts}
+            keyExtractor={item => item.id}
         />
     )
 }

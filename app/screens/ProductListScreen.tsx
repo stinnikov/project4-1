@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FlatList, View, StyleSheet } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "../components/SearchComponent";
-import BlockComponent from "../components/BlockComponent";
 import { Router, SplashScreen } from "expo-router";
 import ProductListComponent from "../components/ProductListComponent";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
@@ -17,19 +16,14 @@ interface ProductListScreenProps {
 function renderScreen(props: ProductListScreenProps) {
     return (
         <View>
-            <View>
-                <BlockComponent
-                    content={<ScreenHeaderComponent
-                        title={props.categoryName}
-                        router={props.router}
-                    />}
-                    contentStyle={{ paddingBottom: 0 }}
+            <View style={{ margin: 16, paddingBottom: 0 }}>
+                <ScreenHeaderComponent
+                    title={props.categoryName}
+                    router={props.router}
                 />
             </View>
-            <View>
-                <BlockComponent
-                    content={<SearchComponent></SearchComponent>}
-                />
+            <View style={{ margin: 16 }}>
+                <SearchComponent />
             </View>
 
             <View>

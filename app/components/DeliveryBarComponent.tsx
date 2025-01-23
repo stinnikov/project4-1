@@ -37,7 +37,6 @@ const DeliveryBarComponent: React.FC<DeliveryBarComponentProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         alignContent: 'center',
-        backgroundColor: colorsStyles.mainGreyColor.color,
     },
     row: {
         flex: 1,
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     bar: {
-        backgroundColor: colorsStyles.mainWhiteColor.color,
+        backgroundColor: colorsStyles.mainGreyColor.color,
     },
 })
 

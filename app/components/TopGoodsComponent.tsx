@@ -3,7 +3,6 @@ import { View, StyleSheet, FlatList, Text, ViewStyle } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "../interfaces/Product";
 import { commonStyles, dimensionsStyles } from "../styles/styles";
-import BlockComponent from "./BlockComponent";
 import { StyleProp } from "react-native";
 import TopGoodsCardComponent from "./TopGoodsCardComponent";
 
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
         fontSize: commonStyles.listTitle.fontSize,
         fontWeight: commonStyles.listTitle.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        marginBottom: commonStyles.listTitle.margin,
+        marginVertical: commonStyles.listTitle.margin,
         paddingLeft: commonStyles.listTitle.padding,
     },
 })

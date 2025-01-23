@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "../components/SearchComponent";
-import BlockComponent from "../components/BlockComponent";
 import { Router, SplashScreen } from "expo-router";
-import CategoryListComponent from "../components/CategoryListComponent";
+import CategoryListComponent from "../components/CatalogScreenComponents/CategoryListComponent";
 import { Category } from "../interfaces/Category";
 import { Product } from "../interfaces/Product";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 import { getCategoriesById, getCategoryById } from "../services/CategoryService";
+import { commonStyles } from "../styles/styles";
 
 interface CategoryListScreenProps {
     router: Router,
@@ -19,19 +19,14 @@ interface CategoryListScreenProps {
 function renderScreen(props: CategoryListScreenProps) {
     return (
         <View>
-            <View>
-                <BlockComponent
-                    content={<ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />}
-                    contentStyle={{ paddingBottom: 0 }}
-                />
+            <View style={{ margin: commonStyles.general.margin }}>
+                <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
             </View>
-            <View>
-                <BlockComponent
-                    content={<SearchComponent />}
-                />
+            <View style={{ margin: commonStyles.general.margin }}>
+                <SearchComponent />
             </View>
 
-            <View>
+            <View style={{ margin: commonStyles.general.margin }}>
                 <CategoryListComponent
                     currentCategory={props.currentCategory}
                     data={props.categories}

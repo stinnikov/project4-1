@@ -3,9 +3,9 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-na
 import { colorsStyles } from './styles/styles';
 import { useRouter } from 'expo-router';
 import { isAuthorised } from './services/AuthService';
-import HomeScreen from './(main)/(tabs)/(home)';
 import LoadingScreen from './screens/LoadingScreen';
 import LoginScreen from './screens/LoginScreen';
+import 'expo-dev-client';
 
 const App: React.FC = () => {
     const router = useRouter();

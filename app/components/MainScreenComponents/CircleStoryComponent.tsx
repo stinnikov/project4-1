@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground, Text } from 'react-native'
-import { colorsStyles, commonStyles, dimensionsStyles } from '../styles/styles'
+import { colorsStyles, commonStyles, dimensionsStyles } from '../../styles/styles'
 
 export interface CircleStoryProps {
     imgSrc: string,
@@ -18,8 +18,8 @@ const CircleStoryComponent: React.FC<CircleStoryProps> = (props) => {
                     />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.description}>
-                        Эта история о том как я попал в зомби-апокалипсис, выживал среди зомбарей, выживал среди зомбачков
+                    <Text numberOfLines={3} style={styles.description}>
+                        Текст {'\n'} в 3 {'\n'} строки {'\n'}
                     </Text>
                 </View>
             </View>
@@ -33,14 +33,13 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        backgroundColor: 'green',
     },
     card: {
         height: dimensionsStyles.circleStory.height, //250
         width: dimensionsStyles.circleStory.width, // 392
     },
     textContainer: {
-        backgroundColor: 'aqua',
+        marginBottom: commonStyles.general.margin,
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
@@ -48,14 +47,19 @@ const styles = StyleSheet.create({
         overflow: 'hidden', // Скрыть переполненный текст
     },
     description: {
+        paddingTop: 12,
         fontSize: 11,
-        color: 'black',
+        color: colorsStyles.mainWhiteColor.color,
+        textAlign: 'center',
         // Убедитесь, что ширина текста не превышает ширину родительского контейнера
         width: '100%', // или установите фиксированную ширину, если нужно
     },
     imageBackground: {
         alignSelf: 'center',
-        backgroundColor: colorsStyles.mainDarkColor.color,
+        backgroundColor: '#929292',
+        borderRadius: 100,
+        borderWidth: 3,
+        borderColor: colorsStyles.mainBrightColor.color,
         width: '100%',
         height: '100%',
     }

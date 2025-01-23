@@ -1,11 +1,11 @@
 
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, } from 'react-native';
-import { Category } from '../interfaces/Category';
+import { Category } from '@/app/interfaces/Category';
 import { Router } from 'expo-router';
-import { commonStyles, dimensionsStyles } from '../styles/styles';
-import CardComponent from './CardComponent';
-import { ipv4 } from '../data/tempData';
+import { commonStyles, dimensionsStyles } from '@/app/styles/styles';
+import CardComponent from '../CardComponent';
+import { ipv4 } from '@/app/data/tempData';
 
 interface CategoryCardListProps {
     data: Category[];

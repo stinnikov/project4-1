@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { Router, SplashScreen } from "expo-router";
-import CategoryCardListComponent from "../components/CategoryCardListComponent";
+import CategoryCardListComponent from "../components/CatalogScreenComponents/CategoryCardListComponent";
 import { Category } from "../interfaces/Category";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import TopComponent from "../components/TopComponent";
-import BlockComponent from "../components/BlockComponent";
 import { getCategoriesDepthZero } from "../services/CategoryService";
+import DeliveryBarComponent from "../components/DeliveryBarComponent";
+import { SearchBar } from "react-native-screens";
+import SearchComponent from "../components/SearchComponent";
+import { colorsStyles } from "../styles/styles";
 
 interface CatalogScreenProps {
     categories: Category[],
@@ -14,22 +16,19 @@ interface CatalogScreenProps {
 }
 
 
-function renderScreen(props: CatalogScreenProps) {
+function renderScreen({ item }: { item: CatalogScreenProps }) {
     return (
-        <View style={{ flex: 1 }}>
-            <View>
-                <TopComponent></TopComponent>
+        <View style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
+            <View style={{ margin: 16 }}>
+                <DeliveryBarComponent />
+                <SearchComponent />
             </View>
-            <View>
-                <BlockComponent content={
-                    <CategoryCardListComponent
-                        data={props.categories}
-                        isMainScreen={false}
-                        router={props.router}
-                    />}
-                    contentStyle={{ backgroundColor: 'white' }}
-                >
-                </BlockComponent>
+            <View style={{ margin: 16 }}>
+                <CategoryCardListComponent
+                    data={item.categories}
+                    isMainScreen={false}
+                    router={item.router}
+                />
             </View>
         </View>
     )
@@ -47,7 +46,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
                     data={DATA}
                     bounces={false}
                     onEndReachedThreshold={10}
-                    renderItem={({ item }) => renderScreen(props)}
+                    renderItem={renderScreen}
                 />
             </SafeAreaView>
         </SafeAreaProvider>
