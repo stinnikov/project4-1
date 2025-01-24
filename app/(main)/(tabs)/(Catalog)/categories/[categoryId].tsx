@@ -4,7 +4,7 @@ import CategoryListScreen from '@/app/screens/CategoryListScreen';
 import { Category } from '@/app/interfaces/Category';
 import { useState, useEffect } from 'react';
 import { getCategoriesById, getCategoryNameById, getCategoryById } from '@/app/services/CategoryService';
-import { getProductsByCategoryId } from '@/app/services/ProductService';
+import { getProductsByCategoryIdAsync } from '@/app/services/ProductService';
 import { Product } from '@/app/interfaces/Product';
 import ProductListScreen from '@/app/screens/ProductListScreen';
 import LoadingScreen from '@/app/screens/LoadingScreen';
@@ -28,7 +28,7 @@ export default function () {
 
                     if (currentCatResponse && currentCatSubCatsResponse) {
                         if (currentCatSubCatsResponse.length === 0) {
-                            const getProductsResponse = await getProductsByCategoryId(categoryId);
+                            const getProductsResponse = await getProductsByCategoryIdAsync(categoryId);
                             if (getProductsResponse)
                                 setProducts(getProductsResponse);
                         }

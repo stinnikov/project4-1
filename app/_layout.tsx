@@ -10,9 +10,12 @@ export default function RootLayout() {
             screenOptions={
                 {
                     headerShown: false,
-                    statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString()
+                    statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString(),
+                    contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color },
                 }}
+
         >
+
 
         </Stack>
     );

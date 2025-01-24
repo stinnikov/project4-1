@@ -1,11 +1,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import ProductListScreen from '@/app/screens/ProductListScreen';
 import { useState, useEffect } from 'react';
-import { getProductsByCategoryId } from '@/app/services/ProductService';
+import { getProductsByCategoryIdAsync } from '@/app/services/ProductService';
 import { Product } from '@/app/interfaces/Product';
 import { getCategoryNameById } from '@/app/services/CategoryService';
 import LoadingScreen from '@/app/screens/LoadingScreen';
-import { ActivityIndicator, View, Text } from 'react-native';
+import { getDataAsync } from '@/app/services/AuthService';
 
 
 export default function () {
@@ -21,7 +21,7 @@ export default function () {
                 try {
                     const [getProductsResponse, getCategoryNameResponse] = await Promise.all(
                         [
-                            getProductsByCategoryId(categoryId),
+                            getProductsByCategoryIdAsync(categoryId),
                             getCategoryNameById(categoryId)
                         ]
 

@@ -4,7 +4,7 @@ import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
 import styles, { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
-import { getSingleProductById } from '@/app/services/ProductService';
+import { getSingleProductByIdAsync } from '@/app/services/ProductService';
 import LoadingScreen from "../screens/LoadingScreen";
 
 interface TopGoodsCardProps {
@@ -44,7 +44,7 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
             try {
 
                 if (typeof (props.data.id) == "string") {
-                    var getProductResponse = await getSingleProductById(props.data.id)
+                    var getProductResponse = await getSingleProductByIdAsync(props.data.id)
                     if (getProductResponse) {
                         setProduct(getProductResponse);
                     }

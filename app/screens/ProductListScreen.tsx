@@ -7,6 +7,8 @@ import ProductListComponent from "../components/ProductListComponent";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
 import { Product } from "../interfaces/Product";
 import { colorsStyles } from "../styles/styles";
+import { getDataAsync } from "../services/AuthService";
+import LoadingScreen from "./LoadingScreen";
 
 interface ProductListScreenProps {
     products: Product[],
@@ -14,27 +16,7 @@ interface ProductListScreenProps {
     router: Router,
 }
 
-function renderScreen(props: ProductListScreenProps) {
-    return (
-        <View>
-            <View style={{ margin: 16, paddingBottom: 0 }}>
-                <ScreenHeaderComponent
-                    title={props.categoryName}
-                    router={props.router}
-                />
-            </View>
-            <View style={{ margin: 16 }}>
-                <SearchComponent />
-            </View>
 
-            <View>
-                <ProductListComponent data={props.products} router={props.router}>
-
-                </ProductListComponent>
-            </View>
-        </View>
-    )
-}
 
 function renderLoadingScreen() {
 
@@ -43,6 +25,29 @@ function renderLoadingScreen() {
 
 const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) => {
 
+
+    function renderScreen(props: ProductListScreenProps) {
+        return (
+            <View>
+                <View style={{ margin: 16, paddingBottom: 0 }}>
+                    <ScreenHeaderComponent
+                        title={props.categoryName}
+                        router={props.router}
+                    />
+                </View>
+                <View style={{ margin: 16 }}>
+                    <SearchComponent />
+                </View>
+
+                <View>
+                    <ProductListComponent
+                        data={props.products}
+                        router={props.router}
+                    />
+                </View>
+            </View>
+        )
+    }
 
     const DATA: ProductListScreenProps[] = [
         props,

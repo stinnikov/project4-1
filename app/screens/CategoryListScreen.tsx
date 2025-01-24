@@ -5,9 +5,7 @@ import SearchComponent from "../components/SearchComponent";
 import { Router, SplashScreen } from "expo-router";
 import CategoryListComponent from "../components/CatalogScreenComponents/CategoryListComponent";
 import { Category } from "../interfaces/Category";
-import { Product } from "../interfaces/Product";
 import ScreenHeaderComponent from "../components/ScreenHeaderComponent";
-import { getCategoriesById, getCategoryById } from "../services/CategoryService";
 import { colorsStyles, commonStyles } from "../styles/styles";
 
 interface CategoryListScreenProps {
@@ -44,7 +42,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
     ]
 
     return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
+        <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <FlatList
                     data={DATA}

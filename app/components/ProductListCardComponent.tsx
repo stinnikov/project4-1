@@ -4,7 +4,8 @@ import { Product } from "../interfaces/Product";
 import { Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
-import { addFavoriteProduct, getFavouritesProducts } from "../services/ProductService";
+import { addFavoriteProductAsync, getFavouritesProductsAsync } from "../services/ProductService";
+import { handleFavouriteButtonAsync } from "../utils/buttonsActions";
 
 interface ProductListCardProps {
     data: Product,
@@ -12,6 +13,7 @@ interface ProductListCardProps {
 }
 
 const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
+
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
 
@@ -68,13 +70,18 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
         }
     }
 
+    function handleFavouriteButton() {
+        console.log()
+        handleFavouriteButtonAsync(props.data.id);
+    }
+
 
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
                 <View style={{ position: 'absolute', zIndex: 999, marginLeft: '72.5%' }}>
-                    <View style={styles.icon}>
+                    <View style={commonStyles.icon}>
                         <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
                     </View>
                 </View>
@@ -82,9 +89,9 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
             </TouchableOpacity>
 
             <View style={{ position: 'absolute', zIndex: 999, marginTop: '60%', marginLeft: '72.5%' }}>
-                <View style={styles.icon}>
+                <TouchableOpacity style={commonStyles.icon} onPress={handleFavouriteButton}>
                     <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.productNameContainer}>
                 <Text style={styles.productNameText}>{props.data.name}</Text>
@@ -159,20 +166,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: commonStyles.text.fontFamily,
     },
-    icon: {
-        margin: 8, // default margin
-        height: 30, // чуть больше размера иконки
-        width: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 100,
-        elevation: 5,
-        shadowOffset: { width: 0, height: 6 },
-        shadowRadius: 24,
-        shadowOpacity: 0.2,
-        backgroundColor: colorsStyles.mainWhiteColor.color,
-    }
-
 })
 
 export default React.memo(ProductListCardComponent);

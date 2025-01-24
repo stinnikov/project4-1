@@ -38,8 +38,6 @@ export const commonStyles = StyleSheet.create({
 
   //cards
 
-
-
   //lists
   listTitle: {
     fontSize: 20,
@@ -47,6 +45,20 @@ export const commonStyles = StyleSheet.create({
     padding: 16,
     margin: 16,
   },
+
+  icon: {
+    margin: 16, // default margin
+    height: 30, // чуть больше размера иконки
+    width: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    elevation: 5,
+    shadowOffset: { width: 0, height: 6 },
+    shadowRadius: 24,
+    shadowOpacity: 0.2,
+    backgroundColor: colors.mainWhiteColor,
+  }
 
 });
 
@@ -121,7 +133,7 @@ export const dimensionsStyles = StyleSheet.create(
       height: heightUnit * 15,
     },
     productListCard: {
-      width: widthUnit * 43,
+      width: widthUnit * 44,
       height: heightUnit * 43,
     },
     productCard: {

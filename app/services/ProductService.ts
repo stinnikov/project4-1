@@ -1,9 +1,10 @@
 import { Product } from "../interfaces/Product";
 import { ipv4 } from "../data/tempData";
+import { getDataAsync } from "./AuthService";
 
 
 
-export const getProductsByCategoryId = async (catId: string) => {
+export const getProductsByCategoryIdAsync = async (catId: string) => {
     try {
         //await new Promise(resolve => setTimeout(resolve, 5000));
 
@@ -17,7 +18,7 @@ export const getProductsByCategoryId = async (catId: string) => {
         console.error(error);
     }
 }
-export const getSingleProductById = async (prodId: string) => {
+export const getSingleProductByIdAsync = async (prodId: string) => {
     try {
         const response = await fetch(`${ipv4}/getSingleProductById?Id=${prodId}`)
 
@@ -30,14 +31,19 @@ export const getSingleProductById = async (prodId: string) => {
     }
 }
 
-export const addFavoriteProduct = async (prodId: string) => {
+export const addFavoriteProductAsync = async (prodId: string) => {
     try {
+        const userId = await getDataAsync('userId')
+
         const response = await fetch(`${ipv4}/addFavouriteProduct`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 'productId': prodId }),
+            body: JSON.stringify({
+                'productId': prodId,
+                'userId': userId
+            }),
 
         });
         const data = await response.json();
@@ -49,13 +55,18 @@ export const addFavoriteProduct = async (prodId: string) => {
     }
 }
 
-export const getFavouritesProducts = async () => {
+export const removeFavoriteProductAsync = async (prodId: string) => {
+
+}
+
+export const getFavouritesProductsAsync = async () => {
     try {
         //await new Promise(resolve => setTimeout(resolve, 5000));
-
-        const response = await fetch(`${ipv4}/getFavouriteProducts`);
+        const userId = await getDataAsync('userId')
+        const response = await fetch(`${ipv4}/getFavouriteProducts?userId=${userId}`);
 
         const mappedResponse: Product[] = await response.json();
+        console.log(mappedResponse);
 
         return mappedResponse;
     }

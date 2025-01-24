@@ -31,7 +31,7 @@ export default function TabLayout() {
 
 				tabBarLabelStyle: {
 					fontSize: iconLabelFontSize,
-				}
+				},
 			}}
 		>
 			<Tabs.Screen name="(catalog)" options={{
@@ -46,6 +46,7 @@ export default function TabLayout() {
 
 			< Tabs.Screen name="(favourites)" options={{
 				title: 'Избранное',
+				headerShown: headerShown,
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
 				),

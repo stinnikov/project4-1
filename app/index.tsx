@@ -2,7 +2,7 @@ import React, { NewLifecycle, useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colorsStyles } from './styles/styles';
 import { useRouter } from 'expo-router';
-import { isAuthorised } from './services/AuthService';
+import { isAuthorisedAsync } from './services/AuthService';
 import LoadingScreen from './screens/LoadingScreen';
 import LoginScreen from './screens/LoginScreen';
 import 'expo-dev-client';
@@ -15,7 +15,7 @@ const App: React.FC = () => {
     useEffect(() => {
         const getEntry = async () => {
             try {
-                const authResponse = await isAuthorised();
+                const authResponse = await isAuthorisedAsync();
                 if (authResponse)
                     setAuth(true);
             }

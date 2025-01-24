@@ -22,7 +22,7 @@ const ProductListComponent: React.FC<ProductListProps> = (props) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 minHeight: 30,
-                marginBottom: 16
+                marginBottom: 16,
             }}>
                 <svgIcons.SortIcon width={20} height={20}></svgIcons.SortIcon>
                 <Text style={styles.listTitle}>Сортировка</Text>
@@ -40,7 +40,7 @@ const ProductListComponent: React.FC<ProductListProps> = (props) => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <FlatList style={styles.list}
                 data={props.data}
                 renderItem={renderProduct}
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
 
     list: {
         padding: 16,
-        paddingTop: 0,
     },
 
     listTitle: {
@@ -76,8 +75,8 @@ const styles = StyleSheet.create({
         width: dimensionsStyles.productListCard.width,
     },
     column: {
-        gap: 10,
-        marginBottom: 10,
+        justifyContent: 'space-between',
+        marginBottom: 16,
     },
 });
 
