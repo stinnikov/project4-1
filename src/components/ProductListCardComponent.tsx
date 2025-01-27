@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { handleFavouriteButtonAsync } from "@/src/utils/buttonsActions";
+import { FavouriteButtonComponent } from "./Buttons/ButtonComponents";
 
 interface ProductListCardProps {
     data: Product,
@@ -12,97 +12,86 @@ interface ProductListCardProps {
 }
 
 const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
+    const product = props.data;
+    const router = props.router;
 
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
 
     function navigateToProduct() {
         if (currentTabIndex === 0) {
-            props.router.push(
+            router.push(
                 {
                     pathname: '/(main)/(tabs)/catalog/product/[productId]',
                     params: {
-                        productId: props.data.id,
+                        productId: product.id,
                     }
                 }
             )
         }
         else if (currentTabIndex === 1) {
-            props.router.push(
+            router.push(
                 {
                     pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
                     params: {
-                        productId: props.data.id,
+                        productId: product.id,
                     }
                 }
             )
         }
         else if (currentTabIndex === 2) {
-            props.router.push(
+            router.push(
                 {
                     pathname: '/(main)/(tabs)/(home)/product/[productId]',
                     params: {
-                        productId: props.data.id,
+                        productId: product.id,
                     }
                 }
             )
         }
         else if (currentTabIndex === 3) {
-            props.router.push(
+            router.push(
                 {
                     pathname: '/(main)/(tabs)/(profile)/product/[productId]',
                     params: {
-                        productId: props.data.id,
+                        productId: product.id,
                     }
                 }
             )
         }
         else if (currentTabIndex === 4) {
-            props.router.push(
+            router.push(
                 {
                     pathname: '/(main)/(tabs)/(basket)/product/[productId]',
                     params: {
-                        productId: props.data.id,
+                        productId: product.id,
                     }
                 }
             )
         }
     }
 
-    function handleFavouriteButton() {
-        console.log("eto v productListCard")
-        handleFavouriteButtonAsync(props.data.id);
-    }
-
-    //     <View style={{ position: 'absolute', zIndex: 999, marginLeft: '72.5%' }}>
-    //     <View style={commonStyles.icon}>
-    //         <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
-    //     </View>
-    // </View>
-
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
 
-                <ImageBackground style={styles.productImage} source={{ uri: props.data.imageUrl }} resizeMode="contain">
+                <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[commonStyles.icon]}>
                             <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
                         </View>
 
-                        <TouchableOpacity style={[commonStyles.icon, { alignSelf: 'flex-end' }]} onPress={handleFavouriteButton}>
-                            <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
-                        </TouchableOpacity>
+                        <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
 
             <View style={styles.productNameContainer}>
-                <Text style={styles.productNameText}>{props.data.name}</Text>
+                <Text style={styles.productNameText}>{product.name}</Text>
             </View>
 
             <View style={styles.priceContainer}>
-                <Text style={styles.productPriceText}>{props.data.price}</Text>
+                <Text style={styles.productPriceText}>{product.price}</Text>
             </View>
 
             <TouchableOpacity style={styles.basketButtonContiner}>

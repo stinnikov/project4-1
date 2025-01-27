@@ -39,6 +39,8 @@ const ProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
         />
     ), [props.router]);
 
+
+
     return (
         <View style={styles.container}>
             <FlatList

@@ -5,6 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
+import { CircleBackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
 
 interface ProductCardProps {
     product: Product,
@@ -12,41 +13,35 @@ interface ProductCardProps {
 }
 
 const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
-    function handlePressBackButton() {
-        props.router.canGoBack() && props.router.back();
-    }
+    const product = props.product;
+    const router = props.router;
+
     const DATA: ProductCardProps[] = [
         props,
     ]
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.topButtons}>
-                <Pressable style={[commonStyles.icon, { paddingRight: 2, marginLeft: 16, }]}
-                    onPress={handlePressBackButton}>
-                    <svgIcons.BackArrowIcon width={20} height={20}></svgIcons.BackArrowIcon>
-                </Pressable>
+                <CircleBackButtonComponent router={router} style={{ marginLeft: 16 }} />
 
-                <TouchableOpacity style={[commonStyles.icon, { marginRight: 16 }]}
-                    onPress={function () { }}>
-                    <svgIcons.FavoritesIcon width={21} height={21} fill={true && colorsStyles.mainBrightColor.color} stroke={true && colorsStyles.mainBrightColor.color}></svgIcons.FavoritesIcon>
-                </TouchableOpacity>
+                <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
             </View>
 
             <ScrollView overScrollMode="never" contentContainerStyle={styles.card}>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
-                        <ImageBackground source={{ uri: props.product.imageUrl }}
+                        <ImageBackground source={{ uri: product.imageUrl }}
                             style={styles.imageBackground}
                             resizeMode='contain'
                         >
                         </ImageBackground>
                     </View>
                     <View style={styles.title}>
-                        <Text style={styles.titleText}>{props.product.name}</Text>
+                        <Text style={styles.titleText}>{product.name}</Text>
                     </View>
 
                     <View style={styles.price}>
-                        <Text style={styles.priceText}>{props.product.price}</Text>
+                        <Text style={styles.priceText}>{product.price}</Text>
 
                         <View style={{ flex: 1, height: '100%', direction: 'rtl', justifyContent: 'center' }}>
                             <TouchableOpacity style={styles.bottomButtonBlock}>

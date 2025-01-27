@@ -53,13 +53,12 @@ export default function CategoryIdScreen() {
 
     if (currentCategory && categories) {
         if (categories.length === 0) {
-            if (products)
+            if (products && typeof categoryId === 'string')
                 return (
                     <View style={{ flex: 1 }}>
-                        <StatusBar style='light' translucent={true} backgroundColor='red'></StatusBar>
                         <ProductListScreen
                             products={products}
-                            categoryName={currentCategory.name}
+                            categoryId={categoryId}
                             router={router}
                         />
                     </View>

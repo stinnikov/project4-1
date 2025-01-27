@@ -11,8 +11,8 @@ import { getDataAsync } from '@/src/services/AuthService';
 export default function () {
     const router = useRouter();
     const { productList: categoryId } = useLocalSearchParams();
-    const [categoryName, setCategoryName] = useState<string>('');
     const [products, setProducts] = useState<Product[]>([]);
+    const [categoryName, setCategoryName] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -45,9 +45,9 @@ export default function () {
         return <LoadingScreen></LoadingScreen>;
     }
 
-    if (categoryName && products) {
+    if (typeof categoryId === 'string' && products) {
         return (
-            <ProductListScreen products={products} categoryName={categoryName} router={router} />
+            <ProductListScreen products={products} categoryId={categoryId} router={router} />
         );
     }
 

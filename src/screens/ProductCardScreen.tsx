@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import ProductCardComponent from '@/src/components/ProductCardComponent';
 import { Router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface ProductCardProps {
     product: Product,
@@ -12,12 +13,12 @@ const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
 
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ProductCardComponent
                 product={props.product}
                 router={props.router}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
