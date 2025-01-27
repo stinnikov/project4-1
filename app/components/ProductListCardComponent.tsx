@@ -4,7 +4,6 @@ import { Product } from "../interfaces/Product";
 import { Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
-import { addFavoriteProductAsync, getFavouritesProductsAsync } from "../services/ProductService";
 import { handleFavouriteButtonAsync } from "../utils/buttonsActions";
 
 interface ProductListCardProps {
@@ -21,7 +20,7 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
         if (currentTabIndex === 0) {
             props.router.push(
                 {
-                    pathname: '/(main)/(tabs)/(catalog)/product/[productId]',
+                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
                     params: {
                         productId: props.data.id,
                     }
@@ -71,28 +70,33 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
     }
 
     function handleFavouriteButton() {
-        console.log()
+        console.log("eto v productListCard")
         handleFavouriteButtonAsync(props.data.id);
     }
 
-
+    //     <View style={{ position: 'absolute', zIndex: 999, marginLeft: '72.5%' }}>
+    //     <View style={commonStyles.icon}>
+    //         <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
+    //     </View>
+    // </View>
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
-                <View style={{ position: 'absolute', zIndex: 999, marginLeft: '72.5%' }}>
-                    <View style={commonStyles.icon}>
-                        <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
+
+                <ImageBackground style={styles.productImage} source={{ uri: props.data.imageUrl }} resizeMode="contain">
+                    <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
+                        <View style={[commonStyles.icon]}>
+                            <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
+                        </View>
+
+                        <TouchableOpacity style={[commonStyles.icon, { alignSelf: 'flex-end' }]} onPress={handleFavouriteButton}>
+                            <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
+                        </TouchableOpacity>
                     </View>
-                </View>
-                <ImageBackground style={styles.productImage} source={{ uri: props.data.imageUrl }} resizeMode="contain"></ImageBackground>
+                </ImageBackground>
             </TouchableOpacity>
 
-            <View style={{ position: 'absolute', zIndex: 999, marginTop: '60%', marginLeft: '72.5%' }}>
-                <TouchableOpacity style={commonStyles.icon} onPress={handleFavouriteButton}>
-                    <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
-                </TouchableOpacity>
-            </View>
             <View style={styles.productNameContainer}>
                 <Text style={styles.productNameText}>{props.data.name}</Text>
             </View>
@@ -128,6 +132,7 @@ const styles = StyleSheet.create({
     },
 
     productImage: {
+        flexDirection: 'column',
         width: '100%',
         height: '100%',
     },

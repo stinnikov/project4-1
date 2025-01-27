@@ -5,7 +5,6 @@ import { Product } from "../interfaces/Product";
 import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "../styles/styles";
 import svgIcons from "@/assets/icons/svgIcons";
-import { handleFavouriteButtonAsync } from "../utils/buttonsActions";
 
 interface ProductCardProps {
     product: Product,
@@ -21,24 +20,15 @@ const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
     ]
     return (
         <View style={{ flex: 1 }}>
-            <View style={
-                {
-                    flexDirection: 'row',
-                    width: '100%',
-                    position: 'absolute',
-                    zIndex: 999,
-                    minHeight: 50,
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                }}>
-                <Pressable style={[commonStyles.icon, { paddingRight: 2 }]}
+            <View style={styles.topButtons}>
+                <Pressable style={[commonStyles.icon, { paddingRight: 2, marginLeft: 16, }]}
                     onPress={handlePressBackButton}>
                     <svgIcons.BackArrowIcon width={20} height={20}></svgIcons.BackArrowIcon>
                 </Pressable>
 
-                <TouchableOpacity style={[commonStyles.icon]}
+                <TouchableOpacity style={[commonStyles.icon, { marginRight: 16 }]}
                     onPress={function () { }}>
-                    <svgIcons.FavoritesIcon width={21} height={21}></svgIcons.FavoritesIcon>
+                    <svgIcons.FavoritesIcon width={21} height={21} fill={true && colorsStyles.mainBrightColor.color} stroke={true && colorsStyles.mainBrightColor.color}></svgIcons.FavoritesIcon>
                 </TouchableOpacity>
             </View>
 
@@ -86,6 +76,15 @@ const styles = StyleSheet.create({
     container: {
         borderBottomWidth: 12,
         borderColor: colorsStyles.mainGreyColor.color,
+    },
+    topButtons: {
+        flexDirection: 'row',
+        width: '100%',
+        position: 'absolute',
+        zIndex: 999,
+        minHeight: 50,
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     imageContainer: {
         height: dimensionsStyles.productCardImage.height,

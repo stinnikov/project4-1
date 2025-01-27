@@ -5,6 +5,10 @@ export interface Product {
     price: string;
     description: string;
     imageUrl: string;
+    amountOfImages: number;
+    isFavourite: boolean;
+    isInBasket: boolean;
+    amountInBasket: number;
 }
 
 export default () => { };

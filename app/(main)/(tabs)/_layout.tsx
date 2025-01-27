@@ -4,6 +4,7 @@ import { Tabs, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/assets/icons/svgIcons';
 import { commonStyles, colorsStyles } from '@/app/styles/styles';
+import { CommonActions } from '@react-navigation/native';
 
 
 const iconColor: string = colorsStyles.mainBrightColor.color.toString();
@@ -19,8 +20,12 @@ const headerShown: boolean = false;
 
 export default function TabLayout() {
 	return (
+
 		<Tabs
+			detachInactiveScreens={true}
+
 			initialRouteName='(home)'
+
 			screenOptions={{
 				tabBarAllowFontScaling: false,
 				tabBarActiveTintColor: iconColor,
@@ -34,14 +39,18 @@ export default function TabLayout() {
 				},
 			}}
 		>
-			<Tabs.Screen name="(catalog)" options={{
+			<Tabs.Screen name="catalog"
+				options={{
+					lazy: false,
+					freezeOnBlur: true,
+					title: "Каталог",
+					headerShown: headerShown,
 
-				title: "Каталог",
-				headerShown: headerShown,
-				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.CatalogIcon stroke={focused ? color : 'black'}></svgIcons.CatalogIcon>
-				),
-			}}
+					tabBarIcon: ({ color, focused }) => (
+						<svgIcons.CatalogIcon stroke={focused ? color : 'black'}></svgIcons.CatalogIcon>
+					),
+				}}
+
 			/>
 
 			< Tabs.Screen name="(favourites)" options={{
@@ -77,3 +86,16 @@ export default function TabLayout() {
 		</Tabs >
 	);
 }
+
+// listeners={({ navigation }) => ({
+// 	tabPress: (e) => {
+// 		// Отменяем действие по умолчанию, чтобы предотвратить повторный переход на ту же вкладку
+// 		e.preventDefault();
+
+// 		// Сбросить состояние стека
+// 		navigation.dispatch(CommonActions.reset({
+// 			index: 0, // Указываем индекс, на который нужно перейти
+// 			routes: [{ name: 'catalog' }] // Указываем экран, который нужно открыть
+// 		}));
+// 	},
+// })}

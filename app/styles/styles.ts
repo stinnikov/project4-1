@@ -47,7 +47,6 @@ export const commonStyles = StyleSheet.create({
   },
 
   icon: {
-    margin: 16, // default margin
     height: 30, // чуть больше размера иконки
     width: 30,
     alignItems: 'center',

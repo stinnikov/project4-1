@@ -19,8 +19,8 @@ export const getDataAsync = async (key: string) => {
 };
 
 export const isAuthorisedAsync = async () => {
-    //await AsyncStorage.clear();
 
+    //await AsyncStorage.clear();
     var userId = await getDataAsync("userId");
     if (!userId) {
         const response = await fetch(`${ipv4}/partialyCreateUser`);

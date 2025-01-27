@@ -73,7 +73,7 @@ const FavoritesIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			fill={"none"}
+			fill={props.fill ?? "none"}
 			stroke={props.stroke ?? "#000"}
 			strokeLinecap="round"
 			strokeLinejoin="round"

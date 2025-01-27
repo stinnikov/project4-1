@@ -47,7 +47,7 @@ export const addFavoriteProductAsync = async (prodId: string) => {
 
         });
         const data = await response.json();
-        console.log('Item created:', data);
+
         return data;
     }
     catch (error) {
@@ -66,7 +66,6 @@ export const getFavouritesProductsAsync = async () => {
         const response = await fetch(`${ipv4}/getFavouriteProducts?userId=${userId}`);
 
         const mappedResponse: Product[] = await response.json();
-        console.log(mappedResponse);
 
         return mappedResponse;
     }

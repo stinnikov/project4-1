@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, } from 'react-native';
+import React, { useMemo, memo, useCallback } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '../interfaces/Product';
 import { Router } from 'expo-router';
 import { commonStyles, dimensionsStyles } from '../styles/styles';
@@ -13,48 +13,50 @@ interface ProductListProps {
     router: Router;
 }
 
+const getItemLayout = (data: any, index: number) => ({
+    length: dimensionsStyles.productCard.height,
+    offset: dimensionsStyles.productCard.height * index,
+    index,
+});
 
+const ListHeader = memo(() => (
+    <TouchableOpacity style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        minHeight: 30,
+        marginBottom: 16,
+    }}>
+        <svgIcons.SortIcon width={20} height={20} />
+        <Text style={styles.listTitle}>Сортировка</Text>
+    </TouchableOpacity>
+));
 
-const ProductListComponent: React.FC<ProductListProps> = (props) => {
-    function ListHeader() {
-        return (
-            <TouchableOpacity style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                minHeight: 30,
-                marginBottom: 16,
-            }}>
-                <svgIcons.SortIcon width={20} height={20}></svgIcons.SortIcon>
-                <Text style={styles.listTitle}>Сортировка</Text>
-            </TouchableOpacity>
-        )
-    }
-
-    function renderProduct({ item }: { item: Product }) {
-        return (
-            <ProductListCardComponent
-                data={item}
-                router={props.router}
-            />
-        )
-    }
+const ProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
+    const renderProduct = useCallback(({ item }: { item: Product }) => (
+        <ProductListCardComponent
+            data={item}
+            router={props.router}
+        />
+    ), [props.router]);
 
     return (
         <View style={styles.container}>
-            <FlatList style={styles.list}
+            <FlatList
+                style={styles.list}
                 data={props.data}
                 renderItem={renderProduct}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()} // Убедитесь, что id является строкой
                 numColumns={2}
+                initialNumToRender={2}
                 removeClippedSubviews={true}
                 showsVerticalScrollIndicator={false}
                 ListHeaderComponent={ListHeader}
                 columnWrapperStyle={styles.column}
+                getItemLayout={getItemLayout}
             />
         </View>
-
     );
-};
+});
 
 const styles = StyleSheet.create({
     container: {

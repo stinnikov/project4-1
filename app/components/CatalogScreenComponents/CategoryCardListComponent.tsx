@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { View, Text, FlatList, StyleSheet, } from 'react-native';
 import { Category } from '@/app/interfaces/Category';
 import { Router } from 'expo-router';
@@ -13,36 +13,44 @@ interface CategoryCardListProps {
     router: Router;
 }
 
-const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
-    function ListHeader() {
-        return (
-            <Text style={styles.listTitle}>Категории</Text>
-        )
-    }
+const getItemLayout = (data: any, index: number) => ({
+    length: dimensionsStyles.categoryCard.height,
+    offset: dimensionsStyles.categoryCard.height * index,
+    index,
+});
 
-    function renderCategory({ item }: { item: Category }) {
-        return (
-            <CardComponent
-                item={item}
-                router={props.router}
-                titleText={item.name}
-                textStyle={{ color: 'white' }}
-                imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
-                style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
-            />
-        )
-    }
+const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
+    const preparedData = useMemo(() => {
+        return props.data;
+    }, [props.data]);
+
+    const ListHeader = useCallback(() => (
+        <Text style={styles.listTitle}>Категории</Text>
+    ), []);
+
+    const renderCategory = useCallback(({ item }: { item: Category }) => (
+        <CardComponent
+            item={item}
+            router={props.router}
+            titleText={item.name}
+            textStyle={{ color: 'white' }}
+            imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
+            style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
+        />
+    ), [props.router]);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={props.data}
+                data={preparedData}
                 renderItem={renderCategory}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()} // Приведение ID к строке для уникальности
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
+                initialNumToRender={2}
                 ListHeaderComponent={ListHeader}
                 columnWrapperStyle={styles.column}
+                getItemLayout={getItemLayout}
             />
         </View>
     );
@@ -66,4 +74,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CategoryCardListComponent;
+export default React.memo(CategoryCardListComponent);

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { commonStyles, dimensionsStyles, colorsStyles } from "../styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/assets/icons/svgIcons";
@@ -11,11 +11,15 @@ interface SearchComponentProps {
 const SearchComponent: React.FC<SearchComponentProps> = (props) => {
     return (
         <View style={styles.container}>
-            <BarComponent
-                text="Поиск"
-                style={{ backgroundColor: colorsStyles.mainGreyColor.color, padding: 16, flex: 1, height: dimensionsStyles.bar.height * 1.1 }}
-                textStyle={{ color: '#7d7d7d' }}
-            />
+            <TouchableOpacity style={styles.searchBar}>
+                <Text style={styles.searchBarText}>
+                    Поиск
+                </Text>
+                <TouchableOpacity style={styles.qrCode}>
+                    <svgIcons.FavoritesIcon></svgIcons.FavoritesIcon>
+                </TouchableOpacity>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styles.settings} onPress={() => { }}>
                 <svgIcons.SettingsIcon stroke={'#7d7d7d'}></svgIcons.SettingsIcon>
             </TouchableOpacity>
@@ -29,7 +33,21 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     searchBar: {
-        marginRight: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: dimensionsStyles.bar.height * 1.1,
+        backgroundColor: colorsStyles.mainGreyColor.color,
+        paddingHorizontal: 16,
+        borderRadius: 12
+    },
+    searchBarText: {
+        fontSize: 16,
+        fontFamily: commonStyles.text.fontFamily,
+    },
+    qrCode: {
+
     },
     settings: {
         height: dimensionsStyles.bar.height * 1.1,
