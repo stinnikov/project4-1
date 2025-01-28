@@ -2,18 +2,30 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
-import svgIcons from "@/src/assets/icons/svgIcons";
-import { FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
+import { AddOneProductInBasket, BasketButtonComponent, FavouriteButtonComponent, RemoveOneProductFromBasket } from "../Buttons/ButtonComponents";
 
-interface ProductListCardProps {
+interface BasketProductCardProps {
     data: Product,
     router: Router,
 }
 
-const ProductListCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
-    const product = props.data;
+const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: BasketProductCardProps) => {
     const router = props.router;
+    const [product, setProduct] = useState<Product>(props.data);
+    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
+
+    function addOneProduct() {
+        setAmountInBasket(product.amountInBasket + 1);
+        product.amountInBasket++;
+    }
+
+    function removeOneProduct() {
+        if (product.amountInBasket - 1 >= 0) {
+            setAmountInBasket(product.amountInBasket - 1);
+            product.amountInBasket--;
+        }
+    }
 
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
@@ -77,7 +89,7 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
 
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
-                        <View style={[commonStyles.icon]}>
+                        <View style={[buttonStyles.miniButton]}>
                             <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
                         </View>
 
@@ -92,12 +104,16 @@ const ProductListCardComponent: React.FC<ProductListCardProps> = (props: Product
 
             <View style={styles.priceContainer}>
                 <Text style={styles.productPriceText}>{product.price}</Text>
+                <View style={[buttonStyles.miniButton, { alignSelf: 'center' }]}>
+                    <Text>{amountInBasket}</Text>
+                </View>
+
             </View>
 
-            <TouchableOpacity style={styles.basketButtonContiner}>
-                <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', height: '7%', borderTopWidth: 1 }}>
+                <RemoveOneProductFromBasket product={product} onRemove={removeOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderRightWidth: 1, }} />
+                <AddOneProductInBasket product={product} onAdd={addOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderLeftWidth: 1 }} />
+            </View>
         </View>
     )
 }
@@ -133,19 +149,12 @@ const styles = StyleSheet.create({
 
     priceContainer: {
         flex: 0.3,
+        minHeight: 30,
         padding: 8,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
         width: '100%',
         height: '100%',
-    },
-
-    basketButtonContiner: {
-        flexDirection: 'row',
-        minHeight: 28,
-        borderRadius: 12,
-        margin: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colorsStyles.mainBrightColor.color,
     },
 
     productNameText: {
@@ -157,10 +166,11 @@ const styles = StyleSheet.create({
     },
 
     productPriceText: {
+        alignSelf: 'center',
         fontSize: 14,
         fontFamily: commonStyles.text.fontFamily,
     },
 })
 
-export default React.memo(ProductListCardComponent);
+export default React.memo(BasketProductCardComponent);
 

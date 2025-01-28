@@ -6,6 +6,7 @@ import styles, { commonStyles, dimensionsStyles, colorsStyles, textStyles } from
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { getSingleProductByIdAsync } from '@/src/services/ProductService';
 import LoadingScreen from "@/src/screens/LoadingScreen";
+import { BasketButtonComponent } from "./Buttons/ButtonComponents";
 
 interface TopGoodsCardProps {
     data: Product,
@@ -76,10 +77,8 @@ const TopGoodsCardComponent: React.FC<TopGoodsCardProps> = (props) => {
                             <Text style={cardStyles.title}>{product.name}</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={cardStyles.bottomButtonBlock}>
-                        <svgIcons.BasketIcon width={16} height={16} stroke={'#FFF'}></svgIcons.BasketIcon>
-                        <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
-                    </TouchableOpacity>
+
+                    <BasketButtonComponent product={props.data} />
                 </View>
             </View>
         )
@@ -124,17 +123,6 @@ const cardStyles = StyleSheet.create({
         borderTopRightRadius: commonStyles.general.borderRadius,
         resizeMode: 'contain',
     },
-    bottomButtonBlock: {
-        flexDirection: 'row',
-        minHeight: 28,
-        borderRadius: 12,
-        margin: 8,
-        marginBottom: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 0,
-        backgroundColor: colorsStyles.basketButtonColor.color,
-    }
 })
 
 export default TopGoodsCardComponent;

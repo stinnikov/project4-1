@@ -61,7 +61,6 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
                     <View style={{ margin: 16 }}>
                         <CategoryCardListComponent
                             data={categories}
-                            isMainScreen={false}
                             router={item.router}
                         />
                     </View>

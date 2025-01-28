@@ -1,16 +1,17 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, ViewStyle } from "react-native";
 import { commonStyles, dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/src/assets/icons/svgIcons";
 
 interface SearchComponentProps {
     text?: string,
+    style?: ViewStyle,
 }
 
 const SearchComponent: React.FC<SearchComponentProps> = (props) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.searchBar}>
                 <Text style={styles.searchBarText}>
                     Поиск

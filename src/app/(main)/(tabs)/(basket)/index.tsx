@@ -4,16 +4,12 @@ import { View, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { prods } from '@/src/data/tempData';
 import { colorsStyles } from '@/src/styles/styles';
+import BasketScreen from '@/src/screens/BasketScreen';
 
-export default function BasketScreen() {
+export default function () {
 	const router = useRouter();
 	return (
-		<View style={styles.container}>
-			<ProductListComponent
-				data={prods}
-				router={router}
-			/>
-		</View>
+		<BasketScreen router={router} />
 	);
 }
 

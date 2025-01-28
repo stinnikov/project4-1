@@ -1,142 +1,163 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, Pressable } from "react-native";
-import ProductDescription from "./temp/productDescription";
+import React, { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Router } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
+import { Router, useNavigation } from "expo-router";
+import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { CircleBackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
 
-interface ProductCardProps {
-    product: Product,
+interface ProductListCardProps {
+    data: Product,
     router: Router,
 }
 
-const ProductCardComponent: React.FC<ProductCardProps> = (props) => {
-    const product = props.product;
+const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
+    const product = props.data;
     const router = props.router;
 
-    const DATA: ProductCardProps[] = [
-        props,
-    ]
+    const navigation = useNavigation();
+    const currentTabIndex = navigation.getParent()?.getState().index;
+
+    function navigateToProduct() {
+        if (currentTabIndex === 0) {
+            router.push(
+                {
+                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (currentTabIndex === 1) {
+            router.push(
+                {
+                    pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (currentTabIndex === 2) {
+            router.push(
+                {
+                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (currentTabIndex === 3) {
+            router.push(
+                {
+                    pathname: '/(main)/(tabs)/(profile)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (currentTabIndex === 4) {
+            router.push(
+                {
+                    pathname: '/(main)/(tabs)/(basket)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+    }
+
     return (
-        <View style={{ flex: 1 }}>
-            <View style={styles.topButtons}>
-                <CircleBackButtonComponent router={router} style={{ marginLeft: 16 }} />
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
 
-                <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
-            </View>
-
-            <ScrollView overScrollMode="never" contentContainerStyle={styles.card}>
-                <View style={styles.container}>
-                    <View style={styles.imageContainer}>
-                        <ImageBackground source={{ uri: product.imageUrl }}
-                            style={styles.imageBackground}
-                            resizeMode='contain'
-                        >
-                        </ImageBackground>
-                    </View>
-                    <View style={styles.title}>
-                        <Text style={styles.titleText}>{product.name}</Text>
-                    </View>
-
-                    <View style={styles.price}>
-                        <Text style={styles.priceText}>{product.price}</Text>
-
-                        <View style={{ flex: 1, height: '100%', direction: 'rtl', justifyContent: 'center' }}>
-                            <TouchableOpacity style={styles.bottomButtonBlock}>
-                                <Text style={textStyles.basketButtonText}>В корзину</Text>
-                                <svgIcons.BasketIcon height={20} width={20} stroke={'#FFF'}></svgIcons.BasketIcon>
-                            </TouchableOpacity>
+                <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
+                    <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
+                        <View style={[buttonStyles.miniButton]}>
+                            <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
                         </View>
 
+                        <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
-                </View>
-                <View style={styles.description}>
-                    <ProductDescription></ProductDescription>
-                </View>
-            </ScrollView>
-        </View>
+                </ImageBackground>
+            </TouchableOpacity>
 
+            <View style={styles.productNameContainer}>
+                <Text style={styles.productNameText}>{product.name}</Text>
+            </View>
+
+            <View style={styles.priceContainer}>
+                <Text style={styles.productPriceText}>{product.price}</Text>
+            </View>
+
+            <BasketButtonComponent product={props.data} />
+        </View>
     )
 }
 
-
-
 const styles = StyleSheet.create({
-    card: {
-        backgroundColor: colorsStyles.mainWhiteColor.color,
-        flexGrow: 1,
-    },
     container: {
-        borderBottomWidth: 12,
-        borderColor: colorsStyles.mainGreyColor.color,
+        height: dimensionsStyles.productListCard.height,
+        width: dimensionsStyles.productListCard.width,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+        borderRadius: commonStyles.general.borderRadius,
+        elevation: 5,
+        shadowRadius: 10,
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 6 },
     },
-    topButtons: {
-        flexDirection: 'row',
-        width: '100%',
-        position: 'absolute',
-        zIndex: 999,
-        minHeight: 50,
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    imageContainer: {
-        height: dimensionsStyles.productCardImage.height,
-        width: dimensionsStyles.productCardImage.width
-    },
-    imageBackground: {
+
+    productImageContainer: {
+        flex: 2,
         width: '100%',
         height: '100%',
-        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
-    title: {
-        flex: 1,
-        paddingTop: 10,
-        minHeight: 100,
-    },
-    titleText: {
-        fontSize: 26,
-        margin: 16,
-        fontWeight: 'bold',
-        fontFamily: commonStyles.text.fontFamily,
-    },
-    price:
-    {
-        flex: 1,
-        margin: 16,
-        alignContent: 'flex-start',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        gap: 15,
-    },
-    priceText: {
-        fontSize: 26,
-        fontFamily: 'Montserrat_500Medium',
 
+    productImage: {
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
     },
-    description:
-    {
-        flex: 5,
+
+    productNameContainer: {
+        flex: 1,
+        padding: 8,
     },
-    bottomButtonBlock: {
+
+    priceContainer: {
+        flex: 0.3,
+        padding: 8,
+        width: '100%',
+        height: '100%',
+    },
+
+    basketButtonContiner: {
         flexDirection: 'row',
         minHeight: 28,
         borderRadius: 12,
-        marginTop: 8,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginBottom: 8,
+        margin: 8,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 4,
         backgroundColor: colorsStyles.mainBrightColor.color,
-    }
+    },
 
-});
+    productNameText: {
+        fontSize: textStyles.productListCardText.fontSize,
+        fontWeight: textStyles.productListCardText.fontWeight,
+        fontFamily: commonStyles.text.fontFamily,
+        color: textStyles.cardTitle.color,
+        alignSelf: 'flex-start',
+    },
 
+    productPriceText: {
+        fontSize: 14,
+        fontFamily: commonStyles.text.fontFamily,
+    },
+})
 
-export default ProductCardComponent;
+export default React.memo(ProductCardComponent);
+

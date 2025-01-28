@@ -9,7 +9,6 @@ import { ipv4 } from '@/src/data/tempData';
 
 interface CategoryCardListProps {
     data: Category[];
-    isMainScreen: boolean;
     router: Router;
 }
 

@@ -162,9 +162,6 @@ const NotificationsIcon = (props: SvgProps) => (
 	</Svg>
 )
 
-
-
-
 const PickUpIcon = (props: SvgProps) => (
 	<Svg
 		width={24}
@@ -275,6 +272,42 @@ const CircleIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+const MinusIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		fill="none"
+		viewBox="0 0 24 24"
+		{...props}
+	>
+		<Path
+			stroke="#000"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={2}
+			d="M6 12h12"
+		/>
+	</Svg>
+)
+
+const PlusIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		fill="none"
+		viewBox="0 0 24 24"
+		{...props}
+	>
+		<Path
+			stroke="#000"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={2}
+			d="M6 12h6m0 0h6m-6 0v6m0-6V6"
+		/>
+	</Svg>
+)
+
 export default
 	{
 		ProfileIcon,
@@ -291,4 +324,6 @@ export default
 		NotificationsIcon,
 		ProfileSettingsIcon,
 		ShopIcon,
+		MinusIcon,
+		PlusIcon,
 	}

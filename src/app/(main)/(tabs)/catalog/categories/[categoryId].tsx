@@ -47,7 +47,7 @@ export default function CategoryIdScreen() {
     }
 
     if (loading) {
-        return (<LoadingScreen></LoadingScreen>)
+        return (<LoadingScreen />)
     }
 
 

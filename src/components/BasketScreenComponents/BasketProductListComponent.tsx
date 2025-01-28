@@ -4,7 +4,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { commonStyles, dimensionsStyles } from '@/src/styles/styles';
-import ProductCardComponent from './ProductCardComponent';
+import BasketProductCard from './BasketProductCardComponent';
 import svgIcons from '@/src/assets/icons/svgIcons';
 
 
@@ -31,9 +31,9 @@ const ListHeader = memo(() => (
     </TouchableOpacity>
 ));
 
-const ProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
+const BasketProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
     const renderProduct = useCallback(({ item }: { item: Product }) => (
-        <ProductCardComponent
+        <BasketProductCard
             data={item}
             router={props.router}
         />
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ProductListComponent;
+export default BasketProductListComponent;

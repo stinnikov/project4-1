@@ -46,7 +46,12 @@ export const commonStyles = StyleSheet.create({
     margin: 16,
   },
 
-  icon: {
+
+
+});
+
+export const buttonStyles = StyleSheet.create({
+  miniButton: {
     height: 30, // чуть больше размера иконки
     width: 30,
     alignItems: 'center',
@@ -57,9 +62,17 @@ export const commonStyles = StyleSheet.create({
     shadowRadius: 24,
     shadowOpacity: 0.2,
     backgroundColor: colors.mainWhiteColor,
+  },
+  basketButton: {
+    flexDirection: 'row',
+    minHeight: 28,
+    borderRadius: 12,
+    margin: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.mainBrightColor,
   }
-
-});
+})
 
 
 
@@ -100,7 +113,7 @@ export const textStyles = StyleSheet.create({
     fontWeight: 'thin',
     color: 'black',
   },
-  basketButtonText: {
+  basketButtonMediumText: {
     fontSize: 18,
     fontWeight: 'regular',
     fontFamily: commonStyles.text.fontFamily,
@@ -166,4 +179,4 @@ export const dimensionsStyles = StyleSheet.create(
   }
 )
 
-export default { commonStyles, dimensionsStyles, colorsStyles, textStyles };
+export default { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles };
