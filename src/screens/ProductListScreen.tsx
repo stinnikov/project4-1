@@ -94,6 +94,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                 <FlatList
                     data={DATA}
                     renderItem={() => renderScreen(props)}

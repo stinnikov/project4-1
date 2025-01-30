@@ -12,6 +12,7 @@ import NewOffersForUserComponent from "@/src//components/MainScreenComponents/Ne
 import TopGoodsComponent from "@/src//components/TopGoodsComponent";
 import { colorsStyles, commonStyles } from "@/src//styles/styles";
 import PromotionsAndCouponsComponent from "@/src//components/MainScreenComponents/PromotionsAndCoupons";
+import { StatusBar } from "expo-status-bar";
 
 
 interface MainScreenProps {
@@ -55,13 +56,18 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
         props,
     ]
     return (
-        <FlatList
-            overScrollMode="never"
-            data={DATA}
-            bounces={false}
-            onEndReachedThreshold={10}
-            renderItem={renderScreen}
-        />
+        <SafeAreaProvider style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
+                <FlatList
+                    overScrollMode="never"
+                    data={DATA}
+                    bounces={false}
+                    onEndReachedThreshold={10}
+                    renderItem={renderScreen}
+                />
+            </SafeAreaView>
+        </SafeAreaProvider>
     )
 });
 

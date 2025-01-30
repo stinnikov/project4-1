@@ -9,6 +9,7 @@ import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
 import { getFavouritesProductsAsync } from "@/src//services/ProductService";
+import { StatusBar } from "expo-status-bar";
 
 interface FavouritesScreenProps {
     categoryName: string,
@@ -52,6 +53,7 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <View style={{ margin: 16 }}>
+                    <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                     <ScreenHeaderComponent
                         title={props.categoryName}
                         router={props.router}

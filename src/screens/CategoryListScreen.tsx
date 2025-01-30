@@ -32,6 +32,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
 
 
                     <View style={{ margin: commonStyles.general.margin }}>
+                        <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                         <CategoryListComponent
                             currentCategory={props.currentCategory}
                             data={props.categories}

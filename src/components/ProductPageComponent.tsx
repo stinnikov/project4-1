@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, Pressable } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, RefreshControl } from "react-native";
 import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
@@ -10,6 +10,8 @@ import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } 
 interface ProductCardProps {
     product: Product,
     router: Router,
+    onRefresh: () => void;
+    refreshing: boolean;
 }
 
 const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
@@ -28,7 +30,7 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                 <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
             </View>
 
-            <ScrollView overScrollMode="never" contentContainerStyle={styles.card}>
+            <ScrollView overScrollMode="never" contentContainerStyle={styles.card} refreshControl={<RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />}>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         <ImageBackground source={{ uri: product.imageUrl }}

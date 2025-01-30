@@ -14,6 +14,7 @@ import BasketProductListComponent from "../components/BasketScreenComponents/Bas
 import BasketProductCardComponent from "../components/BasketScreenComponents/BasketProductCardComponent";
 import { ClearBasketButton } from "../components/Buttons/ButtonComponents";
 import { commonStyles, dimensionsStyles } from "@/src//styles/styles";
+import { StatusBar } from "expo-status-bar";
 
 interface BasketScreenProps {
     router: Router,
@@ -30,15 +31,6 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
 
-    useFocusEffect(
-        React.useCallback(() => {
-            fetchData();
-            return () => {
-                setProducts([]);
-            };
-        }, [])
-    );
-
     const fetchData = async () => {
         setLoading(true);
         try {
@@ -52,6 +44,16 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
             setLoading(false);
         }
     };
+
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData();
+            return () => {
+                setProducts([]);
+            };
+        }, [])
+    );
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -92,6 +94,7 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                 <View style={{ margin: 16, flexDirection: 'row', width: '100%' }}>
                     <ScreenHeaderComponent
                         title={'Корзина'}

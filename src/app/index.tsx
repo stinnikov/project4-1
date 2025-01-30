@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
-import ProductCardScreen from '@/src/screens/ProductCardScreen';
+import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import { isAuthorisedAsync } from '@/src/services/AuthService';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import LoginScreen from '@/src/screens/LoginScreen';

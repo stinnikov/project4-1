@@ -40,9 +40,7 @@ export default function TabLayout() {
 		>
 			<Tabs.Screen name="catalog"
 				options={{
-					lazy: false,
 					freezeOnBlur: true,
-					popToTopOnBlur: true,
 					title: "Каталог",
 					headerShown: headerShown,
 

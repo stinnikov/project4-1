@@ -6,7 +6,7 @@ import { Category } from "@/src/interfaces/Category";
 import MainScreen from "@/src/screens/MainScreen";
 import { prods } from "@/src/data/tempData";
 import { Product } from "@/src/interfaces/Product";
-import ProductCardScreen from "@/src/screens/ProductCardScreen";
+import ProductCardScreen from "@/src/screens/ProductPageScreen";
 import { StatusBar } from "expo-status-bar";
 
 const categories: Category[] = [];

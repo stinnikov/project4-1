@@ -4,7 +4,7 @@ import { Product } from '@/src/interfaces/Product';
 import ProductPageComponent from '@/src/components/ProductPageComponent';
 import { useState, useEffect } from 'react';
 import { getSingleProductByIdAsync } from '@/src/services/ProductService';
-import ProductCardScreen from '@/src/screens/ProductCardScreen';
+import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 
 export default function () {
