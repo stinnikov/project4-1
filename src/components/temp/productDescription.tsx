@@ -53,6 +53,7 @@ const ProductDescription = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     margin: 16,
     marginTop: 0,
   },

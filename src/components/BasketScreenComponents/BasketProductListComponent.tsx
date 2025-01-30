@@ -9,6 +9,7 @@ import svgIcons from '@/src/assets/icons/svgIcons';
 import SvgIcons from '@/assets/icons/svgIcons';
 import { ClearBasketButton } from '../Buttons/ButtonComponents';
 
+//// ЭТОТ КОМПОНЕНТ ПОКА ЧТО НЕ ИСПОЛЬЗУЕТСЯ
 
 interface ProductListProps {
     data: Product[];

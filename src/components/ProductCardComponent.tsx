@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Router, useNavigation } from "expo-router";
+import { Href, Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import AddRemoveProductInBasketPanelComponent from "./BasketScreenComponents/AddRemoveProductInBasketPanel";
 
 interface ProductListCardProps {
     data: Product,
@@ -12,11 +13,25 @@ interface ProductListCardProps {
 }
 
 const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
-    const product = props.data;
     const router = props.router;
+    const [product, setProduct] = useState<Product>(props.data);
+    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
 
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
+
+    function addOneProduct() {
+        console.log('shnya')
+        setAmountInBasket(prevAmount => prevAmount + 1);
+        product.amountInBasket++;
+    }
+
+    function removeOneProduct() {
+        if (amountInBasket - 1 >= 0) {
+            setAmountInBasket(prevAmount => prevAmount - 1);
+            product.amountInBasket--;
+        }
+    }
 
     function navigateToProduct() {
         if (currentTabIndex === 0) {
@@ -74,13 +89,11 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
-
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[buttonStyles.miniButton]}>
                             <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
                         </View>
-
                         <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
@@ -94,9 +107,15 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
                 <Text style={styles.productPriceText}>{product.price}</Text>
             </View>
 
-            <BasketButtonComponent product={props.data} />
+            {
+                amountInBasket === 0 ?
+                    <BasketButtonComponent onAdd={addOneProduct} product={product} /> :
+                    <View style={[buttonStyles.basketButton, { backgroundColor: 'transparent' }]} >
+                        <AddRemoveProductInBasketPanelComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
+                    </View>
+            }
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -157,6 +176,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: commonStyles.text.fontFamily,
     },
+
+    bottomContainer: {
+        height: '8%',
+        padding: 8,
+        width: '100%',
+        borderRadius: 14
+    }
 })
 
 export default React.memo(ProductCardComponent);

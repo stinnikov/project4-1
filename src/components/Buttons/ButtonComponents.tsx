@@ -59,13 +59,18 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
 
 interface BasketButtonComponentProps {
     product: Product,
-    style?: ViewStyle
+    style?: ViewStyle,
+    onAdd?: () => void,
     size?: 'mini' | 'medium'
 }
 
 export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
     function handlePressBasketButton() {
-        addProductInBasketAsync(props.product.id);
+        addProductInBasketAsync(props.product.id).then(() => {
+            if (props.onAdd) {
+                props.onAdd();
+            }
+        });
     }
 
     if (props.size === 'medium') {

@@ -5,6 +5,7 @@ import { Product } from "../interfaces/Product";
 export const addProductInBasketAsync = async (prodId: string) => {
     try {
         const userId = await getDataAsync('userId')
+        console.log(userId);
 
         const response = await fetch(`${ipv4}/addProductInBasket`, {
             method: 'POST',

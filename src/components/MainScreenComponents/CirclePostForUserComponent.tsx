@@ -6,7 +6,7 @@ export interface CircleStoryProps {
     imgSrc: string,
 }
 
-const CircleStoryComponent: React.FC<CircleStoryProps> = (props) => {
+const CirclePostForUserComponent: React.FC<CircleStoryProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CircleStoryComponent;
+export default CirclePostForUserComponent;

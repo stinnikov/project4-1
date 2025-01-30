@@ -4,6 +4,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
 import { AddOneProductInBasket, BasketButtonComponent, FavouriteButtonComponent, RemoveOneProductFromBasket } from "../Buttons/ButtonComponents";
+import AddRemoveProductInBasketPanelComponent from "./AddRemoveProductInBasketPanel";
 
 interface BasketProductCardProps {
     data: Product,
@@ -104,16 +105,9 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
 
             <View style={styles.priceContainer}>
                 <Text style={styles.productPriceText}>{product.price}</Text>
-                <View style={[buttonStyles.miniButton, { alignSelf: 'center' }]}>
-                    <Text>{amountInBasket}</Text>
-                </View>
-
             </View>
 
-            <View style={styles.addRemoveButtons}>
-                <RemoveOneProductFromBasket product={product} onRemove={removeOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderRightWidth: 1, }} />
-                <AddOneProductInBasket product={product} onAdd={addOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderLeftWidth: 1 }} />
-            </View>
+            <AddRemoveProductInBasketPanelComponent style={styles.addRemoveButtons} product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
         </View>
     )
 }
@@ -172,10 +166,6 @@ const styles = StyleSheet.create({
     },
 
     addRemoveButtons: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
         borderTopWidth: 1,
         flex: 0.3
     }

@@ -3,14 +3,12 @@ import { FlatList, View, StyleSheet, RefreshControl, TouchableOpacity, Text } fr
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "@/src//components/SearchComponent";
 import { Router, SplashScreen, useFocusEffect } from "expo-router";
-import ProductListComponent from "@/src//components/ProductListComponent";
 import ScreenHeaderComponent from "@/src//components/ScreenHeaderComponent";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
 import svgIcons from "@/assets/icons/svgIcons";
 import { getBasketByUserIdAsync } from "../services/BasketService";
-import BasketProductListComponent from "../components/BasketScreenComponents/BasketProductListComponent";
 import BasketProductCardComponent from "../components/BasketScreenComponents/BasketProductCardComponent";
 import { ClearBasketButton } from "../components/Buttons/ButtonComponents";
 import { commonStyles, dimensionsStyles } from "@/src//styles/styles";
@@ -115,7 +113,15 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                     ListHeaderComponent={ListHeader}
                     columnWrapperStyle={styles.column}
                     getItemLayout={getItemLayout}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    refreshControl={
+                        <RefreshControl
+                            tintColor={colorsStyles.mainBrightColor.color}
+                            colors={[colorsStyles.mainBrightColor.color]}
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+
+                    }
                 />
             </SafeAreaView>
         </SafeAreaProvider>

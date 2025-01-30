@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native'
-import CircleStoryComponent, { CircleStoryProps } from './CircleStoryComponent'
+import CirclePostForUserComponent, { CircleStoryProps } from './CirclePostForUserComponent'
 import { colorsStyles, commonStyles } from '@/src/styles/styles'
 import SvgIcons from '@/src/assets/icons/svgIcons';
 import BonusCardComponent from './BonusCardComponent';
@@ -11,7 +11,7 @@ interface UserPanelProps {
 
 const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
     function renderCircleStory({ item }: { item: CircleStoryProps }) {
-        return (<CircleStoryComponent imgSrc={item.imgSrc}></CircleStoryComponent>)
+        return (<CirclePostForUserComponent imgSrc={item.imgSrc}></CirclePostForUserComponent>)
     }
     const circleStoriesData: CircleStoryProps[] = [
         { imgSrc: '' },

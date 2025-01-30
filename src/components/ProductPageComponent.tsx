@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, RefreshControl } from "react-native";
 import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
-import svgIcons from "@/src/assets/icons/svgIcons";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import AddRemoveProductInBasketPanelComponent from "./BasketScreenComponents/AddRemoveProductInBasketPanel";
 
 interface ProductCardProps {
     product: Product,
@@ -15,13 +15,22 @@ interface ProductCardProps {
 }
 
 const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
-    const product = props.product;
+    const [product, setProduct] = useState<Product>(props.product);
+    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
     const router = props.router;
-    console.log(product);
 
-    const DATA: ProductCardProps[] = [
-        props,
-    ]
+    function addOneProduct() {
+        setAmountInBasket(prevAmount => prevAmount + 1);
+        product.amountInBasket++;
+    }
+
+    function removeOneProduct() {
+        if (amountInBasket - 1 >= 0) {
+            setAmountInBasket(prevAmount => prevAmount - 1);
+            product.amountInBasket--;
+        }
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.topButtons}>
@@ -30,7 +39,13 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                 <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
             </View>
 
-            <ScrollView overScrollMode="never" contentContainerStyle={styles.card} refreshControl={<RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />}>
+            <ScrollView
+                overScrollMode="never"
+                contentContainerStyle={styles.card}
+                refreshControl={
+                    <RefreshControl tintColor={colorsStyles.mainBrightColor.color} colors={[colorsStyles.mainBrightColor.color]} refreshing={props.refreshing} onRefresh={props.onRefresh}></RefreshControl>
+                }
+            >
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         <ImageBackground source={{ uri: product.imageUrl }}
@@ -45,14 +60,22 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
 
                     <View style={styles.price}>
                         <Text style={styles.priceText}>{product.price}</Text>
-
-                        <BasketButtonComponent product={props.product} style={{ flex: 1, height: '80%', justifyContent: 'center' }} size='medium' />
                     </View>
                 </View>
+
                 <View style={styles.description}>
                     <ProductDescription></ProductDescription>
                 </View>
             </ScrollView>
+            <View style={{ minHeight: '7%', position: 'absolute', alignSelf: 'center', bottom: 0, width: '100%' }}>
+                {
+                    amountInBasket === 0 ?
+                        <BasketButtonComponent product={product} onAdd={addOneProduct} style={styles.bottomButton} size='medium' /> :
+                        <View style={[styles.bottomButton, { backgroundColor: 'transparent' }]} >
+                            <AddRemoveProductInBasketPanelComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
+                        </View>
+                }
+            </View>
         </View>
 
     )
@@ -101,9 +124,9 @@ const styles = StyleSheet.create({
     price:
     {
         flex: 1,
+        left: 0,
         margin: 16,
         alignContent: 'flex-start',
-        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         gap: 15,
@@ -116,21 +139,14 @@ const styles = StyleSheet.create({
     description:
     {
         flex: 5,
+        marginBottom: '11%',
     },
-    bottomButtonBlock: {
-        flexDirection: 'row',
-        minHeight: 28,
-        borderRadius: 12,
-        marginTop: 8,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginBottom: 8,
+    bottomButton: {
+        flex: 1, height: '100%',
+        width: '90%',
+        gap: 12,
+        alignSelf: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-        gap: 4,
-        backgroundColor: colorsStyles.mainBrightColor.color,
     }
 
 });
