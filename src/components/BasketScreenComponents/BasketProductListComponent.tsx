@@ -39,6 +39,7 @@ const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
                 <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
                 <Text style={styles.listTitle}>Сортировка</Text>
             </TouchableOpacity>
+
             <ClearBasketButton onClear={clearBasket} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
         </View>
     );

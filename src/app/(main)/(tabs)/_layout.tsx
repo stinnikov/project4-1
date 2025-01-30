@@ -42,6 +42,7 @@ export default function TabLayout() {
 				options={{
 					lazy: false,
 					freezeOnBlur: true,
+					popToTopOnBlur: true,
 					title: "Каталог",
 					headerShown: headerShown,
 

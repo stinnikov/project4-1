@@ -142,8 +142,11 @@ interface ClearBasketButtonProps {
 }
 export const ClearBasketButton: React.FC<ClearBasketButtonProps> = React.memo((props) => {
     function handlePressClearBasketButton() {
-        clearBasketByUserId();
-        props.onClear();
+        clearBasketByUserId()
+            .then(() => props.onClear())
+            .catch((error) => {
+                console.error('Ошибка при попытке очистить корзину:', error);
+            });;
     }
 
     return (
