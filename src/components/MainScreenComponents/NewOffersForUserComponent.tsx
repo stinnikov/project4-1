@@ -32,11 +32,11 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontSize: commonStyles.listTitle.fontSize,
-        fontWeight: commonStyles.listTitle.fontWeight,
+        fontSize: commonStyles.title.fontSize,
+        fontWeight: commonStyles.title.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
         marginVertical: 8,
-        paddingLeft: commonStyles.listTitle.padding,
+        paddingLeft: commonStyles.title.padding,
     },
     imageContainer: {
         width: '100%',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     imageBackground: {
         width: '100%',
         height: dimensionsStyles.couponsAndPromotions.height,
-        backgroundColor: 'purple',
+        backgroundColor: colorsStyles.mainBrightColor.color,
         borderRadius: commonStyles.general.borderRadius,
     },
     imageBackgroundText: {

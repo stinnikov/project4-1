@@ -28,8 +28,8 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
                 <Text style={styles.name}>Имя пользователя</Text>
 
                 <View style={styles.buttons}>
-                    <SvgIcons.NotificationsIcon width={24} height={24} stroke={'#fff'}></SvgIcons.NotificationsIcon>
-                    <SvgIcons.ProfileSettingsIcon width={24} height={24} stroke={'#fff'}></SvgIcons.ProfileSettingsIcon>
+                    <SvgIcons.NotificationsIcon width={24} height={24}></SvgIcons.NotificationsIcon>
+                    <SvgIcons.ProfileSettingsIcon width={24} height={24}></SvgIcons.ProfileSettingsIcon>
                 </View>
 
             </View>
@@ -42,7 +42,6 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
                     contentContainerStyle={styles.listContent}
                 />
             </View>
-
         </View>
     )
 }
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
         fontFamily: commonStyles.text.fontFamily,
-        color: colorsStyles.mainWhiteColor.color,
+        color: '#000',
     },
     buttons: {
         flexDirection: 'row',

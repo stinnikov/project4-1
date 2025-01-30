@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import commonStyles from '@/src/styles/styles';
+import { commonStyles } from '@/src/styles/styles';
 
 
 
@@ -65,14 +65,13 @@ const styles = StyleSheet.create({
   },
   list: {
     fontSize: 16,
-    fontFamily: 'SourceSansPro_400Regular',
+    fontFamily: commonStyles.text.fontFamily,
   },
   description:
   {
     paddingTop: 16,
     fontSize: 16,
-    fontFamily: 'SourceSansPro_400Regular',
-
+    fontFamily: commonStyles.text.fontFamily,
   }
 });
 

@@ -12,7 +12,8 @@ const CircleStoryComponent: React.FC<CircleStoryProps> = (props) => {
             <View style={styles.content}>
                 <View style={styles.card}>
                     <ImageBackground
-                        source={{ uri: props.imgSrc }}
+                        source={{ uri: 'https://i.pinimg.com/originals/7d/d8/39/7dd839ca259b644a5402bbf867fc4a31.jpg' }}
+                        imageStyle={{ borderRadius: 100 }}
                         style={styles.imageBackground}
                         resizeMode='contain'
                     />
@@ -37,6 +38,9 @@ const styles = StyleSheet.create({
     card: {
         height: dimensionsStyles.circleStory.height, //250
         width: dimensionsStyles.circleStory.width, // 392
+        borderRadius: 100,
+        borderWidth: 2,
+        borderColor: colorsStyles.mainBrightColor.color,
     },
     textContainer: {
         marginBottom: commonStyles.general.margin,
@@ -49,17 +53,19 @@ const styles = StyleSheet.create({
     description: {
         paddingTop: 12,
         fontSize: 11,
-        color: colorsStyles.mainWhiteColor.color,
+        color: '#000',
         textAlign: 'center',
         // Убедитесь, что ширина текста не превышает ширину родительского контейнера
         width: '100%', // или установите фиксированную ширину, если нужно
     },
     imageBackground: {
         alignSelf: 'center',
-        backgroundColor: '#929292',
+        backgroundColor: 'transparent',
         borderRadius: 100,
+        borderColor: 'transparent',
         borderWidth: 3,
-        borderColor: colorsStyles.mainBrightColor.color,
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
         height: '100%',
     }

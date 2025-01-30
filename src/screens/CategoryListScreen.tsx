@@ -23,7 +23,8 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
             return (
                 <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color, width: '100%', height: '80%' }}>
                     <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
-                        <SafeAreaView style={{ flex: 1, margin: 16, justifyContent: 'space-between' }}>
+                        <View style={{ position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
+                        <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
                             <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
                             <SearchComponent />
                         </SafeAreaView>

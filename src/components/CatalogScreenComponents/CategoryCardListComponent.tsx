@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
     },
 
     listTitle: {
-        fontSize: commonStyles.listTitle.fontSize,
-        fontWeight: commonStyles.listTitle.fontWeight,
+        fontSize: commonStyles.title.fontSize,
+        fontWeight: commonStyles.title.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        marginBottom: commonStyles.listTitle.margin,
+        marginBottom: commonStyles.title.margin,
     },
 
     column: {

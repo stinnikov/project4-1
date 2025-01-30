@@ -2,7 +2,7 @@ import { Router } from "expo-router";
 import React from "react";
 import { View, Text, Pressable, ViewStyle } from "react-native";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { commonStyles } from "@/src/styles/styles";
+import { colorsStyles, commonStyles } from "@/src/styles/styles";
 
 interface ScreenHeaderProps {
     title: string,
@@ -24,7 +24,7 @@ const ScreenHeaderComponent: React.FC<ScreenHeaderProps> = (props) => {
                 <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
                 <Text style={{
                     fontSize: 20,
-                    fontFamily: commonStyles.text.fontFamily,
+                    fontFamily: commonStyles.title.fontFamily,
                     color: 'black'
                 }}>{props?.title[0]?.toLocaleUpperCase() + props?.title?.slice(1, props.title.length)?.toLocaleLowerCase()}</Text>
             </Pressable>

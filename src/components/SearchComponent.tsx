@@ -17,7 +17,7 @@ const SearchComponent: React.FC<SearchComponentProps> = (props) => {
                     Поиск
                 </Text>
                 <TouchableOpacity style={styles.qrCode}>
-                    <svgIcons.FavoritesIcon></svgIcons.FavoritesIcon>
+                    <svgIcons.QRCodeIcon stroke={colorsStyles.mainBrightColor.color} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: dimensionsStyles.bar.height * 1.1,
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
         paddingHorizontal: 16,
         borderRadius: 12
     },
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
 
         borderRadius: commonStyles.general.borderRadius,
     },

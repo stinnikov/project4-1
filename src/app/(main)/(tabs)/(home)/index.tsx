@@ -14,10 +14,7 @@ const categories: Category[] = [];
 const Home = () => {
   var router = useRouter();
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar translucent={true} backgroundColor='transparent' style='dark'></StatusBar>
-      <MainScreen router={router}></MainScreen>
-    </View>
+    <MainScreen router={router}></MainScreen>
   );
 }
 

@@ -1,11 +1,13 @@
 
-import React, { useMemo, memo, useCallback } from 'react';
+import React, { useState, memo, useCallback, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
-import { commonStyles, dimensionsStyles } from '@/src/styles/styles';
+import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles';
 import BasketProductCard from './BasketProductCardComponent';
 import svgIcons from '@/src/assets/icons/svgIcons';
+import SvgIcons from '@/assets/icons/svgIcons';
+import { ClearBasketButton } from '../Buttons/ButtonComponents';
 
 
 interface ProductListProps {
@@ -19,19 +21,28 @@ const getItemLayout = (data: any, index: number) => ({
     index,
 });
 
-const ListHeader = memo(() => (
-    <TouchableOpacity style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        minHeight: 30,
-        marginBottom: 16,
-    }}>
-        <svgIcons.SortIcon width={20} height={20} />
-        <Text style={styles.listTitle}>Сортировка</Text>
-    </TouchableOpacity>
-));
 
-const BasketProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
+
+const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
+    const [products, setProducts] = useState<Product[]>(props.data);
+
+    const clearBasket = () => {
+        setProducts([]);
+    };
+
+    const ListHeader = () => (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 30, marginBottom: 16 }}>
+            <TouchableOpacity style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+            }}>
+                <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
+                <Text style={styles.listTitle}>Сортировка</Text>
+            </TouchableOpacity>
+            <ClearBasketButton onClear={clearBasket} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
+        </View>
+    );
+
     const renderProduct = useCallback(({ item }: { item: Product }) => (
         <BasketProductCard
             data={item}
@@ -39,13 +50,11 @@ const BasketProductListComponent: React.FC<ProductListProps> = React.memo((props
         />
     ), [props.router]);
 
-
-
     return (
         <View style={styles.container}>
             <FlatList
                 style={styles.list}
-                data={props.data}
+                data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
@@ -58,7 +67,7 @@ const BasketProductListComponent: React.FC<ProductListProps> = React.memo((props
             />
         </View>
     );
-});
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -70,8 +79,9 @@ const styles = StyleSheet.create({
     },
 
     listTitle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'semibold',
+        color: colorsStyles.mainBrightColor.color,
         fontFamily: commonStyles.text.fontFamily,
     },
     productCard: {

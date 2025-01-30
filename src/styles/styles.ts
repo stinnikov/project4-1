@@ -8,15 +8,17 @@ const heightUnit = deviceHeight / 100;
 const colors: {
   mainWhiteColor: ColorValue,
   mainGreyColor: ColorValue,
+  mainLightGreyColor: ColorValue,
   mainBrightColor: ColorValue,
   mainBlackColor: ColorValue,
   mainDarkColor: ColorValue,
 } = {
   mainWhiteColor: 'white',
   mainGreyColor: '#eeeeee',
-  mainBrightColor: '#69006D',
+  mainLightGreyColor: '#efefef',
+  mainBrightColor: '#7f00ff',
   mainBlackColor: 'black',
-  mainDarkColor: '#36424C'
+  mainDarkColor: '#e1c4ff'
 };
 
 export const commonStyles = StyleSheet.create({
@@ -28,20 +30,21 @@ export const commonStyles = StyleSheet.create({
     borderRadius: 12,
   },
 
-
   // text
   text: {
-    fontSize: 18,
-    fontFamily: 'SourceSansPro_400Regular',
+    fontSize: 16,
+    letterSpacing: -0.03,
+    fontFamily: 'Montserrat_400Regular',
     color: 'black',
   },
 
   //cards
 
   //lists
-  listTitle: {
+  title: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'Raleway_500Medium',
     padding: 16,
     margin: 16,
   },
@@ -82,6 +85,10 @@ export const colorsStyles = StyleSheet.create({
   },
   mainWhiteColor: {
     color: colors.mainWhiteColor,
+  },
+
+  mainLightGreyColor: {
+    color: colors.mainLightGreyColor
   },
 
   mainGreyColor: {

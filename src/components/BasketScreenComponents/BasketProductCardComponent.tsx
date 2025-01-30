@@ -110,7 +110,7 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
 
             </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', height: '7%', borderTopWidth: 1 }}>
+            <View style={styles.addRemoveButtons}>
                 <RemoveOneProductFromBasket product={product} onRemove={removeOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderRightWidth: 1, }} />
                 <AddOneProductInBasket product={product} onAdd={addOneProduct} style={{ flex: 1, alignItems: 'center', width: '100%', height: '100%', borderLeftWidth: 1 }} />
             </View>
@@ -170,6 +170,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: commonStyles.text.fontFamily,
     },
+
+    addRemoveButtons: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        borderTopWidth: 1,
+        flex: 0.3
+    }
 })
 
 export default React.memo(BasketProductCardComponent);

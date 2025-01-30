@@ -14,7 +14,7 @@ const PromotionsAndCouponsComponent: React.FC<PromotionsAndCouponsProps> = (prop
                     <ImageBackground
                         style={styles.imageBackground}
                         source={{ uri: '' }}>
-                        <Text style={styles.imageBackgroundText}>Купоны</Text>
+                        <Text style={styles.imageBackgroundText}>Промокоды</Text>
                     </ImageBackground>
                 </View>
                 <View style={styles.promotionsContainer}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     imageBackground: {
         width: '100%',
         height: dimensionsStyles.couponsAndPromotions.height,
-        backgroundColor: 'purple',
+        backgroundColor: colorsStyles.mainBrightColor.color,
         borderRadius: commonStyles.general.borderRadius,
     },
     imageBackgroundText: {

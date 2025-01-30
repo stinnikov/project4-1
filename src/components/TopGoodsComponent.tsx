@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     listTitle: {
-        fontSize: commonStyles.listTitle.fontSize,
-        fontWeight: commonStyles.listTitle.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
+        fontSize: commonStyles.title.fontSize,
+        fontWeight: commonStyles.title.fontWeight,
+        fontFamily: commonStyles.title.fontFamily,
         marginTop: 8,
-        paddingLeft: commonStyles.listTitle.padding,
+        paddingLeft: commonStyles.title.padding,
     },
 })
 

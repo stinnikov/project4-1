@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     listTitle: {
-        fontSize: commonStyles.listTitle.fontSize,
-        fontWeight: commonStyles.listTitle.fontWeight,
+        fontSize: commonStyles.title.fontSize,
+        fontWeight: commonStyles.title.fontWeight,
         fontFamily: commonStyles.text.fontFamily,
-        paddingLeft: commonStyles.listTitle.padding,
-        marginBottom: commonStyles.listTitle.margin,
+        paddingLeft: commonStyles.title.padding,
+        marginBottom: commonStyles.title.margin,
         paddingTop: 0,
     },
     card: {

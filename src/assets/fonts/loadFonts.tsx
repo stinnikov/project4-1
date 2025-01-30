@@ -1,20 +1,83 @@
+import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import {
-    useFonts,
-    SourceSansPro_200ExtraLight,
-    SourceSansPro_200ExtraLight_Italic,
-    SourceSansPro_300Light,
-    SourceSansPro_300Light_Italic,
-    SourceSansPro_400Regular,
-    SourceSansPro_400Regular_Italic,
-    SourceSansPro_600SemiBold,
-    SourceSansPro_600SemiBold_Italic,
-    SourceSansPro_700Bold,
-    SourceSansPro_700Bold_Italic,
-    SourceSansPro_900Black,
-    SourceSansPro_900Black_Italic,
-  } from '@expo-google-fonts/source-sans-pro';
+  useFonts,
+  Raleway_100Thin,
+  Raleway_200ExtraLight,
+  Raleway_300Light,
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_600SemiBold,
+  Raleway_700Bold,
+  Raleway_800ExtraBold,
+  Raleway_900Black,
+  Raleway_100Thin_Italic,
+  Raleway_200ExtraLight_Italic,
+  Raleway_300Light_Italic,
+  Raleway_400Regular_Italic,
+  Raleway_500Medium_Italic,
+  Raleway_600SemiBold_Italic,
+  Raleway_700Bold_Italic,
+  Raleway_800ExtraBold_Italic,
+  Raleway_900Black_Italic,
+} from '@expo-google-fonts/raleway';
+
 import {
+  Montserrat_100Thin,
+  Montserrat_200ExtraLight,
+  Montserrat_300Light,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+  Montserrat_800ExtraBold,
+  Montserrat_900Black,
+  Montserrat_100Thin_Italic,
+  Montserrat_200ExtraLight_Italic,
+  Montserrat_300Light_Italic,
+  Montserrat_400Regular_Italic,
+  Montserrat_500Medium_Italic,
+  Montserrat_600SemiBold_Italic,
+  Montserrat_700Bold_Italic,
+  Montserrat_800ExtraBold_Italic,
+  Montserrat_900Black_Italic,
+} from '@expo-google-fonts/montserrat';
+
+export const loadFontRaleway = () => {
+  let [fontsLoaded] = useFonts({
+    Raleway_100Thin,
+    Raleway_200ExtraLight,
+    Raleway_300Light,
+    Raleway_400Regular,
+    Raleway_500Medium,
+    Raleway_600SemiBold,
+    Raleway_700Bold,
+    Raleway_800ExtraBold,
+    Raleway_900Black,
+    Raleway_100Thin_Italic,
+    Raleway_200ExtraLight_Italic,
+    Raleway_300Light_Italic,
+    Raleway_400Regular_Italic,
+    Raleway_500Medium_Italic,
+    Raleway_600SemiBold_Italic,
+    Raleway_700Bold_Italic,
+    Raleway_800ExtraBold_Italic,
+    Raleway_900Black_Italic,
+  })
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded])
+
+  if (!fontsLoaded) {
+    return null;
+  }
+};
+
+export const loadFontMontserrat = () => {
+  let [fontsLoaded] = useFonts({
     Montserrat_100Thin,
     Montserrat_200ExtraLight,
     Montserrat_300Light,
@@ -33,70 +96,17 @@ import {
     Montserrat_700Bold_Italic,
     Montserrat_800ExtraBold_Italic,
     Montserrat_900Black_Italic,
-  } from '@expo-google-fonts/montserrat';
+  });
 
-import { SplashScreen } from 'expo-router';
-
-export const loadFontSourceSansPro = () => {
-    let [fontsLoaded] = useFonts({
-        SourceSansPro_200ExtraLight,
-        SourceSansPro_200ExtraLight_Italic,
-        SourceSansPro_300Light,
-        SourceSansPro_300Light_Italic,
-        SourceSansPro_400Regular,
-        SourceSansPro_400Regular_Italic,
-        SourceSansPro_600SemiBold,
-        SourceSansPro_600SemiBold_Italic,
-        SourceSansPro_700Bold,
-        SourceSansPro_700Bold_Italic,
-        SourceSansPro_900Black,
-        SourceSansPro_900Black_Italic,
-      });
-      useEffect(() => {
-        if(fontsLoaded)
-        {
-          SplashScreen.hideAsync();
-        }
-      }, [fontsLoaded])
-    
-    if(!fontsLoaded)
-    {
-    return null;
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
     }
+  }, [fontsLoaded])
+
+  if (!fontsLoaded) {
+    return null;
+  }
 }
 
-export const loadFontMontserrat = () => {
-    let [fontsLoaded] = useFonts({
-        Montserrat_100Thin,
-        Montserrat_200ExtraLight,
-        Montserrat_300Light,
-        Montserrat_400Regular,
-        Montserrat_500Medium,
-        Montserrat_600SemiBold,
-        Montserrat_700Bold,
-        Montserrat_800ExtraBold,
-        Montserrat_900Black,
-        Montserrat_100Thin_Italic,
-        Montserrat_200ExtraLight_Italic,
-        Montserrat_300Light_Italic,
-        Montserrat_400Regular_Italic,
-        Montserrat_500Medium_Italic,
-        Montserrat_600SemiBold_Italic,
-        Montserrat_700Bold_Italic,
-        Montserrat_800ExtraBold_Italic,
-        Montserrat_900Black_Italic,
-      });
-      useEffect(() => {
-        if(fontsLoaded)
-        {
-          SplashScreen.hideAsync();
-        }
-      }, [fontsLoaded])
-    
-    if(!fontsLoaded)
-    {
-    return null;
-    }
-}
-
-export default {loadFontSourceSansPro, loadFontMontserrat};
+export default { loadFontRaleway, loadFontMontserrat };

@@ -5,7 +5,7 @@ import { commonStyles, colorsStyles, buttonStyles, textStyles } from '@/src/styl
 import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
-import { addProductInBasketAsync, deleteProductFromBasket } from '@/src/services/BasketService';
+import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
 
 
 
@@ -132,6 +132,24 @@ export const AddOneProductInBasket: React.FC<AddButtonProps> = React.memo((props
     return (
         <TouchableOpacity onPress={handlePressAddOneProductInBasket} style={props.style}>
             <svgIcons.PlusIcon></svgIcons.PlusIcon>
+        </TouchableOpacity>
+    )
+})
+
+interface ClearBasketButtonProps {
+    style?: ViewStyle;
+    onClear: () => void;
+}
+export const ClearBasketButton: React.FC<ClearBasketButtonProps> = React.memo((props) => {
+    function handlePressClearBasketButton() {
+        clearBasketByUserId();
+        props.onClear();
+    }
+
+    return (
+        <TouchableOpacity onPress={handlePressClearBasketButton} style={[props.style]}>
+            <Text style={{ fontSize: 12, fontFamily: commonStyles.text.fontFamily }}>Очистить корзину </Text>
+            <svgIcons.TrashCanIcon></svgIcons.TrashCanIcon>
         </TouchableOpacity>
     )
 })

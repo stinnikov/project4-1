@@ -3,7 +3,7 @@ import React, { useMemo, memo, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
-import { commonStyles, dimensionsStyles } from '@/src/styles/styles';
+import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles';
 import ProductCardComponent from './ProductCardComponent';
 import svgIcons from '@/src/assets/icons/svgIcons';
 
@@ -26,8 +26,8 @@ const ListHeader = memo(() => (
         minHeight: 30,
         marginBottom: 16,
     }}>
-        <svgIcons.SortIcon width={20} height={20} />
-        <Text style={styles.listTitle}>Сортировка</Text>
+        <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
+        <Text style={[styles.listTitle]}>Сортировка</Text>
     </TouchableOpacity>
 ));
 
@@ -71,8 +71,9 @@ const styles = StyleSheet.create({
 
     listTitle: {
         fontSize: 18,
+        color: colorsStyles.mainBrightColor.color,
         fontWeight: 'semibold',
-        fontFamily: commonStyles.text.fontFamily,
+        fontFamily: commonStyles.title.fontFamily,
     },
     productCard: {
         height: dimensionsStyles.productListCard.height,

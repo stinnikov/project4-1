@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
     },
     card: {
         borderRadius: 24,
-        backgroundColor: '#E1FF00',
+        backgroundColor: colorsStyles.mainGreyColor.color,
         height: dimensionsStyles.bonusCard.height,
         width: dimensionsStyles.bonusCard.width,
     },
     cardText: {
         fontSize: 36,
-        paddingVertical: 0,
+        color: '#000',
         paddingTop: commonStyles.general.padding,
         paddingLeft: commonStyles.general.padding,
         fontFamily: commonStyles.text.fontFamily,
