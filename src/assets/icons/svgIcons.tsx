@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { SvgProps, Path, Circle, Rect } from "react-native-svg"
+import Svg, { SvgProps, Path, Circle, Rect, Defs, G, ClipPath } from "react-native-svg"
 const ProfileIcon = (props: SvgProps) => (
 	<Svg
 		width={30}
@@ -84,22 +84,22 @@ const FavoritesIcon = (props: SvgProps) => (
 
 const ArrowRightIcon = (props: SvgProps) => (
 	<Svg
-		width={24}
-		height={24}
+		width={18}
+		height={18}
+		viewBox="0 0 18 18"
 		fill="none"
-		viewBox="0 0 24 24"
 		{...props}
 	>
 		<Path
-			fill={props.fill ?? "none"}
-			stroke={props.stroke ?? "#000"}
+			stroke={props.stroke ?? '#6D6D6D'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={2}
-			d="m8 20 8-8-8-8"
+			strokeWidth={1.5}
+			d="m6 15 6-6-6-6"
 		/>
 	</Svg>
 )
+
 
 const SettingsIcon = (props: SvgProps) => (
 	<Svg
@@ -125,17 +125,15 @@ const ProfileSettingsIcon = (props: SvgProps) => (
 		width={24}
 		height={24}
 		viewBox="0 0 24 24"
-		fill="none"
+		fill={props.stroke ?? '#000'}
 		{...props}
 	>
 		<Path
-			fill="#fff"
 			fillRule="evenodd"
 			d="M11.199 2.587a1.65 1.65 0 0 1 1.602 0l7.2 4c.524.291.849.843.849 1.443v7.94c0 .6-.325 1.152-.849 1.443l-7.2 4a1.65 1.65 0 0 1-1.602 0l-7.2-4a1.65 1.65 0 0 1-.849-1.443V8.03c0-.6.325-1.152.849-1.443l7.2-4Zm.874 1.311a.15.15 0 0 0-.146 0l-7.2 4a.15.15 0 0 0-.077.132v7.94c0 .055.03.105.077.132l7.2 4a.15.15 0 0 0 .146 0l7.2-4a.15.15 0 0 0 .077-.132V8.03a.15.15 0 0 0-.077-.132l-7.2-4Z"
 			clipRule="evenodd"
 		/>
 		<Path
-			fill="#fff"
 			fillRule="evenodd"
 			d="M7.25 12a4.75 4.75 0 1 1 9.5 0 4.75 4.75 0 0 1-9.5 0ZM12 8.75a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"
 			clipRule="evenodd"
@@ -152,18 +150,15 @@ const NotificationsIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			stroke="#fff"
+			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={1.5}
 			d="M6.311 10.464v-.917C6.311 6.483 8.858 4 12 4s5.689 2.483 5.689 5.547v.917c0 1.993.59 3.944 1.702 5.618L20 17H4l.61-.918a10.155 10.155 0 0 0 1.701-5.618Z"
 		/>
-		<Circle cx={12} cy={21} r={2} fill="#fff" />
+		<Circle cx={12} cy={21} r={2} stroke={props.stroke ?? '#000'} />
 	</Svg>
 )
-
-
-
 
 const PickUpIcon = (props: SvgProps) => (
 	<Svg
@@ -259,7 +254,13 @@ const SortIcon = (props: SvgProps) => (
 		fill="none"
 		{...props}
 	>
-		<Path fill={props.fill ?? "#000"} d="M8 15H4l6 6V1H8v14Zm6-11v17h2V7h4l-6-6v3Z" />
+		<Path
+			fill={props.fill ?? "#000"}
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={0}
+			d="M8 15H4l6 6V1H8v14Zm6-11v17h2V7h4l-6-6v3Z" />
 	</Svg>
 )
 
@@ -274,6 +275,90 @@ const CircleIcon = (props: SvgProps) => (
 		<Circle cx={15} cy={15} r={13} fill={props.fill !== 'none' ? props.fill : 'black'} />
 	</Svg>
 )
+
+const MinusIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		fill="none"
+		viewBox="0 0 24 24"
+		{...props}
+	>
+		<Path
+			stroke="#000"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={2}
+			d="M6 12h12"
+		/>
+	</Svg>
+)
+
+const PlusIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		fill="none"
+		viewBox="0 0 24 24"
+		{...props}
+	>
+		<Path
+			stroke="#000"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={2}
+			d="M6 12h6m0 0h6m-6 0v6m0-6V6"
+		/>
+	</Svg>
+)
+
+const QRCodeIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<G
+			stroke={props.stroke ?? '#000'}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={1.5}
+			clipPath="url(#a)"
+		>
+			<Path d="M17.25 4.5H21v3.75M6.75 19.5H3v-3.75M21 15.75v3.75h-3.75M3 8.25V4.5h3.75M7.5 8.25v7.5M16.5 8.25v7.5M13.5 8.25v7.5M10.5 8.25v7.5" />
+		</G>
+		<Defs>
+			<ClipPath id="a">
+				<Path fill="#fff" d="M0 0h24v24H0z" />
+			</ClipPath>
+		</Defs>
+	</Svg>
+)
+
+const TrashCanIcon = (props: SvgProps) => (
+	<Svg
+		width={14}
+		height={14}
+		viewBox="0 0 14 14"
+		fill="none"
+		{...props}
+	>
+		<Path
+			fill="#6D6D6D"
+			fillRule="evenodd"
+			d="M2.985 4.522a.437.437 0 0 1 .465.407l.269 4.025c.052.786.09 1.333.172 1.745.08.399.19.61.35.76.16.149.377.245.781.298.416.055.965.056 1.752.056h.452c.788 0 1.336-.001 1.752-.056.404-.053.622-.15.782-.298.159-.15.27-.361.35-.76.082-.412.119-.959.171-1.745l.269-4.025a.438.438 0 0 1 .873.058l-.27 4.056c-.05.748-.09 1.352-.185 1.827-.098.493-.266.905-.61 1.228-.346.322-.768.462-1.266.527-.48.063-1.086.063-1.836.063h-.512c-.75 0-1.356 0-1.835-.063-.499-.065-.921-.205-1.266-.527-.345-.323-.512-.735-.61-1.228-.095-.475-.135-1.08-.185-1.827l-.27-4.056a.437.437 0 0 1 .407-.465ZM6.04 1.313h-.026c-.126 0-.236 0-.34.016-.41.065-.766.321-.957.69-.049.093-.084.197-.124.317l-.008.026-.057.17a.73.73 0 0 1-.737.531h-1.75a.437.437 0 1 0 0 .875H11.959a.438.438 0 0 0 0-.875h-1.802a.73.73 0 0 1-.684-.531l-.057-.17-.008-.026c-.04-.12-.075-.224-.124-.317a1.313 1.313 0 0 0-.957-.69c-.104-.017-.214-.017-.34-.016H6.041Zm-.706 1.566c-.023.063-.05.125-.08.184h3.491a1.612 1.612 0 0 1-.08-.184l-.022-.066-.058-.175a1.817 1.817 0 0 0-.078-.215.438.438 0 0 0-.319-.23 1.819 1.819 0 0 0-.229-.005H6.041c-.169 0-.203 0-.23.005a.438.438 0 0 0-.318.23 1.819 1.819 0 0 0-.078.215l-.058.175a2.817 2.817 0 0 1-.023.066Z"
+			clipRule="evenodd"
+		/>
+		<Path
+			fill="#6D6D6D"
+			d="M5.334 2.879c-.023.063-.05.125-.08.184h3.491a1.612 1.612 0 0 1-.08-.184l-.022-.066-.058-.175a1.817 1.817 0 0 0-.078-.215.438.438 0 0 0-.319-.23 1.819 1.819 0 0 0-.229-.005H6.041c-.169 0-.203 0-.23.005a.438.438 0 0 0-.318.23 1.819 1.819 0 0 0-.078.215l-.058.175a2.817 2.817 0 0 1-.023.066Z"
+		/>
+	</Svg>
+)
+
+
 
 export default
 	{
@@ -291,4 +376,8 @@ export default
 		NotificationsIcon,
 		ProfileSettingsIcon,
 		ShopIcon,
+		MinusIcon,
+		PlusIcon,
+		QRCodeIcon,
+		TrashCanIcon,
 	}
