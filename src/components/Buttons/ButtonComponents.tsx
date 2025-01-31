@@ -6,6 +6,7 @@ import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
+import AddRemoveProductInBasketPanelComponent from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
 
 
 
@@ -60,17 +61,27 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
 interface BasketButtonComponentProps {
     product: Product,
     style?: ViewStyle,
-    onAdd?: () => void,
+    onAdd: () => void,
+    onRemove: () => void,
     size?: 'mini' | 'medium'
 }
 
 export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
     function handlePressBasketButton() {
         addProductInBasketAsync(props.product.id).then(() => {
-            if (props.onAdd) {
-                props.onAdd();
-            }
+            props.onAdd();
         });
+    }
+
+    if (props.product.amountInBasket > 0) {
+        if (props.style)
+            return (
+                <AddRemoveProductInBasketPanelComponent style={[buttonStyles.basketButton, props.style]} product={props.product} onAdd={props.onAdd} onRemove={props.onRemove} />
+            )
+
+        return (
+            <AddRemoveProductInBasketPanelComponent product={props.product} onAdd={props.onAdd} onRemove={props.onRemove} />
+        )
     }
 
     if (props.size === 'medium') {
@@ -110,7 +121,7 @@ export const RemoveOneProductFromBasket: React.FC<RemoveButtonProps> = React.mem
 
     return (
         <TouchableOpacity onPress={handlePressRemoveOneProductFromBasket} style={props.style}>
-            <svgIcons.MinusIcon></svgIcons.MinusIcon>
+            <svgIcons.MinusIcon stroke={'#fff'}></svgIcons.MinusIcon>
         </TouchableOpacity>
     )
 })
@@ -136,7 +147,7 @@ export const AddOneProductInBasket: React.FC<AddButtonProps> = React.memo((props
 
     return (
         <TouchableOpacity onPress={handlePressAddOneProductInBasket} style={props.style}>
-            <svgIcons.PlusIcon></svgIcons.PlusIcon>
+            <svgIcons.PlusIcon stroke={'#fff'}></svgIcons.PlusIcon>
         </TouchableOpacity>
     )
 })

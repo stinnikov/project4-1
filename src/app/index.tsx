@@ -6,6 +6,7 @@ import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import { isAuthorisedAsync } from '@/src/services/AuthService';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import LoginScreen from '@/src/screens/LoginScreen';
+import { enableScreens } from 'react-native-screens';
 import 'expo-dev-client';
 
 const App: React.FC = () => {
@@ -45,6 +46,8 @@ const App: React.FC = () => {
         </LoadingScreen>)
 
     }
+
+    enableScreens(true);
 
     return isAuth ? null : <LoginScreen />;
 };

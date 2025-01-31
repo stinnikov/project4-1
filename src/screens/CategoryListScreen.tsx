@@ -44,22 +44,24 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
         }
 
         return (
-            <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                <View style={{ margin: commonStyles.general.margin }}>
-                    <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
-                </View>
-                <View style={{ margin: commonStyles.general.margin }}>
-                    <SearchComponent />
-                </View>
+            <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
+                <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
+                    <View style={{ margin: commonStyles.general.margin }}>
+                        <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
+                    </View>
+                    <View style={{ margin: commonStyles.general.margin }}>
+                        <SearchComponent />
+                    </View>
 
-                <View style={{ margin: commonStyles.general.margin }}>
-                    <CategoryListComponent
-                        currentCategory={props.currentCategory}
-                        data={props.categories}
-                        router={props.router}
-                    />
+                    <View style={{ margin: commonStyles.general.margin }}>
+                        <CategoryListComponent
+                            currentCategory={props.currentCategory}
+                            data={props.categories}
+                            router={props.router}
+                        />
+                    </View>
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 

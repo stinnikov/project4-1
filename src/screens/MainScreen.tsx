@@ -60,6 +60,7 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                 <FlatList
+                    style={{ backgroundColor: 'red' }}
                     overScrollMode="never"
                     data={DATA}
                     bounces={false}
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainGreyColor.color,
     },
     couponsAndPromotions: {
+        backgroundColor: 'red',
     }
 })
 

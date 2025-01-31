@@ -107,7 +107,9 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 <Text style={styles.productPriceText}>{product.price}</Text>
             </View>
 
-            <AddRemoveProductInBasketPanelComponent style={styles.addRemoveButtons} product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
+            <View style={{ flex: 0.3, marginBottom: 16 }}>
+                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} onAdd={addOneProduct} onRemove={removeOneProduct} product={product} />
+            </View>
         </View>
     )
 }
@@ -164,11 +166,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: commonStyles.text.fontFamily,
     },
-
-    addRemoveButtons: {
-        borderTopWidth: 1,
-        flex: 0.3
-    }
 })
 
 export default React.memo(BasketProductCardComponent);

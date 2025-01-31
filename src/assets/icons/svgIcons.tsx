@@ -285,7 +285,7 @@ const MinusIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			stroke="#000"
+			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}
@@ -303,7 +303,7 @@ const PlusIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			stroke="#000"
+			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

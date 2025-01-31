@@ -70,7 +70,6 @@ export const buttonStyles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 28,
     borderRadius: 12,
-    margin: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.mainBrightColor,

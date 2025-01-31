@@ -3,9 +3,8 @@ import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, 
 import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles } from "@/src/styles/styles";
+import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import AddRemoveProductInBasketPanelComponent from "./BasketScreenComponents/AddRemoveProductInBasketPanel";
 
 interface ProductCardProps {
     product: Product,
@@ -67,14 +66,8 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                     <ProductDescription></ProductDescription>
                 </View>
             </ScrollView>
-            <View style={{ minHeight: '7%', position: 'absolute', alignSelf: 'center', bottom: 0, width: '100%' }}>
-                {
-                    amountInBasket === 0 ?
-                        <BasketButtonComponent product={product} onAdd={addOneProduct} style={styles.bottomButton} size='medium' /> :
-                        <View style={[styles.bottomButton, { backgroundColor: 'transparent' }]} >
-                            <AddRemoveProductInBasketPanelComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
-                        </View>
-                }
+            <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
+                <BasketButtonComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} style={styles.bottomButton} size='medium' />
             </View>
         </View>
 
@@ -142,9 +135,10 @@ const styles = StyleSheet.create({
         marginBottom: '11%',
     },
     bottomButton: {
-        flex: 1, height: '100%',
+        flex: 1,
+        gap: 6,
+        height: '100%',
         width: '90%',
-        gap: 12,
         alignSelf: 'center',
         justifyContent: 'center',
     }

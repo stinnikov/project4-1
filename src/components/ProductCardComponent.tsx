@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Href, Router, useNavigation } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
@@ -10,6 +10,7 @@ import AddRemoveProductInBasketPanelComponent from "./BasketScreenComponents/Add
 interface ProductListCardProps {
     data: Product,
     router: Router,
+    style?: ViewStyle,
 }
 
 const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
@@ -87,7 +88,7 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
@@ -106,14 +107,9 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
             <View style={styles.priceContainer}>
                 <Text style={styles.productPriceText}>{product.price}</Text>
             </View>
-
-            {
-                amountInBasket === 0 ?
-                    <BasketButtonComponent onAdd={addOneProduct} product={product} /> :
-                    <View style={[buttonStyles.basketButton, { backgroundColor: 'transparent' }]} >
-                        <AddRemoveProductInBasketPanelComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} />
-                    </View>
-            }
+            <View style={{ flex: 0.3, marginBottom: 16 }}>
+                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} onAdd={addOneProduct} onRemove={removeOneProduct} product={product} />
+            </View>
         </View>
     );
 }

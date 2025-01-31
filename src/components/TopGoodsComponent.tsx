@@ -4,7 +4,7 @@ import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
 import { commonStyles, dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
-import TopGoodsCardComponent from "./TopGoodsCardComponent";
+import ProductCardComponent from "./ProductCardComponent";
 
 interface TopGoodsComponentProps {
     data: Product[];
@@ -15,13 +15,13 @@ interface TopGoodsComponentProps {
 
 
 
-const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) => {
+const TopGoodsComponent: React.FC<TopGoodsComponentProps> = (props) => {
     function renderProduct({ item }: { item: Product }) {
         return (
-            <TopGoodsCardComponent
+            <ProductCardComponent
+                style={{ paddingLeft: 16 }}
                 data={item}
                 router={props.router}
-                isMainScreen={props.isMainScreen}
             />
         );
     }
@@ -48,7 +48,7 @@ const TopGoodsComponent: React.FC<TopGoodsComponentProps> = React.memo((props) =
             />
         </View>
     );
-});
+};
 
 
 const styles = StyleSheet.create({
@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
         marginTop: 8,
         paddingLeft: commonStyles.title.padding,
     },
+    itemWrap: {
+        paddingLeft: 16,
+    }
 })
 
-export default React.memo(TopGoodsComponent);
+export default TopGoodsComponent;

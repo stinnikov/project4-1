@@ -3,9 +3,10 @@ import { View, ViewStyle, StyleSheet, Text } from 'react-native';
 import { RemoveOneProductFromBasket } from '../Buttons/ButtonComponents';
 import { AddOneProductInBasket } from '../Buttons/ButtonComponents';
 import { Product } from '@/src/interfaces/Product';
+import { colorsStyles, commonStyles } from '@/src/styles/styles';
 
 interface AddRemoveProductInBasketPanelProps {
-    style?: ViewStyle
+    style?: ViewStyle[]
     product: Product,
     onRemove: () => void,
     onAdd: () => void,
@@ -14,22 +15,58 @@ interface AddRemoveProductInBasketPanelProps {
 const AddRemoveProductInBasketPanelComponent: React.FC<AddRemoveProductInBasketPanelProps> = React.memo((props) => {
     return (
         <View style={[styles.container, props.style]}>
-            <RemoveOneProductFromBasket product={props.product} onRemove={props.onRemove} style={{ flex: 1, alignItems: 'center', borderRightWidth: 1, }} />
-            <View style={{ flex: 1, alignItems: 'center' }}>
-                <Text>{props.product.amountInBasket}</Text>
+
+            <RemoveOneProductFromBasket
+                style={styles.removeButton}
+                product={props.product}
+                onRemove={props.onRemove}
+            />
+
+            <View style={styles.amountInBasket}>
+                <Text style={styles.amountInBasketText}>{props.product.amountInBasket}</Text>
             </View>
-            <AddOneProductInBasket product={props.product} onAdd={props.onAdd} style={{ flex: 1, alignItems: 'center', borderLeftWidth: 1 }} />
+
+            <AddOneProductInBasket
+                style={styles.addButton}
+                product={props.product}
+                onAdd={props.onAdd}
+            />
         </View>
     )
 })
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
+        borderRadius: 12,
         flexDirection: 'row',
+        backgroundColor: 'green',
+        alignItems: 'center', // Это позволит выровнять элементы по центру по вертикали
+    },
+    removeButton: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    amountInBasket: {
+        flex: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: '#fff',
+        height: '100%'
+    },
+    addButton: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    amountInBasketText: {
+        alignSelf: 'center',
+        fontSize: 16,
+        fontWeight: 'semibold',
+        fontFamily: commonStyles.text.fontFamily,
+        color: '#fff',
     }
-})
+});
 
 export default AddRemoveProductInBasketPanelComponent;
