@@ -5,7 +5,9 @@ const deviceHeight: number = Dimensions.get("window").height;
 const widthUnit = deviceWidth / 100;
 const heightUnit = deviceHeight / 100;
 
-const colors: {
+
+
+const lightThemeColors: {
   mainWhiteColor: ColorValue,
   mainGreyColor: ColorValue,
   mainLightGreyColor: ColorValue,
@@ -20,6 +22,9 @@ const colors: {
   mainBlackColor: 'black',
   mainDarkColor: '#e1c4ff'
 };
+
+const appColors = lightThemeColors;
+
 
 export const commonStyles = StyleSheet.create({
 
@@ -39,8 +44,6 @@ export const commonStyles = StyleSheet.create({
   },
 
   //cards
-
-  //lists
   title: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -64,7 +67,7 @@ export const buttonStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 24,
     shadowOpacity: 0.2,
-    backgroundColor: colors.mainWhiteColor,
+    backgroundColor: appColors.mainWhiteColor,
   },
   basketButton: {
     flexDirection: 'row',
@@ -72,7 +75,7 @@ export const buttonStyles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.mainBrightColor,
+    backgroundColor: appColors.mainBrightColor,
   }
 })
 
@@ -80,34 +83,36 @@ export const buttonStyles = StyleSheet.create({
 
 export const colorsStyles = StyleSheet.create({
   mainBlackColor: {
-    color: colors.mainBlackColor,
+    color: appColors.mainBlackColor,
   },
   mainWhiteColor: {
-    color: colors.mainWhiteColor,
+    color: appColors.mainWhiteColor,
   },
 
   mainLightGreyColor: {
-    color: colors.mainLightGreyColor
+    color: appColors.mainLightGreyColor
   },
 
   mainGreyColor: {
-    color: colors.mainGreyColor,
+    color: appColors.mainGreyColor,
   },
 
   mainBrightColor: {
-    color: colors.mainBrightColor,
+    color: appColors.mainBrightColor,
   },
 
   mainDarkColor: {
-    color: colors.mainDarkColor,
-  },
-
-  basketButtonColor: {
-    color: colors.mainBrightColor,
+    color: appColors.mainDarkColor,
   },
 })
 
 export const textStyles = StyleSheet.create({
+  listTitle: {
+    fontSize: 16,
+    fontWeight: 'semibold',
+    color: colorsStyles.mainBrightColor.color,
+    fontFamily: commonStyles.text.fontFamily,
+  },
   productListCardText: {
     fontSize: 14,
     fontWeight: 'regular',
@@ -123,12 +128,12 @@ export const textStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'regular',
     fontFamily: commonStyles.text.fontFamily,
-    color: colors.mainWhiteColor,
+    color: appColors.mainWhiteColor,
   },
   basketButtonMiniText: {
     fontSize: 14,
     fontFamily: commonStyles.text.fontFamily,
-    color: colors.mainWhiteColor,
+    color: appColors.mainWhiteColor,
   },
 })
 

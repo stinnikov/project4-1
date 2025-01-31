@@ -13,6 +13,7 @@ import BasketProductCardComponent from "../components/BasketScreenComponents/Bas
 import { ClearBasketButton } from "../components/Buttons/ButtonComponents";
 import { commonStyles, dimensionsStyles } from "@/src//styles/styles";
 import { StatusBar } from "expo-status-bar";
+import BasketProductListComponent from "../components/BasketScreenComponents/BasketProductListComponent";
 
 interface BasketScreenProps {
     router: Router,
@@ -62,28 +63,6 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
         setProducts([]);
     };
 
-    const ListHeader = () => (
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 30, marginBottom: 16 }}>
-            <TouchableOpacity style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-            }}>
-                <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-                <Text style={styles.listTitle}>Сортировка</Text>
-            </TouchableOpacity>
-
-            <ClearBasketButton onClear={clearBasket} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
-        </View>
-    );
-
-    function renderItem({ item }: { item: Product }) {
-        return (
-            <BasketProductCardComponent
-                data={item}
-                router={props.router}
-            />
-        );
-    }
 
     if (loading) {
         return <LoadingScreen />;
@@ -102,26 +81,9 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                 <View style={{ margin: 16 }}>
                     <SearchComponent />
                 </View>
-                <FlatList
-                    style={{ flex: 1, padding: 16 }}
+                <BasketProductListComponent
                     data={products}
-                    renderItem={renderItem}
-                    numColumns={2}
-                    keyExtractor={(item) => item.id}
-                    initialNumToRender={2}
-                    removeClippedSubviews={true}
-                    ListHeaderComponent={ListHeader}
-                    columnWrapperStyle={styles.column}
-                    getItemLayout={getItemLayout}
-                    refreshControl={
-                        <RefreshControl
-                            tintColor={colorsStyles.mainBrightColor.color}
-                            colors={[colorsStyles.mainBrightColor.color]}
-                            refreshing={refreshing}
-                            onRefresh={onRefresh}
-                        />
-
-                    }
+                    router={props.router}
                 />
             </SafeAreaView>
         </SafeAreaProvider>

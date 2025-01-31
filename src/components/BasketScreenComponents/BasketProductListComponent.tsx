@@ -1,6 +1,6 @@
 
 import React, { useState, memo, useCallback, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles';
@@ -8,8 +8,8 @@ import BasketProductCard from './BasketProductCardComponent';
 import svgIcons from '@/src/assets/icons/svgIcons';
 import SvgIcons from '@/assets/icons/svgIcons';
 import { ClearBasketButton } from '../Buttons/ButtonComponents';
-
-//// ЭТОТ КОМПОНЕНТ ПОКА ЧТО НЕ ИСПОЛЬЗУЕТСЯ
+import { getBasketByUserIdAsync } from '@/src/services/BasketService';
+import BasketProductListHeaderComponent from './BasketProductListHeaderComponent';
 
 interface ProductListProps {
     data: Product[];
@@ -26,24 +26,31 @@ const getItemLayout = (data: any, index: number) => ({
 
 const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
     const [products, setProducts] = useState<Product[]>(props.data);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [refreshing, setRefreshing] = useState(false);
 
-    const clearBasket = () => {
-        setProducts([]);
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const favouriteProductsResponse = await getBasketByUserIdAsync();
+            if (favouriteProductsResponse) {
+                setProducts(favouriteProductsResponse);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const ListHeader = () => (
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 30, marginBottom: 16 }}>
-            <TouchableOpacity style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-            }}>
-                <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-                <Text style={styles.listTitle}>Сортировка</Text>
-            </TouchableOpacity>
+    const clearBasket = React.useCallback(() => {
+        setProducts([]);
+    }, []);
 
-            <ClearBasketButton onClear={clearBasket} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
-        </View>
-    );
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        fetchData().finally(() => setRefreshing(false));
+    }, []);
 
     const renderProduct = useCallback(({ item }: { item: Product }) => (
         <BasketProductCard
@@ -55,17 +62,25 @@ const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
     return (
         <View style={styles.container}>
             <FlatList
-                style={styles.list}
+                style={{ flex: 1, padding: 16 }}
                 data={products}
                 renderItem={renderProduct}
-                keyExtractor={(item) => item.id}
                 numColumns={2}
+                keyExtractor={(item) => item.id}
                 initialNumToRender={2}
                 removeClippedSubviews={true}
-                showsVerticalScrollIndicator={false}
-                ListHeaderComponent={ListHeader}
+                ListHeaderComponent={<BasketProductListHeaderComponent onClear={clearBasket} />}
                 columnWrapperStyle={styles.column}
                 getItemLayout={getItemLayout}
+                refreshControl={
+                    <RefreshControl
+                        tintColor={colorsStyles.mainBrightColor.color}
+                        colors={[colorsStyles.mainBrightColor.color]}
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+
+                }
             />
         </View>
     );
@@ -80,12 +95,7 @@ const styles = StyleSheet.create({
         padding: 16,
     },
 
-    listTitle: {
-        fontSize: 16,
-        fontWeight: 'semibold',
-        color: colorsStyles.mainBrightColor.color,
-        fontFamily: commonStyles.text.fontFamily,
-    },
+
     productCard: {
         height: dimensionsStyles.productListCard.height,
         width: dimensionsStyles.productListCard.width,

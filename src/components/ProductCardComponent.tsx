@@ -22,7 +22,6 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
     const currentTabIndex = navigation.getParent()?.getState().index;
 
     function addOneProduct() {
-        console.log('shnya')
         setAmountInBasket(prevAmount => prevAmount + 1);
         product.amountInBasket++;
     }

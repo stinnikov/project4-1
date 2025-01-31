@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { Router } from "expo-router";
+import { Router, useFocusEffect } from "expo-router";
 import { Category } from "@/src//interfaces/Category";
 import { Product } from "@/src//interfaces/Product";
 import UserPanelComponent from "@/src//components/MainScreenComponents/UserPanelComponent";
@@ -52,19 +52,45 @@ function renderScreen({ item }: { item: MainScreenProps }) {
 }
 
 export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
-    const DATA: MainScreenProps[] = [
-        props,
-    ]
+    const router = props.router;
+    const [loading, setLoading] = useState<boolean>(true);
+    const [refreshing, setRefreshing] = useState<boolean>(false);
+    const [categoriesData, setCategoriesData] = useState<Category[]>(props.categoriesData ?? []);
+    const [topGoodsData, setTopGoodsData] = useState<Product[]>(props.topGoodsData ?? []);
+    const [mainScreenData, setMainScreenData] = useState<MainScreenProps[]>([{ router, categoriesData, topGoodsData }]);
+
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            // получить посты с сервера 
+            // получить данные для секции "для вас", в том числе и новинки
+            // получить данные для секции товары в топе
+            // получить данные для секции "тематическая секция"
+            // получить картинки вкладок "промокоды" и "акции"
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+
+    useFocusEffect(React.useCallback(() => {
+        //fetchData();
+        return () => {
+
+        }
+    }, []))
+
     return (
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
+                <StatusBar translucent={false} backgroundColor={colorsStyles.mainBrightColor.color.toString()} style='dark'></StatusBar>
                 <FlatList
-                    style={{ backgroundColor: 'red' }}
                     overScrollMode="never"
-                    data={DATA}
+                    data={mainScreenData}
                     bounces={false}
-                    onEndReachedThreshold={10}
                     renderItem={renderScreen}
                 />
             </SafeAreaView>
