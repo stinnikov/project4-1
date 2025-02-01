@@ -61,33 +61,49 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
 interface BasketButtonComponentProps {
     product: Product,
     style?: ViewStyle,
-    onAdd: () => void,
-    onRemove: () => void,
     size?: 'mini' | 'medium'
 }
 
 export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
+    const [amountInBasket, setAmountInBasket] = useState<number>(props.product.amountInBasket);
+
+    function addOneProduct() {
+        setAmountInBasket(prevAmount => prevAmount + 1);
+        props.product.amountInBasket++;
+    }
+
+    function removeOneProduct() {
+        if (amountInBasket - 1 >= 0) {
+            setAmountInBasket(prevAmount => prevAmount - 1);
+            props.product.amountInBasket--;
+        }
+    }
+
     function handlePressBasketButton() {
         addProductInBasketAsync(props.product.id).then(() => {
-            props.onAdd();
+            addOneProduct();
         });
     }
 
     if (props.product.amountInBasket > 0) {
         if (props.style)
             return (
-                <AddRemoveProductInBasketPanelComponent style={[buttonStyles.basketButton, props.style]} product={props.product} onAdd={props.onAdd} onRemove={props.onRemove} />
+                <AddRemoveProductInBasketPanelComponent style={[buttonStyles.basketButton, props.style]} product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
             )
 
         return (
-            <AddRemoveProductInBasketPanelComponent product={props.product} onAdd={props.onAdd} onRemove={props.onRemove} />
+            <AddRemoveProductInBasketPanelComponent product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
         )
     }
 
     if (props.size === 'medium') {
         return (
             <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
-                <svgIcons.BasketIcon width={24} height={24} stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
+                <svgIcons.BasketIcon
+                    width={22} height={22}
+                    stroke={colorsStyles.mainWhiteColor.color}
+                    strokeWidth={1.5}
+                />
                 <Text style={textStyles.basketButtonMediumText}>В корзину</Text>
             </TouchableOpacity>
         )
@@ -95,7 +111,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
 
     return (
         <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
-            <svgIcons.BasketIcon width={16} height={16} stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
+            <svgIcons.BasketIcon stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
             <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
         </TouchableOpacity>
     )
@@ -104,14 +120,13 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
 interface RemoveButtonProps {
     product: Product;
     style?: ViewStyle;
-    onRemove: () => void; // Добавляем пропс для обновления состояния
+    onRemove: () => void;
 }
 
 export const RemoveOneProductFromBasket: React.FC<RemoveButtonProps> = React.memo((props) => {
     function handlePressRemoveOneProductFromBasket() {
         deleteProductFromBasket(props.product.id)
             .then(() => {
-                // Вызываем функцию для обновления состояния родительского компонента
                 props.onRemove();
             })
             .catch((error) => {

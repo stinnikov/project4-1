@@ -5,6 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import { PriceText } from "./Text/TextComponents";
 
 interface ProductCardProps {
     product: Product,
@@ -15,20 +16,8 @@ interface ProductCardProps {
 
 const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
     const [product, setProduct] = useState<Product>(props.product);
-    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
     const router = props.router;
 
-    function addOneProduct() {
-        setAmountInBasket(prevAmount => prevAmount + 1);
-        product.amountInBasket++;
-    }
-
-    function removeOneProduct() {
-        if (amountInBasket - 1 >= 0) {
-            setAmountInBasket(prevAmount => prevAmount - 1);
-            product.amountInBasket--;
-        }
-    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -54,7 +43,7 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                         </ImageBackground>
                     </View>
                     <View style={styles.title}>
-                        <Text style={styles.titleText}>{product.name}</Text>
+                        <PriceText style={styles.titleText}>{product.name}</PriceText>
                     </View>
 
                     <View style={styles.price}>
@@ -66,8 +55,9 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                     <ProductDescription></ProductDescription>
                 </View>
             </ScrollView>
+
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
-                <BasketButtonComponent product={product} onAdd={addOneProduct} onRemove={removeOneProduct} style={styles.bottomButton} size='medium' />
+                <BasketButtonComponent product={product} style={styles.bottomButton} size='medium' />
             </View>
         </View>
 
@@ -80,6 +70,7 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: colorsStyles.mainWhiteColor.color,
         flexGrow: 1,
+        marginBottom: '14%',
     },
     container: {
         borderBottomWidth: 12,
@@ -111,7 +102,6 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 26,
         margin: 16,
-        fontWeight: 'bold',
         fontFamily: commonStyles.text.fontFamily,
     },
     price:
@@ -132,7 +122,6 @@ const styles = StyleSheet.create({
     description:
     {
         flex: 5,
-        marginBottom: '11%',
     },
     bottomButton: {
         flex: 1,

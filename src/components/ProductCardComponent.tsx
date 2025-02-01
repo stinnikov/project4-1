@@ -21,18 +21,6 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
 
-    function addOneProduct() {
-        setAmountInBasket(prevAmount => prevAmount + 1);
-        product.amountInBasket++;
-    }
-
-    function removeOneProduct() {
-        if (amountInBasket - 1 >= 0) {
-            setAmountInBasket(prevAmount => prevAmount - 1);
-            product.amountInBasket--;
-        }
-    }
-
     function navigateToProduct() {
         if (currentTabIndex === 0) {
             router.push(
@@ -106,8 +94,11 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
             <View style={styles.priceContainer}>
                 <Text style={styles.productPriceText}>{product.price}</Text>
             </View>
-            <View style={{ flex: 0.3, marginBottom: 16 }}>
-                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} onAdd={addOneProduct} onRemove={removeOneProduct} product={product} />
+
+            <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
+                <BasketButtonComponent
+                    style={{ bottom: 0, marginHorizontal: 10 }}
+                    product={product} />
             </View>
         </View>
     );
@@ -139,24 +130,16 @@ const styles = StyleSheet.create({
 
     productNameContainer: {
         flex: 1,
-        padding: 8,
+        marginLeft: 10,
     },
 
     priceContainer: {
         flex: 0.3,
-        padding: 8,
-        width: '100%',
-        height: '100%',
-    },
-
-    basketButtonContiner: {
-        flexDirection: 'row',
-        minHeight: 28,
-        borderRadius: 12,
-        margin: 8,
+        alignSelf: 'flex-start',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colorsStyles.mainBrightColor.color,
+        backgroundColor: '#e2e2e2',
+        borderRadius: 6,
+        marginLeft: 10,
     },
 
     productNameText: {
@@ -169,7 +152,10 @@ const styles = StyleSheet.create({
 
     productPriceText: {
         fontSize: 14,
-        fontFamily: commonStyles.text.fontFamily,
+        paddingHorizontal: 8,
+        letterSpacing: commonStyles.mediumText.letterSpacing,
+        alignSelf: 'flex-start',
+        fontFamily: commonStyles.mediumText.fontFamily,
     },
 
     bottomContainer: {

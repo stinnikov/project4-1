@@ -43,6 +43,11 @@ export const commonStyles = StyleSheet.create({
     color: 'black',
   },
 
+  mediumText: {
+    fontFamily: 'Montserrat_500Medium',
+    letterSpacing: -0.03,
+  },
+
   //cards
   title: {
     fontSize: 20,
@@ -125,9 +130,8 @@ export const textStyles = StyleSheet.create({
     color: 'black',
   },
   basketButtonMediumText: {
-    fontSize: 18,
-    fontWeight: 'regular',
-    fontFamily: commonStyles.text.fontFamily,
+    fontSize: 20,
+    fontFamily: 'Montserrat_600SemiBold',
     color: appColors.mainWhiteColor,
   },
   basketButtonMiniText: {

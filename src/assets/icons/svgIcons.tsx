@@ -193,38 +193,53 @@ const ClockIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+
 const BasketIcon = (props: SvgProps) => (
 	<Svg
-		width={30}
-		height={30}
-		viewBox="0 0 30 30"
+		width={16}
+		height={16}
+
+		viewBox="0 0 16 16"
 		fill="none"
 		{...props}
 	>
 		<Path
-			fill={props.fill ?? 'none'}
-			stroke={props.stroke ?? '#000'}
-			strokeWidth={2}
-			d="M12.33 26.625a2.057 2.057 0 1 0 0-4.114 2.057 2.057 0 0 0 0 4.114ZM21.928 26.625a2.057 2.057 0 1 0 0-4.114 2.057 2.057 0 0 0 0 4.114Z"
+			fill={props.fill ?? '#fff'}
+			stroke={props.stroke ?? '#fff'}
+			d="M11.808 14.194a.875.875 0 1 0 0-1.75.875.875 0 0 0 0 1.75ZM5.942 14.194a.875.875 0 1 0 0-1.75.875.875 0 0 0 0 1.75Z"
 		/>
 		<Path
-			fill={props.fill ?? 'none'}
-			stroke={props.stroke ?? '#000'}
+			stroke={props.stroke ?? '#fff'}
 			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="M3.417 4h2.742l4.805 15.083h10.964"
-		/>
-		<Path
-			fill={props.fill ?? 'none'}
-			stroke={props.stroke ?? '#000'}
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="M9.895 15.655 7.256 7.428h17.15a.686.686 0 0 1 .651.902l-2.285 6.856a.686.686 0 0 1-.65.47H9.895Z"
+			strokeWidth={props.strokeWidth ?? 1}
+			d="M1.6 2.24h1.479c.245 0 .459.167.517.405l1.696 6.87a.533.533 0 0 0 .518.405h6.217a.533.533 0 0 0 .518-.405l1.322-5.355H6.4"
 		/>
 	</Svg>
 )
+
+
+
+const TabBarBasketIcon = (props: SvgProps) => (
+	<Svg
+		width={30}
+		height={30}
+		fill="none"
+		viewBox="0 0 30 30"
+		{...props}
+	>
+		<Circle cx={22.4} cy={24.4} r={1.9} fill={props.stroke ?? '#000'} />
+
+		<Circle cx={11.4} cy={24.4} r={1.9} fill={props.stroke ?? '#000'} />
+
+		<Path
+			stroke={props.stroke ?? '#000'}
+			strokeLinecap="round"
+			strokeWidth={2}
+			d="M3 4.2h2.772a1 1 0 0 1 .971.76l3.18 12.88a1 1 0 0 0 .971.76H22.55a1 1 0 0 0 .971-.76L26 7.8H12"
+		/>
+	</Svg>
+)
+
 
 const BackArrowIcon = (props: SvgProps) => (
 	<Svg
@@ -380,4 +395,5 @@ export default
 		PlusIcon,
 		QRCodeIcon,
 		TrashCanIcon,
+		TabBarBasketIcon,
 	}

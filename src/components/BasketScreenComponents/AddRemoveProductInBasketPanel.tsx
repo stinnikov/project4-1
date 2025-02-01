@@ -37,11 +37,9 @@ const AddRemoveProductInBasketPanelComponent: React.FC<AddRemoveProductInBasketP
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
         borderRadius: 12,
         flexDirection: 'row',
         backgroundColor: 'green',
-        alignItems: 'center', // Это позволит выровнять элементы по центру по вертикали
     },
     removeButton: {
         flex: 1,
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: '#fff',
-        height: '100%'
+        height: '100%',
     },
     addButton: {
         flex: 1,
