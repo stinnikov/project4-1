@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import svgIcons from '@/assets/icons/svgIcons';
-import { colorsStyles, textStyles } from '@/src/styles/styles';
+import { colorsStyles } from '@/src/styles/styles';
 import { ClearBasketButton } from '../Buttons/ButtonComponents';
+import { SortListText } from '../Text/TextComponents';
 
 interface BasketProductListHeaderProps {
     onClear: () => void,
@@ -16,7 +17,9 @@ const BasketProductListHeaderComponent: React.FC<BasketProductListHeaderProps> =
                 alignItems: 'center',
             }}>
                 <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-                <Text style={textStyles.listTitle}>Сортировка</Text>
+                <SortListText
+                    text='Сортировка'
+                />
             </TouchableOpacity>
 
             <ClearBasketButton onClear={props.onClear} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />

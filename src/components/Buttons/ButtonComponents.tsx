@@ -1,12 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Pressable, ViewStyle, Text } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, Pressable, ViewStyle, Text } from 'react-native';
 import svgIcons from '@/src/assets/icons/svgIcons';
-import { commonStyles, colorsStyles, buttonStyles, textStyles } from '@/src/styles/styles';
+import { colorsStyles, buttonStyles } from '@/src/styles/styles';
 import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
 import AddRemoveProductInBasketPanelComponent from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
+import { BigButtonText, SmallRegularText } from '../Text/TextComponents';
 
 
 
@@ -61,7 +62,7 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
 interface BasketButtonComponentProps {
     product: Product,
     style?: ViewStyle,
-    size?: 'mini' | 'medium'
+    size?: 'mini' | 'medium' | 'big'
 }
 
 export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
@@ -96,7 +97,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
         )
     }
 
-    if (props.size === 'medium') {
+    if (props.size === 'big') {
         return (
             <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
                 <svgIcons.BasketIcon
@@ -104,7 +105,10 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
                     stroke={colorsStyles.mainWhiteColor.color}
                     strokeWidth={1.5}
                 />
-                <Text style={textStyles.basketButtonMediumText}>В корзину</Text>
+                <BigButtonText
+                    style={{ color: 'white' }}
+                    text='В корзину'
+                />
             </TouchableOpacity>
         )
     }
@@ -112,7 +116,10 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
     return (
         <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
             <svgIcons.BasketIcon stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
-            <Text style={textStyles.basketButtonMiniText}>В корзину</Text>
+            <SmallRegularText
+                style={{ color: 'white' }}
+                text='В корзину'
+            />
         </TouchableOpacity>
     )
 })
@@ -182,7 +189,7 @@ export const ClearBasketButton: React.FC<ClearBasketButtonProps> = React.memo((p
 
     return (
         <TouchableOpacity onPress={handlePressClearBasketButton} style={[props.style]}>
-            <Text style={{ fontSize: 12, fontFamily: commonStyles.text.fontFamily }}>Очистить корзину </Text>
+            <Text style={{ fontSize: 12, fontFamily: 'Montserrat_400Regular' }}>Очистить корзину </Text>
             <svgIcons.TrashCanIcon></svgIcons.TrashCanIcon>
         </TouchableOpacity>
     )

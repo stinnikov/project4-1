@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, StyleSheet, Text, ImageBackground } from "react-native";
+import React from "react";
+import { FlatList, View, StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "@/src/components/SearchComponent";
-import { Router, SplashScreen } from "expo-router";
+import { Router } from "expo-router";
 import CategoryListComponent from "@/src/components/CatalogScreenComponents/CategoryListComponent";
 import { Category } from "@/src/interfaces/Category";
 import ScreenHeaderComponent from "@/src/components/ScreenHeaderComponent";
-import { colorsStyles, commonStyles } from "../styles/styles";
+import { colorsStyles } from "../styles/styles";
 import { ipv4 } from "../data/tempData";
 import { StatusBar } from "expo-status-bar";
 
@@ -31,7 +31,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     </ImageBackground>
 
 
-                    <View style={{ margin: commonStyles.general.margin }}>
+                    <View style={{ margin: 16 }}>
                         <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                         <CategoryListComponent
                             currentCategory={props.currentCategory}
@@ -46,14 +46,14 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
         return (
             <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
                 <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                    <View style={{ margin: commonStyles.general.margin }}>
+                    <View style={{ margin: 16 }}>
                         <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
                     </View>
-                    <View style={{ margin: commonStyles.general.margin }}>
+                    <View style={{ margin: 16 }}>
                         <SearchComponent />
                     </View>
 
-                    <View style={{ margin: commonStyles.general.margin }}>
+                    <View style={{ margin: 16 }}>
                         <CategoryListComponent
                             currentCategory={props.currentCategory}
                             data={props.categories}

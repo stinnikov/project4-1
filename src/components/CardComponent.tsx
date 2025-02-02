@@ -1,17 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, ImageBackground, StyleProp, ViewStyle, ImageStyle, TextStyle } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle, ImageStyle, TextStyle } from "react-native";
 import { Router } from "expo-router";
-import { commonStyles, colorsStyles, textStyles } from "@/src/styles/styles";
+import { colorsStyles } from "@/src/styles/styles";
 import { Category } from "@/src/interfaces/Category";
+import { CategoryCardNameText } from "./Text/TextComponents";
 
 interface CardComponentProps<T> {
     item: T,
-    style: StyleProp<ViewStyle>,
-    imageStyle?: StyleProp<ImageStyle>,
+    style: ViewStyle,
+    imageStyle?: ImageStyle,
     imageUri?: string,
     router: Router,
     titleText?: string,
-    textStyle?: StyleProp<TextStyle>
+    textStyle?: TextStyle
 }
 
 function navigateToCategory(item: Category, router: Router) {
@@ -46,8 +47,10 @@ function CardComponent<T>(props: CardComponentProps<T>) {
                     source={{ uri: props.imageUri }}
                     style={cardStyles.imageBackground}
                     imageStyle={[cardStyles.image]}>
-
-                    <Text style={[cardStyles.title]}>{props.titleText}</Text>
+                    <CategoryCardNameText
+                        style={{ paddingTop: 8, paddingLeft: 16 }}
+                        text={props.titleText}
+                    />
                 </ImageBackground>
             </TouchableOpacity>
         </View>
@@ -57,13 +60,6 @@ function CardComponent<T>(props: CardComponentProps<T>) {
 const cardStyles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    title: {
-        padding: textStyles.cardTitle.padding,
-        fontSize: textStyles.cardTitle.fontSize,
-        fontWeight: textStyles.cardTitle.fontWeight,
-        color: 'black',
-        alignSelf: 'flex-start',
     },
     imageBackground: {
         width: '100%',
@@ -75,7 +71,7 @@ const cardStyles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
         resizeMode: 'cover',
     }
 })

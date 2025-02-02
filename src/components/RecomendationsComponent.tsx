@@ -1,9 +1,10 @@
-import React, { useMemo, memo, useRef, useState } from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, ImageBackground, PanResponder } from "react-native";
+import React, { useMemo } from "react";
+import { View, StyleSheet, FlatList } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
-import { commonStyles, colorsStyles, dimensionsStyles } from "@/src/styles/styles";
+import { dimensionsStyles } from "@/src/styles/styles";
 import CardComponent from "./CardComponent";
+import { ScreenSectionTitleText } from "./Text/TextComponents";
 
 interface RecomendationComponentProps {
     data: Product[];
@@ -26,7 +27,10 @@ const RecomendationComponent: React.FC<RecomendationComponentProps> = React.memo
 
     return (
         <View style={styles.container}>
-            <Text style={styles.listTitle}>Рекомендации</Text>
+            <ScreenSectionTitleText
+                style={{ padding: 16 }}
+                text="Рекомендации"
+            />
             <FlatList
                 style={styles.list}
                 data={memoizedData}
@@ -55,32 +59,13 @@ const styles = StyleSheet.create({
     list: {
         flexDirection: 'row',
     },
-    listTitle: {
-        fontSize: commonStyles.title.fontSize,
-        fontWeight: commonStyles.title.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        paddingLeft: commonStyles.title.padding,
-        marginBottom: commonStyles.title.margin,
-        paddingTop: 0,
-    },
     card: {
         height: dimensionsStyles.recsCard.height,
 
-        paddingLeft: commonStyles.general.padding,
+        paddingLeft: 16,
 
         width: dimensionsStyles.recsCard.width,
     },
-    cardTitle: {
-
-        alignSelf: 'stretch',
-    },
-    contentStyle: {
-        padding: 0,
-        paddingRight: 0,
-        paddingLeft: 0,
-        paddingTop: 0,
-        paddingBottom: commonStyles.general.padding,
-    }
 })
 
 export default React.memo(RecomendationComponent);

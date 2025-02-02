@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground, ImageSourcePropType, Text } from 'react-native'
-import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles'
+import { View, StyleSheet, ImageBackground } from 'react-native'
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
+import { RegularText } from '../Text/TextComponents'
 
 interface NewOffersForUserProps {
 
@@ -15,7 +16,10 @@ const NewOffersForUserComponent: React.FC<NewOffersForUserProps> = (props) => {
                         source={{ uri: '' }}
                         style={styles.imageBackground}
                         resizeMode='contain'>
-                        <Text style={styles.imageBackgroundText}>Новинки</Text>
+                        <RegularText
+                            style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
+                            text='Новинки'
+                        />
                     </ImageBackground>
                 </View>
             </View>
@@ -31,13 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
-    title: {
-        fontSize: commonStyles.title.fontSize,
-        fontWeight: commonStyles.title.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        marginVertical: 8,
-        paddingLeft: commonStyles.title.padding,
-    },
     imageContainer: {
         width: '100%',
         height: '100%',
@@ -51,7 +48,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: dimensionsStyles.couponsAndPromotions.height,
         backgroundColor: colorsStyles.mainBrightColor.color,
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
     },
     imageBackgroundText: {
         fontSize: 16,

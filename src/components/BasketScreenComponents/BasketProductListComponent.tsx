@@ -1,13 +1,10 @@
 
-import React, { useState, memo, useCallback, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
-import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles';
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
 import BasketProductCard from './BasketProductCardComponent';
-import svgIcons from '@/src/assets/icons/svgIcons';
-import SvgIcons from '@/assets/icons/svgIcons';
-import { ClearBasketButton } from '../Buttons/ButtonComponents';
 import { getBasketByUserIdAsync } from '@/src/services/BasketService';
 import BasketProductListHeaderComponent from './BasketProductListHeaderComponent';
 
@@ -94,8 +91,6 @@ const styles = StyleSheet.create({
     list: {
         padding: 16,
     },
-
-
     productCard: {
         height: dimensionsStyles.productListCard.height,
         width: dimensionsStyles.productListCard.width,

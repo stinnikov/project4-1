@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground, ImageSourcePropType, Text } from 'react-native'
-import { colorsStyles, dimensionsStyles, commonStyles } from '@/src/styles/styles'
+import { View, StyleSheet, ImageBackground } from 'react-native'
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
+import { RegularText } from '../Text/TextComponents'
 
 interface PromotionsAndCouponsProps {
 
 }
 
-const PromotionsAndCouponsComponent: React.FC<PromotionsAndCouponsProps> = (props) => {
+const PromotionsAndDiscountsComponent: React.FC<PromotionsAndCouponsProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -14,14 +15,20 @@ const PromotionsAndCouponsComponent: React.FC<PromotionsAndCouponsProps> = (prop
                     <ImageBackground
                         style={styles.imageBackground}
                         source={{ uri: '' }}>
-                        <Text style={styles.imageBackgroundText}>Промокоды</Text>
+                        <RegularText
+                            style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
+                            text='Промокоды'
+                        />
                     </ImageBackground>
                 </View>
                 <View style={styles.promotionsContainer}>
                     <ImageBackground
                         style={styles.imageBackground}
                         source={{ uri: '' }}>
-                        <Text style={styles.imageBackgroundText}>Акции</Text>
+                        <RegularText
+                            style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
+                            text='Акции'
+                        />
                     </ImageBackground>
                 </View>
             </View>
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: dimensionsStyles.couponsAndPromotions.height,
         backgroundColor: colorsStyles.mainBrightColor.color,
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
     },
     imageBackgroundText: {
         fontSize: 16,
@@ -72,4 +79,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PromotionsAndCouponsComponent;
+export default PromotionsAndDiscountsComponent;

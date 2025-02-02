@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text, ViewStyle } from "react-native";
+import { View, StyleSheet, FlatList, ViewStyle } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
-import { commonStyles, dimensionsStyles } from "@/src/styles/styles";
+import { dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
 import ProductCardComponent from "./ProductCardComponent";
+import { ScreenSectionTitleText } from "./Text/TextComponents";
 
 interface TopGoodsComponentProps {
     data: Product[];
@@ -19,7 +20,7 @@ const TopGoodsComponent: React.FC<TopGoodsComponentProps> = (props) => {
     function renderProduct({ item }: { item: Product }) {
         return (
             <ProductCardComponent
-                style={{ paddingLeft: 16 }}
+                style={{ marginLeft: 16 }}
                 data={item}
                 router={props.router}
             />
@@ -28,7 +29,10 @@ const TopGoodsComponent: React.FC<TopGoodsComponentProps> = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.listTitle}>Топ товары</Text>
+            <ScreenSectionTitleText
+                text="Топ товары"
+                style={{ padding: 16 }}
+            />
             <FlatList
                 style={styles.list}
                 data={props.data}
@@ -58,13 +62,6 @@ const styles = StyleSheet.create({
     },
     list: {
         flexDirection: 'row',
-    },
-    listTitle: {
-        fontSize: commonStyles.title.fontSize,
-        fontWeight: commonStyles.title.fontWeight,
-        fontFamily: commonStyles.title.fontFamily,
-        marginTop: 8,
-        paddingLeft: commonStyles.title.padding,
     },
     itemWrap: {
         paddingLeft: 16,

@@ -1,11 +1,12 @@
 
 import React, { useMemo, useCallback } from 'react';
-import { View, Text, FlatList, StyleSheet, } from 'react-native';
+import { View, FlatList, StyleSheet, } from 'react-native';
 import { Category } from '@/src/interfaces/Category';
 import { Router } from 'expo-router';
-import { commonStyles, colorsStyles, dimensionsStyles } from '@/src/styles/styles';
+import { dimensionsStyles } from '@/src/styles/styles';
 import CardComponent from '../CardComponent';
 import { ipv4 } from '@/src/data/tempData';
+import { ScreenSectionTitleText } from '../Text/TextComponents';
 
 interface CategoryCardListProps {
     data: Category[];
@@ -24,7 +25,10 @@ const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
     }, [props.data]);
 
     const ListHeader = useCallback(() => (
-        <Text style={styles.listTitle}>Категории</Text>
+        <ScreenSectionTitleText
+            text='Категории'
+            style={{ paddingBottom: 16 }}
+        />
     ), []);
 
     const renderCategory = useCallback(({ item }: { item: Category }) => (
@@ -58,13 +62,6 @@ const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    listTitle: {
-        fontSize: commonStyles.title.fontSize,
-        fontWeight: commonStyles.title.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        marginBottom: commonStyles.title.margin,
     },
 
     column: {

@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, ViewStyle, StyleSheet, Text } from 'react-native';
+import { View, ViewStyle, StyleSheet } from 'react-native';
 import { RemoveOneProductFromBasket } from '../Buttons/ButtonComponents';
 import { AddOneProductInBasket } from '../Buttons/ButtonComponents';
 import { Product } from '@/src/interfaces/Product';
-import { colorsStyles, commonStyles } from '@/src/styles/styles';
+import { RegularText } from '../Text/TextComponents';
 
 interface AddRemoveProductInBasketPanelProps {
     style?: ViewStyle[]
@@ -23,7 +23,9 @@ const AddRemoveProductInBasketPanelComponent: React.FC<AddRemoveProductInBasketP
             />
 
             <View style={styles.amountInBasket}>
-                <Text style={styles.amountInBasketText}>{props.product.amountInBasket}</Text>
+                <RegularText
+                    text={props.product.amountInBasket.toString()}
+                />
             </View>
 
             <AddOneProductInBasket
@@ -58,13 +60,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    amountInBasketText: {
-        alignSelf: 'center',
-        fontSize: 16,
-        fontWeight: 'semibold',
-        fontFamily: commonStyles.text.fontFamily,
-        color: '#fff',
-    }
 });
 
 export default AddRemoveProductInBasketPanelComponent;

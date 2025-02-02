@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { commonStyles, colorsStyles } from "@/src/styles/styles";
+import { colorsStyles } from "@/src/styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/src/assets/icons/svgIcons";
 

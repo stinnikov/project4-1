@@ -25,42 +25,6 @@ const lightThemeColors: {
 
 const appColors = lightThemeColors;
 
-
-export const commonStyles = StyleSheet.create({
-
-  general: {
-    // general
-    padding: 16,
-    margin: 16,
-    borderRadius: 12,
-  },
-
-  // text
-  text: {
-    fontSize: 16,
-    letterSpacing: -0.03,
-    fontFamily: 'Montserrat_400Regular',
-    color: 'black',
-  },
-
-  mediumText: {
-    fontFamily: 'Montserrat_500Medium',
-    letterSpacing: -0.03,
-  },
-
-  //cards
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Raleway_500Medium',
-    padding: 16,
-    margin: 16,
-  },
-
-
-
-});
-
 export const buttonStyles = StyleSheet.create({
   miniButton: {
     height: 30, // чуть больше размера иконки
@@ -76,6 +40,7 @@ export const buttonStyles = StyleSheet.create({
   },
   basketButton: {
     flexDirection: 'row',
+    gap: 2,
     minHeight: 28,
     borderRadius: 12,
     justifyContent: 'center',
@@ -111,35 +76,6 @@ export const colorsStyles = StyleSheet.create({
   },
 })
 
-export const textStyles = StyleSheet.create({
-  listTitle: {
-    fontSize: 16,
-    fontWeight: 'semibold',
-    color: colorsStyles.mainBrightColor.color,
-    fontFamily: commonStyles.text.fontFamily,
-  },
-  productListCardText: {
-    fontSize: 14,
-    fontWeight: 'regular',
-  },
-  cardTitle: {
-    padding: 10,
-    margin: 10,
-    fontSize: 11,
-    fontWeight: 'thin',
-    color: 'black',
-  },
-  basketButtonMediumText: {
-    fontSize: 20,
-    fontFamily: 'Montserrat_600SemiBold',
-    color: appColors.mainWhiteColor,
-  },
-  basketButtonMiniText: {
-    fontSize: 14,
-    fontFamily: commonStyles.text.fontFamily,
-    color: appColors.mainWhiteColor,
-  },
-})
 
 export const dimensionsStyles = StyleSheet.create(
   {
@@ -194,4 +130,4 @@ export const dimensionsStyles = StyleSheet.create(
   }
 )
 
-export default { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles };
+export default { dimensionsStyles, colorsStyles, buttonStyles };

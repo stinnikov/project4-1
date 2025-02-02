@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground, ImageSourcePropType, Text } from 'react-native'
-import { colorsStyles, dimensionsStyles, commonStyles } from '@/src/styles/styles'
+import { View, StyleSheet, Text } from 'react-native'
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 
 interface BonusCardProps {
 
@@ -30,9 +30,8 @@ const styles = StyleSheet.create({
     cardText: {
         fontSize: 36,
         color: '#000',
-        paddingTop: commonStyles.general.padding,
-        paddingLeft: commonStyles.general.padding,
-        fontFamily: commonStyles.text.fontFamily,
+        paddingTop: 16,
+        paddingLeft: 16,
         fontWeight: 'bold'
     }
 })

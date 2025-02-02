@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, StyleSheet, RefreshControl, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchComponent from "@/src//components/SearchComponent";
-import { Router, SplashScreen, useFocusEffect } from "expo-router";
+import { Router, useFocusEffect } from "expo-router";
 import ScreenHeaderComponent from "@/src//components/ScreenHeaderComponent";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
-import svgIcons from "@/assets/icons/svgIcons";
 import { getBasketByUserIdAsync } from "../services/BasketService";
-import BasketProductCardComponent from "../components/BasketScreenComponents/BasketProductCardComponent";
-import { ClearBasketButton } from "../components/Buttons/ButtonComponents";
-import { commonStyles, dimensionsStyles } from "@/src//styles/styles";
+import { dimensionsStyles } from "@/src//styles/styles";
 import { StatusBar } from "expo-status-bar";
 import BasketProductListComponent from "../components/BasketScreenComponents/BasketProductListComponent";
 
@@ -94,12 +91,6 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
 const styles = StyleSheet.create({
     topGoods: {
         flex: 1
-    },
-    listTitle: {
-        fontSize: 16,
-        fontWeight: 'semibold',
-        color: colorsStyles.mainBrightColor.color,
-        fontFamily: commonStyles.text.fontFamily,
     },
     column: {
         justifyContent: 'space-between',

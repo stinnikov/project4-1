@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button, ViewStyle } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Href, Router, useNavigation } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
-import svgIcons from "@/src/assets/icons/svgIcons";
+import { Router, useNavigation } from "expo-router";
+import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import AddRemoveProductInBasketPanelComponent from "./BasketScreenComponents/AddRemoveProductInBasketPanel";
+import { ProductRatingCardText, SmallRegularText } from "./Text/TextComponents";
 
 interface ProductListCardProps {
     data: Product,
@@ -80,7 +79,10 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[buttonStyles.miniButton]}>
-                            <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
+                            <ProductRatingCardText
+                                style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
+                                text="4.3"
+                            />
                         </View>
                         <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
@@ -88,11 +90,16 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
             </TouchableOpacity>
 
             <View style={styles.productNameContainer}>
-                <Text style={styles.productNameText}>{product.name}</Text>
+                <SmallRegularText
+                    text={product.name}
+                />
             </View>
 
             <View style={styles.priceContainer}>
-                <Text style={styles.productPriceText}>{product.price}</Text>
+                <SmallRegularText
+                    style={{ paddingHorizontal: 8 }}
+                    text={product.price}
+                />
             </View>
 
             <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
@@ -109,7 +116,7 @@ const styles = StyleSheet.create({
         height: dimensionsStyles.productListCard.height,
         width: dimensionsStyles.productListCard.width,
         backgroundColor: colorsStyles.mainWhiteColor.color,
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
         elevation: 5,
         shadowRadius: 10,
         shadowOpacity: 0.2,
@@ -140,22 +147,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#e2e2e2',
         borderRadius: 6,
         marginLeft: 10,
-    },
-
-    productNameText: {
-        fontSize: textStyles.productListCardText.fontSize,
-        fontWeight: textStyles.productListCardText.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        color: textStyles.cardTitle.color,
-        alignSelf: 'flex-start',
-    },
-
-    productPriceText: {
-        fontSize: 14,
-        paddingHorizontal: 8,
-        letterSpacing: commonStyles.mediumText.letterSpacing,
-        alignSelf: 'flex-start',
-        fontFamily: commonStyles.mediumText.fontFamily,
     },
 
     bottomContainer: {

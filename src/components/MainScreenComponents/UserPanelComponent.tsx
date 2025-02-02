@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import CirclePostForUserComponent, { CircleStoryProps } from './CirclePostForUserComponent'
-import { colorsStyles, commonStyles } from '@/src/styles/styles'
 import SvgIcons from '@/src/assets/icons/svgIcons';
-import BonusCardComponent from './BonusCardComponent';
+import { ScreenSectionTitleText } from '../Text/TextComponents';
 
 interface UserPanelProps {
     name?: string;
@@ -25,7 +24,9 @@ const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
         <View style={styles.container}>
             <View style={styles.nameAndButtons}>
 
-                <Text style={styles.name}>Имя пользователя</Text>
+                <ScreenSectionTitleText
+                    text='Имя пользователя'
+                />
 
                 <View style={styles.buttons}>
                     <SvgIcons.NotificationsIcon width={24} height={24}></SvgIcons.NotificationsIcon>
@@ -56,11 +57,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    },
-    name: {
-        fontSize: 20,
-        fontFamily: commonStyles.text.fontFamily,
-        color: '#000',
     },
     buttons: {
         flexDirection: 'row',

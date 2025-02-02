@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground, Text, Button } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
-import { AddOneProductInBasket, BasketButtonComponent, FavouriteButtonComponent, RemoveOneProductFromBasket } from "../Buttons/ButtonComponents";
-import AddRemoveProductInBasketPanelComponent from "./AddRemoveProductInBasketPanel";
+import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
+import { BasketButtonComponent, FavouriteButtonComponent } from "../Buttons/ButtonComponents";
+import { SmallRegularText, ProductRatingCardText } from "../Text/TextComponents";
 
 interface BasketProductCardProps {
     data: Product,
@@ -15,18 +15,6 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
     const router = props.router;
     const [product, setProduct] = useState<Product>(props.data);
     const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
-
-    function addOneProduct() {
-        setAmountInBasket(product.amountInBasket + 1);
-        product.amountInBasket++;
-    }
-
-    function removeOneProduct() {
-        if (product.amountInBasket - 1 >= 0) {
-            setAmountInBasket(product.amountInBasket - 1);
-            product.amountInBasket--;
-        }
-    }
 
     const navigation = useNavigation();
     const currentTabIndex = navigation.getParent()?.getState().index;
@@ -90,9 +78,10 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
 
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
-                        <View style={[buttonStyles.miniButton]}>
-                            <Text style={{ fontSize: 16, marginBottom: 3, color: '#000' }}>4.3</Text>
-                        </View>
+                        <ProductRatingCardText
+                            style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
+                            text="4.3"
+                        />
 
                         <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
@@ -100,15 +89,20 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
             </TouchableOpacity>
 
             <View style={styles.productNameContainer}>
-                <Text style={styles.productNameText}>{product.name}</Text>
+                <SmallRegularText
+                    text={product.name}
+                />
             </View>
 
             <View style={styles.priceContainer}>
-                <Text style={styles.productPriceText}>{product.price}</Text>
+                <SmallRegularText
+                    style={{ paddingHorizontal: 8 }}
+                    text={product.price}
+                />
             </View>
 
             <View style={{ flex: 0.3, marginBottom: 16 }}>
-                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} onAdd={addOneProduct} onRemove={removeOneProduct} product={product} />
+                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} product={product} />
             </View>
         </View>
     )
@@ -119,7 +113,7 @@ const styles = StyleSheet.create({
         height: dimensionsStyles.productListCard.height,
         width: dimensionsStyles.productListCard.width,
         backgroundColor: colorsStyles.mainWhiteColor.color,
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
         elevation: 5,
         shadowRadius: 10,
         shadowOpacity: 0.2,
@@ -151,20 +145,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         height: '100%',
-    },
-
-    productNameText: {
-        fontSize: textStyles.productListCardText.fontSize,
-        fontWeight: textStyles.productListCardText.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        color: textStyles.cardTitle.color,
-        alignSelf: 'flex-start',
-    },
-
-    productPriceText: {
-        alignSelf: 'center',
-        fontSize: 14,
-        fontFamily: commonStyles.text.fontFamily,
     },
 })
 

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, ImageBackground, RefreshControl } from "react-native";
+import { View, StyleSheet, ScrollView, ImageBackground, RefreshControl } from "react-native";
 import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
-import { commonStyles, dimensionsStyles, colorsStyles, textStyles, buttonStyles } from "@/src/styles/styles";
+import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { PriceText } from "./Text/TextComponents";
+import { ProductPageNameText, ProductPagePriceText } from "./Text/TextComponents";
 
 interface ProductCardProps {
     product: Product,
@@ -43,11 +43,15 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
                         </ImageBackground>
                     </View>
                     <View style={styles.title}>
-                        <PriceText style={styles.titleText}>{product.name}</PriceText>
+                        <ProductPageNameText
+                            text={product.name}
+                        />
                     </View>
 
                     <View style={styles.price}>
-                        <Text style={styles.priceText}>{product.price}</Text>
+                        <ProductPagePriceText
+                            text={product.price}
+                        />
                     </View>
                 </View>
 
@@ -57,7 +61,7 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
             </ScrollView>
 
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
-                <BasketButtonComponent product={product} style={styles.bottomButton} size='medium' />
+                <BasketButtonComponent product={product} style={styles.bottomButton} size='big' />
             </View>
         </View>
 
@@ -96,13 +100,9 @@ const styles = StyleSheet.create({
     },
     title: {
         flex: 1,
+        paddingHorizontal: 16,
         paddingTop: 10,
         minHeight: 100,
-    },
-    titleText: {
-        fontSize: 26,
-        margin: 16,
-        fontFamily: commonStyles.text.fontFamily,
     },
     price:
     {
@@ -113,11 +113,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         gap: 15,
-    },
-    priceText: {
-        fontSize: 26,
-        fontFamily: 'Montserrat_500Medium',
-
     },
     description:
     {

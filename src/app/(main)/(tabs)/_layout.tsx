@@ -3,7 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import { Stack, Tabs, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/src/assets/icons/svgIcons';
-import { commonStyles, colorsStyles } from '@/src/styles/styles';
+import { colorsStyles } from '@/src/styles/styles';
 import { CommonActions } from '@react-navigation/native';
 
 
@@ -94,14 +94,14 @@ const styles = StyleSheet.create(
 	{
 		tabBarLabel: {
 			fontSize: 11,
-			letterSpacing: commonStyles.mediumText.letterSpacing,
-			fontFamily: commonStyles.mediumText.fontFamily,
+			letterSpacing: -0.03,
+			fontFamily: 'Montserrat_500Medium',
 			color: 'black',
 		},
 		activeTabBarLabel: {
 			fontSize: 11,
-			letterSpacing: commonStyles.mediumText.letterSpacing,
-			fontFamily: commonStyles.mediumText.fontFamily,
+			letterSpacing: -0.03,
+			fontFamily: 'Montserrat_500Medium',
 			color: colorsStyles.mainBrightColor.color,
 		}
 	}

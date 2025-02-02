@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text, ViewStyle } from "react-native";
-import { commonStyles, dimensionsStyles, colorsStyles } from "@/src/styles/styles";
-import BarComponent from "./BarComponent";
+import { View, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
+import { RegularText } from "./Text/TextComponents";
 
 interface SearchComponentProps {
     text?: string,
@@ -13,9 +13,9 @@ const SearchComponent: React.FC<SearchComponentProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.searchBar}>
-                <Text style={styles.searchBarText}>
-                    Поиск
-                </Text>
+                <RegularText
+                    text='Поиск'
+                />
                 <TouchableOpacity style={styles.qrCode}>
                     <svgIcons.QRCodeIcon stroke={colorsStyles.mainBrightColor.color} />
                 </TouchableOpacity>
@@ -43,10 +43,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         borderRadius: 12
     },
-    searchBarText: {
-        fontSize: 16,
-        fontFamily: commonStyles.text.fontFamily,
-    },
     qrCode: {
 
     },
@@ -60,7 +56,7 @@ const styles = StyleSheet.create({
 
         backgroundColor: colorsStyles.mainLightGreyColor.color,
 
-        borderRadius: commonStyles.general.borderRadius,
+        borderRadius: 12,
     },
     settingsIcon: {
         position: 'absolute',

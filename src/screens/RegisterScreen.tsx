@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { commonStyles, colorsStyles } from "@/src/styles/styles";
+import { colorsStyles } from "@/src/styles/styles";
 
 export const RegisterScreen: React.FC = () => {
     const [userName, setUserName] = useState('');
@@ -84,13 +84,11 @@ const styles = StyleSheet.create(
             fontSize: 18,
             borderColor: 'black',
             fontWeight: 'semibold',
-            fontFamily: commonStyles.text.fontFamily,
             padding: 10,
         },
         textTitle: {
             fontSize: 26,
             fontWeight: 'semibold',
-            fontFamily: commonStyles.text.fontFamily,
             padding: 10,
             alignSelf: 'center',
         },
@@ -104,7 +102,6 @@ const styles = StyleSheet.create(
             fontSize: 18,
             color: colorsStyles.mainWhiteColor.color,
             fontWeight: 'semibold',
-            fontFamily: commonStyles.text.fontFamily
         },
         form: {
             alignContent: 'stretch',

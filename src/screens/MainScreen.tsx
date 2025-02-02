@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Router, useFocusEffect } from "expo-router";
@@ -10,8 +10,8 @@ import BonusCardComponent from "@/src//components/MainScreenComponents/BonusCard
 import SpecialsForUserComponent from "@/src//components/MainScreenComponents/SpecialsForUserComponent";
 import NewOffersForUserComponent from "@/src//components/MainScreenComponents/NewOffersForUserComponent";
 import TopGoodsComponent from "@/src//components/TopGoodsComponent";
-import { colorsStyles, commonStyles } from "@/src//styles/styles";
-import PromotionsAndCouponsComponent from "@/src//components/MainScreenComponents/PromotionsAndCoupons";
+import { colorsStyles } from "@/src//styles/styles";
+import PromotionsAndDiscountsComponent from "@/src//components/MainScreenComponents/PromotionsAndCoupons";
 import { StatusBar } from "expo-status-bar";
 
 
@@ -45,7 +45,7 @@ function renderScreen({ item }: { item: MainScreenProps }) {
                 />
             </View>
             <View style={styles.couponsAndPromotions}>
-                <PromotionsAndCouponsComponent />
+                <PromotionsAndDiscountsComponent />
             </View>
         </View>
     )
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     newOffers: {
-        paddingBottom: commonStyles.general.margin,
+        paddingBottom: 16,
         backgroundColor: colorsStyles.mainWhiteColor.color,
         borderBottomLeftRadius: 12,
         borderBottomRightRadius: 12,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     topGoods: {
-        paddingBottom: commonStyles.general.margin,
+        paddingBottom: 16,
         backgroundColor: colorsStyles.mainGreyColor.color,
     },
     couponsAndPromotions: {

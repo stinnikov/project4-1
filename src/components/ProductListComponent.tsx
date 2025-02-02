@@ -1,11 +1,12 @@
 
-import React, { useMemo, memo, useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { memo, useCallback } from 'react';
+import { View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
-import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles';
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
 import ProductCardComponent from './ProductCardComponent';
 import svgIcons from '@/src/assets/icons/svgIcons';
+import { SortListText } from './Text/TextComponents';
 
 
 interface ProductListProps {
@@ -27,7 +28,9 @@ const ListHeader = memo(() => (
         marginBottom: 16,
     }}>
         <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-        <Text style={[styles.listTitle]}>Сортировка</Text>
+        <SortListText
+            text='Сортировка'
+        />
     </TouchableOpacity>
 ));
 
@@ -67,13 +70,6 @@ const styles = StyleSheet.create({
 
     list: {
         padding: 16,
-    },
-
-    listTitle: {
-        fontSize: 18,
-        color: colorsStyles.mainBrightColor.color,
-        fontWeight: 'semibold',
-        fontFamily: commonStyles.title.fontFamily,
     },
     productCard: {
         height: dimensionsStyles.productListCard.height,

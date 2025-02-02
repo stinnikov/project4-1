@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground, Text } from 'react-native'
-import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles'
+import { View, StyleSheet, ImageBackground } from 'react-native'
+import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
+import { CirclePostForUserText } from '../Text/TextComponents'
 
 export interface CircleStoryProps {
     imgSrc: string,
@@ -19,9 +20,9 @@ const CirclePostForUserComponent: React.FC<CircleStoryProps> = (props) => {
                     />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text numberOfLines={3} style={styles.description}>
-                        Текст {'\n'} в 3 {'\n'} строки {'\n'}
-                    </Text>
+                    <CirclePostForUserText
+                        text={`Текст\nв 3\nстроки\n`}
+                    />
                 </View>
             </View>
         </View>
@@ -43,7 +44,8 @@ const styles = StyleSheet.create({
         borderColor: colorsStyles.mainBrightColor.color,
     },
     textContainer: {
-        marginBottom: commonStyles.general.margin,
+        marginTop: 8,
+        marginBottom: 16,
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',

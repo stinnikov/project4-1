@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground, ImageSourcePropType, Text, FlatList } from 'react-native'
-import { colorsStyles, commonStyles, dimensionsStyles } from '@/src/styles/styles'
+import { View, StyleSheet, ImageBackground, FlatList } from 'react-native'
+import { colorsStyles } from '@/src/styles/styles'
+import { ScreenSectionTitleText } from '../Text/TextComponents'
 
 interface SpecialsForUserProps {
 
@@ -19,7 +20,10 @@ const SpecialsForUserComponent: React.FC<SpecialsForUserProps> = (props) => {
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.listTitle}>Для вас</Text>
+            <ScreenSectionTitleText
+                style={{ padding: 16 }}
+                text='Для вас'
+            />
             <FlatList
                 style={styles.list}
                 data={data}
@@ -48,13 +52,6 @@ const styles = StyleSheet.create({
     },
     list: {
 
-    },
-    listTitle: {
-        fontSize: commonStyles.title.fontSize,
-        fontWeight: commonStyles.title.fontWeight,
-        fontFamily: commonStyles.text.fontFamily,
-        marginVertical: 8,
-        paddingLeft: commonStyles.title.padding,
     },
     listContent: {
         gap: 10,

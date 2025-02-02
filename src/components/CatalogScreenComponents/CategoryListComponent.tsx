@@ -1,18 +1,16 @@
 import React from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { Category } from "@/src/interfaces/Category";
 import { Router } from "expo-router";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { colorsStyles, commonStyles, textStyles } from "@/src/styles/styles";
+import { colorsStyles } from "@/src/styles/styles";
+import { RegularText } from "../Text/TextComponents";
 
 interface CategoryListProps {
     currentCategory: Category | undefined, // current category
     data: Category[], //subcats
     router: Router,
 }
-
-
-
 
 
 const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
@@ -39,14 +37,17 @@ const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
         )
     }
 
-    function takeAllProducts() {
+    function categoryListHeader() {
         if (isCategory(props.currentCategory)) {
             return (
                 <TouchableOpacity
                     style={styles.container}
                     onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
                 >
-                    <Text style={[styles.categoryText, { color: colorsStyles.mainBrightColor.color }]}>Все продукты категории</Text>
+                    <RegularText
+                        style={[styles.categoryText, { color: colorsStyles.mainBrightColor.color }]}
+                        text="Все продукты категории"
+                    />
                     <View style={styles.rightIconContainer}>
                         <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color}></svgIcons.ArrowRightIcon>
                     </View>
@@ -65,7 +66,10 @@ const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
             <TouchableOpacity
                 style={styles.container}
                 onPress={() => { navigate({ item }) }}>
-                <Text style={styles.categoryText}>{item.name}</Text>
+                <RegularText
+                    style={styles.categoryText}
+                    text={item.name}
+                />
                 <View style={styles.rightIconContainer}>
                     <svgIcons.ArrowRightIcon style={[styles.rightIcon]}></svgIcons.ArrowRightIcon>
                 </View>
@@ -77,7 +81,7 @@ const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
         <FlatList
             data={props.data}
             renderItem={renderCategory}
-            ListHeaderComponent={takeAllProducts}
+            ListHeaderComponent={categoryListHeader}
             keyExtractor={item => item.id}
         />
     )
@@ -94,9 +98,6 @@ const styles = StyleSheet.create({
     },
     categoryText: {
         flex: 0.89,
-        fontSize: commonStyles.text.fontSize,
-        letterSpacing: commonStyles.text.letterSpacing,
-        fontFamily: commonStyles.text.fontFamily
     },
     rightIconContainer: {
         flex: 0.11,
