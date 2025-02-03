@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
-import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
-import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { ProductRatingCardText, SmallRegularText } from "./Text/TextComponents";
+import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
+import { BasketButtonComponent, FavouriteButtonComponent } from "../Buttons/ButtonComponents";
+import { SmallRegularText, ProductRatingCardText } from "../Text/TextComponents";
 
-interface ProductListCardProps {
+interface BasketProductCardProps {
     data: Product,
     router: Router,
-    style?: ViewStyle,
 }
 
-const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductListCardProps) => {
+const BasketProductCard: React.FC<BasketProductCardProps> = (props: BasketProductCardProps) => {
     const router = props.router;
     const [product, setProduct] = useState<Product>(props.data);
     const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
@@ -74,16 +73,16 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
     }
 
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={styles.container}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
+
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
-                        <View style={[buttonStyles.miniButton]}>
-                            <ProductRatingCardText
-                                style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
-                                text="4.3"
-                            />
-                        </View>
+                        <ProductRatingCardText
+                            style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
+                            text="4.3"
+                        />
+
                         <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
@@ -102,13 +101,11 @@ const ProductCardComponent: React.FC<ProductListCardProps> = (props: ProductList
                 />
             </View>
 
-            <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
-                <BasketButtonComponent
-                    style={{ bottom: 0, marginHorizontal: 10 }}
-                    product={product} />
+            <View style={{ flex: 0.3, marginBottom: 16 }}>
+                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} product={product} />
             </View>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -137,25 +134,19 @@ const styles = StyleSheet.create({
 
     productNameContainer: {
         flex: 1,
-        marginLeft: 10,
+        padding: 8,
     },
 
     priceContainer: {
         flex: 0.3,
-        alignSelf: 'flex-start',
-        justifyContent: 'center',
-        backgroundColor: '#e2e2e2',
-        borderRadius: 6,
-        marginLeft: 10,
-    },
-
-    bottomContainer: {
-        height: '8%',
+        minHeight: 30,
         padding: 8,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
         width: '100%',
-        borderRadius: 14
-    }
+        height: '100%',
+    },
 })
 
-export default React.memo(ProductCardComponent);
+export default React.memo(BasketProductCard);
 

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchComponent from "@/src//components/SearchComponent";
+import SearchBar from "@/src/components/SearchBar";
 import { Router, SplashScreen, useFocusEffect } from "expo-router";
-import ProductListComponent from "@/src//components/ProductListComponent";
-import ScreenHeaderComponent from "@/src//components/ScreenHeaderComponent";
+import ProductList from "@/src/components/ProductList";
+import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
 import { getFavouritesProductsAsync } from "@/src//services/ProductService";
 import { StatusBar } from "expo-status-bar";
+import FavouritesProductList from "../components/FavouritesScreenComponents/FavouritesProductList";
 
 interface FavouritesScreenProps {
     categoryName: string,
@@ -54,18 +55,19 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
                 <View style={{ margin: 16 }}>
                     <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
-                    <ScreenHeaderComponent
+                    <ScreenHeader
                         title={props.categoryName}
                         router={props.router}
                     />
                 </View>
                 <View style={{ margin: 16 }}>
-                    <SearchComponent />
+                    <SearchBar />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <ProductListComponent
-                        data={products}
+                    <FavouritesProductList
+                        products={products}
                         router={props.router}
+                        parentTab="favourites"
                     />
                 </View>
             </SafeAreaView>

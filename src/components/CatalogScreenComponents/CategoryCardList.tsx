@@ -19,7 +19,7 @@ const getItemLayout = (data: any, index: number) => ({
     index,
 });
 
-const CategoryCardListComponent: React.FC<CategoryCardListProps> = (props) => {
+const CategoryCardList: React.FC<CategoryCardListProps> = (props) => {
     const preparedData = useMemo(() => {
         return props.data;
     }, [props.data]);
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default React.memo(CategoryCardListComponent);
+export default React.memo(CategoryCardList);

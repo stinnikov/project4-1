@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
-import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
-import { BasketButtonComponent, FavouriteButtonComponent } from "../Buttons/ButtonComponents";
-import { SmallRegularText, ProductRatingCardText } from "../Text/TextComponents";
+import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
+import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import { ProductRatingCardText, SmallRegularText } from "./Text/TextComponents";
 
-interface BasketProductCardProps {
+interface ProductCardProps {
     data: Product,
     router: Router,
+    style?: ViewStyle,
+    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
-const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: BasketProductCardProps) => {
+const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
     const router = props.router;
     const [product, setProduct] = useState<Product>(props.data);
-    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
-
-    const navigation = useNavigation();
-    const currentTabIndex = navigation.getParent()?.getState().index;
 
     function navigateToProduct() {
-        if (currentTabIndex === 0) {
+        if (props.parentTab === 'catalog') {
             router.push(
                 {
                     pathname: '/(main)/(tabs)/catalog/product/[productId]',
@@ -30,7 +28,7 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 }
             )
         }
-        else if (currentTabIndex === 1) {
+        else if (props.parentTab === 'favourites') {
             router.push(
                 {
                     pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
@@ -40,7 +38,7 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 }
             )
         }
-        else if (currentTabIndex === 2) {
+        else if (props.parentTab === 'home') {
             router.push(
                 {
                     pathname: '/(main)/(tabs)/(home)/product/[productId]',
@@ -50,7 +48,7 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 }
             )
         }
-        else if (currentTabIndex === 3) {
+        else if (props.parentTab === 'profile') {
             router.push(
                 {
                     pathname: '/(main)/(tabs)/(profile)/product/[productId]',
@@ -60,7 +58,7 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 }
             )
         }
-        else if (currentTabIndex === 4) {
+        else if (props.parentTab === 'basket') {
             router.push(
                 {
                     pathname: '/(main)/(tabs)/(basket)/product/[productId]',
@@ -73,16 +71,16 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
-
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
-                        <ProductRatingCardText
-                            style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
-                            text="4.3"
-                        />
-
+                        <View style={[buttonStyles.miniButton]}>
+                            <ProductRatingCardText
+                                style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
+                                text="4.3"
+                            />
+                        </View>
                         <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
@@ -101,11 +99,13 @@ const BasketProductCardComponent: React.FC<BasketProductCardProps> = (props: Bas
                 />
             </View>
 
-            <View style={{ flex: 0.3, marginBottom: 16 }}>
-                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} product={product} />
+            <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
+                <BasketButtonComponent
+                    style={{ bottom: 0, marginHorizontal: 10 }}
+                    product={product} />
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -134,19 +134,25 @@ const styles = StyleSheet.create({
 
     productNameContainer: {
         flex: 1,
-        padding: 8,
+        marginLeft: 10,
     },
 
     priceContainer: {
         flex: 0.3,
-        minHeight: 30,
-        padding: 8,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        width: '100%',
-        height: '100%',
+        alignSelf: 'flex-start',
+        justifyContent: 'center',
+        backgroundColor: '#e2e2e2',
+        borderRadius: 6,
+        marginLeft: 10,
     },
+
+    bottomContainer: {
+        height: '8%',
+        padding: 8,
+        width: '100%',
+        borderRadius: 14
+    }
 })
 
-export default React.memo(BasketProductCardComponent);
+export default React.memo(ProductCard);
 

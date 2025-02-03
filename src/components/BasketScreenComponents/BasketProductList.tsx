@@ -4,11 +4,11 @@ import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
-import BasketProductCard from './BasketProductCardComponent';
+import BasketProductCard from './BasketProductCard';
 import { getBasketByUserIdAsync } from '@/src/services/BasketService';
-import BasketProductListHeaderComponent from './BasketProductListHeaderComponent';
+import BasketProductListHeader from './BasketProductListHeader';
 
-interface ProductListProps {
+interface BasketProductListProps {
     data: Product[];
     router: Router;
 }
@@ -21,7 +21,7 @@ const getItemLayout = (data: any, index: number) => ({
 
 
 
-const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
+const BasketProductList: React.FC<BasketProductListProps> = (props) => {
     const [products, setProducts] = useState<Product[]>(props.data);
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
@@ -66,7 +66,7 @@ const BasketProductListComponent: React.FC<ProductListProps> = (props) => {
                 keyExtractor={(item) => item.id}
                 initialNumToRender={2}
                 removeClippedSubviews={true}
-                ListHeaderComponent={<BasketProductListHeaderComponent onClear={clearBasket} />}
+                ListHeaderComponent={<BasketProductListHeader onClear={clearBasket} />}
                 columnWrapperStyle={styles.column}
                 getItemLayout={getItemLayout}
                 refreshControl={
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BasketProductListComponent;
+export default BasketProductList;

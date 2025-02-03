@@ -1,10 +1,10 @@
 
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState, useEffect } from 'react';
 import { View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
-import ProductCardComponent from './ProductCardComponent';
+import ProductCard from './ProductCard';
 import svgIcons from '@/src/assets/icons/svgIcons';
 import { SortListText } from './Text/TextComponents';
 
@@ -12,6 +12,8 @@ import { SortListText } from './Text/TextComponents';
 interface ProductListProps {
     data: Product[];
     router: Router;
+    release?: boolean; // Добавляем пропс для сигнала очистки
+    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
 const getItemLayout = (data: any, index: number) => ({
@@ -20,35 +22,50 @@ const getItemLayout = (data: any, index: number) => ({
     index,
 });
 
-const ListHeader = memo(() => (
-    <TouchableOpacity style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        minHeight: 30,
-        marginBottom: 16,
-    }}>
+const ListHeader = memo(() =>
+(
+    <TouchableOpacity
+        style={{ flexDirection: 'row', alignItems: 'center', minHeight: 30, marginBottom: 16, }}>
         <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
         <SortListText
-            text='Сортировка'
-        />
+            text='Сортировка' />
     </TouchableOpacity>
 ));
 
-const ProductListComponent: React.FC<ProductListProps> = React.memo((props) => {
+const ProductList: React.FC<ProductListProps> = memo((props) => {
+
+    const [products, setProducts] = useState<Product[]>(props.data);
+
     const renderProduct = useCallback(({ item }: { item: Product }) => (
-        <ProductCardComponent
+        <ProductCard
             data={item}
             router={props.router}
+            parentTab={props.parentTab}
         />
     ), [props.router]);
 
+    // useEffect для обработки сигнала очистки
+    useEffect(() => {
+        // Очистка ресурсов при получении сигнала от родительского компонента
+        if (props.release) {
+            let firstProduct = products[0];
+            setProducts([firstProduct]);
+        }
+        else {
+            setProducts(props.data);
+        }
 
+        // Возвращаем функцию очистки, если нужно
+        return () => {
+            setProducts([]);
+        };
+    }, [props.release]); // Зависимость от функции onClear
 
     return (
         <View style={styles.container}>
             <FlatList
                 style={styles.list}
-                data={props.data}
+                data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
@@ -67,13 +84,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
     list: {
         padding: 16,
-    },
-    productCard: {
-        height: dimensionsStyles.productListCard.height,
-        width: dimensionsStyles.productListCard.width,
     },
     column: {
         justifyContent: 'space-between',
@@ -81,4 +93,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ProductListComponent;
+export default ProductList;

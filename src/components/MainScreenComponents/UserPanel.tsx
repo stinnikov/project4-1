@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
-import CirclePostForUserComponent, { CircleStoryProps } from './CirclePostForUserComponent'
+import CirclePostForUser, { CircleStoryProps } from './CirclePostForUser'
 import SvgIcons from '@/src/assets/icons/svgIcons';
 import { ScreenSectionTitleText } from '../Text/TextComponents';
 
@@ -8,9 +8,9 @@ interface UserPanelProps {
     name?: string;
 }
 
-const UserPanelComponent: React.FC<UserPanelProps> = (props) => {
+const UserPanel: React.FC<UserPanelProps> = (props) => {
     function renderCircleStory({ item }: { item: CircleStoryProps }) {
-        return (<CirclePostForUserComponent imgSrc={item.imgSrc}></CirclePostForUserComponent>)
+        return (<CirclePostForUser imgSrc={item.imgSrc}></CirclePostForUser>)
     }
     const circleStoriesData: CircleStoryProps[] = [
         { imgSrc: '' },
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default UserPanelComponent;
+export default UserPanel;

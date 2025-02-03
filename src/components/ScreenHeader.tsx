@@ -11,7 +11,7 @@ interface ScreenHeaderProps {
 }
 
 
-const ScreenHeaderComponent: React.FC<ScreenHeaderProps> = (props) => {
+const ScreenHeader: React.FC<ScreenHeaderProps> = (props) => {
     function handlePressBackButton() {
         if (props.router.canGoBack()) {
             props.router.back();
@@ -31,4 +31,4 @@ const ScreenHeaderComponent: React.FC<ScreenHeaderProps> = (props) => {
 }
 
 
-export default ScreenHeaderComponent;
+export default ScreenHeader;

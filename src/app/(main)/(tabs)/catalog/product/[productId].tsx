@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
-import ProductPageComponent from '@/src/components/ProductPageComponent';
+import ProductPage from '@/src/components/ProductPage';
 import { useState, useEffect } from 'react';
 import { getSingleProductByIdAsync } from '@/src/services/ProductService';
 import ProductCardScreen from '@/src/screens/ProductPageScreen';

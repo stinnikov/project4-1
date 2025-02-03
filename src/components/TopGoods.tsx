@@ -4,25 +4,26 @@ import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
 import { dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
-import ProductCardComponent from "./ProductCardComponent";
+import ProductCard from "./ProductCard";
 import { ScreenSectionTitleText } from "./Text/TextComponents";
 
-interface TopGoodsComponentProps {
+interface TopGoodsProps {
     data: Product[];
     router: Router,
     style?: StyleProp<ViewStyle>,
-    isMainScreen?: boolean,
+    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
 
 
-const TopGoodsComponent: React.FC<TopGoodsComponentProps> = (props) => {
+const TopGoods: React.FC<TopGoodsProps> = (props) => {
     function renderProduct({ item }: { item: Product }) {
         return (
-            <ProductCardComponent
+            <ProductCard
                 style={{ marginLeft: 16 }}
                 data={item}
                 router={props.router}
+                parentTab={props.parentTab}
             />
         );
     }
@@ -68,4 +69,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TopGoodsComponent;
+export default TopGoods;

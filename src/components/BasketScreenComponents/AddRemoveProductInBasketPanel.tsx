@@ -12,7 +12,7 @@ interface AddRemoveProductInBasketPanelProps {
     onAdd: () => void,
 }
 
-const AddRemoveProductInBasketPanelComponent: React.FC<AddRemoveProductInBasketPanelProps> = React.memo((props) => {
+const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps> = React.memo((props) => {
     return (
         <View style={[styles.container, props.style]}>
 
@@ -24,6 +24,7 @@ const AddRemoveProductInBasketPanelComponent: React.FC<AddRemoveProductInBasketP
 
             <View style={styles.amountInBasket}>
                 <RegularText
+                    style={{ color: '#fff' }}
                     text={props.product.amountInBasket.toString()}
                 />
             </View>
@@ -62,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddRemoveProductInBasketPanelComponent;
+export default AddRemoveProductInBasketPanel;

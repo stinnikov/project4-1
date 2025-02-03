@@ -47,7 +47,7 @@ export default function () {
 
     if (typeof categoryId === 'string' && products) {
         return (
-            <ProductListScreen products={products} categoryId={categoryId} router={router} />
+            <ProductListScreen parentTab='catalog' products={products} categoryId={categoryId} router={router} />
         );
     }
 

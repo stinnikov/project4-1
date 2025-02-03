@@ -4,14 +4,14 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Router, useFocusEffect } from "expo-router";
 import { Category } from "@/src//interfaces/Category";
 import { Product } from "@/src//interfaces/Product";
-import UserPanelComponent from "@/src//components/MainScreenComponents/UserPanelComponent";
+import UserPanel from "@/src/components/MainScreenComponents/UserPanel";
 import { prods } from "@/src//data/tempData";
-import BonusCardComponent from "@/src//components/MainScreenComponents/BonusCardComponent";
-import SpecialsForUserComponent from "@/src//components/MainScreenComponents/SpecialsForUserComponent";
-import NewOffersForUserComponent from "@/src//components/MainScreenComponents/NewOffersForUserComponent";
-import TopGoodsComponent from "@/src//components/TopGoodsComponent";
+import BonusCard from "@/src/components/MainScreenComponents/BonusCard";
+import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
+import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
+import TopGoods from "@/src/components/TopGoods";
 import { colorsStyles } from "@/src//styles/styles";
-import PromotionsAndDiscountsComponent from "@/src//components/MainScreenComponents/PromotionsAndCoupons";
+import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
 import { StatusBar } from "expo-status-bar";
 
 
@@ -25,27 +25,28 @@ function renderScreen({ item }: { item: MainScreenProps }) {
     return (
         <View style={styles.container}>
             <View style={styles.userPanel}>
-                <UserPanelComponent></UserPanelComponent>
+                <UserPanel></UserPanel>
             </View>
             <View style={styles.card}>
-                <BonusCardComponent></BonusCardComponent>
+                <BonusCard></BonusCard>
             </View>
             <View style={styles.specialsForUser}>
-                <SpecialsForUserComponent></SpecialsForUserComponent>
+                <SpecialsForUser></SpecialsForUser>
             </View>
             <View style={{ backgroundColor: colorsStyles.mainGreyColor.color }}>
                 <View style={styles.newOffers}>
-                    <NewOffersForUserComponent></NewOffersForUserComponent>
+                    <NewOffersForUser></NewOffersForUser>
                 </View>
             </View>
             <View style={styles.topGoods}>
-                <TopGoodsComponent
+                <TopGoods
                     data={prods}
                     router={item.router}
+                    parentTab='home'
                 />
             </View>
             <View style={styles.couponsAndPromotions}>
-                <PromotionsAndDiscountsComponent />
+                <PromotionsAndDiscounts />
             </View>
         </View>
     )

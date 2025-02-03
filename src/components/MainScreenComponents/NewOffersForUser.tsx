@@ -7,7 +7,7 @@ interface NewOffersForUserProps {
 
 }
 
-const NewOffersForUserComponent: React.FC<NewOffersForUserProps> = (props) => {
+const NewOffersForUser: React.FC<NewOffersForUserProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewOffersForUserComponent;
+export default NewOffersForUser;

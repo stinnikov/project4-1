@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View, StyleSheet, Button } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchComponent from "@/src//components/SearchComponent";
+import SearchBar from "@/src/components/SearchBar";
 import { Router, SplashScreen, useFocusEffect } from "expo-router";
-import ProductListComponent from "@/src//components/ProductListComponent";
-import ScreenHeaderComponent from "@/src//components/ScreenHeaderComponent";
+import ProductList from "@/src/components/ProductList";
+import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import { StatusBar } from "expo-status-bar";
@@ -16,6 +16,7 @@ interface ProductListScreenProps {
     products: Product[],
     categoryId: string,
     router: Router,
+    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
 
@@ -30,32 +31,47 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
     const [products, setProducts] = useState<Product[]>(props.products)
     const [categoryName, setCategoryName] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
+    const [release, setRelease] = useState<boolean>(false);
+
+    const setDataAsync = async () => {
+        try {
+            const [getProductsResponse, getCategoryNameResponse] = await Promise.all(
+                [
+                    getProductsByCategoryIdAsync(props.categoryId),
+                    getCategoryNameById(props.categoryId)
+                ]
+
+            );
+
+            getProductsResponse && setProducts(getProductsResponse);
+            getCategoryNameResponse && setCategoryName(getCategoryNameResponse);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        setDataAsync();
+        return () => {
+            setProducts([]);
+        }
+    }, [])
+
+    function clearProductList() {
+        setRelease(true);
+    }
+
+    function setProductList() {
+        setRelease(false);
+    }
 
     useFocusEffect(
         React.useCallback(() => {
-
-            const setDataAsync = async () => {
-                try {
-                    const [getProductsResponse, getCategoryNameResponse] = await Promise.all(
-                        [
-                            getProductsByCategoryIdAsync(props.categoryId),
-                            getCategoryNameById(props.categoryId)
-                        ]
-
-                    );
-
-                    getProductsResponse && setProducts(getProductsResponse);
-                    getCategoryNameResponse && setCategoryName(getCategoryNameResponse);
-                }
-                finally {
-                    setLoading(false);
-                }
-            }
-
-            setDataAsync();
+            setProductList();
             // Функция для очистки при анфокусе
             return () => {
-                setProducts([]); // Очищаем список продуктов при анфокусе
+                clearProductList();
             };
         }, []) // Убедитесь, что здесь пустой массив
     );
@@ -64,41 +80,27 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
         return (<LoadingScreen />)
     }
 
-    function renderScreen(props: ProductListScreenProps) {
-        return (
-            <View>
+    return (
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
+            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                 <View style={{ margin: 16 }}>
-                    <ScreenHeaderComponent
+                    <ScreenHeader
                         title={categoryName}
                         router={props.router}
                     />
                 </View>
                 <View style={{ margin: 16 }}>
-                    <SearchComponent />
+                    <SearchBar />
                 </View>
-
-                <View>
-                    <ProductListComponent
+                <View style={{ flex: 1 }}>
+                    <ProductList
                         data={products}
+                        parentTab={props.parentTab}
                         router={props.router}
+                        release={release}
                     />
                 </View>
-            </View>
-        )
-    }
-
-    const DATA: ProductListScreenProps[] = [
-        props,
-    ]
-
-    return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
-            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
-                <FlatList
-                    data={DATA}
-                    renderItem={() => renderScreen(props)}
-                />
             </SafeAreaView>
         </SafeAreaProvider>
     )

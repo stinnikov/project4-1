@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, ImageBackground, RefreshControl } from "react-native";
+import { View, StyleSheet, ScrollView, ImageBackground, RefreshControl, Text } from "react-native";
 import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
@@ -7,14 +7,14 @@ import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
 import { ProductPageNameText, ProductPagePriceText } from "./Text/TextComponents";
 
-interface ProductCardProps {
+interface ProductPageProps {
     product: Product,
     router: Router,
     onRefresh: () => void;
     refreshing: boolean;
 }
 
-const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
+const ProductPage: React.FC<ProductPageProps> = (props) => {
     const [product, setProduct] = useState<Product>(props.product);
     const router = props.router;
 
@@ -50,6 +50,7 @@ const ProductPageComponent: React.FC<ProductCardProps> = (props) => {
 
                     <View style={styles.price}>
                         <ProductPagePriceText
+                            style={{ alignSelf: 'flex-end', marginLeft: 16, marginBottom: 16 }}
                             text={product.price}
                         />
                     </View>
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: colorsStyles.mainWhiteColor.color,
         flexGrow: 1,
-        marginBottom: '14%',
     },
     container: {
         borderBottomWidth: 12,
@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
     },
     price:
     {
+        marginTop: 16,
         flex: 1,
         left: 0,
-        margin: 16,
         alignContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     },
     description:
     {
+        paddingBottom: '14%',
         flex: 5,
     },
     bottomButton: {
@@ -130,4 +131,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ProductPageComponent;
+export default ProductPage;

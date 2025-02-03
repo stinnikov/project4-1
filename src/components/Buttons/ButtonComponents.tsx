@@ -6,7 +6,7 @@ import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
-import AddRemoveProductInBasketPanelComponent from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
+import AddRemoveProductInBasketPanel from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
 import { BigButtonText, SmallRegularText } from '../Text/TextComponents';
 
 
@@ -89,11 +89,11 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
     if (props.product.amountInBasket > 0) {
         if (props.style)
             return (
-                <AddRemoveProductInBasketPanelComponent style={[buttonStyles.basketButton, props.style]} product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
+                <AddRemoveProductInBasketPanel style={[buttonStyles.basketButton, props.style]} product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
             )
 
         return (
-            <AddRemoveProductInBasketPanelComponent product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
+            <AddRemoveProductInBasketPanel product={props.product} onAdd={addOneProduct} onRemove={removeOneProduct} />
         )
     }
 

@@ -4,11 +4,11 @@ import { colorsStyles } from "@/src/styles/styles";
 import BarComponent from "./BarComponent";
 import svgIcons from "@/src/assets/icons/svgIcons";
 
-interface DeliveryBarComponentProps {
+interface DeliveryBarProps {
     addr?: string,
 }
 
-const DeliveryBarComponent: React.FC<DeliveryBarComponentProps> = (props) => {
+const DeliveryBar: React.FC<DeliveryBarProps> = (props) => {
     return (
         <View style={[styles.row]}>
             <View style={{ flex: 1 }}>
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DeliveryBarComponent;
+export default DeliveryBar;

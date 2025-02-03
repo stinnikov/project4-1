@@ -5,7 +5,7 @@ import { colorsStyles } from "@/src/styles/styles";
 import { Category } from "@/src/interfaces/Category";
 import { CategoryCardNameText } from "./Text/TextComponents";
 
-interface CardComponentProps<T> {
+interface CardProps<T> {
     item: T,
     style: ViewStyle,
     imageStyle?: ImageStyle,
@@ -38,7 +38,7 @@ function isCategory(item: any): item is Category {
     return item && typeof item.id === 'string' && typeof item.depth === 'number';
 }
 
-function CardComponent<T>(props: CardComponentProps<T>) {
+function CardComponent<T>(props: CardProps<T>) {
     return (
         <View style={[cardStyles.container, props.style]}>
             <TouchableOpacity style={{ flex: 1 }}

@@ -7,7 +7,7 @@ interface SpecialsForUserProps {
 
 }
 
-const SpecialsForUserComponent: React.FC<SpecialsForUserProps> = (props) => {
+const SpecialsForUser: React.FC<SpecialsForUserProps> = (props) => {
     const data = [{}, {}, {}, {}, {}, {},]
     function renderSpecialsCard() {
         return (
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SpecialsForUserComponent;
+export default SpecialsForUser;

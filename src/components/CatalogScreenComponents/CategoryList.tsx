@@ -13,7 +13,7 @@ interface CategoryListProps {
 }
 
 
-const CategoryListComponent: React.FC<CategoryListProps> = (props) => {
+const CategoryList: React.FC<CategoryListProps> = (props) => {
     function navigate({ item }: { item: Category }) {
         if (props.currentCategory)
             props.router.push({
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default CategoryListComponent;
+export default CategoryList;

@@ -9,7 +9,7 @@ interface BasketProductListHeaderProps {
     onClear: () => void,
 }
 
-const BasketProductListHeaderComponent: React.FC<BasketProductListHeaderProps> = React.memo((props) => {
+const BasketProductListHeader: React.FC<BasketProductListHeaderProps> = React.memo((props) => {
     return (
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 30, marginBottom: 16 }}>
             <TouchableOpacity style={{
@@ -27,4 +27,4 @@ const BasketProductListHeaderComponent: React.FC<BasketProductListHeaderProps> =
     )
 })
 
-export default React.memo(BasketProductListHeaderComponent);
+export default React.memo(BasketProductListHeader);

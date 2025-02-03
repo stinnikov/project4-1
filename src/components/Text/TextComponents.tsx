@@ -17,7 +17,7 @@ export const RegularText: React.FC<TextProps> = (props) => {
 
 export const SmallRegularText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.smallRegularText, style]}>
+        <Text numberOfLines={4} style={[styles.smallRegularText, style]}>
             {text ?? ''}
         </Text>
     );

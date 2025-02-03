@@ -6,12 +6,12 @@ import { dimensionsStyles } from "@/src/styles/styles";
 import CardComponent from "./CardComponent";
 import { ScreenSectionTitleText } from "./Text/TextComponents";
 
-interface RecomendationComponentProps {
+interface RecomendationsProps {
     data: Product[];
     router: Router,
 }
 
-const RecomendationComponent: React.FC<RecomendationComponentProps> = React.memo((props) => {
+const Recomendations: React.FC<RecomendationsProps> = React.memo((props) => {
     const memoizedData = useMemo(() => props.data, [props.data]);
 
     function renderProduct({ item }: { item: Product }) {
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default React.memo(RecomendationComponent);
+export default React.memo(Recomendations);

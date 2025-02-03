@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { SvgProps, Path, Circle, Rect, Defs, G, ClipPath } from "react-native-svg"
+import Svg, { SvgProps, Path, Circle, Rect, Defs, G, ClipPath, Mask } from "react-native-svg"
 const ProfileIcon = (props: SvgProps) => (
 	<Svg
 		width={30}
@@ -374,6 +374,45 @@ const TrashCanIcon = (props: SvgProps) => (
 )
 
 
+const RatingStarIcon = (props: SvgProps) => (
+	<Svg
+		width={10}
+		height={10}
+		viewBox="0 0 10 10"
+		fill="none"
+		{...props}
+	>
+		<G clipPath="url(#a)">
+			<Mask
+				id="b"
+				width={11}
+				height={10}
+				x={-1}
+				y={0}
+				maskUnits="userSpaceOnUse"
+				style={{
+					maskType: "alpha",
+				}}
+			>
+				<Path
+					fill="#006FFD"
+					d="m9.677 3.363-2.998-.436L5.339.21a.38.38 0 0 0-.678 0l-1.34 2.717-2.998.436a.377.377 0 0 0-.209.644l2.17 2.115-.513 2.986a.377.377 0 0 0 .548.398l2.68-1.41 2.682 1.41a.377.377 0 0 0 .548-.398l-.512-2.986 2.169-2.115a.377.377 0 0 0-.21-.644Z"
+				/>
+			</Mask>
+			<G mask="url(#b)">
+				<Path fill="#FFC400" d="M0 0h10v10H0z" />
+			</G>
+		</G>
+		<Defs>
+			<ClipPath id="a">
+				<Path fill="#fff" d="M0 0h10v10H0z" />
+			</ClipPath>
+		</Defs>
+	</Svg>
+)
+
+
+
 
 export default
 	{
@@ -396,4 +435,5 @@ export default
 		QRCodeIcon,
 		TrashCanIcon,
 		TabBarBasketIcon,
+		RatingStarIcon
 	}

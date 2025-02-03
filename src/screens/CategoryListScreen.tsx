@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList, View, StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchComponent from "@/src/components/SearchComponent";
+import SearchBar from "@/src/components/SearchBar";
 import { Router } from "expo-router";
-import CategoryListComponent from "@/src/components/CatalogScreenComponents/CategoryListComponent";
+import CategoryList from "@/src/components/CatalogScreenComponents/CategoryList";
 import { Category } from "@/src/interfaces/Category";
-import ScreenHeaderComponent from "@/src/components/ScreenHeaderComponent";
+import ScreenHeader from "@/src/components/ScreenHeader";
 import { colorsStyles } from "../styles/styles";
 import { ipv4 } from "../data/tempData";
 import { StatusBar } from "expo-status-bar";
@@ -25,15 +25,15 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                         <View style={{ position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
                         <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
-                            <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
-                            <SearchComponent />
+                            <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                            <SearchBar />
                         </SafeAreaView>
                     </ImageBackground>
 
 
                     <View style={{ margin: 16 }}>
                         <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
-                        <CategoryListComponent
+                        <CategoryList
                             currentCategory={props.currentCategory}
                             data={props.categories}
                             router={props.router}
@@ -47,14 +47,14 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
             <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
                 <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
                     <View style={{ margin: 16 }}>
-                        <ScreenHeaderComponent title={props.currentCategory.name} router={props.router} />
+                        <ScreenHeader title={props.currentCategory.name} router={props.router} />
                     </View>
                     <View style={{ margin: 16 }}>
-                        <SearchComponent />
+                        <SearchBar />
                     </View>
 
                     <View style={{ margin: 16 }}>
-                        <CategoryListComponent
+                        <CategoryList
                             currentCategory={props.currentCategory}
                             data={props.categories}
                             router={props.router}

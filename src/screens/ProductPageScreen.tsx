@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
-import ProductPageComponent from '@/src/components/ProductPageComponent';
+import ProductPage from '@/src/components/ProductPage';
 import { Router, useFocusEffect } from 'expo-router';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { getSingleProductByIdAsync } from '../services/ProductService';
@@ -49,7 +49,7 @@ const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
         return (
             <SafeAreaProvider style={{ flex: 1 }}>
                 <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                    <ProductPageComponent
+                    <ProductPage
                         refreshing={refreshing}
                         onRefresh={onRefresh}
                         product={product}

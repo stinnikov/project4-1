@@ -3,11 +3,11 @@ import { View, StyleSheet, ImageBackground } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 import { RegularText } from '../Text/TextComponents'
 
-interface PromotionsAndCouponsProps {
+interface PromotionsAndDiscountsProps {
 
 }
 
-const PromotionsAndDiscountsComponent: React.FC<PromotionsAndCouponsProps> = (props) => {
+const PromotionsAndDiscounts: React.FC<PromotionsAndDiscountsProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PromotionsAndDiscountsComponent;
+export default PromotionsAndDiscounts;

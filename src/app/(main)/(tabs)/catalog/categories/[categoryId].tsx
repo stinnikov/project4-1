@@ -57,6 +57,7 @@ export default function CategoryIdScreen() {
                 return (
                     <View style={{ flex: 1 }}>
                         <ProductListScreen
+                            parentTab='catalog'
                             products={products}
                             categoryId={categoryId}
                             router={router}

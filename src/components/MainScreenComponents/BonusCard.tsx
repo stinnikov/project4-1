@@ -6,7 +6,7 @@ interface BonusCardProps {
 
 }
 
-const BonusCardComponent: React.FC<BonusCardProps> = (props) => {
+const BonusCard: React.FC<BonusCardProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BonusCardComponent;
+export default BonusCard;

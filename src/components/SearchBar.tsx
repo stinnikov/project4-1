@@ -4,12 +4,12 @@ import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { RegularText } from "./Text/TextComponents";
 
-interface SearchComponentProps {
+interface SearchBarProps {
     text?: string,
     style?: ViewStyle,
 }
 
-const SearchComponent: React.FC<SearchComponentProps> = (props) => {
+const SearchBar: React.FC<SearchBarProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.searchBar}>
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SearchComponent;
+export default SearchBar;

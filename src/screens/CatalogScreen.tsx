@@ -3,12 +3,12 @@ import { useFocusEffect } from "expo-router";
 import { View, StyleSheet, FlatList } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { Router, SplashScreen } from "expo-router";
-import CategoryCardListComponent from "@/src/components/CatalogScreenComponents/CategoryCardListComponent";
+import CategoryCardList from "@/src/components/CatalogScreenComponents/CategoryCardList";
 import { Category } from "@/src/interfaces/Category";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchComponent from "@/src/components/SearchComponent";
+import SearchBar from "@/src/components/SearchBar";
 import { colorsStyles } from "../styles/styles";
-import RecomendationsComponent from "@/src/components/RecomendationsComponent";
+import RecomendationsComponent from "@/src/components/Recomendations";
 import { prods } from "@/src/data/tempData";
 import { getCategoriesDepthZero } from "../services/CategoryService";
 import LoadingScreen from "./LoadingScreen";
@@ -50,7 +50,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
                 <View style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
 
                     <View style={{ margin: 16 }}>
-                        <SearchComponent />
+                        <SearchBar />
                     </View>
 
                     <RecomendationsComponent
@@ -59,7 +59,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
                     />
 
                     <View style={{ margin: 16 }}>
-                        <CategoryCardListComponent
+                        <CategoryCardList
                             data={categories}
                             router={item.router}
                         />
