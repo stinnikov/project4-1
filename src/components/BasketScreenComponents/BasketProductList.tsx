@@ -49,10 +49,22 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
         fetchData().finally(() => setRefreshing(false));
     }, []);
 
+    function navigateToProduct(product: Product) {
+        props.router.push(
+            {
+                pathname: '/(main)/(tabs)/(basket)/product/[productId]',
+                params: {
+                    productId: product.id,
+                }
+            }
+        )
+    }
+
     const renderProduct = useCallback(({ item }: { item: Product }) => (
         <BasketProductCard
             data={item}
             router={props.router}
+            navigateToProduct={navigateToProduct}
         />
     ), [props.router]);
 

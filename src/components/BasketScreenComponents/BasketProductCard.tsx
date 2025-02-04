@@ -4,107 +4,26 @@ import { Product } from "@/src/interfaces/Product";
 import { Router, useNavigation } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "../Buttons/ButtonComponents";
-import { SmallRegularText, ProductRatingCardText } from "../Text/TextComponents";
+import { Montserrat500MediumText, Montserrat400RegularText } from "../Text/TextComponents";
+import ProductCard from "../ProductCard";
 
 interface BasketProductCardProps {
     data: Product,
     router: Router,
+    navigateToProduct: (product: Product) => void,
 }
 
 const BasketProductCard: React.FC<BasketProductCardProps> = (props: BasketProductCardProps) => {
     const router = props.router;
     const [product, setProduct] = useState<Product>(props.data);
-    const [amountInBasket, setAmountInBasket] = useState<number>(product.amountInBasket);
-
-    const navigation = useNavigation();
-    const currentTabIndex = navigation.getParent()?.getState().index;
-
-    function navigateToProduct() {
-        if (currentTabIndex === 0) {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (currentTabIndex === 1) {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (currentTabIndex === 2) {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (currentTabIndex === 3) {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(profile)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (currentTabIndex === 4) {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(basket)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-    }
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
-
-                <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
-                    <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
-                        <ProductRatingCardText
-                            style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
-                            text="4.3"
-                        />
-
-                        <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
-                    </View>
-                </ImageBackground>
-            </TouchableOpacity>
-
-            <View style={styles.productNameContainer}>
-                <SmallRegularText
-                    text={product.name}
-                />
-            </View>
-
-            <View style={styles.priceContainer}>
-                <SmallRegularText
-                    style={{ paddingHorizontal: 8 }}
-                    text={product.price}
-                />
-            </View>
-
-            <View style={{ flex: 0.3, marginBottom: 16 }}>
-                <BasketButtonComponent style={{ flex: 1, width: '80%', bottom: 0, alignSelf: 'center' }} product={product} />
-            </View>
-        </View>
+        <ProductCard
+            data={props.data}
+            router={props.router}
+            navigateToProduct={props.navigateToProduct}
+            parentTab="basket"
+        />
     )
 }
 

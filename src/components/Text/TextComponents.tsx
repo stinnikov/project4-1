@@ -7,7 +7,7 @@ interface TextProps {
     style?: TextStyle | TextStyle[],
     text: string | undefined,
 }
-export const RegularText: React.FC<TextProps> = (props) => {
+export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
     return (
         <Text style={[styles.regularText, props.style]}>
             {props.text ?? ''}
@@ -15,23 +15,7 @@ export const RegularText: React.FC<TextProps> = (props) => {
     );
 };
 
-export const SmallRegularText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text numberOfLines={4} style={[styles.smallRegularText, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
-
-export const MiniRegularText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text style={[styles.miniRegularText, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
-
-export const ScreenHeaderTitleText: React.FC<TextProps> = ({ text, style }) => {
+export const Raleway500MediumText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.screenHeaderTitleText, style]}>
             {text ?? ''}
@@ -39,7 +23,7 @@ export const ScreenHeaderTitleText: React.FC<TextProps> = ({ text, style }) => {
     );
 };
 
-export const CategoryCardNameText: React.FC<TextProps> = ({ text, style }) => {
+export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.categoryCardName, style]}>
             {text ?? ''}
@@ -47,7 +31,7 @@ export const CategoryCardNameText: React.FC<TextProps> = ({ text, style }) => {
     );
 };
 
-export const ScreenSectionTitleText: React.FC<TextProps> = ({ text, style }) => {
+export const Raleway600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.screenSectionTitle, style]}>
             {text ?? ''}
@@ -55,7 +39,7 @@ export const ScreenSectionTitleText: React.FC<TextProps> = ({ text, style }) => 
     );
 };
 
-export const ProductRatingCardText: React.FC<TextProps> = ({ text, style }) => {
+export const Montserrat500MediumText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.ratingCardText, style]}>
             {text ?? ''}
@@ -63,7 +47,7 @@ export const ProductRatingCardText: React.FC<TextProps> = ({ text, style }) => {
     );
 };
 
-export const BigButtonText: React.FC<TextProps> = ({ text, style }) => {
+export const Montserrat600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.bigButtonText, style]}>
             {text ?? ''}
@@ -71,7 +55,7 @@ export const BigButtonText: React.FC<TextProps> = ({ text, style }) => {
     );
 };
 
-export const ProductPageNameText: React.FC<TextProps> = ({ text, style }) => {
+export const Raleway700BoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
         <Text style={[styles.productPageNameText, style]}>
             {text ?? ''}
@@ -86,23 +70,6 @@ export const ProductPagePriceText: React.FC<TextProps> = ({ text, style }) => {
         </Text>
     );
 };
-
-export const CirclePostForUserText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text numberOfLines={3} style={[styles.circlePostForUserText, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
-
-export const SortListText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text numberOfLines={3} style={[styles.sortListText, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
-
 
 
 const styles = StyleSheet.create({
@@ -134,11 +101,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_400Regular',
         letterSpacing: -0.03,
     },
-    miniRegularText: {
-        fontSize: 10,
-        fontFamily: 'Montserrat_400Regular',
-        letterSpacing: -0.03,
-    },
     productPageNameText: {
         fontSize: 26,
         fontFamily: 'Raleway_700Bold',
@@ -147,37 +109,23 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontFamily: 'Montserrat_500Medium',
     },
-    circlePostForUserText: {
-        fontSize: 12,
-        fontFamily: 'Montserrat_400Regular',
-        alignSelf: 'center',
-        textAlign: 'center',
-        letterSpacing: -0.03,
-    },
     ratingCardText: {
         fontSize: 12,
         fontFamily: 'Montserrat_500Medium',
         letterSpacing: -0.03,
     },
-    sortListText: {
-        fontSize: 18,
-        fontFamily: 'Montserrat_600SemiBold',
-        color: colorsStyles.mainBrightColor.color,
-        letterSpacing: -0.03,
-    }
 
 });
 
 export default {
-    BigButtonText,
-    RegularText,
-    SmallRegularText,
-    MiniRegularText,
-    ScreenHeaderTitleText,
-    ScreenSectionTitleText,
-    ProductRatingCardText,
-    CategoryCardNameText,
-    ProductPageNameText,
-    CirclePostForUserText,
-    SortListText
+    RegularText: Montserrat400RegularText,
+    ProductRatingCardText: Montserrat500MediumText,
+    BigButtonText: Montserrat600SemiBoldText,
+
+
+
+    CategoryCardNameText: Raleway400RegularText,
+    ScreenHeaderTitleText: Raleway500MediumText,
+    ScreenSectionTitleText: Raleway600SemiBoldText,
+    ProductPageNameText: Raleway700BoldText,
 }

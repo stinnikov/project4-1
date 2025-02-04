@@ -4,7 +4,7 @@ import { Category } from "@/src/interfaces/Category";
 import { Router } from "expo-router";
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { colorsStyles } from "@/src/styles/styles";
-import { RegularText } from "../Text/TextComponents";
+import { Montserrat400RegularText } from "../Text/TextComponents";
 
 interface CategoryListProps {
     currentCategory: Category | undefined, // current category
@@ -44,7 +44,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
                     style={styles.container}
                     onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
                 >
-                    <RegularText
+                    <Montserrat400RegularText
                         style={[styles.categoryText, { color: colorsStyles.mainBrightColor.color }]}
                         text="Все продукты категории"
                     />
@@ -66,7 +66,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
             <TouchableOpacity
                 style={styles.container}
                 onPress={() => { navigate({ item }) }}>
-                <RegularText
+                <Montserrat400RegularText
                     style={styles.categoryText}
                     text={item.name}
                 />

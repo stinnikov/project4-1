@@ -6,7 +6,7 @@ import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
 import ProductCard from './ProductCard';
 import svgIcons from '@/src/assets/icons/svgIcons';
-import { SortListText } from './Text/TextComponents';
+import { Montserrat600SemiBoldText } from './Text/TextComponents';
 
 
 interface ProductListProps {
@@ -27,7 +27,8 @@ const ListHeader = memo(() =>
     <TouchableOpacity
         style={{ flexDirection: 'row', alignItems: 'center', minHeight: 30, marginBottom: 16, }}>
         <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-        <SortListText
+        <Montserrat600SemiBoldText
+            style={{ color: colorsStyles.mainBrightColor.color }}
             text='Сортировка' />
     </TouchableOpacity>
 ));
@@ -36,11 +37,65 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
 
     const [products, setProducts] = useState<Product[]>(props.data);
 
+    function navigateToProduct(product: Product) {
+        if (props.parentTab === 'catalog') {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (props.parentTab === 'favourites') {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (props.parentTab === 'home') {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (props.parentTab === 'profile') {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(profile)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+        else if (props.parentTab === 'basket') {
+            props.router.push(
+                {
+                    pathname: '/(main)/(tabs)/(basket)/product/[productId]',
+                    params: {
+                        productId: product.id,
+                    }
+                }
+            )
+        }
+    }
+
     const renderProduct = useCallback(({ item }: { item: Product }) => (
         <ProductCard
             data={item}
             router={props.router}
             parentTab={props.parentTab}
+            navigateToProduct={navigateToProduct}
         />
     ), [props.router]);
 

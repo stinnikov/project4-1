@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { RegularText } from "./Text/TextComponents";
+import { Montserrat400RegularText } from "./Text/TextComponents";
 
 interface SearchBarProps {
     text?: string,
@@ -13,7 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
             <TouchableOpacity style={styles.searchBar}>
-                <RegularText
+                <Montserrat400RegularText
                     text='Поиск'
                 />
                 <TouchableOpacity style={styles.qrCode}>

@@ -3,7 +3,7 @@ import { View, ViewStyle, StyleSheet } from 'react-native';
 import { RemoveOneProductFromBasket } from '../Buttons/ButtonComponents';
 import { AddOneProductInBasket } from '../Buttons/ButtonComponents';
 import { Product } from '@/src/interfaces/Product';
-import { RegularText } from '../Text/TextComponents';
+import { Montserrat400RegularText } from '../Text/TextComponents';
 
 interface AddRemoveProductInBasketPanelProps {
     style?: ViewStyle[]
@@ -23,7 +23,7 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
             />
 
             <View style={styles.amountInBasket}>
-                <RegularText
+                <Montserrat400RegularText
                     style={{ color: '#fff' }}
                     text={props.product.amountInBasket.toString()}
                 />

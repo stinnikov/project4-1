@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
-import { CirclePostForUserText } from '../Text/TextComponents'
+import { Raleway400RegularText } from '../Text/TextComponents'
 
 export interface CircleStoryProps {
     imgSrc: string,
@@ -20,7 +20,8 @@ const CirclePostForUser: React.FC<CircleStoryProps> = (props) => {
                     />
                 </View>
                 <View style={styles.textContainer}>
-                    <CirclePostForUserText
+                    <Raleway400RegularText
+                        style={{ fontSize: 12 }}
                         text={`Текст\nв 3\nстроки\n`}
                     />
                 </View>

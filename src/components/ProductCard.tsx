@@ -1,73 +1,24 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Router, useNavigation } from "expo-router";
+import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { ProductRatingCardText, SmallRegularText } from "./Text/TextComponents";
+import { Montserrat400RegularText, Montserrat500MediumText } from "./Text/TextComponents";
 
 interface ProductCardProps {
     data: Product,
     router: Router,
     style?: ViewStyle,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
+    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket',
+    navigateToProduct: (product: Product) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-    const router = props.router;
     const [product, setProduct] = useState<Product>(props.data);
 
     function navigateToProduct() {
-        if (props.parentTab === 'catalog') {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (props.parentTab === 'favourites') {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (props.parentTab === 'home') {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(home)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (props.parentTab === 'profile') {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(profile)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
-        else if (props.parentTab === 'basket') {
-            router.push(
-                {
-                    pathname: '/(main)/(tabs)/(basket)/product/[productId]',
-                    params: {
-                        productId: product.id,
-                    }
-                }
-            )
-        }
+        props.navigateToProduct(props.data);
     }
 
     return (
@@ -76,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[buttonStyles.miniButton]}>
-                            <ProductRatingCardText
+                            <Montserrat500MediumText
                                 style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
                                 text="4.3"
                             />
@@ -87,14 +38,15 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
             </TouchableOpacity>
 
             <View style={styles.productNameContainer}>
-                <SmallRegularText
+                <Montserrat400RegularText
+                    style={{ fontSize: 14 }}
                     text={product.name}
                 />
             </View>
 
             <View style={styles.priceContainer}>
-                <SmallRegularText
-                    style={{ paddingHorizontal: 8 }}
+                <Montserrat400RegularText
+                    style={{ paddingHorizontal: 8, fontSize: 14 }}
                     text={product.price}
                 />
             </View>

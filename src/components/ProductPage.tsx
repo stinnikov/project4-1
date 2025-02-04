@@ -5,7 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { ProductPageNameText, ProductPagePriceText } from "./Text/TextComponents";
+import { Raleway700BoldText, ProductPagePriceText } from "./Text/TextComponents";
 
 interface ProductPageProps {
     product: Product,
@@ -43,7 +43,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                         </ImageBackground>
                     </View>
                     <View style={styles.title}>
-                        <ProductPageNameText
+                        <Raleway700BoldText
                             text={product.name}
                         />
                     </View>

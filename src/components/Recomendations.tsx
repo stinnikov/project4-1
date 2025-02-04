@@ -4,7 +4,7 @@ import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
 import { dimensionsStyles } from "@/src/styles/styles";
 import CardComponent from "./CardComponent";
-import { ScreenSectionTitleText } from "./Text/TextComponents";
+import { Raleway600SemiBoldText } from "./Text/TextComponents";
 
 interface RecomendationsProps {
     data: Product[];
@@ -27,7 +27,7 @@ const Recomendations: React.FC<RecomendationsProps> = React.memo((props) => {
 
     return (
         <View style={styles.container}>
-            <ScreenSectionTitleText
+            <Raleway600SemiBoldText
                 style={{ padding: 16 }}
                 text="Рекомендации"
             />

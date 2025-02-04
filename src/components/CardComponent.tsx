@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle, ImageSt
 import { Router } from "expo-router";
 import { colorsStyles } from "@/src/styles/styles";
 import { Category } from "@/src/interfaces/Category";
-import { CategoryCardNameText } from "./Text/TextComponents";
+import { Raleway400RegularText } from "./Text/TextComponents";
 
 interface CardProps<T> {
     item: T,
@@ -47,7 +47,7 @@ function CardComponent<T>(props: CardProps<T>) {
                     source={{ uri: props.imageUri }}
                     style={cardStyles.imageBackground}
                     imageStyle={[cardStyles.image]}>
-                    <CategoryCardNameText
+                    <Raleway400RegularText
                         style={{ paddingTop: 8, paddingLeft: 16 }}
                         text={props.titleText}
                     />

@@ -6,7 +6,7 @@ import { Router } from 'expo-router';
 import { dimensionsStyles } from '@/src/styles/styles';
 import CardComponent from '../CardComponent';
 import { ipv4 } from '@/src/data/tempData';
-import { ScreenSectionTitleText } from '../Text/TextComponents';
+import { Raleway600SemiBoldText } from '../Text/TextComponents';
 
 interface CategoryCardListProps {
     data: Category[];
@@ -25,7 +25,7 @@ const CategoryCardList: React.FC<CategoryCardListProps> = (props) => {
     }, [props.data]);
 
     const ListHeader = useCallback(() => (
-        <ScreenSectionTitleText
+        <Raleway600SemiBoldText
             text='Категории'
             style={{ paddingBottom: 16 }}
         />

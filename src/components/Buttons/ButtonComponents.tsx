@@ -7,7 +7,7 @@ import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
 import AddRemoveProductInBasketPanel from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
-import { BigButtonText, SmallRegularText } from '../Text/TextComponents';
+import { Montserrat600SemiBoldText, Montserrat400RegularText } from '../Text/TextComponents';
 
 
 
@@ -105,7 +105,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
                     stroke={colorsStyles.mainWhiteColor.color}
                     strokeWidth={1.5}
                 />
-                <BigButtonText
+                <Montserrat600SemiBoldText
                     style={{ color: 'white' }}
                     text='В корзину'
                 />
@@ -116,8 +116,8 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
     return (
         <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
             <svgIcons.BasketIcon stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
-            <SmallRegularText
-                style={{ color: 'white' }}
+            <Montserrat400RegularText
+                style={{ color: 'white', fontSize: 14 }}
                 text='В корзину'
             />
         </TouchableOpacity>

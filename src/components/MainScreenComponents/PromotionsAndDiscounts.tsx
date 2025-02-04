@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
-import { RegularText } from '../Text/TextComponents'
+import { Montserrat400RegularText } from '../Text/TextComponents'
 
 interface PromotionsAndDiscountsProps {
 
@@ -15,7 +15,7 @@ const PromotionsAndDiscounts: React.FC<PromotionsAndDiscountsProps> = (props) =>
                     <ImageBackground
                         style={styles.imageBackground}
                         source={{ uri: '' }}>
-                        <RegularText
+                        <Montserrat400RegularText
                             style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
                             text='Промокоды'
                         />
@@ -25,7 +25,7 @@ const PromotionsAndDiscounts: React.FC<PromotionsAndDiscountsProps> = (props) =>
                     <ImageBackground
                         style={styles.imageBackground}
                         source={{ uri: '' }}>
-                        <RegularText
+                        <Montserrat400RegularText
                             style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
                             text='Акции'
                         />

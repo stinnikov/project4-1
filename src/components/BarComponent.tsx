@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
 import { dimensionsStyles } from "@/src/styles/styles";
-import { RegularText } from "./Text/TextComponents";
+import { Montserrat400RegularText } from "./Text/TextComponents";
 
 interface BarComponentProps {
     text?: string;
@@ -24,7 +24,7 @@ const BarComponent: React.FC<BarComponentProps> = (props) => {
         <TouchableOpacity style={[styles.container, style]}>
             {leftIcon && <View style={styles.leftIconContainer}>{leftIcon}</View>}
             <View style={styles.textContainer}>
-                <RegularText text={text} style={textStyle} />
+                <Montserrat400RegularText text={text} style={textStyle} />
             </View>
             {rightIcon && <View style={styles.rightIconContainer}>{rightIcon}</View>}
         </TouchableOpacity>

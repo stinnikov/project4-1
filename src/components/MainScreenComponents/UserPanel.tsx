@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import CirclePostForUser, { CircleStoryProps } from './CirclePostForUser'
 import SvgIcons from '@/src/assets/icons/svgIcons';
-import { ScreenSectionTitleText } from '../Text/TextComponents';
+import { Raleway600SemiBoldText } from '../Text/TextComponents';
 
 interface UserPanelProps {
     name?: string;
@@ -24,7 +24,7 @@ const UserPanel: React.FC<UserPanelProps> = (props) => {
         <View style={styles.container}>
             <View style={styles.nameAndButtons}>
 
-                <ScreenSectionTitleText
+                <Raleway600SemiBoldText
                     text='Имя пользователя'
                 />
 

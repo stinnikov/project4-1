@@ -27,9 +27,6 @@ function renderScreen({ item }: { item: MainScreenProps }) {
             <View style={styles.userPanel}>
                 <UserPanel></UserPanel>
             </View>
-            <View style={styles.card}>
-                <BonusCard></BonusCard>
-            </View>
             <View style={styles.specialsForUser}>
                 <SpecialsForUser></SpecialsForUser>
             </View>
@@ -108,18 +105,17 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainDarkColor.color,
     },
     card: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 16,
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
+        flex: 1,
+        padding: 16,
+        borderTopRightRadius: 14,
+        borderTopLeftRadius: 14,
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     newOffers: {
         paddingBottom: 16,
         backgroundColor: colorsStyles.mainWhiteColor.color,
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
+        borderBottomLeftRadius: 14,
+        borderBottomRightRadius: 14,
     },
     specialsForUser: {
         backgroundColor: colorsStyles.mainWhiteColor.color,

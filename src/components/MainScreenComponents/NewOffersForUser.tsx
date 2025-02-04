@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
-import { RegularText } from '../Text/TextComponents'
+import { Montserrat400RegularText } from '../Text/TextComponents'
 
 interface NewOffersForUserProps {
 
@@ -16,7 +16,7 @@ const NewOffersForUser: React.FC<NewOffersForUserProps> = (props) => {
                         source={{ uri: '' }}
                         style={styles.imageBackground}
                         resizeMode='contain'>
-                        <RegularText
+                        <Montserrat400RegularText
                             style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
                             text='Новинки'
                         />

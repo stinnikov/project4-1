@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ImageBackground, FlatList } from 'react-native'
 import { colorsStyles } from '@/src/styles/styles'
-import { ScreenSectionTitleText } from '../Text/TextComponents'
+import { Raleway600SemiBoldText } from '../Text/TextComponents'
 
 interface SpecialsForUserProps {
 
@@ -20,7 +20,7 @@ const SpecialsForUser: React.FC<SpecialsForUserProps> = (props) => {
     }
     return (
         <View style={styles.container}>
-            <ScreenSectionTitleText
+            <Raleway600SemiBoldText
                 style={{ padding: 16 }}
                 text='Для вас'
             />

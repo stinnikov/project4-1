@@ -5,7 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
 import ProductCard from "./ProductCard";
-import { ScreenSectionTitleText } from "./Text/TextComponents";
+import { Raleway600SemiBoldText } from "./Text/TextComponents";
 
 interface TopGoodsProps {
     data: Product[];
@@ -30,7 +30,7 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
 
     return (
         <View style={styles.container}>
-            <ScreenSectionTitleText
+            <Raleway600SemiBoldText
                 text="Топ товары"
                 style={{ padding: 16 }}
             />
