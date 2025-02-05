@@ -48,7 +48,7 @@ export default function TabLayout() {
 				title: 'Избранное',
 				headerShown: headerShown,
 				tabBarLabel: ({ focused, children }) => (
-					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} numberOfLines={1}>{children}</Text>
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
