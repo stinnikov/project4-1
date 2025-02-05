@@ -1,6 +1,6 @@
 
 import React, { memo, useCallback, useState, useEffect } from 'react';
-import { View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
@@ -12,8 +12,11 @@ import { Montserrat600SemiBoldText } from './Text/TextComponents';
 interface ProductListProps {
     data: Product[];
     router: Router;
-    release?: boolean; // Добавляем пропс для сигнала очистки
+    release?: boolean, // Добавляем пропс для сигнала очистки
+    style?: ViewStyle,
+    horizontal?: boolean,
     parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
+    productStyle?: ViewStyle
 }
 
 const getItemLayout = (data: any, index: number) => ({
@@ -21,6 +24,12 @@ const getItemLayout = (data: any, index: number) => ({
     offset: dimensionsStyles.productCard.height * index,
     index,
 });
+
+function ListSeparator() {
+    return (
+        <View style={{ marginLeft: 16 }}></View>
+    )
+}
 
 const ListHeader = memo(() =>
 (
@@ -95,31 +104,34 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
             data={item}
             router={props.router}
             parentTab={props.parentTab}
+            style={props.productStyle}
             navigateToProduct={navigateToProduct}
         />
     ), [props.router]);
 
-    // useEffect для обработки сигнала очистки
-    useEffect(() => {
-        // Очистка ресурсов при получении сигнала от родительского компонента
-        if (props.release) {
-            let firstProduct = products[0];
-            setProducts([firstProduct]);
-        }
-        else {
-            setProducts(props.data);
-        }
-
-        // Возвращаем функцию очистки, если нужно
-        return () => {
-            setProducts([]);
-        };
-    }, [props.release]); // Зависимость от функции onClear
+    if (props.horizontal) {
+        return (
+            <View style={[styles.container, props.style]}>
+                <FlatList
+                    style={styles.horizontalList}
+                    data={products}
+                    renderItem={renderProduct}
+                    ItemSeparatorComponent={ListSeparator}
+                    keyExtractor={(item) => item.id}
+                    initialNumToRender={3}
+                    horizontal={true}
+                    removeClippedSubviews={true}
+                    showsVerticalScrollIndicator={false}
+                    getItemLayout={getItemLayout}
+                />
+            </View>
+        );
+    }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <FlatList
-                style={styles.list}
+                style={{ padding: 1 }}
                 data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
@@ -139,13 +151,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    list: {
-        padding: 16,
-    },
     column: {
         justifyContent: 'space-between',
         marginBottom: 16,
     },
+    horizontalList: {
+        paddingHorizontal: 16,
+    }
 });
 
 export default ProductList;

@@ -19,15 +19,7 @@ interface ProductListScreenProps {
     parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
-
-
-function renderLoadingScreen() {
-
-}
-
-
-
-const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) => {
+const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
     const [products, setProducts] = useState<Product[]>(props.products)
     const [categoryName, setCategoryName] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
@@ -83,17 +75,16 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
-                <View style={{ margin: 16 }}>
+                <View style={styles.header}>
                     <ScreenHeader
                         title={categoryName}
                         router={props.router}
                     />
                 </View>
-                <View style={{ margin: 16 }}>
+                <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={styles.productList}>
                     <ProductList
                         data={products}
                         parentTab={props.parentTab}
@@ -105,12 +96,24 @@ const ProductListScreen: React.FC<ProductListScreenProps> = React.memo((props) =
         </SafeAreaProvider>
     )
 }
-);
 
 const styles = StyleSheet.create({
-    topGoods: {
-        flex: 1
+    column: {
+        justifyContent: 'space-between',
+        marginBottom: 16,
+    },
+    header: {
+        margin: 16,
+        flexDirection: 'row',
+        width: '100%'
+    },
+    searchBar: {
+        paddingHorizontal: 16,
+    },
+    productList: {
+        flexGrow: 1,
+        padding: 16,
     }
 })
 
-export default React.memo(ProductListScreen);
+export default ProductListScreen;

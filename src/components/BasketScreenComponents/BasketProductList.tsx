@@ -71,7 +71,6 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
     return (
         <View style={styles.container}>
             <FlatList
-                style={{ flex: 1, padding: 16 }}
                 data={products}
                 renderItem={renderProduct}
                 numColumns={2}
@@ -98,10 +97,6 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    list: {
-        padding: 16,
     },
     productCard: {
         height: dimensionsStyles.productListCard.height,

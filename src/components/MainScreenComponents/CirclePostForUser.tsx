@@ -21,7 +21,7 @@ const CirclePostForUser: React.FC<CircleStoryProps> = (props) => {
                 </View>
                 <View style={styles.textContainer}>
                     <Raleway400RegularText
-                        style={{ fontSize: 12 }}
+                        style={{ fontSize: 12, textAlign: 'center' }}
                         text={`Текст\nв 3\nстроки\n`}
                     />
                 </View>
@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
     textContainer: {
         marginTop: 8,
         marginBottom: 16,
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        justifyContent: 'center',
+        alignItems: 'center',
         maxWidth: dimensionsStyles.circleStory.width,
         overflow: 'hidden', // Скрыть переполненный текст
     },

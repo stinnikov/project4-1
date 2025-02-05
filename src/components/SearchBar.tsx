@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
     },
     settingsIcon: {
-        position: 'absolute',
         color: colorsStyles.mainDarkColor.color,
     },
 })

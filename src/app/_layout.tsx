@@ -12,6 +12,8 @@ export default function RootLayout() {
                 {
                     headerShown: false,
                     contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color },
+                    statusBarStyle: 'light',
+                    statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString(),
                 }}>
         </Stack>
     );

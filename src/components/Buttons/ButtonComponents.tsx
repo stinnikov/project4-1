@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Pressable, ViewStyle, Text } from 'react-native';
+import { TouchableOpacity, Pressable, ViewStyle, Text, View, StyleSheet } from 'react-native';
 import svgIcons from '@/src/assets/icons/svgIcons';
 import { colorsStyles, buttonStyles } from '@/src/styles/styles';
 import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
-import AddRemoveProductInBasketPanel from '../BasketScreenComponents/AddRemoveProductInBasketPanel';
 import { Montserrat600SemiBoldText, Montserrat400RegularText } from '../Text/TextComponents';
 
 
@@ -58,6 +57,64 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
         </Pressable>
     )
 })
+
+interface AddRemoveProductInBasketPanelProps {
+    style?: ViewStyle[]
+    product: Product,
+    onRemove: () => void,
+    onAdd: () => void,
+}
+
+const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps> = React.memo((props) => {
+    return (
+        <View style={[addRemoveProductInBasketStyles.container, props.style]}>
+
+            <RemoveOneProductFromBasket
+                style={addRemoveProductInBasketStyles.removeButton}
+                product={props.product}
+                onRemove={props.onRemove}
+            />
+
+            <View style={addRemoveProductInBasketStyles.amountInBasket}>
+                <Montserrat400RegularText
+                    style={{ color: '#fff' }}
+                    text={props.product.amountInBasket.toString()}
+                />
+            </View>
+
+            <AddOneProductInBasket
+                style={addRemoveProductInBasketStyles.addButton}
+                product={props.product}
+                onAdd={props.onAdd}
+            />
+        </View>
+    )
+})
+
+const addRemoveProductInBasketStyles = StyleSheet.create({
+    container: {
+        borderRadius: 12,
+        flexDirection: 'row',
+        backgroundColor: 'green',
+    },
+    removeButton: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    amountInBasket: {
+        flex: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#fff',
+        height: '100%',
+    },
+    addButton: {
+        flex: 1,
+        alignItems: 'center',
+    },
+});
 
 interface BasketButtonComponentProps {
     product: Product,

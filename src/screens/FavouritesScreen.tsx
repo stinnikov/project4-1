@@ -53,21 +53,19 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={{ margin: 16 }}>
-                    <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
+                <View style={styles.header}>
                     <ScreenHeader
-                        title={props.categoryName}
+                        title='Избранное'
                         router={props.router}
                     />
                 </View>
-                <View style={{ margin: 16 }}>
+                <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={styles.productList}>
                     <FavouritesProductList
                         products={products}
                         router={props.router}
-                        parentTab="favourites"
                     />
                 </View>
             </SafeAreaView>
@@ -77,8 +75,21 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
 
 
 const styles = StyleSheet.create({
-    topGoods: {
-        flex: 1
+    column: {
+        justifyContent: 'space-between',
+        marginBottom: 16,
+    },
+    header: {
+        margin: 16,
+        flexDirection: 'row',
+        width: '100%'
+    },
+    searchBar: {
+        paddingHorizontal: 16,
+    },
+    productList: {
+        flexGrow: 1,
+        padding: 16,
     }
 })
 

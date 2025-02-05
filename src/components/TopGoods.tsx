@@ -6,6 +6,7 @@ import { dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
 import ProductCard from "./ProductCard";
 import { Raleway600SemiBoldText } from "./Text/TextComponents";
+import ProductList from "./ProductList";
 
 interface TopGoodsProps {
     data: Product[];
@@ -17,39 +18,18 @@ interface TopGoodsProps {
 
 
 const TopGoods: React.FC<TopGoodsProps> = (props) => {
-    function renderProduct({ item }: { item: Product }) {
-        return (
-            <ProductCard
-                style={{ marginLeft: 16 }}
-                data={item}
-                router={props.router}
-                parentTab={props.parentTab}
-            />
-        );
-    }
-
     return (
         <View style={styles.container}>
             <Raleway600SemiBoldText
                 text="Топ товары"
                 style={{ padding: 16 }}
             />
-            <FlatList
-                style={styles.list}
+            <ProductList
                 data={props.data}
-                renderItem={renderProduct}
-                keyExtractor={(item) => item.id}
+                router={props.router}
+                parentTab={props.parentTab}
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                initialNumToRender={5}
-                bounces={false}
-                nestedScrollEnabled={true}
-                getItemLayout={(data, index) => ({
-                    length: dimensionsStyles.topGoodsCard.width,
-                    offset: dimensionsStyles.topGoodsCard.width * index,
-                    index
-                }
-                )}
+                productStyle={{ width: 135 }}
             />
         </View>
     );

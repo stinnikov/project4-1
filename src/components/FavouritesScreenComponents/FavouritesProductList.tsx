@@ -8,7 +8,6 @@ import ProductList from "../ProductList";
 interface FavouritesProductListProps {
     products: Product[],
     router: Router,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
 }
 
 const FavouritesProductList: React.FC<FavouritesProductListProps> = (props) => {
@@ -16,7 +15,7 @@ const FavouritesProductList: React.FC<FavouritesProductListProps> = (props) => {
         <ProductList
             data={props.products}
             router={props.router}
-            parentTab={props.parentTab}
+            parentTab='favourites'
         />
     )
 }

@@ -68,20 +68,21 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
-                <View style={{ margin: 16, flexDirection: 'row', width: '100%' }}>
+                <View style={styles.header}>
                     <ScreenHeader
                         title={'Корзина'}
                         router={props.router}
                     />
                 </View>
-                <View style={{ margin: 16 }}>
+                <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
-                <BasketProductList
-                    data={products}
-                    router={props.router}
-                />
+                <View style={styles.productList}>
+                    <BasketProductList
+                        data={products}
+                        router={props.router}
+                    />
+                </View>
             </SafeAreaView>
         </SafeAreaProvider>
     );
@@ -89,13 +90,22 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
 
 
 const styles = StyleSheet.create({
-    topGoods: {
-        flex: 1
-    },
     column: {
         justifyContent: 'space-between',
         marginBottom: 16,
     },
+    header: {
+        flexDirection: 'row',
+        padding: 16,
+        width: '100%'
+    },
+    searchBar: {
+        margin: 16,
+    },
+    productList: {
+        flexGrow: 1,
+        margin: 16,
+    }
 })
 
 export default React.memo(BasketScreen);

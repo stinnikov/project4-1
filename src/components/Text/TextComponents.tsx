@@ -9,7 +9,7 @@ interface TextProps {
 }
 export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
     return (
-        <Text style={[styles.regularText, props.style]}>
+        <Text numberOfLines={4} style={[styles.regularText, props.style]}>
             {props.text ?? ''}
         </Text>
     );

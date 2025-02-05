@@ -71,7 +71,6 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
         return (
             <SafeAreaProvider style={{ flex: 1 }}>
                 <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                    <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
                     <FlatList
                         data={DATA}
                         bounces={false}

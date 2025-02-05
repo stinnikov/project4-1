@@ -22,17 +22,20 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
         if (props.currentCategory.depth === 0) {
             return (
                 <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color, width: '100%', height: '80%' }}>
-                    <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
-                        <View style={{ position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
-                        <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
-                            <ScreenHeader title={props.currentCategory.name} router={props.router} />
-                            <SearchBar />
-                        </SafeAreaView>
-                    </ImageBackground>
+                    {/* <StatusBar translucent style='dark' backgroundColor={'transparent'} /> */}
+                    <View>
+                        <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
+                            <View style={{ position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
+                            <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
+                                <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                                <SearchBar />
+                            </SafeAreaView>
+                        </ImageBackground>
+                    </View>
 
 
-                    <View style={{ margin: 16 }}>
-                        <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar>
+                    <View style={{ margin: 16, zIndex: 999 }}>
+                        {/* <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar> */}
                         <CategoryList
                             currentCategory={props.currentCategory}
                             data={props.categories}

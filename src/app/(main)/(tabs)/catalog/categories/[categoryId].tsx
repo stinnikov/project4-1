@@ -68,7 +68,6 @@ export default function CategoryIdScreen() {
 
         return (
             <View style={{ flex: 1 }}>
-                <StatusBar style='dark' translucent={true} backgroundColor='transparent'></StatusBar>
                 <CategoryListScreen
                     currentCategory={currentCategory}
                     categories={categories}
