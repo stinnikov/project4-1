@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        minHeight: 38,
-        borderTopWidth: 2,
+        minHeight: 40,
+        borderTopWidth: 1,
         borderColor: '#cfcfcf',
     },
     categoryText: {

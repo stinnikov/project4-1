@@ -1,10 +1,11 @@
+import ProfileScreen from '@/src/screens/ProfileScreen';
+import { useRouter } from 'expo-router';
 import { Text, View, StyleSheet } from 'react-native';
 
-export default function ProfileScreen() {
+export default function () {
+    const router = useRouter();
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Profile screen</Text>
-        </View>
+        <ProfileScreen router={router} />
     );
 }
 
