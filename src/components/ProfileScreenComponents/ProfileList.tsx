@@ -28,15 +28,16 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 	function renderLineProfile({ item }: { item: ProfileLineElement }) {
 		return (
 			<TouchableOpacity style={styles.container}>
-				<View style={{ marginHorizontal: 4 }}>
-					{item.icon}
+				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+					<View style={{ marginHorizontal: 4 }}>
+						{item.icon}
+					</View>
+					<Montserrat400RegularText
+						text={item.text}
+					/>
 				</View>
-				<Montserrat400RegularText
-					style={styles.categoryText}
-					text={item.text}
-				/>
-				<View style={styles.rightIconContainer}>
-					<svgIcons.ArrowRightIcon style={[styles.rightIcon]} />
+				<View>
+					<svgIcons.ArrowRightIcon />
 				</View>
 			</TouchableOpacity>
 		);
@@ -57,26 +58,16 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'space-between',
 		minHeight: 40,
 		borderTopWidth: 1,
 		borderColor: '#cfcfcf',
+
 	},
+
 	userNameAndArrow: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-	},
-	categoryText: {
-		flex: 0.89,
-	},
-	rightIconContainer: {
-		flex: 0.11,
-		flexDirection: 'row-reverse',
-		justifyContent: 'center',
-		alignContent: 'center',
-		alignItems: 'center',
-	},
-	rightIcon: {
-		paddingRight: 16,
 	},
 })
 

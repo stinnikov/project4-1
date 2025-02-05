@@ -9,6 +9,7 @@ export default function () {
                 statusBarStyle: 'dark',
                 statusBarBackgroundColor: 'transparent',
                 statusBarTranslucent: true,
+                contentStyle: { backgroundColor: 'white' },
             }} />
     )
 }

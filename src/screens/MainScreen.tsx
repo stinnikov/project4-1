@@ -104,25 +104,18 @@ const styles = StyleSheet.create({
     userPanel: {
         backgroundColor: colorsStyles.mainDarkColor.color,
     },
-    card: {
-        flex: 1,
-        padding: 16,
-        borderTopRightRadius: 14,
-        borderTopLeftRadius: 14,
-        backgroundColor: colorsStyles.mainWhiteColor.color,
-    },
     newOffers: {
         paddingBottom: 16,
         backgroundColor: colorsStyles.mainWhiteColor.color,
-        borderBottomLeftRadius: 14,
-        borderBottomRightRadius: 14,
     },
     specialsForUser: {
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     topGoods: {
         paddingBottom: 16,
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     couponsAndPromotions: {
         backgroundColor: 'red',

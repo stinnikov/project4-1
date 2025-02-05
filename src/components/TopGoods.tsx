@@ -22,7 +22,7 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
         <View style={styles.container}>
             <Raleway600SemiBoldText
                 text="Топ товары"
-                style={{ padding: 16 }}
+                style={{ paddingHorizontal: 16, paddingTop: 12 }}
             />
             <ProductList
                 data={props.data}

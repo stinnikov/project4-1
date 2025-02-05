@@ -25,7 +25,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     {/* <StatusBar translucent style='dark' backgroundColor={'transparent'} /> */}
                     <View>
                         <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
-                            <View style={{ position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
+                            <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
                             <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
                                 <ScreenHeader title={props.currentCategory.name} router={props.router} />
                                 <SearchBar />
@@ -34,7 +34,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     </View>
 
 
-                    <View style={{ margin: 16, zIndex: 999 }}>
+                    <View style={{ flexGrow: 1, margin: 16, zIndex: 999 }}>
                         {/* <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar> */}
                         <CategoryList
                             currentCategory={props.currentCategory}
