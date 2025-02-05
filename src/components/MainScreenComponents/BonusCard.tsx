@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
+import { Montserrat400RegularText, Montserrat600SemiBoldText } from '../Text/TextComponents'
+import SvgIcons from '@/assets/icons/svgIcons'
 
 interface BonusCardProps {
 
@@ -10,7 +12,16 @@ const BonusCard: React.FC<BonusCardProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Text style={styles.cardText}>1000</Text>
+                <View style={styles.textContainer}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Montserrat600SemiBoldText style={{ fontSize: 50, verticalAlign: 'bottom', textAlignVertical: 'top', }} text="1000" />
+                        <SvgIcons.FavoritesIcon style={{ marginTop: 10 }} />
+                    </View>
+                    <Montserrat600SemiBoldText style={{ fontSize: 22, bottom: 6 }} text="Бонусов" />
+                </View>
+                <View style={styles.numberContainer}>
+                    <Montserrat400RegularText text="+7 (9XX) XXX XX-XX" style={{ fontSize: 20 }} />
+                </View>
             </View>
         </View>
     )
@@ -23,15 +34,17 @@ const styles = StyleSheet.create({
     },
     card: {
         borderRadius: 24,
-        backgroundColor: colorsStyles.mainGreyColor.color,
+        backgroundColor: '#E1FF00',
         height: dimensionsStyles.bonusCard.height,
+        justifyContent: "space-between",
     },
-    cardText: {
-        fontSize: 36,
-        color: '#000',
-        paddingTop: 16,
-        paddingLeft: 16,
-        fontWeight: 'bold'
+    textContainer: {
+        marginVertical: 10,
+        marginHorizontal: 20,
+    },
+    numberContainer: {
+        marginHorizontal: 20,
+        marginBottom: 16,
     }
 })
 
