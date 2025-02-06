@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
     },
     productList: {
-        flexGrow: 1,
+        flex: 1,
         padding: 16,
     }
 })

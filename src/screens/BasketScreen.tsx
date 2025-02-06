@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView, FlatList } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
 import { Router, useFocusEffect } from "expo-router";
@@ -11,6 +11,7 @@ import { getBasketByUserIdAsync } from "../services/BasketService";
 import { dimensionsStyles } from "@/src//styles/styles";
 import { StatusBar } from "expo-status-bar";
 import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
+import DeliveryBar from "../components/DeliveryBar";
 
 interface BasketScreenProps {
     router: Router,
@@ -60,6 +61,28 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
         setProducts([]);
     };
 
+    function renderScreen() {
+        return (
+            <View style={{ flex: 1 }}>
+                <View style={styles.header}>
+                    <ScreenHeader
+                        title={'Корзина'}
+                        router={props.router}
+                    />
+                </View>
+                <View style={{ marginHorizontal: 16, flex: 1 }}>
+                    <DeliveryBar />
+                </View>
+                <View style={styles.productList}>
+                    <BasketProductList
+                        data={products}
+                        router={props.router}
+                    />
+                </View>
+            </View>
+        )
+    }
+
 
     if (loading) {
         return <LoadingScreen />;
@@ -68,25 +91,17 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title={'Корзина'}
-                        router={props.router}
-                    />
-                </View>
-                <View style={styles.searchBar}>
-                    <SearchBar />
-                </View>
-                <View style={styles.productList}>
-                    <BasketProductList
-                        data={products}
-                        router={props.router}
-                    />
-                </View>
+                <FlatList
+                    data={[{}]}
+                    renderItem={renderScreen}
+                />
             </SafeAreaView>
         </SafeAreaProvider>
     );
-});
+})
+
+
+
 
 
 const styles = StyleSheet.create({
@@ -103,7 +118,7 @@ const styles = StyleSheet.create({
         margin: 16,
     },
     productList: {
-        flexGrow: 1,
+        flex: 5,
         margin: 16,
     }
 })

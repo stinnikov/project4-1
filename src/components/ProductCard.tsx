@@ -4,7 +4,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { Montserrat400RegularText, Montserrat500MediumText } from "./Text/TextComponents";
+import { Montserrat400RegularText, Montserrat300LightText } from "./Text/TextComponents";
 
 interface ProductCardProps {
     data: Product,
@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[buttonStyles.miniButton]}>
-                            <Montserrat500MediumText
+                            <Montserrat300LightText
                                 style={{ fontSize: 16, marginBottom: 3, color: '#000' }}
                                 text="4.3"
                             />
@@ -53,6 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
 
             <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
                 <BasketButtonComponent
+
                     style={{ bottom: 0, marginHorizontal: 10 }}
                     product={product} />
             </View>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignSelf: 'flex-start',
         justifyContent: 'center',
-        backgroundColor: '#e2e2e2',
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
         borderRadius: 6,
         marginLeft: 10,
     },

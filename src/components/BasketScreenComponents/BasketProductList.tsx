@@ -1,23 +1,19 @@
 
 import React, { useState, useCallback } from 'react';
-import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
+import { View, FlatList, StyleSheet, RefreshControl, Text } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
-import BasketProductCard from './BasketProductCard';
 import { getBasketByUserIdAsync } from '@/src/services/BasketService';
 import BasketProductListHeader from './BasketProductListHeader';
+import ProductCard from '../ProductCard';
+import BasketListItem from './BasketListItem';
 
 interface BasketProductListProps {
     data: Product[];
     router: Router;
 }
 
-const getItemLayout = (data: any, index: number) => ({
-    length: dimensionsStyles.productCard.height,
-    offset: dimensionsStyles.productCard.height * index,
-    index,
-});
 
 
 
@@ -60,26 +56,21 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
         )
     }
 
-    const renderProduct = useCallback(({ item }: { item: Product }) => (
-        <BasketProductCard
-            data={item}
-            router={props.router}
-            navigateToProduct={navigateToProduct}
-        />
-    ), [props.router]);
+    function renderProduct({ item }: { item: Product }) {
+        return (
+            <BasketListItem style={{ paddingHorizontal: 16, paddingBottom: 12 }} data={item} router={props.router} />
+        )
+    };
 
     return (
         <View style={styles.container}>
+            <BasketProductListHeader style={{ marginHorizontal: 16, marginVertical: 12 }} amountOfProducts={(props.data.length).toString()} onClear={clearBasket} />
             <FlatList
+                style={styles.list}
                 data={products}
                 renderItem={renderProduct}
-                numColumns={2}
                 keyExtractor={(item) => item.id}
                 initialNumToRender={2}
-                removeClippedSubviews={true}
-                ListHeaderComponent={<BasketProductListHeader onClear={clearBasket} />}
-                columnWrapperStyle={styles.column}
-                getItemLayout={getItemLayout}
                 refreshControl={
                     <RefreshControl
                         tintColor={colorsStyles.mainBrightColor.color}
@@ -97,14 +88,15 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+        borderRadius: 12,
+        elevation: 5,
+        shadowRadius: 16,
+        shadowOpacity: 0.1,
+        shadowOffset: { width: 0, height: 2 },
     },
-    productCard: {
-        height: dimensionsStyles.productListCard.height,
-        width: dimensionsStyles.productListCard.width,
-    },
-    column: {
-        justifyContent: 'space-between',
-        marginBottom: 16,
+    list: {
+
     },
 });
 

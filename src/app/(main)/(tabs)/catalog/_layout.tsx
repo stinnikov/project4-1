@@ -1,12 +1,15 @@
-import React, { useCallback } from "react";
-import { Stack, useFocusEffect, useNavigation, useRouter } from "expo-router"
+import React from "react";
+import { Stack } from "expo-router"
 
-export default function CatalogLayout() {
+export default function () {
     return (
         <Stack screenOptions={
             {
                 headerShown: false,
-                contentStyle: { backgroundColor: 'white' }
+                statusBarStyle: 'dark',
+                statusBarBackgroundColor: 'transparent',
+                statusBarTranslucent: true,
+                contentStyle: { backgroundColor: 'white' },
             }} />
     )
 }

@@ -5,7 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { Raleway700BoldText, ProductPagePriceText } from "./Text/TextComponents";
+import { Montserrat400RegularText, Montserrat600SemiBoldText, Raleway700BoldText } from "./Text/TextComponents";
 
 interface ProductPageProps {
     product: Product,
@@ -48,9 +48,9 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                         />
                     </View>
 
-                    <View style={styles.price}>
-                        <ProductPagePriceText
-                            style={{ alignSelf: 'flex-end', marginLeft: 16, marginBottom: 16 }}
+                    <View style={styles.priceContainer}>
+                        <Montserrat600SemiBoldText
+                            style={{ paddingHorizontal: 6, paddingVertical: 4 }}
                             text={product.price}
                         />
                     </View>
@@ -104,15 +104,14 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         minHeight: 100,
     },
-    price:
+    priceContainer:
     {
-        marginTop: 16,
         flex: 1,
-        left: 0,
-        alignContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'row',
-        gap: 15,
+        marginVertical: 12,
+        alignSelf: 'flex-start',
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
+        borderRadius: 6,
+        marginLeft: 10,
     },
     description:
     {

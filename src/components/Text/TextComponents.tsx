@@ -4,36 +4,15 @@ import { View, StyleSheet, Text, TextStyle } from "react-native";
 
 
 interface TextProps {
-    style?: TextStyle | TextStyle[],
     text: string | undefined,
+    style?: TextStyle | TextStyle[],
+    numOfLines?: number,
 }
-export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
-    return (
-        <Text numberOfLines={4} style={[styles.regularText, props.style]}>
-            {props.text ?? ''}
-        </Text>
-    );
-};
 
-export const Raleway500MediumText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text style={[styles.screenHeaderTitleText, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
 
-export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
+export const Montserrat600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.categoryCardName, style]}>
-            {text ?? ''}
-        </Text>
-    );
-};
-
-export const Raleway600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
-    return (
-        <Text style={[styles.screenSectionTitle, style]}>
+        <Text style={[styles.montserrat600SemiBold, style]}>
             {text ?? ''}
         </Text>
     );
@@ -41,85 +20,109 @@ export const Raleway600SemiBoldText: React.FC<TextProps> = ({ text, style }) => 
 
 export const Montserrat500MediumText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.ratingCardText, style]}>
+        <Text style={[styles.montserrat500Medium, style]}>
             {text ?? ''}
         </Text>
     );
 };
 
-export const Montserrat600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
+export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
     return (
-        <Text style={[styles.bigButtonText, style]}>
+        <Text numberOfLines={props.numOfLines ?? 4} style={[styles.montserrat400Regular, props.style]}>
+            {props.text ?? ''}
+        </Text>
+    );
+};
+
+export const Montserrat300LightText: React.FC<TextProps> = ({ text, style }) => {
+    return (
+        <Text style={[styles.montserrat300LightText, style]}>
             {text ?? ''}
         </Text>
     );
 };
+
+export const Raleway600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
+    return (
+        <Text style={[styles.raleway600SemiBold, style]}>
+            {text ?? ''}
+        </Text>
+    );
+};
+
+
 
 export const Raleway700BoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.productPageNameText, style]}>
+        <Text style={[styles.raleway700Bold, style]}>
             {text ?? ''}
         </Text>
     );
 };
 
-export const ProductPagePriceText: React.FC<TextProps> = ({ text, style }) => {
+export const Raleway500MediumText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.productPagePriceText, style]}>
+        <Text style={[styles.raleway500Medium, style]}>
             {text ?? ''}
         </Text>
     );
 };
 
+export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
+    return (
+        <Text style={[styles.raleway400Regular, style]}>
+            {text ?? ''}
+        </Text>
+    );
+};
 
 const styles = StyleSheet.create({
-    bigButtonText: {
+    montserrat600SemiBold: {
         fontSize: 20,
         fontFamily: 'Montserrat_600SemiBold',
         letterSpacing: -0.03,
     },
-    regularText: {
+    montserrat500Medium: {
+        fontSize: 26,
+        fontFamily: 'Montserrat_500Medium',
+        letterSpacing: -0.03,
+    },
+    montserrat400Regular: {
         fontSize: 16,
         fontFamily: 'Montserrat_400Regular',
         letterSpacing: -0.03,
     },
-    screenHeaderTitleText: {
+    montserrat300LightText: {
+        fontSize: 10,
+        fontFamily: 'Montserrat_300Light',
+        letterSpacing: -0.03
+    },
+    raleway700Bold: {
+        fontSize: 26,
+        fontFamily: 'Raleway_700Bold',
+    },
+    raleway600SemiBold: {
+        fontSize: 20,
+        fontFamily: 'Raleway_600SemiBold',
+    },
+    raleway500Medium: {
         fontSize: 20,
         fontFamily: 'Raleway_500Medium',
     },
-    categoryCardName: {
+    raleway400Regular: {
         fontSize: 16,
         fontFamily: 'Raleway_400Regular',
         letterSpacing: -0.03,
     },
-    screenSectionTitle: {
-        fontSize: 20,
-        fontFamily: 'Raleway_600SemiBold',
-    },
-    smallRegularText: {
-        fontSize: 14,
-        fontFamily: 'Montserrat_400Regular',
-        letterSpacing: -0.03,
-    },
-    productPageNameText: {
-        fontSize: 26,
-        fontFamily: 'Raleway_700Bold',
-    },
-    productPagePriceText: {
-        fontSize: 26,
-        fontFamily: 'Montserrat_500Medium',
-    },
-    ratingCardText: {
-        fontSize: 12,
-        fontFamily: 'Montserrat_500Medium',
-        letterSpacing: -0.03,
-    },
+
+
+
 
 });
 
 export default {
     RegularText: Montserrat400RegularText,
-    ProductRatingCardText: Montserrat500MediumText,
+    ProductRatingCardText: Montserrat300LightText,
     BigButtonText: Montserrat600SemiBoldText,
 
 

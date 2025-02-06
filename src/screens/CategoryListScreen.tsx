@@ -21,9 +21,9 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
     function renderScreen() {
         if (props.currentCategory.depth === 0) {
             return (
-                <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color, width: '100%', height: '80%' }}>
-                    {/* <StatusBar translucent style='dark' backgroundColor={'transparent'} /> */}
-                    <View>
+                <View style={styles.container}>
+                    <StatusBar translucent style='dark' backgroundColor={'transparent'} />
+                    <View style={{ flex: 1, minHeight: 300 }}>
                         <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                             <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
                             <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
@@ -34,7 +34,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     </View>
 
 
-                    <View style={{ flexGrow: 1, margin: 16, zIndex: 999 }}>
+                    <View style={[styles.categoryList, { zIndex: 999, flex: 1 }]}>
                         {/* <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar> */}
                         <CategoryList
                             currentCategory={props.currentCategory}
@@ -49,14 +49,14 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
         return (
             <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
                 <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                    <View style={{ margin: 16 }}>
+                    <View style={styles.header}>
                         <ScreenHeader title={props.currentCategory.name} router={props.router} />
                     </View>
-                    <View style={{ margin: 16 }}>
+                    <View style={styles.searchBar}>
                         <SearchBar />
                     </View>
 
-                    <View style={{ margin: 16 }}>
+                    <View style={styles.categoryList}>
                         <CategoryList
                             currentCategory={props.currentCategory}
                             data={props.categories}
@@ -73,12 +73,10 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
     ]
 
     return (
-        <SafeAreaProvider style={{ flex: 1 }}>
-            <FlatList
-                data={DATA}
-                renderItem={renderScreen}
-            />
-        </SafeAreaProvider>
+        <FlatList
+            data={DATA}
+            renderItem={renderScreen}
+        />
     )
 
 }
@@ -86,9 +84,19 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
 );
 
 const styles = StyleSheet.create({
-    topGoods: {
-        flex: 1
-    }
+    container: {
+        flex: 1,
+    },
+    header: {
+        margin: 16,
+    },
+    searchBar: {
+        margin: 16,
+    },
+    categoryList: {
+        flexGrow: 1,
+        margin: 16,
+    },
 })
 
 export default CategoryListScreen;
