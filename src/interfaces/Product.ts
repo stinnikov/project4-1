@@ -11,6 +11,6 @@ export interface Product {
     amountInBasket: number;
 }
 
-export default () => { };
+export default Product;
 
 

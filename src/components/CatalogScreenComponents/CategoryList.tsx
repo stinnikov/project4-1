@@ -17,7 +17,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
     function navigate({ item }: { item: Category }) {
         if (props.currentCategory)
             props.router.push({
-                pathname: '/(main)/(tabs)/catalog/categories/[categoryId]',
+                pathname: '/(main)/(tabs)/(catalog)/categories/[categoryId]',
                 params: {
                     categoryId: item.id,
                     categoryDepth: item.depth,
@@ -28,7 +28,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
     function navigateToProductList(item: Category, router: Router) {
         router.push(
             {
-                pathname: '/(main)/(tabs)/catalog/products/[productList]',
+                pathname: '/(main)/(tabs)/(catalog)/products/[productList]',
                 params: {
                     productList: item.id,
                     categoryId: item.id,

@@ -50,7 +50,7 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
         if (props.parentTab === 'catalog') {
             props.router.push(
                 {
-                    pathname: '/(main)/(tabs)/catalog/product/[productId]',
+                    pathname: '/(main)/(tabs)/(catalog)/product/[productId]',
                     params: {
                         productId: product.id,
                     }
@@ -131,7 +131,6 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
     return (
         <View style={[styles.container, props.style]}>
             <FlatList
-                style={{ padding: 1 }}
                 data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}

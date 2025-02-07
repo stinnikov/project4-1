@@ -36,7 +36,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (isAuth) {
-            router.replace('/(main)/(tabs)/(home)');
+            router.replace('/(main)/(tabs)/(home)/home');
         }
     }, [isAuth]);
 
