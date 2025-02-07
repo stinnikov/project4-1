@@ -70,7 +70,7 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                         router={props.router}
                     />
                 </View>
-                <View style={{ marginHorizontal: 16, flex: 1 }}>
+                <View style={{ marginHorizontal: 16 }}>
                     <DeliveryBar />
                 </View>
                 <View style={styles.productList}>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         margin: 16,
     },
     productList: {
-        flex: 5,
+        flex: 1,
         margin: 16,
     }
 })

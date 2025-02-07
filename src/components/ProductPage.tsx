@@ -45,12 +45,13 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                     <View style={styles.title}>
                         <Raleway700BoldText
                             text={product.name}
+                            style={{ fontSize: 26 }}
                         />
                     </View>
 
                     <View style={styles.priceContainer}>
                         <Montserrat600SemiBoldText
-                            style={{ paddingHorizontal: 6, paddingVertical: 4 }}
+                            style={{ paddingHorizontal: 6, paddingVertical: 4, fontSize: 26 }}
                             text={product.price}
                         />
                     </View>
@@ -62,7 +63,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             </ScrollView>
 
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
-                <BasketButtonComponent product={product} style={styles.bottomButton} size='big' />
+                <BasketButtonComponent textStyle={{ fontSize: 20, color: colorsStyles.mainWhiteColor.color }} product={product} style={styles.bottomButton} size='big' />
             </View>
         </View>
 

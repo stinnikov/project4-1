@@ -5,6 +5,7 @@ import { View } from "react-native"
 export default function HomeLayout() {
     return (
         <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="home" />
         </Stack>
     )
 }

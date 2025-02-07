@@ -10,6 +10,8 @@ export default function () {
                 statusBarBackgroundColor: 'transparent',
                 statusBarTranslucent: true,
                 contentStyle: { backgroundColor: 'white' },
-            }} />
+            }}>
+            <Stack.Screen name="catalog" />
+        </Stack>
     )
 }

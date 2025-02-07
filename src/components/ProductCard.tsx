@@ -4,7 +4,7 @@ import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { Montserrat400RegularText, Montserrat300LightText } from "./Text/TextComponents";
+import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
 
 interface ProductCardProps {
     data: Product,
@@ -45,7 +45,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
             </View>
 
             <View style={styles.priceContainer}>
-                <Montserrat400RegularText
+                <Montserrat500MediumText
                     style={{ paddingHorizontal: 8, fontSize: 14 }}
                     text={product.price}
                 />
@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
 
             <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
                 <BasketButtonComponent
-
+                    textStyle={{ color: colorsStyles.mainWhiteColor.color, fontSize: 14 }}
                     style={{ bottom: 0, marginHorizontal: 10 }}
                     product={product} />
             </View>

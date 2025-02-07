@@ -78,12 +78,12 @@ export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
 
 const styles = StyleSheet.create({
     montserrat600SemiBold: {
-        fontSize: 20,
+        fontSize: 16,
         fontFamily: 'Montserrat_600SemiBold',
         letterSpacing: -0.03,
     },
     montserrat500Medium: {
-        fontSize: 26,
+        fontSize: 16,
         fontFamily: 'Montserrat_500Medium',
         letterSpacing: -0.03,
     },
@@ -93,21 +93,24 @@ const styles = StyleSheet.create({
         letterSpacing: -0.03,
     },
     montserrat300LightText: {
-        fontSize: 10,
+        fontSize: 16,
         fontFamily: 'Montserrat_300Light',
         letterSpacing: -0.03
     },
     raleway700Bold: {
-        fontSize: 26,
+        fontSize: 16,
         fontFamily: 'Raleway_700Bold',
+        letterSpacing: -0.03,
     },
     raleway600SemiBold: {
-        fontSize: 20,
+        fontSize: 16,
         fontFamily: 'Raleway_600SemiBold',
+        letterSpacing: -0.03,
     },
     raleway500Medium: {
-        fontSize: 20,
+        fontSize: 16,
         fontFamily: 'Raleway_500Medium',
+        letterSpacing: -0.03,
     },
     raleway400Regular: {
         fontSize: 16,

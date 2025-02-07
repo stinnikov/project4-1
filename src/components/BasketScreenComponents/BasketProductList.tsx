@@ -1,12 +1,10 @@
-
 import React, { useState, useCallback } from 'react';
 import { View, FlatList, StyleSheet, RefreshControl, Text } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
-import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
+import { colorsStyles } from '@/src/styles/styles';
 import { getBasketByUserIdAsync } from '@/src/services/BasketService';
 import BasketProductListHeader from './BasketProductListHeader';
-import ProductCard from '../ProductCard';
 import BasketListItem from './BasketListItem';
 
 interface BasketProductListProps {
@@ -78,9 +76,9 @@ const BasketProductList: React.FC<BasketProductListProps> = (props) => {
                         refreshing={refreshing}
                         onRefresh={onRefresh}
                     />
-
                 }
             />
+
         </View>
     );
 };

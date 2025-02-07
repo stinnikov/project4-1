@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { SvgProps, Path, Circle, Rect, Defs, G, ClipPath, Mask } from "react-native-svg"
+import Svg, { SvgProps, Path, Circle, Rect, Defs, G, ClipPath, Mask, NumberProp } from "react-native-svg"
 const ProfileIcon = (props: SvgProps) => (
 	<Svg
 		width={30}
@@ -156,7 +156,7 @@ const NotificationsIcon = (props: SvgProps) => (
 			strokeWidth={1.5}
 			d="M6.311 10.464v-.917C6.311 6.483 8.858 4 12 4s5.689 2.483 5.689 5.547v.917c0 1.993.59 3.944 1.702 5.618L20 17H4l.61-.918a10.155 10.155 0 0 0 1.701-5.618Z"
 		/>
-		<Circle cx={12} cy={21} r={2} stroke={props.stroke ?? '#000'} />
+		<Circle cx={12} cy={21} r={(props.strokeWidth && typeof props.strokeWidth === 'number') ? props.strokeWidth * 2 : 2} stroke={props.stroke ?? '#000'} />
 	</Svg>
 )
 

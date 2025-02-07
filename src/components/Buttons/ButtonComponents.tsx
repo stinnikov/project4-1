@@ -227,7 +227,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
             return (
                 <AddRemoveProductInBasketPanel
                     style={[buttonStyles.basketButton, props.style || {}]}
-                    textStyle={{ fontSize: 20 }}
+                    textStyle={props.textStyle}
                     product={props.product}
                     onAdd={addOneProduct} onRemove={removeOneProduct} />
             )
@@ -235,6 +235,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
         return (
             <AddRemoveProductInBasketPanel
                 style={[buttonStyles.basketButton, props.style || {}]}
+                textStyle={props.textStyle}
                 product={props.product}
                 onAdd={addOneProduct} onRemove={removeOneProduct} />
         )
