@@ -8,6 +8,7 @@ import UserNamePanel from "../components/ProfileScreenComponents/UserNamePanel";
 import BonusCard from "../components/MainScreenComponents/BonusCard";
 import CategoryList from "../components/CatalogScreenComponents/CategoryList";
 import ProfileList from "../components/ProfileScreenComponents/ProfileList";
+import HelpAndSupport from "../components/ProfileScreenComponents/HelpAndSupport";
 
 interface ProfileScreenProps {
 	router: Router,
@@ -33,6 +34,9 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 				</View>
 				<View style={styles.listProfile}>
 					<ProfileList router={router} />
+				</View>
+				<View>
+					<HelpAndSupport />
 				</View>
 			</View>
 		)
@@ -60,10 +64,13 @@ const styles = StyleSheet.create({
 		margin: 16,
 	},
 	screenHeader: {
-		margin: 16,
+		marginVertical: 12,
+		marginHorizontal: 16,
+		// backgroundColor: 'red',
 	},
 	userNamePanel: {
 		margin: 16,
+		marginTop: 0,
 	},
 	bonusCard: {
 		marginTop: 8,

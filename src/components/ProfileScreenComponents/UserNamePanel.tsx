@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 	userNameAndArrow: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		alignItems: 'center',
 	}
 })
 export default UserNamePanel;
