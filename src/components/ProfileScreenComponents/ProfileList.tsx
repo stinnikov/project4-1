@@ -17,13 +17,13 @@ interface ProfileLineElement {
 export const ProfileList: React.FC<ProfileListProps> = (props) => {
 	const router = props.router;
 	const data: ProfileLineElement[] = [
-		{ text: "История покупок", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Мои адреса", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Способ оплаты", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Уведомления", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Правовая информация", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Настройки", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
-		{ text: "Сотрудничество", icon: <svgIcons.CircleIcon height={16} width={16} fill={'black'} /> },
+		{ text: "История покупок", icon: <svgIcons.PurchaseHistoryIcon stroke={'black'} /> },
+		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon /> },
+		{ text: "Способ оплаты", icon: <svgIcons.PaymentMethodIcon /> },
+		{ text: "Уведомления", icon: <svgIcons.NotificationsIcon strokeWidth={1.25} stroke={'black'} /> },
+		{ text: "Правовая информация", icon: <svgIcons.LegalInformationIcon /> },
+		{ text: "Настройки", icon: <svgIcons.ProfileSettingsIcon strokeWidth={1.25} stroke={'black'} /> },
+		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon /> },
 	]
 	function renderLineProfile({ item }: { item: ProfileLineElement }) {
 		return (

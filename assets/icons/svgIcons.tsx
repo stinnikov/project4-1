@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { SvgProps, Path, Circle, Rect } from "react-native-svg"
+import Svg, { SvgProps, Path, Circle, Rect, G, ClipPath, Defs } from "react-native-svg"
 const ProfileIcon = (props: SvgProps) => (
 	<Svg
 		width={30}
@@ -114,7 +114,7 @@ const SettingsIcon = (props: SvgProps) => (
 			stroke={props.stroke ?? '#000'}
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={2}
+			strokeWidth={props.strokeWidth ?? 2}
 			d="M20 7h-9M14 17H5M17 20a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
 		/>
 	</Svg>
@@ -129,16 +129,18 @@ const ProfileSettingsIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			fill="#fff"
-			fillRule="evenodd"
-			d="M11.199 2.587a1.65 1.65 0 0 1 1.602 0l7.2 4c.524.291.849.843.849 1.443v7.94c0 .6-.325 1.152-.849 1.443l-7.2 4a1.65 1.65 0 0 1-1.602 0l-7.2-4a1.65 1.65 0 0 1-.849-1.443V8.03c0-.6.325-1.152.849-1.443l7.2-4Zm.874 1.311a.15.15 0 0 0-.146 0l-7.2 4a.15.15 0 0 0-.077.132v7.94c0 .055.03.105.077.132l7.2 4a.15.15 0 0 0 .146 0l7.2-4a.15.15 0 0 0 .077-.132V8.03a.15.15 0 0 0-.077-.132l-7.2-4Z"
-			clipRule="evenodd"
+			stroke={props.stroke ?? "#fff"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.5}
+			d="m13.6 21.076 5.46-3.152c.584-.337.875-.505 1.087-.74a2 2 0 0 0 .416-.72c.097-.301.097-.637.097-1.307V8.843c0-.67 0-1.006-.098-1.307a2 2 0 0 0-.416-.72c-.21-.234-.5-.402-1.079-.736L13.6 2.924c-.583-.337-.874-.505-1.184-.57a2 2 0 0 0-.832 0c-.31.065-.601.233-1.184.57L4.938 6.077c-.582.336-.873.504-1.084.739a2 2 0 0 0-.416.72c-.098.302-.098.638-.098 1.311v6.305c0 .673 0 1.01.098 1.311a2 2 0 0 0 .416.72c.211.236.503.404 1.085.74l5.46 3.153c.584.337.875.505 1.185.57.274.059.558.059.832 0 .31-.065.602-.233 1.185-.57Z"
 		/>
 		<Path
-			fill="#fff"
-			fillRule="evenodd"
-			d="M7.25 12a4.75 4.75 0 1 1 9.5 0 4.75 4.75 0 0 1-9.5 0ZM12 8.75a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"
-			clipRule="evenodd"
+			stroke={props.stroke ?? "#fff"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.5}
+			d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
 		/>
 	</Svg>
 )
@@ -152,13 +154,13 @@ const NotificationsIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			stroke="#fff"
+			stroke={props.stroke ?? "#fff"}
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={1.5}
+			strokeWidth={props.strokeWidth ?? 1.5}
 			d="M6.311 10.464v-.917C6.311 6.483 8.858 4 12 4s5.689 2.483 5.689 5.547v.917c0 1.993.59 3.944 1.702 5.618L20 17H4l.61-.918a10.155 10.155 0 0 0 1.701-5.618Z"
 		/>
-		<Circle cx={12} cy={21} r={2} fill="#fff" />
+		<Circle cx={12} cy={21} r={(props.strokeWidth && typeof props.strokeWidth === 'number') ? props.strokeWidth * 1.4 : 2} fill={props.stroke ?? "#fff"} />
 	</Svg>
 )
 
@@ -275,6 +277,113 @@ const CircleIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+const PurchaseHistoryIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<G
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.25}
+		>
+			<Path d="M11.795 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+			<Path d="M14 18a4 4 0 1 0 8 0 4 4 0 0 0-8 0ZM15 3v4M7 3v4M3 11h16" />
+			<Path d="M18 16.496V18l1 1" />
+		</G>
+		<Defs>
+			<Path fill="none" d="M0 0h24v24H0z" />
+		</Defs>
+	</Svg>
+)
+
+const MyAddressesIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={props.strokeWidth ?? 1.25}
+			d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+		/>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={props.strokeWidth ?? 1.25}
+			d="M12 21.7C17.3 17 20 13 20 10a8 8 0 0 0-16 0c0 3 2.7 6.9 8 11.7Z"
+		/>
+	</Svg>
+)
+
+const LegalInformationIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<G
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={1.25}
+		>
+			<Path d="M12 3.75v16.5M9.75 20.25h4.5M5.25 8.25l13.5-3M2.25 15.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5ZM15.75 12.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5Z" />
+		</G>
+		<Defs>
+			<Path fill="#fff" d="M0 0h24v24H0z" />
+		</Defs>
+	</Svg>
+)
+
+const CooperationIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={1.25}
+			d="M8.561 11.28a2.816 2.816 0 1 0 0-5.633 2.816 2.816 0 0 0 0 5.633ZM14.25 18.727a5.7 5.7 0 0 0-5.704-5.7 5.7 5.7 0 0 0-5.7 5.7H14.25ZM16.549 12.476a2.269 2.269 0 1 0 0-4.537 2.269 2.269 0 0 0 0 4.537ZM15.9 18.727h5.25a4.59 4.59 0 0 0-4.601-4.59 4.578 4.578 0 0 0-2.156.537"
+		/>
+	</Svg>
+)
+
+const PaymentMethodIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			fill={props.stroke ?? "#000"}
+			d="M5 14h3.5a1.5 1.5 0 0 1 1.5 1.5V17H6.5A1.5 1.5 0 0 1 5 15.5V14Z"
+		/>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={1.25}
+			d="M3.625 9.625h16.75V17A2.375 2.375 0 0 1 18 19.375H6A2.375 2.375 0 0 1 3.625 17V9.625Z"
+		/>
+		<Path
+			fill={props.stroke ?? "#000"}
+			d="M3 7.75A2.75 2.75 0 0 1 5.75 5h12.5A2.75 2.75 0 0 1 21 7.75H3Z"
+		/>
+	</Svg>
+)
+
 export default
 	{
 		ProfileIcon,
@@ -291,4 +400,9 @@ export default
 		NotificationsIcon,
 		ProfileSettingsIcon,
 		ShopIcon,
+		PurchaseHistoryIcon,
+		MyAddressesIcon,
+		LegalInformationIcon,
+		PaymentMethodIcon,
+		CooperationIcon,
 	}

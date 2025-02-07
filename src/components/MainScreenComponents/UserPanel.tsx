@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import CirclePostForUser, { CircleStoryProps } from './CirclePostForUser'
-import SvgIcons from '@/src/assets/icons/svgIcons';
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
+import svgIcons from '@/assets/icons/svgIcons';
 
 interface UserPanelProps {
     name?: string;
@@ -29,8 +29,8 @@ const UserPanel: React.FC<UserPanelProps> = (props) => {
                 />
 
                 <View style={styles.buttons}>
-                    <SvgIcons.NotificationsIcon width={24} height={24}></SvgIcons.NotificationsIcon>
-                    <SvgIcons.ProfileSettingsIcon width={24} height={24}></SvgIcons.ProfileSettingsIcon>
+                    <svgIcons.NotificationsIcon stroke={'black'} />
+                    <svgIcons.ProfileSettingsIcon stroke={'black'} />
                 </View>
 
             </View>

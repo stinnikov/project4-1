@@ -20,7 +20,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = (props) => {
 
     return (
         <View style={[styles.container, props.style]}>
-            <Pressable style={{ minHeight: 40, width: '100%', flexDirection: 'row', alignItems: 'center' }} onPress={handlePressBackButton}>
+            <Pressable style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }} onPress={handlePressBackButton}>
                 <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
                 <Raleway500MediumText
                     text={props.title}
