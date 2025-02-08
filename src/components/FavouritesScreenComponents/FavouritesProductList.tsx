@@ -8,6 +8,7 @@ import ProductList from "../ProductList";
 interface FavouritesProductListProps {
     products: Product[],
     router: Router,
+    onRefresh: () => Promise<void>,
 }
 
 const FavouritesProductList: React.FC<FavouritesProductListProps> = (props) => {
@@ -16,6 +17,7 @@ const FavouritesProductList: React.FC<FavouritesProductListProps> = (props) => {
             data={props.products}
             router={props.router}
             parentTab='favourites'
+            onRefresh={props.onRefresh}
         />
     )
 }

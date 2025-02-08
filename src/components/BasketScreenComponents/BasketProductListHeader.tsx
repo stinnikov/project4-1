@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, ViewStyle } from 'react-native';
-import svgIcons from '@/assets/icons/svgIcons';
-import { colorsStyles } from '@/src/styles/styles';
 import { ClearBasketButton } from '../Buttons/ButtonComponents';
-import { Montserrat400RegularText, Montserrat600SemiBoldText } from '../Text/TextComponents';
+import { Montserrat400RegularText } from '../Text/TextComponents';
 
 interface BasketProductListHeaderProps {
     amountOfProducts: string,

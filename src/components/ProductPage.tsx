@@ -63,7 +63,12 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             </ScrollView>
 
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
-                <BasketButtonComponent textStyle={{ fontSize: 20, color: colorsStyles.mainWhiteColor.color }} product={product} style={styles.bottomButton} size='big' />
+                <BasketButtonComponent
+                    textStyle={{ fontSize: 20, color: colorsStyles.mainWhiteColor.color }}
+                    product={product} style={styles.bottomButton}
+                    size='big'
+
+                />
             </View>
         </View>
 

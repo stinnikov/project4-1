@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
-import { Router, SplashScreen, useFocusEffect } from "expo-router";
-import ProductList from "@/src/components/ProductList";
+import { Router, useFocusEffect } from "expo-router";
 import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
 import { getFavouritesProductsAsync } from "@/src//services/ProductService";
-import { StatusBar } from "expo-status-bar";
 import FavouritesProductList from "../components/FavouritesScreenComponents/FavouritesProductList";
 
 interface FavouritesScreenProps {
@@ -17,26 +15,28 @@ interface FavouritesScreenProps {
     router: Router,
 }
 
+
+
 const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const favouriteProductsResponse = await getFavouritesProductsAsync();
+            if (favouriteProductsResponse) {
+                setProducts(favouriteProductsResponse);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useFocusEffect(
         React.useCallback(() => {
-            const fetchData = async () => {
-                setLoading(true);
-                try {
-                    const favouriteProductsResponse = await getFavouritesProductsAsync();
-                    if (favouriteProductsResponse) {
-                        setProducts(favouriteProductsResponse);
-                    }
-                } catch (error) {
-                    console.error(error);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
             fetchData();
 
             // Функция для очистки при анфокусе
@@ -66,6 +66,7 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
                     <FavouritesProductList
                         products={products}
                         router={props.router}
+                        onRefresh={fetchData}
                     />
                 </View>
             </SafeAreaView>
@@ -85,11 +86,11 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     searchBar: {
-        paddingHorizontal: 16,
+        marginHorizontal: 16,
+        marginBottom: 16,
     },
     productList: {
         flex: 1,
-        padding: 16,
     }
 })
 

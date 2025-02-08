@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.settings} onPress={() => { }}>
-                <svgIcons.SettingsIcon stroke={'#7d7d7d'}></svgIcons.SettingsIcon>
+                <svgIcons.SettingsIcon stroke={colorsStyles.mainDarkGreyColor.color}></svgIcons.SettingsIcon>
             </TouchableOpacity>
         </View>
     )
@@ -38,22 +38,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: dimensionsStyles.bar.height * 1.1,
         backgroundColor: colorsStyles.mainLightGreyColor.color,
-        paddingHorizontal: 16,
+        padding: 12,
         borderRadius: 12
     },
     qrCode: {
 
     },
     settings: {
-        height: dimensionsStyles.bar.height * 1.1,
-
-        width: dimensionsStyles.bar.height * 1.1,
-
         justifyContent: 'center',
         alignItems: 'center',
-
+        padding: 12,
         backgroundColor: colorsStyles.mainLightGreyColor.color,
 
         borderRadius: 12,

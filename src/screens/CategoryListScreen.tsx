@@ -6,7 +6,7 @@ import { Router } from "expo-router";
 import CategoryList from "@/src/components/CatalogScreenComponents/CategoryList";
 import { Category } from "@/src/interfaces/Category";
 import ScreenHeader from "@/src/components/ScreenHeader";
-import { colorsStyles } from "../styles/styles";
+import { colorsStyles, dimensionsStyles } from "../styles/styles";
 import { ipv4 } from "../data/tempData";
 import { StatusBar } from "expo-status-bar";
 
@@ -23,12 +23,12 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
             return (
                 <View style={styles.container}>
                     <StatusBar translucent style='dark' backgroundColor={'transparent'} />
-                    <View style={{ flex: 1, minHeight: 300 }}>
+                    <View style={{ flex: 1, minHeight: dimensionsStyles.categoryListImageBackground.height }}>
                         <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                             <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
-                            <SafeAreaView style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}>
-                                <ScreenHeader title={props.currentCategory.name} router={props.router} />
-                                <SearchBar />
+                            <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, justifyContent: 'space-between' }}>
+                                <ScreenHeader style={{ paddingVertical: 16 }} title={props.currentCategory.name} router={props.router} />
+                                <SearchBar style={{ paddingVertical: 16 }} />
                             </SafeAreaView>
                         </ImageBackground>
                     </View>
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
         margin: 16,
     },
     categoryList: {
-        flexGrow: 1,
         margin: 16,
     },
 })

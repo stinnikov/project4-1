@@ -1,6 +1,6 @@
 
 import React, { memo, useCallback, useState, useEffect } from 'react';
-import { View, FlatList, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
+import { View, FlatList, TouchableOpacity, StyleSheet, ViewStyle, RefreshControl } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles';
@@ -16,14 +16,9 @@ interface ProductListProps {
     style?: ViewStyle,
     horizontal?: boolean,
     parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
-    productStyle?: ViewStyle
+    productStyle?: ViewStyle,
+    onRefresh: () => Promise<void>,
 }
-
-const getItemLayout = (data: any, index: number) => ({
-    length: dimensionsStyles.productCard.height,
-    offset: dimensionsStyles.productCard.height * index,
-    index,
-});
 
 function ListSeparator() {
     return (
@@ -34,7 +29,7 @@ function ListSeparator() {
 const ListHeader = memo(() =>
 (
     <TouchableOpacity
-        style={{ flexDirection: 'row', alignItems: 'center', minHeight: 30, marginBottom: 16, }}>
+        style={{ flexDirection: 'row', alignItems: 'center', margin: 16 }}>
         <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
         <Montserrat600SemiBoldText
             style={{ color: colorsStyles.mainBrightColor.color }}
@@ -45,6 +40,7 @@ const ListHeader = memo(() =>
 const ProductList: React.FC<ProductListProps> = memo((props) => {
 
     const [products, setProducts] = useState<Product[]>(props.data);
+    const [refreshing, setRefreshing] = useState(false);
 
     function navigateToProduct(product: Product) {
         if (props.parentTab === 'catalog') {
@@ -99,6 +95,16 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
         }
     }
 
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        try {
+            props.onRefresh().finally(() => setRefreshing(false));
+        }
+        catch (error) {
+            console.log('Ошибка при обновлении данных' + error);
+        }
+    }, []);
+
     const renderProduct = useCallback(({ item }: { item: Product }) => (
         <ProductCard
             data={item}
@@ -122,7 +128,6 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
                     horizontal={true}
                     removeClippedSubviews={true}
                     showsVerticalScrollIndicator={false}
-                    getItemLayout={getItemLayout}
                 />
             </View>
         );
@@ -140,7 +145,8 @@ const ProductList: React.FC<ProductListProps> = memo((props) => {
                 showsVerticalScrollIndicator={false}
                 ListHeaderComponent={ListHeader}
                 columnWrapperStyle={styles.column}
-                getItemLayout={getItemLayout}
+
+                refreshControl={<RefreshControl colors={[colorsStyles.mainBrightColor.color]} refreshing={refreshing} onRefresh={onRefresh} />}
             />
         </View>
     );
@@ -152,7 +158,8 @@ const styles = StyleSheet.create({
     },
     column: {
         justifyContent: 'space-between',
-        marginBottom: 16,
+        paddingHorizontal: 16,
+        paddingBottom: 16,
     },
     horizontalList: {
         padding: 16,

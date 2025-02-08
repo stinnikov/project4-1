@@ -15,14 +15,12 @@ const DeliveryBar: React.FC<DeliveryBarProps> = (props) => {
                 leftIcon={<svgIcons.PickUpIcon></svgIcons.PickUpIcon>}
                 rightIcon={<svgIcons.ArrowRightIcon></svgIcons.ArrowRightIcon>}
                 text='Адрес'
-                style={styles.bar}
                 iconSize={24}
             />
             <BarComponent
                 leftIcon={<svgIcons.ClockIcon></svgIcons.ClockIcon>}
                 rightIcon={<svgIcons.ArrowRightIcon></svgIcons.ArrowRightIcon>}
                 text='Время'
-                style={styles.bar}
                 iconSize={24}
             />
         </View>
@@ -34,9 +32,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         gap: 10
-    },
-    bar: {
-        backgroundColor: colorsStyles.mainGreyColor.color,
     },
 })
 

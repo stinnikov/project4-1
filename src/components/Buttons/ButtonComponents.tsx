@@ -62,6 +62,7 @@ interface AddButtonProps {
     product: Product;
     style?: ViewStyle | ViewStyle[];
     iconColor?: ColorValue;
+    iconSize?: number,
     onAdd: () => void; // Добавляем пропс для обновления состояния
 }
 
@@ -80,7 +81,7 @@ export const AddOneProductInBasket: React.FC<AddButtonProps> = React.memo((props
 
     return (
         <TouchableOpacity onPress={handlePressAddOneProductInBasket} style={props.style}>
-            <svgIcons.PlusIcon stroke={props.iconColor ?? '#fff'}></svgIcons.PlusIcon>
+            <svgIcons.PlusIcon width={props.iconSize} height={props.iconSize} stroke={props.iconColor ?? '#fff'}></svgIcons.PlusIcon>
         </TouchableOpacity>
     )
 })
@@ -89,6 +90,7 @@ interface RemoveButtonProps {
     product: Product;
     style?: ViewStyle | ViewStyle[];
     iconColor?: ColorValue;
+    iconSize?: number,
     onRemove: () => void;
 }
 
@@ -105,7 +107,7 @@ export const RemoveOneProductFromBasket: React.FC<RemoveButtonProps> = React.mem
 
     return (
         <TouchableOpacity onPress={handlePressRemoveOneProductFromBasket} style={props.style}>
-            <svgIcons.MinusIcon stroke={props.iconColor ?? '#fff'}></svgIcons.MinusIcon>
+            <svgIcons.MinusIcon width={props.iconSize} height={props.iconSize} stroke={props.iconColor ?? '#fff'}></svgIcons.MinusIcon>
         </TouchableOpacity>
     )
 })
@@ -116,6 +118,7 @@ interface AddRemoveProductInBasketPanelProps {
     textStyle?: TextStyle,
     removeButtonStyle?: ViewStyle,
     iconsColor?: ColorValue,
+    iconsSize?: number,
     addButtonStyle?: ViewStyle,
     product: Product,
     onRemove: () => void,
@@ -143,16 +146,17 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
     }
 
     return (
-        <View style={[addRemoveProductInBasketStyles.container, props.style]}>
-
+        <View style={[addRemoveProductInBasketStyles.container, props.style, { justifyContent: 'space-between' }]}>
             <RemoveOneProductFromBasket
-                style={[addRemoveProductInBasketStyles.removeButton, props.removeButtonStyle || {}]}
+                style={[addRemoveProductInBasketStyles.removeButtonContainer, props.removeButtonStyle || {}]}
                 product={props.product}
+                iconSize={props.iconsSize}
                 iconColor={props.iconsColor ?? colorsStyles.mainWhiteColor.color}
                 onRemove={props.onRemove}
             />
-
-            <View style={addRemoveProductInBasketStyles.amountInBasket}>
+            <View style={{ borderRightWidth: 1, borderColor: colorsStyles.mainWhiteColor.color, height: '132%' }}>
+            </View>
+            <View style={addRemoveProductInBasketStyles.amountInBasketContainer}>
                 <Montserrat500MediumText
                     style={props.textStyle || { color: colorsStyles.mainWhiteColor.color }}
                     text={props.product.amountInBasket.toString() + ' шт'}
@@ -162,11 +166,13 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
                     text={'200₽'}
                 />
             </View>
-
+            <View style={{ borderRightWidth: 1, borderColor: colorsStyles.mainWhiteColor.color, height: '132%' }}>
+            </View>
             <AddOneProductInBasket
-                style={[addRemoveProductInBasketStyles.removeButton, props.addButtonStyle || {}]}
+                style={[addRemoveProductInBasketStyles.removeButtonContainer, props.addButtonStyle || {}]}
                 product={props.product}
                 iconColor={props.iconsColor ?? colorsStyles.mainWhiteColor.color}
+                iconSize={props.iconsSize}
                 onAdd={props.onAdd}
             />
         </View>
@@ -175,21 +181,16 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
 
 const addRemoveProductInBasketStyles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+
     },
-    removeButton: {
-        flex: 1,
+    removeButtonContainer: {
         alignItems: 'center',
     },
-    amountInBasket: {
-        flex: 1.3,
+    amountInBasketContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: '#fff',
-        height: '100%',
     },
-    addButton: {
-        flex: 1,
+    addButtonContainer: {
         alignItems: 'center',
     },
 });
@@ -197,6 +198,8 @@ const addRemoveProductInBasketStyles = StyleSheet.create({
 interface BasketButtonComponentProps {
     product: Product,
     style?: ViewStyle,
+    addRemovePanelStyle?: ViewStyle,
+    iconsSize?: number,
     textStyle?: TextStyle,
     size?: 'mini' | 'medium' | 'big'
 }
@@ -226,17 +229,19 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
         if (props.size === 'big') {
             return (
                 <AddRemoveProductInBasketPanel
-                    style={[buttonStyles.basketButton, props.style || {}]}
+                    style={[buttonStyles.basketButton, props.addRemovePanelStyle || {}]}
                     textStyle={props.textStyle}
                     product={props.product}
+                    iconsSize={props.iconsSize ?? 22}
                     onAdd={addOneProduct} onRemove={removeOneProduct} />
             )
         }
         return (
             <AddRemoveProductInBasketPanel
-                style={[buttonStyles.basketButton, props.style || {}]}
-                textStyle={props.textStyle}
+                style={[buttonStyles.basketButton, props.addRemovePanelStyle || {}]}
+                textStyle={{ fontSize: 10, color: colorsStyles.mainWhiteColor.color }}
                 product={props.product}
+                iconsSize={props.iconsSize ?? 16}
                 onAdd={addOneProduct} onRemove={removeOneProduct} />
         )
     }
@@ -245,7 +250,10 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
         return (
             <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
                 <svgIcons.BasketIcon
-                    width={22} height={22}
+                    {...(props.iconsSize) ?
+                        { width: props.iconsSize, height: props.iconsSize } :
+                        { width: 22, height: 22 }
+                    }
                     stroke={colorsStyles.mainWhiteColor.color}
                     strokeWidth={1.5}
                 />
@@ -259,7 +267,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
 
     return (
         <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
-            <svgIcons.BasketIcon stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
+            <svgIcons.BasketIcon width={props.iconsSize ?? 16} height={props.iconsSize ?? 16} stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
             <Montserrat400RegularText
                 style={[props.textStyle || {}, { color: colorsStyles.mainWhiteColor.color, fontSize: 14 }]}
                 text='В корзину'
@@ -300,8 +308,6 @@ export const BasketProductInfoPanel: React.FC<BasketProductInfoPanelProps> = Rea
     )
 
 })
-
-
 
 interface ClearBasketButtonProps {
     style?: ViewStyle;

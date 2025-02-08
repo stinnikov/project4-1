@@ -11,8 +11,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/233%C2%A0481.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "33a733e9-b9ff-11ea-80c9-002590bc5b5f",
@@ -22,8 +22,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/233%C2%A0483.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "038a10db-e587-11ec-80dc-002590bc5b5f",
@@ -33,8 +33,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/274%C2%A0199.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "08a886cc-9c79-11ed-80e2-002590bc5b5f",
@@ -44,8 +44,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/286%C2%A0726.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "0d4fb57e-bb52-11ee-80e5-002590bc5b5f",
@@ -55,8 +55,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/300%C2%A0642.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "1735182e-eff4-11e9-8137-0cc47adbb521",
@@ -66,8 +66,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/219%C2%A0082.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "1b0cfe32-97ed-11ee-80e5-002590bc5b5f",
@@ -77,8 +77,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/300%C2%A0095.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "1b36a680-46fd-11ea-80be-002590bc5b5f",
@@ -88,8 +88,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/226%C2%A0739.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "22bbeda2-f469-11ed-80e3-002590bc5b5f",
@@ -99,8 +99,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/291%C2%A0167.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "020f6917-3954-11ed-80e1-002590bc5b5f",
@@ -110,8 +110,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/281%C2%A0742.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     },
     {
         "id": "05eb839d-221e-463f-a856-68f60778c06b",
@@ -121,8 +121,8 @@ export const prods: Product[] = [
         "imageUrl": "https://api.hk19.ru/goods_photos/115%C2%A0124.jpg",
         "amountOfImages": 1,
         "isFavourite": false,
-        "isInBasket": true,
-        "amountInBasket": 1
+        "isInBasket": false,
+        "amountInBasket": 0
     }
 ]
 

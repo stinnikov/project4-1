@@ -322,6 +322,24 @@ const MyAddressesIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+const InfoIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			fill={props.fill ?? "#000"}
+			fillRule="evenodd"
+			d="M12.823 1.184c-6.075 0-11 4.925-11 11s4.925 11 11 11 11-4.925 11-11-4.925-11-11-11Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5Zm-1.5 4a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
+			clipRule="evenodd"
+		/>
+	</Svg>
+)
+
+
 const LegalInformationIcon = (props: SvgProps) => (
 	<Svg
 		width={24}
@@ -405,4 +423,5 @@ export default
 		LegalInformationIcon,
 		PaymentMethodIcon,
 		CooperationIcon,
+		InfoIcon,
 	}
