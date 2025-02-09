@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 import { Montserrat400RegularText, Montserrat600SemiBoldText } from '../Text/TextComponents'
-import svgIcons from '@/assets/icons/svgIcons'
+import svgIcons from '@/src/assets/icons/svgIcons'
 
 interface BonusCardProps {
 

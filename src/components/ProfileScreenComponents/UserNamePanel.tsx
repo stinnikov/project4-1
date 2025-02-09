@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { View, FlatList, StyleSheet, } from 'react-native';
 import { Router } from 'expo-router';
-import svgIcons from '@/assets/icons/svgIcons';
+import svgIcons from '@/src/assets/icons/svgIcons';
 import { Montserrat400RegularText, Raleway600SemiBoldText } from '../Text/TextComponents';
 
 interface UserPanelProps {

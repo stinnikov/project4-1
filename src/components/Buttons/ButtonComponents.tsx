@@ -7,6 +7,7 @@ import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
 import { Montserrat600SemiBoldText, Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from '../Text/TextComponents';
+import AddRemoveProductInBasketPanel from './AddRemoveOneProductPanel';
 
 
 
@@ -57,143 +58,6 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
         </Pressable>
     )
 })
-
-interface AddButtonProps {
-    product: Product;
-    style?: ViewStyle | ViewStyle[];
-    iconColor?: ColorValue;
-    iconSize?: number,
-    onAdd: () => void; // Добавляем пропс для обновления состояния
-}
-
-export const AddOneProductInBasket: React.FC<AddButtonProps> = React.memo((props) => {
-    function handlePressAddOneProductInBasket() {
-
-        addProductInBasketAsync(props.product.id)
-            .then(() => {
-                // Вызываем функцию для обновления состояния родительского компонента
-                props.onAdd();
-            })
-            .catch((error) => {
-                console.error('Ошибка при удалении продукта:', error);
-            });
-    }
-
-    return (
-        <TouchableOpacity onPress={handlePressAddOneProductInBasket} style={props.style}>
-            <svgIcons.PlusIcon width={props.iconSize} height={props.iconSize} stroke={props.iconColor ?? '#fff'}></svgIcons.PlusIcon>
-        </TouchableOpacity>
-    )
-})
-
-interface RemoveButtonProps {
-    product: Product;
-    style?: ViewStyle | ViewStyle[];
-    iconColor?: ColorValue;
-    iconSize?: number,
-    onRemove: () => void;
-}
-
-export const RemoveOneProductFromBasket: React.FC<RemoveButtonProps> = React.memo((props) => {
-    function handlePressRemoveOneProductFromBasket() {
-        deleteProductFromBasket(props.product.id)
-            .then(() => {
-                props.onRemove();
-            })
-            .catch((error) => {
-                console.error('Ошибка при удалении продукта:', error);
-            });
-    }
-
-    return (
-        <TouchableOpacity onPress={handlePressRemoveOneProductFromBasket} style={props.style}>
-            <svgIcons.MinusIcon width={props.iconSize} height={props.iconSize} stroke={props.iconColor ?? '#fff'}></svgIcons.MinusIcon>
-        </TouchableOpacity>
-    )
-})
-
-
-interface AddRemoveProductInBasketPanelProps {
-    style?: ViewStyle[] | ViewStyle,
-    textStyle?: TextStyle,
-    removeButtonStyle?: ViewStyle,
-    iconsColor?: ColorValue,
-    iconsSize?: number,
-    addButtonStyle?: ViewStyle,
-    product: Product,
-    onRemove: () => void,
-    onAdd: () => void,
-}
-
-const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps> = React.memo((props) => {
-    let totalPriceTextColor: ColorValue = '';
-
-    if (props.textStyle) {
-        if (props.textStyle.color) {
-            if (props.textStyle.color === colorsStyles.mainWhiteColor.color || props.textStyle.color === '#fff') {
-                totalPriceTextColor = colorsStyles.mainWhiteColor.color;
-            }
-            else {
-                totalPriceTextColor = colorsStyles.mainDarkGreyColor.color;
-            }
-        }
-        else {
-            totalPriceTextColor = colorsStyles.mainWhiteColor.color;
-        }
-    }
-    else {
-        totalPriceTextColor = colorsStyles.mainWhiteColor.color;
-    }
-
-    return (
-        <View style={[addRemoveProductInBasketStyles.container, props.style, { justifyContent: 'space-between' }]}>
-            <RemoveOneProductFromBasket
-                style={[addRemoveProductInBasketStyles.removeButtonContainer, props.removeButtonStyle || {}]}
-                product={props.product}
-                iconSize={props.iconsSize}
-                iconColor={props.iconsColor ?? colorsStyles.mainWhiteColor.color}
-                onRemove={props.onRemove}
-            />
-            <View style={{ borderRightWidth: 1, borderColor: colorsStyles.mainWhiteColor.color, height: '132%' }}>
-            </View>
-            <View style={addRemoveProductInBasketStyles.amountInBasketContainer}>
-                <Montserrat500MediumText
-                    style={props.textStyle || { color: colorsStyles.mainWhiteColor.color }}
-                    text={props.product.amountInBasket.toString() + ' шт'}
-                />
-                <Montserrat400RegularText
-                    style={[props.textStyle || {}, { color: totalPriceTextColor, fontSize: 10 }]}
-                    text={'200₽'}
-                />
-            </View>
-            <View style={{ borderRightWidth: 1, borderColor: colorsStyles.mainWhiteColor.color, height: '132%' }}>
-            </View>
-            <AddOneProductInBasket
-                style={[addRemoveProductInBasketStyles.removeButtonContainer, props.addButtonStyle || {}]}
-                product={props.product}
-                iconColor={props.iconsColor ?? colorsStyles.mainWhiteColor.color}
-                iconSize={props.iconsSize}
-                onAdd={props.onAdd}
-            />
-        </View>
-    )
-})
-
-const addRemoveProductInBasketStyles = StyleSheet.create({
-    container: {
-
-    },
-    removeButtonContainer: {
-        alignItems: 'center',
-    },
-    amountInBasketContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    addButtonContainer: {
-        alignItems: 'center',
-    },
-});
 
 interface BasketButtonComponentProps {
     product: Product,
@@ -303,6 +167,7 @@ export const BasketProductInfoPanel: React.FC<BasketProductInfoPanelProps> = Rea
             style={[buttonStyles.basketButton, { backgroundColor: colorsStyles.mainLightGreyColor.color }, props.style || {}]}
             textStyle={{ color: colorsStyles.mainBlackColor.color, fontSize: 10 }}
             iconsColor={colorsStyles.mainBlackColor.color}
+            iconsSize={16}
             onAdd={addOneProduct} onRemove={removeOneProduct}
         />
     )

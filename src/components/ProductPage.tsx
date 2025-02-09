@@ -65,7 +65,10 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
                 <BasketButtonComponent
                     textStyle={{ fontSize: 20, color: colorsStyles.mainWhiteColor.color }}
-                    product={product} style={styles.bottomButton}
+                    product={product}
+                    style={styles.bottomButton}
+                    iconsSize={22}
+                    addRemovePanelStyle={styles.bottomButton}
                     size='big'
 
                 />
@@ -105,14 +108,12 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     title: {
-        flex: 1,
         paddingHorizontal: 16,
         paddingTop: 10,
         minHeight: 100,
     },
     priceContainer:
     {
-        flex: 1,
         marginVertical: 12,
         alignSelf: 'flex-start',
         backgroundColor: colorsStyles.mainLightGreyColor.color,
@@ -122,15 +123,9 @@ const styles = StyleSheet.create({
     description:
     {
         paddingBottom: '14%',
-        flex: 5,
     },
     bottomButton: {
-        flex: 1,
-        gap: 6,
-        height: '100%',
-        width: '90%',
-        alignSelf: 'center',
-        justifyContent: 'center',
+        paddingVertical: 12,
     }
 
 });

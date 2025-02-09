@@ -3,7 +3,7 @@ import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { Router } from 'expo-router';
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
 import { Montserrat400RegularText } from '../Text/TextComponents';
-import svgIcons from '@/assets/icons/svgIcons';
+import svgIcons from '@/src/assets/icons/svgIcons';
 
 interface ProfileListProps {
 	router: Router,
