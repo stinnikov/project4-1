@@ -1,43 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, StyleSheet, RefreshControl, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, ScrollView, FlatList } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchComponent from "@/src//components/SearchComponent";
-import { Router, SplashScreen, useFocusEffect } from "expo-router";
-import ProductListComponent from "@/src//components/ProductListComponent";
-import ScreenHeaderComponent from "@/src//components/ScreenHeaderComponent";
+import SearchBar from "@/src/components/SearchBar";
+import { Router, useFocusEffect } from "expo-router";
+import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
-import svgIcons from "@/assets/icons/svgIcons";
 import { getBasketByUserIdAsync } from "../services/BasketService";
-import BasketProductListComponent from "../components/BasketScreenComponents/BasketProductListComponent";
-import BasketProductCardComponent from "../components/BasketScreenComponents/BasketProductCardComponent";
-import { ClearBasketButton } from "../components/Buttons/ButtonComponents";
-import { commonStyles, dimensionsStyles } from "@/src//styles/styles";
+import { dimensionsStyles } from "@/src//styles/styles";
+import { StatusBar } from "expo-status-bar";
+import { prods } from "@/src//data/tempData";
+import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
+import DeliveryBar from "../components/DeliveryBar";
+import PromotionInBasketForm from "../components/BasketScreenComponents/PromotionInBasketForm";
+import TopGoods from "../components/TopGoods";
+import OrderAmount from "../components/BasketScreenComponents/OrderAmount";
+import PaymentDetails from "../components/BasketScreenComponents/PaymentDetails";
+import MakeOrderButton from "../components/BasketScreenComponents/MakeOrderButton";
 
 interface BasketScreenProps {
     router: Router,
 }
 
-const getItemLayout = (data: any, index: number) => ({
-    length: dimensionsStyles.productCard.height,
-    offset: dimensionsStyles.productCard.height * index,
-    index,
-});
-
 const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
-
-    useFocusEffect(
-        React.useCallback(() => {
-            fetchData();
-            return () => {
-                setProducts([]);
-            };
-        }, [])
-    );
 
     const fetchData = async () => {
         setLoading(true);
@@ -53,6 +42,16 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
         }
     };
 
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData();
+            return () => {
+                setProducts([]);
+            };
+        }, [])
+    );
+
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         fetchData().finally(() => setRefreshing(false));
@@ -62,28 +61,43 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
         setProducts([]);
     };
 
-    const ListHeader = () => (
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 30, marginBottom: 16 }}>
-            <TouchableOpacity style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-            }}>
-                <svgIcons.SortIcon fill={colorsStyles.mainBrightColor.color} width={18} height={18} />
-                <Text style={styles.listTitle}>Сортировка</Text>
-            </TouchableOpacity>
-
-            <ClearBasketButton onClear={clearBasket} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
-        </View>
-    );
-
-    function renderItem({ item }: { item: Product }) {
+    function renderScreen() {
         return (
-            <BasketProductCardComponent
-                data={item}
-                router={props.router}
-            />
-        );
+            <View style={{ flex: 1 }}>
+                <View style={styles.header}>
+                    <ScreenHeader
+                        title={'Корзина'}
+                        router={props.router}
+                    />
+                </View>
+                <View style={styles.deliveryBar}>
+                    <DeliveryBar />
+                </View>
+                <View style={styles.productList}>
+                    <BasketProductList
+                        data={products}
+                        router={props.router}
+                    />
+                </View>
+                <View style={styles.promotions}>
+                    <PromotionInBasketForm router={props.router} />
+                </View>
+                <View>
+                    <TopGoods data={prods} router={props.router} parentTab="basket" />
+                </View>
+                <View style={styles.orderAmount}>
+                    <OrderAmount sumOfOrder="1199.99 руб" discountOfOrder="200 руб" totalSumOfOrder="999.99 руб" />
+                </View>
+                <View style={{ margin: 16 }}>
+                    <PaymentDetails router={props.router} />
+                </View>
+                <View style={{ margin: 16 }}>
+                    <MakeOrderButton router={props.router} />
+                </View>
+            </View>
+        )
     }
+
 
     if (loading) {
         return <LoadingScreen />;
@@ -92,48 +106,43 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={{ margin: 16, flexDirection: 'row', width: '100%' }}>
-                    <ScreenHeaderComponent
-                        title={'Корзина'}
-                        router={props.router}
-                    />
-                </View>
-                <View style={{ margin: 16 }}>
-                    <SearchComponent />
-                </View>
                 <FlatList
-                    style={{ flex: 1, padding: 16 }}
-                    data={products}
-                    renderItem={renderItem}
-                    numColumns={2}
-                    keyExtractor={(item) => item.id}
-                    initialNumToRender={2}
-                    removeClippedSubviews={true}
-                    ListHeaderComponent={ListHeader}
-                    columnWrapperStyle={styles.column}
-                    getItemLayout={getItemLayout}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    data={[{}]}
+                    renderItem={renderScreen}
                 />
             </SafeAreaView>
         </SafeAreaProvider>
     );
-});
+})
+
+
+
 
 
 const styles = StyleSheet.create({
-    topGoods: {
-        flex: 1
-    },
-    listTitle: {
-        fontSize: 16,
-        fontWeight: 'semibold',
-        color: colorsStyles.mainBrightColor.color,
-        fontFamily: commonStyles.text.fontFamily,
-    },
     column: {
         justifyContent: 'space-between',
         marginBottom: 16,
     },
+    header: {
+        flexDirection: 'row',
+        padding: 16,
+        width: '100%'
+    },
+    deliveryBar: {
+        marginHorizontal: 16,
+    },
+    productList: {
+        flex: 1,
+        margin: 16,
+    },
+    promotions: {
+        marginHorizontal: 16,
+        marginBottom: 16,
+    },
+    orderAmount: {
+        margin: 16,
+    }
 })
 
 export default React.memo(BasketScreen);

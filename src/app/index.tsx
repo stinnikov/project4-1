@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
-import ProductCardScreen from '@/src/screens/ProductCardScreen';
+import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import { isAuthorisedAsync } from '@/src/services/AuthService';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import LoginScreen from '@/src/screens/LoginScreen';
+import { enableScreens } from 'react-native-screens';
 import 'expo-dev-client';
 
 const App: React.FC = () => {
@@ -35,7 +36,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (isAuth) {
-            router.replace('/(main)/(tabs)/(home)');
+            router.replace('/(main)/(tabs)/(home)/home');
         }
     }, [isAuth]);
 
@@ -45,6 +46,8 @@ const App: React.FC = () => {
         </LoadingScreen>)
 
     }
+
+    enableScreens(true);
 
     return isAuth ? null : <LoginScreen />;
 };

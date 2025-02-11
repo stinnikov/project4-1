@@ -8,10 +8,18 @@
       ]
     }
   },
+  "lib": [
+    "es2015",
+    "es2016",
+    "dom",
+    "es2018.promise"
+  ],
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/(main)/(tabs)/(basket)/index,tsx", "app/(main)/(tabs)/(basket)/index,tsx"  ]
+    "expo-env.d.ts",
+    "app/(main)/(tabs)/(basket)/index,tsx",
+    "app/(main)/(tabs)/(basket)/index,tsx"
+  ]
 }

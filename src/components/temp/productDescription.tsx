@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { commonStyles } from '@/src/styles/styles';
 
 
 
@@ -53,6 +52,7 @@ const ProductDescription = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     margin: 16,
     marginTop: 0,
   },
@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
   },
   list: {
     fontSize: 16,
-    fontFamily: commonStyles.text.fontFamily,
+    fontFamily: 'Montserrat_400Regular',
   },
   description:
   {
     paddingTop: 16,
     fontSize: 16,
-    fontFamily: commonStyles.text.fontFamily,
+    fontFamily: 'Montserrat_400Regular',
   }
 });
 

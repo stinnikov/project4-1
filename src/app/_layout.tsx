@@ -1,7 +1,6 @@
 import { Stack } from 'expo-router';
 import * as loadFonts from '@/src/assets/fonts/loadFonts';
 import { colorsStyles } from '@/src/styles/styles';
-import { StatusBar } from 'expo-status-bar';
 
 export default function RootLayout() {
     loadFonts.loadFontRaleway();
@@ -12,6 +11,8 @@ export default function RootLayout() {
                 {
                     headerShown: false,
                     contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color },
+                    statusBarStyle: 'light',
+                    statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString(),
                 }}>
         </Stack>
     );

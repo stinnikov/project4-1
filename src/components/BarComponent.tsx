@@ -1,100 +1,70 @@
 import React from "react";
-import { View, StyleSheet, Text, StyleProp, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
-import { commonStyles, dimensionsStyles, colorsStyles } from "@/src/styles/styles";
+import { View, StyleSheet, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
+import { dimensionsStyles, shadowStyles } from "@/src/styles/styles";
+import { Montserrat400RegularText } from "./Text/TextComponents";
+import { colorsStyles } from "@/src/styles/styles";
 
 interface BarComponentProps {
-    text?: string,
-    textStyle?: StyleProp<TextStyle>,
+    text?: string;
+    textStyle?: TextStyle;
 
-    leftIcon?: React.JSX.Element,
-    leftIconStyle?: StyleProp<TextStyle>,
+    leftIcon?: React.JSX.Element;
+    leftIconStyle?: TextStyle;
 
-    rightIcon?: JSX.Element,
-    rightIconStyle?: StyleProp<TextStyle>,
+    rightIcon?: JSX.Element;
+    rightIconStyle?: TextStyle;
 
-    iconSize?: number,
-    style?: StyleProp<ViewStyle>
-
-
+    iconSize?: number;
+    style?: ViewStyle;
 }
 
 const BarComponent: React.FC<BarComponentProps> = (props) => {
+    const { leftIcon, rightIcon, text, textStyle, style } = props;
 
-    if ((props.leftIcon !== undefined) && (props.rightIcon !== undefined))
-        return (
-            <TouchableOpacity style={[styles.container, props.style]}>
-                <View style={styles.leftIconContainer}>
-                    {props.leftIcon}
-                </View>
+    return (
+        <TouchableOpacity style={[styles.container, style, shadowStyles.regularShadow]}>
+            {leftIcon && <View style={styles.leftIconAndTextContainer}>
+                {leftIcon}
+                <Montserrat400RegularText text={text} style={textStyle} />
+            </View>
+            }
 
-                <View style={styles.textContainer}>
-                    <Text style={[styles.text, props.textStyle]}>
-                        {props.text}
-                    </Text>
-                </View>
 
-                <View style={styles.rightIconContainer}>
-                    {props.rightIcon}
-                </View>
-            </TouchableOpacity>
-        )
-    else {
-        return (
-            <TouchableOpacity style={[styles.container, props.style]}>
-                <View style={styles.textContainer}>
-                    <Text style={[styles.text, props.textStyle]}>
-                        {props.text}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-}
+            {rightIcon && <View style={styles.rightIconContainer}>{rightIcon}</View>}
+        </TouchableOpacity>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        paddingVertical: 12,
+        paddingLeft: 16,
+        borderRadius: 12,
+        justifyContent: 'space-between',
+        gap: 10,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
 
-        height: dimensionsStyles.bar.height,
-
-        borderRadius: commonStyles.general.borderRadius,
     },
 
-    leftIconContainer: {
-        flex: 0.11,
+    leftIconAndTextContainer: {
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignContent: 'center',
         alignItems: 'center',
+        gap: 10
     },
 
     leftIcon: {
     },
 
-    textContainer: {
-        flex: 0.78,
-        justifyContent: 'center',
-    },
-
-    text: {
-        alignContent: 'center',
-        padding: commonStyles.general.padding,
-        fontSize: 17,
-        fontFamily: commonStyles.text.fontFamily,
-        zIndex: 999,
-        position: 'absolute',
-    },
-
     rightIconContainer: {
-        flex: 0.11,
-        flexDirection: 'row-reverse',
         justifyContent: 'center',
-        alignContent: 'center',
         alignItems: 'center',
-
+        paddingRight: 12,
     },
 
     rightIcon: {
-        marginRight: commonStyles.general.margin,
+        marginRight: 16,
     },
 })
 

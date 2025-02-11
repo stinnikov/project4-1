@@ -1,0 +1,75 @@
+import React from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
+import CirclePostForUser, { CircleStoryProps } from './CirclePostForUser'
+import { Raleway600SemiBoldText } from '../Text/TextComponents';
+import svgIcons from '@/src/assets/icons/svgIcons';
+
+interface UserPanelProps {
+    name?: string;
+}
+
+const UserPanel: React.FC<UserPanelProps> = (props) => {
+    function renderCircleStory({ item }: { item: CircleStoryProps }) {
+        return (<CirclePostForUser imgSrc={item.imgSrc}></CirclePostForUser>)
+    }
+    const circleStoriesData: CircleStoryProps[] = [
+        { imgSrc: '' },
+        { imgSrc: '' },
+        { imgSrc: '' },
+        { imgSrc: '' },
+        { imgSrc: '' },
+    ]
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.nameAndButtons}>
+
+                <Raleway600SemiBoldText
+                    text='Имя пользователя'
+                />
+
+                <View style={styles.buttons}>
+                    <svgIcons.NotificationsIcon stroke={'black'} />
+                    <svgIcons.ProfileSettingsIcon stroke={'black'} />
+                </View>
+
+            </View>
+            <View>
+                <FlatList
+                    data={circleStoriesData}
+                    horizontal={true}
+                    renderItem={renderCircleStory}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.listContent}
+                />
+            </View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+
+    nameAndButtons: {
+        margin: 16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    buttons: {
+        flexDirection: 'row',
+        gap: 10,
+    },
+    list: {
+        justifyContent: 'center'
+    },
+    listContent: {
+        gap: 10,
+        justifyContent: 'center',
+        paddingLeft: 16,
+    },
+})
+
+export default UserPanel;

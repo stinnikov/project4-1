@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Stack, Tabs, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/src/assets/icons/svgIcons';
-import { commonStyles, colorsStyles } from '@/src/styles/styles';
+import { colorsStyles } from '@/src/styles/styles';
 import { CommonActions } from '@react-navigation/native';
 
 
@@ -13,8 +13,6 @@ const iconSize: number = 30;
 
 const iconLabelShown: boolean = true;
 
-const iconLabelFontSize: number = 11;
-
 const headerShown: boolean = false;
 
 
@@ -22,30 +20,23 @@ export default function TabLayout() {
 	return (
 		<Tabs
 			detachInactiveScreens={true}
-
 			initialRouteName='(home)'
 
 			screenOptions={{
 				tabBarAllowFontScaling: false,
 				tabBarActiveTintColor: iconColor,
 				tabBarShowLabel: iconLabelShown,
-				tabBarStyle: {
-					flexDirection: 'row',
-				},
 
-				tabBarLabelStyle: {
-					fontSize: iconLabelFontSize,
-				},
 			}}
 		>
-			<Tabs.Screen name="catalog"
+			<Tabs.Screen name="(catalog)"
 				options={{
-					lazy: false,
 					freezeOnBlur: true,
-					popToTopOnBlur: true,
-					title: "Каталог",
+					title: 'Каталог',
 					headerShown: headerShown,
-
+					tabBarLabel: ({ focused, children }) => (
+						<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					),
 					tabBarIcon: ({ color, focused }) => (
 						<svgIcons.CatalogIcon stroke={focused ? color : 'black'}></svgIcons.CatalogIcon>
 					),
@@ -53,9 +44,12 @@ export default function TabLayout() {
 
 			/>
 
-			< Tabs.Screen name="(favourites)" options={{
+			<Tabs.Screen name="(favourites)" options={{
 				title: 'Избранное',
 				headerShown: headerShown,
+				tabBarLabel: ({ focused, children }) => (
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
 				),
@@ -64,6 +58,9 @@ export default function TabLayout() {
 				title: 'Главная',
 
 				headerShown: headerShown,
+				tabBarLabel: ({ focused, children }) => (
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.CircleIcon fill={focused ? color : 'none'}></svgIcons.CircleIcon>
 					//заменить иконку на лого
@@ -72,6 +69,9 @@ export default function TabLayout() {
 			< Tabs.Screen name="(profile)" options={{
 				title: 'Профиль',
 				headerShown: headerShown,
+				tabBarLabel: ({ focused, children }) => (
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.ProfileIcon fill={focused ? color : 'none'}></svgIcons.ProfileIcon>
 				),
@@ -79,13 +79,33 @@ export default function TabLayout() {
 			< Tabs.Screen name="(basket)" options={{
 				headerShown: headerShown,
 				title: 'Корзина',
+				tabBarLabel: ({ focused, children }) => (
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+				),
 				tabBarIcon: ({ color, focused }) => (
-					<svgIcons.BasketIcon stroke={focused ? color : '#000'}></svgIcons.BasketIcon>
+					<svgIcons.TabBarBasketIcon stroke={focused ? color : '#000'}></svgIcons.TabBarBasketIcon>
 				),
 			}} />
 		</Tabs >
 	);
 }
+
+const styles = StyleSheet.create(
+	{
+		tabBarLabel: {
+			fontSize: 11,
+			letterSpacing: -0.03,
+			fontFamily: 'Montserrat_500Medium',
+			color: 'black',
+		},
+		activeTabBarLabel: {
+			fontSize: 11,
+			letterSpacing: -0.03,
+			fontFamily: 'Montserrat_500Medium',
+			color: colorsStyles.mainBrightColor.color,
+		}
+	}
+)
 
 // listeners={({ navigation }) => ({
 // 	tabPress: (e) => {
