@@ -327,6 +327,24 @@ const PlusIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+const InfoIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			fill={props.fill ?? '#000'}
+			fillRule="evenodd"
+			d="M12.823 1.184c-6.075 0-11 4.925-11 11s4.925 11 11 11 11-4.925 11-11-4.925-11-11-11Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5Zm-1.5 4a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
+			clipRule="evenodd"
+		/>
+	</Svg>
+)
+
+
 const QRCodeIcon = (props: SvgProps) => (
 	<Svg
 		width={24}
@@ -411,6 +429,113 @@ const RatingStarIcon = (props: SvgProps) => (
 	</Svg>
 )
 
+const PurchaseHistoryIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<G
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.25}
+		>
+			<Path d="M11.795 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+			<Path d="M14 18a4 4 0 1 0 8 0 4 4 0 0 0-8 0ZM15 3v4M7 3v4M3 11h16" />
+			<Path d="M18 16.496V18l1 1" />
+		</G>
+		<Defs>
+			<Path fill="none" d="M0 0h24v24H0z" />
+		</Defs>
+	</Svg>
+)
+
+const MyAddressesIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={props.strokeWidth ?? 1.25}
+			d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+		/>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={props.strokeWidth ?? 1.25}
+			d="M12 21.7C17.3 17 20 13 20 10a8 8 0 0 0-16 0c0 3 2.7 6.9 8 11.7Z"
+		/>
+	</Svg>
+)
+
+const LegalInformationIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<G
+			stroke={props.stroke ?? "#000"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={1.25}
+		>
+			<Path d="M12 3.75v16.5M9.75 20.25h4.5M5.25 8.25l13.5-3M2.25 15.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5ZM15.75 12.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5Z" />
+		</G>
+		<Defs>
+			<Path fill="#fff" d="M0 0h24v24H0z" />
+		</Defs>
+	</Svg>
+)
+
+const CooperationIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={1.25}
+			d="M8.561 11.28a2.816 2.816 0 1 0 0-5.633 2.816 2.816 0 0 0 0 5.633ZM14.25 18.727a5.7 5.7 0 0 0-5.704-5.7 5.7 5.7 0 0 0-5.7 5.7H14.25ZM16.549 12.476a2.269 2.269 0 1 0 0-4.537 2.269 2.269 0 0 0 0 4.537ZM15.9 18.727h5.25a4.59 4.59 0 0 0-4.601-4.59 4.578 4.578 0 0 0-2.156.537"
+		/>
+	</Svg>
+)
+
+const PaymentMethodIcon = (props: SvgProps) => (
+	<Svg
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		{...props}
+	>
+		<Path
+			fill={props.stroke ?? "#000"}
+			d="M5 14h3.5a1.5 1.5 0 0 1 1.5 1.5V17H6.5A1.5 1.5 0 0 1 5 15.5V14Z"
+		/>
+		<Path
+			stroke={props.stroke ?? "#000"}
+			strokeWidth={1.25}
+			d="M3.625 9.625h16.75V17A2.375 2.375 0 0 1 18 19.375H6A2.375 2.375 0 0 1 3.625 17V9.625Z"
+		/>
+		<Path
+			fill={props.stroke ?? "#000"}
+			d="M3 7.75A2.75 2.75 0 0 1 5.75 5h12.5A2.75 2.75 0 0 1 21 7.75H3Z"
+		/>
+	</Svg>
+)
+
 
 
 
@@ -435,5 +560,11 @@ export default
 		QRCodeIcon,
 		TrashCanIcon,
 		TabBarBasketIcon,
-		RatingStarIcon
+		RatingStarIcon,
+		InfoIcon,
+		PurchaseHistoryIcon,
+		MyAddressesIcon,
+		LegalInformationIcon,
+		PaymentMethodIcon,
+		CooperationIcon,
 	}

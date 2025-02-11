@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import CirclePostForUser, { CircleStoryProps } from './CirclePostForUser'
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
-import svgIcons from '@/assets/icons/svgIcons';
+import svgIcons from '@/src/assets/icons/svgIcons';
 
 interface UserPanelProps {
     name?: string;

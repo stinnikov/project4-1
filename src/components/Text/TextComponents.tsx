@@ -36,7 +36,7 @@ export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
 
 export const Montserrat300LightText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.montserrat300LightText, style]}>
+        <Text style={[styles.montserrat300Light, style]}>
             {text ?? ''}
         </Text>
     );
@@ -77,6 +77,8 @@ export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
 };
 
 const styles = StyleSheet.create({
+
+    //-- MONTSERRAT ---
     montserrat600SemiBold: {
         fontSize: 16,
         fontFamily: 'Montserrat_600SemiBold',
@@ -92,11 +94,13 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_400Regular',
         letterSpacing: -0.03,
     },
-    montserrat300LightText: {
+    montserrat300Light: {
         fontSize: 16,
         fontFamily: 'Montserrat_300Light',
         letterSpacing: -0.03
     },
+
+    //-- RALEWAY ---
     raleway700Bold: {
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',

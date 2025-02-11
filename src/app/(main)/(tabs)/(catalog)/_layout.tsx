@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack } from "expo-router"
+import { colorsStyles } from "@/src/styles/styles";
 
 export default function () {
     return (
@@ -9,7 +10,7 @@ export default function () {
                 statusBarStyle: 'dark',
                 statusBarBackgroundColor: 'transparent',
                 statusBarTranslucent: true,
-                contentStyle: { backgroundColor: 'white' },
+                contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color },
             }}>
             <Stack.Screen name="catalog" />
         </Stack>

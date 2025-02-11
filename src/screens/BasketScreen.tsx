@@ -10,18 +10,18 @@ import LoadingScreen from "./LoadingScreen";
 import { getBasketByUserIdAsync } from "../services/BasketService";
 import { dimensionsStyles } from "@/src//styles/styles";
 import { StatusBar } from "expo-status-bar";
+import { prods } from "@/src//data/tempData";
 import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
 import DeliveryBar from "../components/DeliveryBar";
+import PromotionInBasketForm from "../components/BasketScreenComponents/PromotionInBasketForm";
+import TopGoods from "../components/TopGoods";
+import OrderAmount from "../components/BasketScreenComponents/OrderAmount";
+import PaymentDetails from "../components/BasketScreenComponents/PaymentDetails";
+import MakeOrderButton from "../components/BasketScreenComponents/MakeOrderButton";
 
 interface BasketScreenProps {
     router: Router,
 }
-
-const getItemLayout = (data: any, index: number) => ({
-    length: dimensionsStyles.productCard.height,
-    offset: dimensionsStyles.productCard.height * index,
-    index,
-});
 
 const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -70,7 +70,7 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                         router={props.router}
                     />
                 </View>
-                <View style={{ marginHorizontal: 16 }}>
+                <View style={styles.deliveryBar}>
                     <DeliveryBar />
                 </View>
                 <View style={styles.productList}>
@@ -78,6 +78,21 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                         data={products}
                         router={props.router}
                     />
+                </View>
+                <View style={styles.promotions}>
+                    <PromotionInBasketForm router={props.router} />
+                </View>
+                <View>
+                    <TopGoods data={prods} router={props.router} parentTab="basket" />
+                </View>
+                <View style={styles.orderAmount}>
+                    <OrderAmount sumOfOrder="1199.99 руб" discountOfOrder="200 руб" totalSumOfOrder="999.99 руб" />
+                </View>
+                <View style={{ margin: 16 }}>
+                    <PaymentDetails router={props.router} />
+                </View>
+                <View style={{ margin: 16 }}>
+                    <MakeOrderButton router={props.router} />
                 </View>
             </View>
         )
@@ -114,11 +129,18 @@ const styles = StyleSheet.create({
         padding: 16,
         width: '100%'
     },
-    searchBar: {
-        margin: 16,
+    deliveryBar: {
+        marginHorizontal: 16,
     },
     productList: {
         flex: 1,
+        margin: 16,
+    },
+    promotions: {
+        marginHorizontal: 16,
+        marginBottom: 16,
+    },
+    orderAmount: {
         margin: 16,
     }
 })

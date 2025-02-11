@@ -1,10 +1,8 @@
 import React from "react";
-import { View, StyleSheet, FlatList, ViewStyle } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
-import { dimensionsStyles } from "@/src/styles/styles";
 import { StyleProp } from "react-native";
-import ProductCard from "./ProductCard";
 import { Raleway600SemiBoldText } from "./Text/TextComponents";
 import ProductList from "./ProductList";
 
@@ -19,7 +17,7 @@ interface TopGoodsProps {
 
 const TopGoods: React.FC<TopGoodsProps> = (props) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <Raleway600SemiBoldText
                 text="Топ товары"
                 style={{ paddingHorizontal: 16, paddingTop: 12 }}
@@ -29,7 +27,7 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
                 router={props.router}
                 parentTab={props.parentTab}
                 horizontal={true}
-                productStyle={{ width: 135 }}
+                productStyle={{ width: 170 }}
             />
         </View>
     );

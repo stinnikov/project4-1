@@ -29,7 +29,7 @@ const BasketListItem: React.FC<BasketListItemProps> = React.memo((props) => {
                         <Montserrat400RegularText style={{ paddingHorizontal: 12, paddingVertical: 4, fontSize: 14 }} text={props.data.price} />
                     </View>
 
-                    <BasketProductInfoPanel style={{ borderRadius: 6, width: 98, height: 30, }} product={props.data} />
+                    <BasketProductInfoPanel style={{ borderRadius: 6, paddingHorizontal: 12, }} product={props.data} />
                 </View>
             </View>
         </View>
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     },
     productPriceAndPurchaseInfoContainer: {
         width: '100%',
+        flexShrink: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',

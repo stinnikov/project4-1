@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
-import { dimensionsStyles, colorsStyles, buttonStyles } from "@/src/styles/styles";
+import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles";
 import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
 import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
 
@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
     }
 
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={[styles.container, props.style, shadowStyles.regularShadow]}>
             <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
                 <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
@@ -51,10 +51,11 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                 />
             </View>
 
-            <View style={{ justifyContent: 'center', flex: 0.4, marginVertical: 12, }}>
+            <View style={styles.bottomContainer}>
                 <BasketButtonComponent
                     textStyle={{ color: colorsStyles.mainWhiteColor.color, fontSize: 14 }}
-                    style={{ bottom: 0, marginHorizontal: 10 }}
+                    style={{ marginHorizontal: 12, paddingVertical: 8, paddingHorizontal: 12 }}
+                    addRemovePanelStyle={{ marginHorizontal: 12, paddingVertical: 4, paddingHorizontal: 12 }}
                     product={product} />
             </View>
         </View>
@@ -67,10 +68,7 @@ const styles = StyleSheet.create({
         width: dimensionsStyles.productListCard.width,
         backgroundColor: colorsStyles.mainWhiteColor.color,
         borderRadius: 12,
-        elevation: 5,
-        shadowRadius: 10,
-        shadowOpacity: 0.2,
-        shadowOffset: { width: 0, height: 6 },
+        zIndex: 999
     },
 
     productImageContainer: {
@@ -100,10 +98,8 @@ const styles = StyleSheet.create({
     },
 
     bottomContainer: {
-        height: '8%',
-        padding: 8,
-        width: '100%',
-        borderRadius: 14
+        justifyContent: 'center',
+        marginVertical: 12,
     }
 })
 

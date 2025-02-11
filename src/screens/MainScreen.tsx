@@ -6,7 +6,6 @@ import { Category } from "@/src//interfaces/Category";
 import { Product } from "@/src//interfaces/Product";
 import UserPanel from "@/src/components/MainScreenComponents/UserPanel";
 import { prods } from "@/src//data/tempData";
-import BonusCard from "@/src/components/MainScreenComponents/BonusCard";
 import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
 import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
 import TopGoods from "@/src/components/TopGoods";
@@ -84,7 +83,6 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
     return (
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar translucent={false} backgroundColor={colorsStyles.mainBrightColor.color.toString()} style='dark'></StatusBar>
                 <FlatList
                     overScrollMode="never"
                     data={mainScreenData}

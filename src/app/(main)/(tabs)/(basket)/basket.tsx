@@ -1,5 +1,4 @@
 
-import ProductList from '@/src/components/ProductList';
 import { View, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { prods } from '@/src/data/tempData';

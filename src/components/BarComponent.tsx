@@ -1,7 +1,8 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
-import { dimensionsStyles } from "@/src/styles/styles";
+import { dimensionsStyles, shadowStyles } from "@/src/styles/styles";
 import { Montserrat400RegularText } from "./Text/TextComponents";
+import { colorsStyles } from "@/src/styles/styles";
 
 interface BarComponentProps {
     text?: string;
@@ -21,11 +22,14 @@ const BarComponent: React.FC<BarComponentProps> = (props) => {
     const { leftIcon, rightIcon, text, textStyle, style } = props;
 
     return (
-        <TouchableOpacity style={[styles.container, style]}>
-            {leftIcon && <View style={styles.leftIconContainer}>{leftIcon}</View>}
-            <View style={styles.textContainer}>
+        <TouchableOpacity style={[styles.container, style, shadowStyles.regularShadow]}>
+            {leftIcon && <View style={styles.leftIconAndTextContainer}>
+                {leftIcon}
                 <Montserrat400RegularText text={text} style={textStyle} />
             </View>
+            }
+
+
             {rightIcon && <View style={styles.rightIconContainer}>{rightIcon}</View>}
         </TouchableOpacity>
     );
@@ -34,34 +38,29 @@ const BarComponent: React.FC<BarComponentProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-
-        height: dimensionsStyles.bar.height,
-
+        paddingVertical: 12,
+        paddingLeft: 16,
         borderRadius: 12,
+        justifyContent: 'space-between',
+        gap: 10,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
+
     },
 
-    leftIconContainer: {
-        flex: 0.11,
+    leftIconAndTextContainer: {
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignContent: 'center',
         alignItems: 'center',
+        gap: 10
     },
 
     leftIcon: {
     },
 
-    textContainer: {
-        flex: 0.78,
-        justifyContent: 'center',
-    },
-
     rightIconContainer: {
-        flex: 0.11,
-        flexDirection: 'row-reverse',
         justifyContent: 'center',
-        alignContent: 'center',
         alignItems: 'center',
-
+        paddingRight: 12,
     },
 
     rightIcon: {

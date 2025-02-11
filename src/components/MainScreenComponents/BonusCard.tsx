@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 import { Montserrat400RegularText, Montserrat600SemiBoldText } from '../Text/TextComponents'
-import SvgIcons from '@/assets/icons/svgIcons'
+import svgIcons from '@/src/assets/icons/svgIcons'
 
 interface BonusCardProps {
 
@@ -13,9 +13,12 @@ const BonusCard: React.FC<BonusCardProps> = (props) => {
         <View style={styles.container}>
             <View style={styles.card}>
                 <View style={styles.textContainer}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Montserrat600SemiBoldText style={{ fontSize: 50, verticalAlign: 'bottom', textAlignVertical: 'top', }} text="1000" />
-                        <SvgIcons.FavoritesIcon style={{ marginTop: 10 }} />
+                    <View style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                    }}>
+                        <Montserrat600SemiBoldText style={{ fontSize: 50 }} text="1000" />
+                        <svgIcons.InfoIcon style={{ marginTop: 15 }} />
                     </View>
                     <Montserrat600SemiBoldText style={{ fontSize: 22, bottom: 6 }} text="Бонусов" />
                 </View>
