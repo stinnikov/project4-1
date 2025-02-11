@@ -5,8 +5,6 @@ const deviceHeight: number = Dimensions.get("window").height;
 const widthUnit = deviceWidth / 100;
 const heightUnit = deviceHeight / 100;
 
-
-
 const lightThemeColors: {
   mainWhiteColor: ColorValue,
   mainGreyColor: ColorValue,
@@ -19,7 +17,7 @@ const lightThemeColors: {
   mainWhiteColor: 'white',
   mainGreyColor: '#eeeeee',
   mainLightGreyColor: '#E2E2E2',
-  mainDarkGreyColor: '#4d4d4d',
+  mainDarkGreyColor: '#6d6d6d',
   mainBrightColor: '#7f00ff',
   mainBlackColor: 'black',
   mainDarkColor: '#e1c4ff'
@@ -43,14 +41,12 @@ export const buttonStyles = StyleSheet.create({
   basketButton: {
     flexDirection: 'row',
     gap: 2,
-    minHeight: 28,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: appColors.mainBrightColor,
   }
 })
-
 
 
 export const colorsStyles = StyleSheet.create({
@@ -81,44 +77,31 @@ export const colorsStyles = StyleSheet.create({
   },
 })
 
+export const shadowStyles = StyleSheet.create({
+  regularShadow: {
+    elevation: 5,
+    shadowRadius: 24,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+  }
+})
 
 export const dimensionsStyles = StyleSheet.create(
   {
-    bar: {
-      width: widthUnit * 91,
-      height: heightUnit * 5.4,
-    },
-    topGoodsCard: {
-      width: widthUnit * 34.3,
-      height: heightUnit * 32.3,
-    },
-    topGoodsImageBackground: {
-      height: heightUnit * 11.6,
-      width: widthUnit * 34.3,
-    },
     recsCard: {
       width: widthUnit * 50,
-      height: heightUnit * 15,
+      height: heightUnit * 15, //ETO NADO
     },
     productListCard: {
       width: widthUnit * 44,
-      height: heightUnit * 43,
+      height: heightUnit * 43, //ETO NADO
     },
-    productCard: {
-      width: widthUnit * 100,
-      height: heightUnit * 35,
-    },
-
     productCardImage: {
-      width: widthUnit * 100,
+      width: widthUnit * 100,   //ETO NADO
       height: heightUnit * 28.9,
     },
-    productsCardImageBackground: {
-      height: heightUnit * 17,
-      width: widthUnit * 43.25,
-    },
     categoryCard: {
-      height: heightUnit * 15,
+      height: heightUnit * 15, //ETO NADO
       width: widthUnit * 45,
     },
     bonusCard: {
@@ -126,13 +109,16 @@ export const dimensionsStyles = StyleSheet.create(
       height: heightUnit * 29,
     },
     circleStory: {
-      height: 94,
+      height: 94, //ETO NADO
       width: 94,
     },
     couponsAndPromotions: {
-      height: heightUnit * 10,
+      height: heightUnit * 10, //ETO NADO
+    },
+    categoryListImageBackground: {
+      height: heightUnit * 33, //ETO NADO
     }
   }
 )
 
-export default { dimensionsStyles, colorsStyles, buttonStyles };
+export default { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles };

@@ -101,26 +101,26 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',
         letterSpacing: -0.03,
+        includeFontPadding: false,
     },
     raleway600SemiBold: {
         fontSize: 16,
         fontFamily: 'Raleway_600SemiBold',
         letterSpacing: -0.03,
+        includeFontPadding: false,
     },
     raleway500Medium: {
         fontSize: 16,
         fontFamily: 'Raleway_500Medium',
         letterSpacing: -0.03,
+        includeFontPadding: false,
     },
     raleway400Regular: {
         fontSize: 16,
         fontFamily: 'Raleway_400Regular',
         letterSpacing: -0.03,
+        includeFontPadding: false,
     },
-
-
-
-
 });
 
 export default {

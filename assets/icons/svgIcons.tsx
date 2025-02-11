@@ -334,7 +334,7 @@ const LegalInformationIcon = (props: SvgProps) => (
 			stroke={props.stroke ?? "#000"}
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={1.25}
+			strokeWidth={props.strokeWidth ?? 1.25}
 		>
 			<Path d="M12 3.75v16.5M9.75 20.25h4.5M5.25 8.25l13.5-3M2.25 15.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5ZM15.75 12.75c0 1.657 1.875 2.25 3 2.25s3-.593 3-2.25l-3-7.5-3 7.5Z" />
 		</G>
@@ -354,7 +354,7 @@ const CooperationIcon = (props: SvgProps) => (
 	>
 		<Path
 			stroke={props.stroke ?? "#000"}
-			strokeWidth={1.25}
+			strokeWidth={props.strokeWidth ?? 1.25}
 			d="M8.561 11.28a2.816 2.816 0 1 0 0-5.633 2.816 2.816 0 0 0 0 5.633ZM14.25 18.727a5.7 5.7 0 0 0-5.704-5.7 5.7 5.7 0 0 0-5.7 5.7H14.25ZM16.549 12.476a2.269 2.269 0 1 0 0-4.537 2.269 2.269 0 0 0 0 4.537ZM15.9 18.727h5.25a4.59 4.59 0 0 0-4.601-4.59 4.578 4.578 0 0 0-2.156.537"
 		/>
 	</Svg>
@@ -374,7 +374,7 @@ const PaymentMethodIcon = (props: SvgProps) => (
 		/>
 		<Path
 			stroke={props.stroke ?? "#000"}
-			strokeWidth={1.25}
+			strokeWidth={props.strokeWidth ?? 1.25}
 			d="M3.625 9.625h16.75V17A2.375 2.375 0 0 1 18 19.375H6A2.375 2.375 0 0 1 3.625 17V9.625Z"
 		/>
 		<Path

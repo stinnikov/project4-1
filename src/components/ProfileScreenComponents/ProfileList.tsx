@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { Router } from 'expo-router';
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
-import { Montserrat400RegularText } from '../Text/TextComponents';
+import { Montserrat500MediumText, Montserrat400RegularText } from '../Text/TextComponents';
 import svgIcons from '@/assets/icons/svgIcons';
 
 interface ProfileListProps {
@@ -18,12 +18,12 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 	const router = props.router;
 	const data: ProfileLineElement[] = [
 		{ text: "История покупок", icon: <svgIcons.PurchaseHistoryIcon stroke={'black'} /> },
-		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon /> },
+		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon strokeWidth={1.25} /> },
 		{ text: "Способ оплаты", icon: <svgIcons.PaymentMethodIcon /> },
 		{ text: "Уведомления", icon: <svgIcons.NotificationsIcon strokeWidth={1.25} stroke={'black'} /> },
-		{ text: "Правовая информация", icon: <svgIcons.LegalInformationIcon /> },
+		{ text: "Правовая информация", icon: <svgIcons.LegalInformationIcon strokeWidth={1.25} /> },
 		{ text: "Настройки", icon: <svgIcons.ProfileSettingsIcon strokeWidth={1.25} stroke={'black'} /> },
-		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon /> },
+		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon strokeWidth={1.25} stroke={'black'} /> },
 	]
 	function renderLineProfile({ item }: { item: ProfileLineElement }) {
 		return (
@@ -32,7 +32,8 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 					<View style={{ marginHorizontal: 4 }}>
 						{item.icon}
 					</View>
-					<Montserrat400RegularText
+					<Montserrat500MediumText
+						style={{ fontSize: 16 }}
 						text={item.text}
 					/>
 				</View>

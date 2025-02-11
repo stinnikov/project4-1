@@ -10,7 +10,7 @@ import BonusCard from "@/src/components/MainScreenComponents/BonusCard";
 import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
 import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
 import TopGoods from "@/src/components/TopGoods";
-import { colorsStyles } from "@/src//styles/styles";
+import { colorsStyles, shadowStyles } from "@/src//styles/styles";
 import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
 import { StatusBar } from "expo-status-bar";
 
@@ -27,7 +27,7 @@ function renderScreen({ item }: { item: MainScreenProps }) {
             <View style={styles.userPanel}>
                 <UserPanel></UserPanel>
             </View>
-            <View style={styles.specialsForUser}>
+            <View style={[styles.specialsForUser, shadowStyles.regularShadow]}>
                 <SpecialsForUser></SpecialsForUser>
             </View>
             <View style={{ backgroundColor: colorsStyles.mainGreyColor.color }}>
@@ -99,10 +99,10 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colorsStyles.mainDarkColor.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     userPanel: {
-        backgroundColor: colorsStyles.mainDarkColor.color,
+        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     newOffers: {
         paddingBottom: 16,

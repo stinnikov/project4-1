@@ -98,6 +98,7 @@ export const loadFontMontserrat = () => {
     Montserrat_900Black_Italic,
   });
 
+
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
