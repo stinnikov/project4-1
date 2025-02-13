@@ -92,7 +92,6 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
                 />
                 <ScreenHeader
                     title={categoryName}
-                    router={props.router}
                 />
                 <View style={styles.searchBar}>
                     <SearchBar />

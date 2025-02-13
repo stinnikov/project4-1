@@ -46,11 +46,9 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     function renderScreen() {
         return (
             <View style={{ flex: 1 }}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title={'Корзина'}
-                    />
-                </View>
+                <ScreenHeader
+                    title={'Корзина'}
+                />
                 <View style={styles.deliveryBar}>
                     <DeliveryBar />
                 </View>

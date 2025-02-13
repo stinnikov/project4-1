@@ -27,6 +27,7 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
                 products={props.data}
                 horizontal={true}
                 productStyle={{ width: dimensionsStyles.productListCard.width * 0.9 }}
+                parentTab={props.parentTab}
             />
         </View>
     );

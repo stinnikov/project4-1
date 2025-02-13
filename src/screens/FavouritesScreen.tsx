@@ -15,17 +15,6 @@ interface FavouritesScreenProps {
     categoryName: string,
 }
 
-const navigateToProductPage = (router: Router, product: Product) => {
-    router.push(
-        {
-            pathname: '/(main)/(tabs)/(favourites)/product/[productId]',
-            params: {
-                productId: product.id,
-            }
-        }
-    )
-}
-
 const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -81,7 +70,6 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
                 <View style={styles.productList}>
                     <FavouritesProductList
                         products={products}
-                        onRefresh={fetchData}
                     />
                 </View>
             </SafeAreaView>

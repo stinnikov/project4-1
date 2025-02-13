@@ -12,13 +12,6 @@ import useBasketStore from '@/src/store/basketStore';
 interface BasketProductListProps {
 }
 
-function totalAmountOfProducts(products: Product[]): number {
-    let result: number = 0;
-    products.forEach(item => result += item.amountInBasket);
-    return result;
-}
-
-
 const BasketProductList: React.FC<BasketProductListProps> = (props) => {
     const { products, totalAmount, initializeBasket } = useBasketStore();
 

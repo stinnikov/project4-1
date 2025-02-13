@@ -48,12 +48,13 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                         paddingHorizontal: 8, fontSize: 14,
                         backgroundColor: colorsStyles.mainLightGreyColor.color, paddingVertical: 6, alignSelf: 'flex-start', borderRadius: 6
                     }}
-                    text={product.price}
+                    text={props.product.price}
                 />
             </View>
 
             <View style={styles.bottomContainer}>
                 <BasketButtonComponent
+                    product={props.product}
                 />
             </View>
         </View>

@@ -18,7 +18,7 @@ export const LoginScreen: React.FC = () => {
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={[styles.container, { backgroundColor: colorsStyles.mainBrightColor.color }]}>
                 <StatusBar />
-                <ScreenHeader router={router} title='Логин' />
+                <ScreenHeader title='Логин' />
                 <View style={styles.mainTextContainer}>
                     <Raleway600SemiBoldText
                         style={{

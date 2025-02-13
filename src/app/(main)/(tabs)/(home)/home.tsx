@@ -7,9 +7,9 @@ import { StatusBar } from "expo-status-bar";
 
 
 
-const Home = () => {
+export default function () {
   return (
-    <MainScreen></MainScreen>
+    <MainScreen />
   );
 }
 

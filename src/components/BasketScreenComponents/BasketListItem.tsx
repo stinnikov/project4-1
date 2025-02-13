@@ -16,19 +16,31 @@ const BasketListItem: React.FC<BasketListItemProps> = React.memo((props) => {
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.productImgContainer}>
-                <ImageBackground style={{ width: '100%', height: '100%' }} imageStyle={{ borderRadius: 12 }} source={{ uri: props.product.imageUrl }} resizeMode="contain">
-                </ImageBackground>
+                <ImageBackground
+                    style={{ width: '100%', height: '100%' }}
+                    imageStyle={{ borderRadius: 12 }}
+                    source={{ uri: props.product.imageUrl }} resizeMode="contain"
+                />
             </View>
 
             <View style={styles.productInfoContainer}>
-                <Montserrat400RegularText numOfLines={2} style={{ flex: 1, flexWrap: 'wrap', fontSize: 14 }} text={props.product.name} />
+                <Montserrat400RegularText
+                    numOfLines={2}
+                    style={{ flex: 1, flexWrap: 'wrap', fontSize: 14 }}
+                    text={props.product.name} />
 
                 <View style={styles.productPriceAndPurchaseInfoContainer}>
                     <View style={styles.priceTextContainer}>
-                        <Montserrat400RegularText style={{ paddingHorizontal: 12, paddingVertical: 4, fontSize: 14 }} text={props.product.price} />
+                        <Montserrat400RegularText
+                            style={{ paddingHorizontal: 12, paddingVertical: 4, fontSize: 14 }}
+                            text={props.product.price}
+                        />
                     </View>
 
-                    <BasketProductInfoPanel style={{ borderRadius: 6, paddingHorizontal: 12, }} product={props.product} />
+                    <BasketProductInfoPanel
+                        style={{ borderRadius: 6, paddingHorizontal: 12, }}
+                        product={props.product}
+                    />
                 </View>
             </View>
         </View>
@@ -43,11 +55,6 @@ const styles = StyleSheet.create({
     },
     productImgContainer: {
         flex: 1,
-        // borderRadius: 12,
-        // elevation: 5,
-        // shadowRadius: 10,
-        // shadowOpacity: 0.2,
-        // shadowOffset: { width: 0, height: 6 },
     },
     productInfoContainer: {
         flex: 4,

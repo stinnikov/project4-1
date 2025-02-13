@@ -40,7 +40,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         <ImageBackground style={styles.imageStyle} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                             <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
                             <View style={{ marginTop: Constants.statusBarHeight }}>
-                                <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                                <ScreenHeader title={props.currentCategory.name} />
                             </View>
                             <SearchBar style={{ margin: 16 }} contentStyle={{ backgroundColor: colorsStyles.mainWhiteColor.color }} />
                         </ImageBackground>
@@ -48,13 +48,11 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     <View style={[styles.categoryList, { zIndex: 999, flex: 1 }]}>
                         <CategoryList
                             currentCategory={props.currentCategory}
-                            data={props.categories}
-                            router={props.router}
+                            categories={props.categories}
                         />
                         <CategoryList
                             currentCategory={props.currentCategory}
-                            data={props.categories}
-                            router={props.router}
+                            categories={props.categories}
                         />
                         <CategoryList
                             currentCategory={props.currentCategory}
@@ -73,7 +71,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         style='dark'
                     />
                     <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                        <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                        <ScreenHeader title={props.currentCategory.name} />
                         <View style={styles.searchBar}>
                             <SearchBar />
                         </View>
@@ -81,8 +79,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         <View style={styles.categoryList}>
                             <CategoryList
                                 currentCategory={props.currentCategory}
-                                data={props.categories}
-                                router={props.router}
+                                categories={props.categories}
                             />
                         </View>
                     </View>

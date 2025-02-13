@@ -9,6 +9,7 @@ interface NavigationStore {
     navigateToProductListScreen: (category: Category) => void;
     navigateToCategoryListScreen: (category: Category) => void;
     navigateToProductPageScreen: (product: Product, parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites') => void;
+    navigateToMainScreen: () => void;
     navigateBack: () => void;
 }
 
@@ -61,11 +62,19 @@ const useNavigationStore = create<NavigationStore>()((set) => ({
             return state; // Возвращаем текущее состояние
         });
     },
+    navigateToMainScreen: () => {
+        set(state => {
+            const { router } = state;
+            console.log(router);
+            router?.push('/(main)/(tabs)/(home)/home');
+            return state;
+        })
+    },
     navigateBack: () => {
         set(state => {
             const { router } = state;
             console.log(router);
-            router?.dismiss();
+            router?.canDismiss() ? router?.dismiss() : router?.canGoBack && router?.back();
             return state;
         })
     }
