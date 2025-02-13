@@ -109,8 +109,8 @@ export const dimensionsStyles = StyleSheet.create(
       height: heightUnit * 29,
     },
     circleStory: {
-      height: 94, //ETO NADO
-      width: 94,
+      height: 74, //ETO NADO
+      width: 74,
     },
     couponsAndPromotions: {
       height: heightUnit * 10, //ETO NADO

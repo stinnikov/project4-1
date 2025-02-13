@@ -64,12 +64,10 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     function renderScreen() {
         return (
             <View style={{ flex: 1 }}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title={'Корзина'}
-                        router={props.router}
-                    />
-                </View>
+                <ScreenHeader
+                    title={'Корзина'}
+                    router={props.router}
+                />
                 <View style={styles.deliveryBar}>
                     <DeliveryBar />
                 </View>
@@ -123,11 +121,6 @@ const styles = StyleSheet.create({
     column: {
         justifyContent: 'space-between',
         marginBottom: 16,
-    },
-    header: {
-        flexDirection: 'row',
-        padding: 16,
-        width: '100%'
     },
     deliveryBar: {
         marginHorizontal: 16,

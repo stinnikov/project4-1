@@ -48,7 +48,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
         function renderScreen({ item }: { item: CatalogScreenProps }) {
             return (
                 <View style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
-
+                    <StatusBar />
                     <View style={{ margin: 16 }}>
                         <SearchBar />
                     </View>

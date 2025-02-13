@@ -2,7 +2,7 @@ import { Router } from "expo-router";
 import React from "react";
 import { View, Pressable, ViewStyle, StyleSheet } from "react-native";
 import svgIcons from "@/src/assets/icons/svgIcons";
-import { Raleway500MediumText } from "./Text/TextComponents";
+import { Montserrat500MediumText, Raleway500MediumText } from "./Text/TextComponents";
 
 interface ScreenHeaderProps {
     title: string,
@@ -19,20 +19,21 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = (props) => {
     }
 
     return (
-        <View style={[styles.container, props.style]}>
-            <Pressable style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }} onPress={handlePressBackButton}>
-                <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
-                <Raleway500MediumText
-                    text={props.title}
-                />
-            </Pressable>
-        </View >
+        <Pressable style={styles.container} onPress={handlePressBackButton}>
+            <svgIcons.BackArrowIcon rotation={180}></svgIcons.BackArrowIcon>
+            <Raleway500MediumText
+                text={props.title}
+            />
+        </Pressable>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 16,
     }
 })
 
