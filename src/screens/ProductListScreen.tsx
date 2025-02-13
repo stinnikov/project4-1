@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FlatList, View, StyleSheet, Button } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
-import { Router, SplashScreen, useFocusEffect } from "expo-router";
+import { Router, SplashScreen, useFocusEffect, useRouter } from "expo-router";
 import ProductList from "@/src/components/ProductList";
 import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
@@ -11,19 +11,29 @@ import { StatusBar } from "expo-status-bar";
 import LoadingScreen from "./LoadingScreen";
 import { getProductsByCategoryIdAsync } from "../services/ProductService";
 import { getCategoryNameById } from "../services/CategoryService";
+import useNavigationStore from "../store/navigationStore";
 
 interface ProductListScreenProps {
     products: Product[],
     categoryId: string,
-    router: Router,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
+    parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites';
 }
+
+
 
 const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
     const [products, setProducts] = useState<Product[]>(props.products)
     const [categoryName, setCategoryName] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
     const [release, setRelease] = useState<boolean>(false);
+
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
 
     const setDataAsync = async () => {
         try {
@@ -78,7 +88,6 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
                 <View style={styles.header}>
                     <ScreenHeader
                         title={categoryName}
-                        router={props.router}
                     />
                 </View>
                 <View style={styles.searchBar}>
@@ -86,11 +95,9 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
                 </View>
                 <View style={styles.productList}>
                     <ProductList
-                        data={products}
-                        parentTab={props.parentTab}
-                        router={props.router}
+                        products={products}
                         release={release}
-                        onRefresh={setDataAsync}
+                        parentTab={props.parentTab}
                     />
                 </View>
             </SafeAreaView>

@@ -2,18 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import ProductPage from '@/src/components/ProductPage';
-import { Router, useFocusEffect } from 'expo-router';
+import { Router, useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { getSingleProductByIdAsync } from '../services/ProductService';
+import useNavigationStore from '../store/navigationStore';
 
 interface ProductCardProps {
     product: Product,
-    router: Router;
 }
 const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
     const [product, setProduct] = useState<Product | null>(props.product);
     const [loading, setLoading] = useState<boolean>(product ? true : false);
     const [refreshing, setRefreshing] = useState(false);
+
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -53,7 +61,6 @@ const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
                         refreshing={refreshing}
                         onRefresh={onRefresh}
                         product={product}
-                        router={props.router}
                     />
                 </SafeAreaView>
             </SafeAreaProvider>

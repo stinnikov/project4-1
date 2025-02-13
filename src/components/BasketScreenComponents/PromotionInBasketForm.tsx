@@ -5,7 +5,6 @@ import { Router } from 'expo-router';
 import { colorsStyles } from '@/src/styles/styles';
 
 interface PromotionInBasketProps {
-    router: Router;
     style?: ViewStyle | ViewStyle[]
 }
 

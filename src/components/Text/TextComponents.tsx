@@ -82,44 +82,36 @@ const styles = StyleSheet.create({
     montserrat600SemiBold: {
         fontSize: 16,
         fontFamily: 'Montserrat_600SemiBold',
-        letterSpacing: -0.03,
     },
     montserrat500Medium: {
         fontSize: 16,
         fontFamily: 'Montserrat_500Medium',
-        letterSpacing: -0.03,
     },
     montserrat400Regular: {
         fontSize: 16,
         fontFamily: 'Montserrat_400Regular',
-        letterSpacing: -0.03,
     },
     montserrat300Light: {
         fontSize: 16,
         fontFamily: 'Montserrat_300Light',
-        letterSpacing: -0.03
     },
 
     //-- RALEWAY ---
     raleway700Bold: {
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',
-        letterSpacing: -0.03,
     },
     raleway600SemiBold: {
         fontSize: 16,
         fontFamily: 'Raleway_600SemiBold',
-        letterSpacing: -0.03,
     },
     raleway500Medium: {
         fontSize: 16,
         fontFamily: 'Raleway_500Medium',
-        letterSpacing: -0.03,
     },
     raleway400Regular: {
         fontSize: 16,
         fontFamily: 'Raleway_400Regular',
-        letterSpacing: -0.03,
     },
 
 

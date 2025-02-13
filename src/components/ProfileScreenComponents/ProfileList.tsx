@@ -6,7 +6,6 @@ import { Montserrat400RegularText } from '../Text/TextComponents';
 import svgIcons from '@/src/assets/icons/svgIcons';
 
 interface ProfileListProps {
-	router: Router,
 }
 
 interface ProfileLineElement {
@@ -15,7 +14,6 @@ interface ProfileLineElement {
 }
 
 export const ProfileList: React.FC<ProfileListProps> = (props) => {
-	const router = props.router;
 	const data: ProfileLineElement[] = [
 		{ text: "История покупок", icon: <svgIcons.PurchaseHistoryIcon stroke={'black'} /> },
 		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon /> },

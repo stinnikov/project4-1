@@ -5,7 +5,6 @@ import { Router } from 'expo-router';
 import { colorsStyles } from '@/src/styles/styles';
 
 interface RequestForOrderInBasketProps {
-    router: Router;
     style?: ViewStyle | ViewStyle[]
 }
 

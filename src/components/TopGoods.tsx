@@ -8,14 +8,12 @@ import ProductList from "./ProductList";
 
 interface TopGoodsProps {
     data: Product[];
-    router: Router,
-    style?: StyleProp<ViewStyle>,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
+    style?: StyleProp<ViewStyle>;
+    parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites';
 }
 
-
-
 const TopGoods: React.FC<TopGoodsProps> = (props) => {
+
     return (
         <View style={[styles.container, props.style]}>
             <Raleway600SemiBoldText
@@ -23,11 +21,10 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
                 style={{ paddingHorizontal: 16, paddingTop: 12 }}
             />
             <ProductList
-                data={props.data}
-                router={props.router}
-                parentTab={props.parentTab}
+                products={props.data}
                 horizontal={true}
                 productStyle={{ width: 170 }}
+                parentTab={props.parentTab}
             />
         </View>
     );

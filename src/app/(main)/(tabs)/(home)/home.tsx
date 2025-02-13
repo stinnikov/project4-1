@@ -12,9 +12,8 @@ import { StatusBar } from "expo-status-bar";
 const categories: Category[] = [];
 
 const Home = () => {
-  var router = useRouter();
   return (
-    <MainScreen router={router}></MainScreen>
+    <MainScreen></MainScreen>
   );
 }
 

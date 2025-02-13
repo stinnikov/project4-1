@@ -8,7 +8,7 @@ export default function () {
     const router = useRouter();
 
     return (
-        <FavouritesScreen categoryName={"Избранное"} router={router} />
+        <FavouritesScreen categoryName={"Избранное"} />
     );
 
 

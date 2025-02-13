@@ -4,13 +4,12 @@ import { View, FlatList, StyleSheet, } from 'react-native';
 import { Category } from '@/src/interfaces/Category';
 import { Router } from 'expo-router';
 import { dimensionsStyles } from '@/src/styles/styles';
-import CardComponent from '../CardComponent';
+import CategoryCardComponent from '../CategoryCardComponent';
 import { ipv4 } from '@/src/data/tempData';
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
 
 interface CategoryCardListProps {
     data: Category[];
-    router: Router;
 }
 
 const getItemLayout = (data: any, index: number) => ({
@@ -32,15 +31,14 @@ const CategoryCardList: React.FC<CategoryCardListProps> = (props) => {
     ), []);
 
     const renderCategory = useCallback(({ item }: { item: Category }) => (
-        <CardComponent
-            item={item}
-            router={props.router}
+        <CategoryCardComponent
+            category={item}
             titleText={item.name}
             textStyle={{ color: 'white' }}
             imageUri={`${ipv4}/getImageByCategoryId?categoryId=${item.id}`}
             style={{ height: dimensionsStyles.categoryCard.height, width: dimensionsStyles.categoryCard.width }}
         />
-    ), [props.router]);
+    ), [props.data]);
 
     return (
         <View style={styles.container}>

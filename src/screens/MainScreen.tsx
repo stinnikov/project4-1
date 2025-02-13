@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { Router, useFocusEffect } from "expo-router";
+import { Router, useFocusEffect, useRouter } from "expo-router";
 import { Category } from "@/src//interfaces/Category";
 import { Product } from "@/src//interfaces/Product";
 import UserPanel from "@/src/components/MainScreenComponents/UserPanel";
@@ -11,21 +11,33 @@ import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersFor
 import TopGoods from "@/src/components/TopGoods";
 import { colorsStyles } from "@/src//styles/styles";
 import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
-import { StatusBar } from "expo-status-bar";
+import useNavigationStore from "../store/navigationStore";
 
 
 interface MainScreenProps {
     categoriesData?: Category[];
     topGoodsData?: Product[];
-    router: Router;
+}
+
+const navigateToProductPage = (router: Router, product: Product) => {
+    router.push(
+        {
+            pathname: '/(main)/(tabs)/(home)/product/[productId]',
+            params: {
+                productId: product.id,
+            }
+        }
+    )
+}
+
+const addProductToBasket = () => {
+
 }
 
 function renderScreen({ item }: { item: MainScreenProps }) {
     return (
         <View style={styles.container}>
-            <View style={styles.userPanel}>
-                <UserPanel></UserPanel>
-            </View>
+            <UserPanel></UserPanel>
             <View style={styles.specialsForUser}>
                 <SpecialsForUser></SpecialsForUser>
             </View>
@@ -37,8 +49,7 @@ function renderScreen({ item }: { item: MainScreenProps }) {
             <View style={styles.topGoods}>
                 <TopGoods
                     data={prods}
-                    router={item.router}
-                    parentTab='home'
+                    parentTab="home"
                 />
             </View>
             <View style={styles.couponsAndPromotions}>
@@ -49,12 +60,19 @@ function renderScreen({ item }: { item: MainScreenProps }) {
 }
 
 export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
-    const router = props.router;
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState<boolean>(false);
     const [categoriesData, setCategoriesData] = useState<Category[]>(props.categoriesData ?? []);
     const [topGoodsData, setTopGoodsData] = useState<Product[]>(props.topGoodsData ?? []);
-    const [mainScreenData, setMainScreenData] = useState<MainScreenProps[]>([{ router, categoriesData, topGoodsData }]);
+    const [mainScreenData, setMainScreenData] = useState<MainScreenProps[]>([{ categoriesData, topGoodsData }]);
+
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -101,6 +119,7 @@ const styles = StyleSheet.create({
     },
     userPanel: {
         backgroundColor: colorsStyles.mainDarkColor.color,
+
     },
     newOffers: {
         paddingBottom: 16,

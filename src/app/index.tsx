@@ -8,15 +8,17 @@ import LoadingScreen from '@/src/screens/LoadingScreen';
 import LoginScreen from '@/src/screens/LoginScreen';
 import { enableScreens } from 'react-native-screens';
 import 'expo-dev-client';
+import useNavigationStore from '../store/navigationStore';
 
 const App: React.FC = () => {
-
     const router = useRouter();
-    function renderItem({ item }: { item: Product }) {
-        return (
-            <ProductCardScreen product={item} router={router}></ProductCardScreen>
-        )
-    }
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
+
     const [isAuth, setAuth] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 

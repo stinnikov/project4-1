@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { Stack, Tabs, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/src/assets/icons/svgIcons';
@@ -80,7 +80,9 @@ export default function TabLayout() {
 				headerShown: headerShown,
 				title: 'Корзина',
 				tabBarLabel: ({ focused, children }) => (
-					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					<View>
+						<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					</View>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.TabBarBasketIcon stroke={focused ? color : '#000'}></svgIcons.TabBarBasketIcon>
@@ -94,14 +96,17 @@ const styles = StyleSheet.create(
 	{
 		tabBarLabel: {
 			fontSize: 11,
-			letterSpacing: -0.03,
 			fontFamily: 'Montserrat_500Medium',
+			minWidth: '100%',
+			textAlign: 'center',
 			color: 'black',
 		},
 		activeTabBarLabel: {
 			fontSize: 11,
 			letterSpacing: -0.03,
 			fontFamily: 'Montserrat_500Medium',
+			minWidth: '100%',
+			textAlign: 'center',
 			color: colorsStyles.mainBrightColor.color,
 		}
 	}

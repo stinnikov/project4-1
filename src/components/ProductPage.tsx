@@ -4,25 +4,24 @@ import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
-import { BasketButtonComponent, BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import { BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
+import BasketButtonComponent from "./Buttons/AddToBasketButton";
 import { Montserrat400RegularText, Montserrat600SemiBoldText, Raleway700BoldText } from "./Text/TextComponents";
 
 interface ProductPageProps {
     product: Product,
-    router: Router,
     onRefresh: () => void;
     refreshing: boolean;
 }
 
 const ProductPage: React.FC<ProductPageProps> = (props) => {
     const [product, setProduct] = useState<Product>(props.product);
-    const router = props.router;
 
 
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.topButtons}>
-                <BackButtonComponent router={router} style={{ marginLeft: 16 }} />
+                <BackButtonComponent style={{ marginLeft: 16 }} />
 
                 <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
             </View>
@@ -31,7 +30,12 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                 overScrollMode="never"
                 contentContainerStyle={styles.card}
                 refreshControl={
-                    <RefreshControl tintColor={colorsStyles.mainBrightColor.color} colors={[colorsStyles.mainBrightColor.color]} refreshing={props.refreshing} onRefresh={props.onRefresh}></RefreshControl>
+                    <RefreshControl
+                        tintColor={colorsStyles.mainBrightColor.color}
+                        colors={[colorsStyles.mainBrightColor.color]}
+                        refreshing={props.refreshing}
+                        onRefresh={props.onRefresh}
+                    />
                 }
             >
                 <View style={styles.container}>
@@ -68,8 +72,6 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                     product={product}
                     style={styles.bottomButton}
                     iconsSize={22}
-                    addRemovePanelStyle={styles.bottomButton}
-                    size='big'
 
                 />
             </View>

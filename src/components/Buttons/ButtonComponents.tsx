@@ -6,8 +6,10 @@ import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
 import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
-import { Montserrat600SemiBoldText, Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from '../Text/TextComponents';
 import AddRemoveProductInBasketPanel from './AddRemoveOneProductPanel';
+import useNavigationStore from '@/src/store/navigationStore';
+import { Montserrat400RegularText } from '../Text/TextComponents';
+import useBasketStore from '@/src/store/basketStore';
 
 
 
@@ -42,101 +44,17 @@ export const FavouriteButtonComponent: React.FC<FavouriteButtonProps> = React.me
 })
 
 interface BackButtonComponentProps {
-    router: Router,
     style?: ViewStyle,
 }
 
 export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.memo((props) => {
-    function handlePressBackButton() {
-        props.router.canGoBack() && props.router.back();
-    }
+    const { navigateBack } = useNavigationStore();
 
     return (
         <Pressable style={[buttonStyles.miniButton, props.style]}
-            onPress={handlePressBackButton}>
+            onPress={navigateBack}>
             <svgIcons.BackArrowIcon width={20} height={20}></svgIcons.BackArrowIcon>
         </Pressable>
-    )
-})
-
-interface BasketButtonComponentProps {
-    product: Product,
-    style?: ViewStyle,
-    addRemovePanelStyle?: ViewStyle,
-    iconsSize?: number,
-    textStyle?: TextStyle,
-    size?: 'mini' | 'medium' | 'big'
-}
-
-export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
-    const [amountInBasket, setAmountInBasket] = useState<number>(props.product.amountInBasket);
-
-    function addOneProduct() {
-        setAmountInBasket(prevAmount => prevAmount + 1);
-        props.product.amountInBasket++;
-    }
-
-    function removeOneProduct() {
-        if (amountInBasket - 1 >= 0) {
-            setAmountInBasket(prevAmount => prevAmount - 1);
-            props.product.amountInBasket--;
-        }
-    }
-
-    function handlePressBasketButton() {
-        addProductInBasketAsync(props.product.id).then(() => {
-            addOneProduct();
-        });
-    }
-
-    if (props.product.amountInBasket > 0) {
-        if (props.size === 'big') {
-            return (
-                <AddRemoveProductInBasketPanel
-                    style={[buttonStyles.basketButton, props.addRemovePanelStyle || {}]}
-                    textStyle={props.textStyle}
-                    product={props.product}
-                    iconsSize={props.iconsSize ?? 22}
-                    onAdd={addOneProduct} onRemove={removeOneProduct} />
-            )
-        }
-        return (
-            <AddRemoveProductInBasketPanel
-                style={[buttonStyles.basketButton, props.addRemovePanelStyle || {}]}
-                textStyle={{ fontSize: 10, color: colorsStyles.mainWhiteColor.color }}
-                product={props.product}
-                iconsSize={props.iconsSize ?? 16}
-                onAdd={addOneProduct} onRemove={removeOneProduct} />
-        )
-    }
-
-    if (props.size === 'big') {
-        return (
-            <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
-                <svgIcons.BasketIcon
-                    {...(props.iconsSize) ?
-                        { width: props.iconsSize, height: props.iconsSize } :
-                        { width: 22, height: 22 }
-                    }
-                    stroke={colorsStyles.mainWhiteColor.color}
-                    strokeWidth={1.5}
-                />
-                <Montserrat600SemiBoldText
-                    style={[props.textStyle || {}, { color: colorsStyles.mainWhiteColor.color }]}
-                    text='В корзину'
-                />
-            </TouchableOpacity>
-        )
-    }
-
-    return (
-        <TouchableOpacity onPress={handlePressBasketButton} style={[buttonStyles.basketButton, props.style]}>
-            <svgIcons.BasketIcon width={props.iconsSize ?? 16} height={props.iconsSize ?? 16} stroke={colorsStyles.mainWhiteColor.color}></svgIcons.BasketIcon>
-            <Montserrat400RegularText
-                style={[props.textStyle || {}, { color: colorsStyles.mainWhiteColor.color, fontSize: 14 }]}
-                text='В корзину'
-            />
-        </TouchableOpacity>
     )
 })
 
@@ -168,7 +86,6 @@ export const BasketProductInfoPanel: React.FC<BasketProductInfoPanelProps> = Rea
             textStyle={{ color: colorsStyles.mainBlackColor.color, fontSize: 10 }}
             iconsColor={colorsStyles.mainBlackColor.color}
             iconsSize={16}
-            onAdd={addOneProduct} onRemove={removeOneProduct}
         />
     )
 
@@ -176,20 +93,13 @@ export const BasketProductInfoPanel: React.FC<BasketProductInfoPanelProps> = Rea
 
 interface ClearBasketButtonProps {
     style?: ViewStyle;
-    onClear: () => void;
 }
 export const ClearBasketButton: React.FC<ClearBasketButtonProps> = React.memo((props) => {
-    function handlePressClearBasketButton() {
-        clearBasketByUserId()
-            .then(() => props.onClear())
-            .catch((error) => {
-                console.error('Ошибка при попытке очистить корзину:', error);
-            });;
-    }
+    const { clearBasket } = useBasketStore();
 
     return (
-        <TouchableOpacity onPress={handlePressClearBasketButton} style={[props.style]}>
-            <Text style={{ fontSize: 12, fontFamily: 'Montserrat_400Regular' }}>Очистить корзину </Text>
+        <TouchableOpacity onPress={clearBasket} style={[props.style]}>
+            <Montserrat400RegularText style={{ fontSize: 12 }} text='Очистить корзину' />
             <svgIcons.TrashCanIcon></svgIcons.TrashCanIcon>
         </TouchableOpacity>
     )

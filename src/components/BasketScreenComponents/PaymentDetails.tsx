@@ -6,7 +6,6 @@ import { colorsStyles } from '@/src/styles/styles';
 import SvgIcons from '@/src/assets/icons/svgIcons';
 
 interface PaymentDetailsProps {
-    router: Router,
     style?: ViewStyle | ViewStyle[]
 }
 

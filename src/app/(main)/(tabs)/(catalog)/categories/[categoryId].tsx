@@ -1,18 +1,17 @@
 "use client"
-import { useLocalSearchParams, usePathname, Stack, useRouter, SplashScreen } from 'expo-router';
+import { useLocalSearchParams, useRouter, Router } from 'expo-router';
 import { View } from 'react-native';
 import CategoryListScreen from '@/src/screens/CategoryListScreen';
 import { Category } from '@/src/interfaces/Category';
 import { useState, useEffect } from 'react';
-import { getCategoriesById, getCategoryNameById, getCategoryById } from '@/src/services/CategoryService';
+import { getCategoriesById, getCategoryById } from '@/src/services/CategoryService';
 import { getProductsByCategoryIdAsync } from '@/src/services/ProductService';
 import { Product } from '@/src/interfaces/Product';
 import ProductListScreen from '@/src/screens/ProductListScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
-import { StatusBar } from 'expo-status-bar';
+
 
 export default function CategoryIdScreen() {
-    const router = useRouter();
     const { categoryId, categoryDepth } = useLocalSearchParams();
     const [currentCategory, setCategory] = useState<Category | undefined>(undefined);
     const [categories, setCategories] = useState<Category[] | undefined>(undefined);
@@ -57,10 +56,9 @@ export default function CategoryIdScreen() {
                 return (
                     <View style={{ flex: 1 }}>
                         <ProductListScreen
-                            parentTab='catalog'
                             products={products}
                             categoryId={categoryId}
-                            router={router}
+                            parentTab='catalog'
                         />
                     </View>
                 )
@@ -71,7 +69,6 @@ export default function CategoryIdScreen() {
                 <CategoryListScreen
                     currentCategory={currentCategory}
                     categories={categories}
-                    router={router}
                 />
             </View>
         )

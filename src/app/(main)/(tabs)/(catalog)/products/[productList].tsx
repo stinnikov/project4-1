@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, Router } from 'expo-router';
 import ProductListScreen from '@/src/screens/ProductListScreen';
 import { useState, useEffect } from 'react';
 import { getProductsByCategoryIdAsync } from '@/src/services/ProductService';
@@ -7,9 +7,7 @@ import { getCategoryNameById } from '@/src/services/CategoryService';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import { getDataAsync } from '@/src/services/AuthService';
 
-
 export default function () {
-    const router = useRouter();
     const { productList: categoryId } = useLocalSearchParams();
     const [products, setProducts] = useState<Product[]>([]);
     const [categoryName, setCategoryName] = useState<string>('');
@@ -47,7 +45,11 @@ export default function () {
 
     if (typeof categoryId === 'string' && products) {
         return (
-            <ProductListScreen parentTab='catalog' products={products} categoryId={categoryId} router={router} />
+            <ProductListScreen
+                products={products}
+                categoryId={categoryId}
+                parentTab='catalog'
+            />
         );
     }
 

@@ -8,7 +8,6 @@ import LoadingScreen from '@/src/screens/LoadingScreen';
 
 export default function () {
     const { productId } = useLocalSearchParams();
-    const router = useRouter();
     const [product, setProduct] = useState<Product | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
     if (typeof productId === 'string') {
@@ -35,7 +34,7 @@ export default function () {
     if (product) {
         return (
             <View style={styles.container}>
-                <ProductCardScreen product={product} router={router} ></ProductCardScreen>
+                <ProductCardScreen product={product}></ProductCardScreen>
             </View>
         )
     }
