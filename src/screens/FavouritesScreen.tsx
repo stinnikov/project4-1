@@ -96,9 +96,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     header: {
-        margin: 16,
-        flexDirection: 'row',
-        width: '100%'
+
     },
     searchBar: {
         marginHorizontal: 16,

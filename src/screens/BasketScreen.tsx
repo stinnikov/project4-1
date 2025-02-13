@@ -113,11 +113,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 16,
     },
-    header: {
-        flexDirection: 'row',
-        padding: 16,
-        width: '100%'
-    },
     deliveryBar: {
         marginHorizontal: 16,
     },

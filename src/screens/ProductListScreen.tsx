@@ -85,11 +85,15 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
     return (
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title={categoryName}
-                    />
-                </View>
+                <StatusBar
+                    translucent={false}
+                    style='dark'
+                    backgroundColor={colorsStyles.mainBrightColor.color.toString()}
+                />
+                <ScreenHeader
+                    title={categoryName}
+                    router={props.router}
+                />
                 <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
@@ -109,11 +113,6 @@ const styles = StyleSheet.create({
     column: {
         justifyContent: 'space-between',
         marginBottom: 16,
-    },
-    header: {
-        margin: 16,
-        flexDirection: 'row',
-        width: '100%'
     },
     searchBar: {
         marginHorizontal: 16,

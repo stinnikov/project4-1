@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import svgIcons from '@/src/assets/icons/svgIcons';
 import { colorsStyles } from '@/src/styles/styles';
 import { CommonActions } from '@react-navigation/native';
+import { Montserrat500MediumText } from '@/src/components/Text/TextComponents';
 
 
 const iconColor: string = colorsStyles.mainBrightColor.color.toString();
@@ -18,6 +19,7 @@ const headerShown: boolean = false;
 
 export default function TabLayout() {
 	return (
+
 		<Tabs
 			detachInactiveScreens={true}
 			initialRouteName='(home)'
@@ -26,8 +28,9 @@ export default function TabLayout() {
 				tabBarAllowFontScaling: false,
 				tabBarActiveTintColor: iconColor,
 				tabBarShowLabel: iconLabelShown,
-
+				tabBarLabelStyle: { flex: 1 },
 			}}
+
 		>
 			<Tabs.Screen name="(catalog)"
 				options={{
@@ -35,7 +38,7 @@ export default function TabLayout() {
 					title: 'Каталог',
 					headerShown: headerShown,
 					tabBarLabel: ({ focused, children }) => (
-						<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+						<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} >{children}</Text>
 					),
 					tabBarIcon: ({ color, focused }) => (
 						<svgIcons.CatalogIcon stroke={focused ? color : 'black'}></svgIcons.CatalogIcon>
@@ -48,7 +51,7 @@ export default function TabLayout() {
 				title: 'Избранное',
 				headerShown: headerShown,
 				tabBarLabel: ({ focused, children }) => (
-					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} >{children}</Text>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.FavoritesIcon stroke={focused ? color : '#000'}></svgIcons.FavoritesIcon>
@@ -59,7 +62,7 @@ export default function TabLayout() {
 
 				headerShown: headerShown,
 				tabBarLabel: ({ focused, children }) => (
-					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} >{children}</Text>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.CircleIcon fill={focused ? color : 'none'}></svgIcons.CircleIcon>
@@ -70,7 +73,7 @@ export default function TabLayout() {
 				title: 'Профиль',
 				headerShown: headerShown,
 				tabBarLabel: ({ focused, children }) => (
-					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} >{children}</Text>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.ProfileIcon fill={focused ? color : 'none'}></svgIcons.ProfileIcon>
@@ -80,34 +83,32 @@ export default function TabLayout() {
 				headerShown: headerShown,
 				title: 'Корзина',
 				tabBarLabel: ({ focused, children }) => (
-					<View>
-						<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel}>{children}</Text>
-					</View>
+					<Text style={focused ? styles.activeTabBarLabel : styles.tabBarLabel} >{children}</Text>
 				),
 				tabBarIcon: ({ color, focused }) => (
 					<svgIcons.TabBarBasketIcon stroke={focused ? color : '#000'}></svgIcons.TabBarBasketIcon>
 				),
 			}} />
 		</Tabs >
+
 	);
 }
 
 const styles = StyleSheet.create(
 	{
 		tabBarLabel: {
-			fontSize: 11,
-			fontFamily: 'Montserrat_500Medium',
-			minWidth: '100%',
+			width: '100%',
 			textAlign: 'center',
+			fontSize: 11,
 			color: 'black',
+			fontFamily: 'Montserrat_500Medium',
 		},
 		activeTabBarLabel: {
-			fontSize: 11,
-			letterSpacing: -0.03,
-			fontFamily: 'Montserrat_500Medium',
-			minWidth: '100%',
+			width: '100%',
 			textAlign: 'center',
+			fontSize: 11,
 			color: colorsStyles.mainBrightColor.color,
+			fontFamily: 'Montserrat_500Medium',
 		}
 	}
 )

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ViewStyle, Text } from "react-native";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { Montserrat400RegularText } from "./Text/TextComponents";
@@ -7,21 +7,26 @@ import { Montserrat400RegularText } from "./Text/TextComponents";
 interface SearchBarProps {
     text?: string,
     style?: ViewStyle,
+    contentStyle?: ViewStyle,
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
-            <TouchableOpacity style={styles.searchBar}>
+            <TouchableOpacity style={[styles.searchBar, props.contentStyle]}>
                 <Montserrat400RegularText
                     text='Поиск'
+                    style={{
+
+                        flex: 1,
+                    }}
                 />
                 <TouchableOpacity style={styles.qrCode}>
                     <svgIcons.QRCodeIcon stroke={colorsStyles.mainBrightColor.color} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.settings} onPress={() => { }}>
+            <TouchableOpacity style={[styles.settings, props.contentStyle]} onPress={() => { }}>
                 <svgIcons.SettingsIcon stroke={colorsStyles.mainDarkGreyColor.color}></svgIcons.SettingsIcon>
             </TouchableOpacity>
         </View>

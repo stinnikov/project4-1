@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, FlatList, ImageBackground } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Router, useFocusEffect, useRouter } from "expo-router";
 import { Category } from "@/src//interfaces/Category";
@@ -9,7 +9,7 @@ import { prods } from "@/src//data/tempData";
 import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
 import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
 import TopGoods from "@/src/components/TopGoods";
-import { colorsStyles } from "@/src//styles/styles";
+import { colorsStyles, dimensionsStyles, shadowStyles } from "@/src//styles/styles";
 import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
 import useNavigationStore from "../store/navigationStore";
 
@@ -34,32 +34,37 @@ const addProductToBasket = () => {
 
 }
 
-function renderScreen({ item }: { item: MainScreenProps }) {
-    return (
-        <View style={styles.container}>
-            <UserPanel></UserPanel>
-            <View style={styles.specialsForUser}>
-                <SpecialsForUser></SpecialsForUser>
-            </View>
-            <View style={{ backgroundColor: colorsStyles.mainGreyColor.color }}>
-                <View style={styles.newOffers}>
-                    <NewOffersForUser></NewOffersForUser>
-                </View>
-            </View>
-            <View style={styles.topGoods}>
-                <TopGoods
-                    data={prods}
-                    parentTab="home"
-                />
-            </View>
-            <View style={styles.couponsAndPromotions}>
-                <PromotionsAndDiscounts />
-            </View>
-        </View>
-    )
-}
+
 
 export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
+    function renderScreen({ item }: { item: MainScreenProps }) {
+        return (
+            <View style={styles.container}>
+                <StatusBar translucent style='dark' backgroundColor={'transparent'} />
+                <UserPanel router={router}></UserPanel>
+                <View style={[styles.specialsForUser, shadowStyles.regularShadow]}>
+                    <SpecialsForUser></SpecialsForUser>
+                </View>
+                <View style={{ backgroundColor: colorsStyles.mainGreyColor.color }}>
+                    <View style={styles.newOffers}>
+                        <NewOffersForUser></NewOffersForUser>
+                    </View>
+                </View>
+                <View style={styles.topGoods}>
+                    <TopGoods
+                        data={prods}
+                        router={item.router}
+                        parentTab='home'
+                    />
+                </View>
+                <View style={styles.couponsAndPromotions}>
+                    <PromotionsAndDiscounts />
+                </View>
+            </View>
+        )
+    }
+
+    const router = props.router;
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState<boolean>(false);
     const [categoriesData, setCategoriesData] = useState<Category[]>(props.categoriesData ?? []);
@@ -99,27 +104,20 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
     }, []))
 
     return (
-        <SafeAreaProvider style={{ flex: 1 }}>
-            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <FlatList
-                    overScrollMode="never"
-                    data={mainScreenData}
-                    bounces={false}
-                    renderItem={renderScreen}
-                />
-            </SafeAreaView>
-        </SafeAreaProvider>
+        <FlatList
+            overScrollMode="never"
+            data={mainScreenData}
+            bounces={false}
+            renderItem={renderScreen}
+        />
     )
 });
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
     },
     userPanel: {
-        backgroundColor: colorsStyles.mainDarkColor.color,
-
     },
     newOffers: {
         paddingBottom: 16,
@@ -135,8 +133,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     couponsAndPromotions: {
-        backgroundColor: 'red',
     }
 })
 
-export default React.memo(MainScreen);
+export default MainScreen;

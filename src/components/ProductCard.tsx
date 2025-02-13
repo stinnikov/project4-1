@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles";
@@ -44,16 +44,16 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
 
             <View style={styles.priceContainer}>
                 <Montserrat500MediumText
-                    style={{ paddingHorizontal: 8, fontSize: 14 }}
-                    text={props.product.price}
+                    style={{
+                        paddingHorizontal: 8, fontSize: 14,
+                        backgroundColor: colorsStyles.mainLightGreyColor.color, paddingVertical: 6, alignSelf: 'flex-start', borderRadius: 6
+                    }}
+                    text={product.price}
                 />
             </View>
 
             <View style={styles.bottomContainer}>
                 <BasketButtonComponent
-                    textStyle={{ color: colorsStyles.mainWhiteColor.color, fontSize: 14 }}
-                    style={{ marginHorizontal: 12, paddingVertical: 8, paddingHorizontal: 12 }}
-                    product={props.product}
                 />
             </View>
         </View>
@@ -66,38 +66,32 @@ const styles = StyleSheet.create({
         width: dimensionsStyles.productListCard.width,
         backgroundColor: colorsStyles.mainWhiteColor.color,
         borderRadius: 12,
-        zIndex: 999
     },
 
     productImageContainer: {
-        flex: 2,
+        flex: 3,
         width: '100%',
         height: '100%',
     },
 
     productImage: {
-        flexDirection: 'column',
         width: '100%',
         height: '100%',
     },
 
     productNameContainer: {
-        flex: 1,
-        marginLeft: 10,
+        flex: 1.5,
+        paddingHorizontal: 12,
     },
 
     priceContainer: {
-        flex: 0.3,
-        alignSelf: 'flex-start',
+        flex: 0.5,
         justifyContent: 'center',
-        backgroundColor: colorsStyles.mainLightGreyColor.color,
-        borderRadius: 6,
-        marginLeft: 10,
+        paddingHorizontal: 12,
     },
 
     bottomContainer: {
-        justifyContent: 'center',
-        marginVertical: 12,
+        margin: 12,
     }
 })
 

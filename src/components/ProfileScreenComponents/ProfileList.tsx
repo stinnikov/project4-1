@@ -16,12 +16,12 @@ interface ProfileLineElement {
 export const ProfileList: React.FC<ProfileListProps> = (props) => {
 	const data: ProfileLineElement[] = [
 		{ text: "История покупок", icon: <svgIcons.PurchaseHistoryIcon stroke={'black'} /> },
-		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon /> },
+		{ text: "Мои адреса", icon: <svgIcons.MyAddressesIcon strokeWidth={1.25} /> },
 		{ text: "Способ оплаты", icon: <svgIcons.PaymentMethodIcon /> },
 		{ text: "Уведомления", icon: <svgIcons.NotificationsIcon strokeWidth={1.25} stroke={'black'} /> },
-		{ text: "Правовая информация", icon: <svgIcons.LegalInformationIcon /> },
+		{ text: "Правовая информация", icon: <svgIcons.LegalInformationIcon strokeWidth={1.25} /> },
 		{ text: "Настройки", icon: <svgIcons.ProfileSettingsIcon strokeWidth={1.25} stroke={'black'} /> },
-		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon /> },
+		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon strokeWidth={1.25} stroke={'black'} /> },
 	]
 	function renderLineProfile({ item }: { item: ProfileLineElement }) {
 		return (
@@ -31,6 +31,7 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 						{item.icon}
 					</View>
 					<Montserrat400RegularText
+						style={{ fontSize: 16 }}
 						text={item.text}
 					/>
 				</View>

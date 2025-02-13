@@ -58,6 +58,36 @@ export const BackButtonComponent: React.FC<BackButtonComponentProps> = React.mem
     )
 })
 
+interface BasketButtonComponentProps {
+
+    style?: ViewStyle,
+
+}
+
+export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React.memo((props) => {
+    return (
+        <View
+            style={[{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 2,
+                backgroundColor: colorsStyles.mainBrightColor.color,
+                borderRadius: 12,
+                paddingVertical: 8,
+                paddingHorizontal: 12,
+            }, props.style]}
+        >
+            <svgIcons.BasketIcon width={16} height={16} />
+
+            <Montserrat400RegularText
+                style={{ color: colorsStyles.mainWhiteColor.color }}
+                text="В корзину" />
+
+        </View>
+    )
+})
+
 interface BasketProductInfoPanelProps {
     product: Product,
     style?: ViewStyle,
