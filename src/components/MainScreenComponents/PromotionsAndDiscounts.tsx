@@ -39,7 +39,6 @@ const PromotionsAndDiscounts: React.FC<PromotionsAndDiscountsProps> = (props) =>
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colorsStyles.mainWhiteColor.color,
     },
     content: {
         height: '100%',

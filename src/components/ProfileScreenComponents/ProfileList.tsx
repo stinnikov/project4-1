@@ -32,7 +32,7 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 					<View style={{ marginHorizontal: 4 }}>
 						{item.icon}
 					</View>
-					<Montserrat500MediumText
+					<Montserrat400RegularText
 						style={{ fontSize: 16 }}
 						text={item.text}
 					/>

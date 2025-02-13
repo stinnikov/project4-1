@@ -1,40 +1,42 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { colorsStyles } from "@/src/styles/styles";
+import ScreenHeader from "../components/ScreenHeader";
+import { useRouter } from "expo-router";
+import { Montserrat400RegularText, Raleway500MediumText, Raleway600SemiBoldText } from "../components/Text/TextComponents";
+import LoginByNumberButton from "../components/Buttons/LoginByNumberButton";
+import { StatusBar } from "expo-status-bar";
+
 export const LoginScreen: React.FC = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
+    const router = useRouter();
+
     return (
-        <View style={styles.container}>
-            <View style={styles.form}>
-                <Text style={styles.textTitle}>Login</Text>
-
-                <View style={{ padding: 10 }}>
-                    <Text style={styles.textInputTitle}>Login</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={login}
-                        onChangeText={setLogin}
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
+            <SafeAreaView style={[styles.container, { backgroundColor: colorsStyles.mainBrightColor.color }]}>
+                <StatusBar />
+                <ScreenHeader router={router} title='Логин' />
+                <View style={styles.mainTextContainer}>
+                    <Raleway600SemiBoldText
+                        style={{
+                            color: colorsStyles.mainWhiteColor.color,
+                            fontSize: 32,
+                        }}
+                        text={"Наша миссия:\nпольза людям!"}
                     />
-
-                    <Text style={styles.textInputTitle}>Password</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={setPassword}
-                        keyboardType='visible-password'
+                    <Montserrat400RegularText
+                        style={{ color: colorsStyles.mainWhiteColor.color, marginTop: 24 }}
+                        text="Здесь должно находиться красивое описание"
                     />
                 </View>
-                <View style={{ padding: 10 }}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1, marginHorizontal: 16, marginBottom: 64, }}>
+                    <LoginByNumberButton style={{ bottom: 0 }} />
                 </View>
-
-                <Text>{login}</Text>
-            </View>
-        </View>
+            </SafeAreaView >
+        </SafeAreaProvider>
     )
 }
 
@@ -42,45 +44,11 @@ const styles = StyleSheet.create(
     {
         container: {
             flex: 1,
-            padding: 10,
-            backgroundColor: '#FFFAFA',
-            alignContent: 'stretch',
-            justifyContent: 'center',
-            alignItems: 'stretch',
         },
-        textInput: {
-            borderWidth: 1,
-            borderColor: 'black',
-            borderRadius: 4,
-            backgroundColor: '#FFFAFA',
-            padding: 10,
-            fontSize: 18,
-        },
-        textInputTitle: {
-            fontSize: 18,
-            borderColor: 'black',
-            fontWeight: 'semibold',
-            padding: 10,
-        },
-        textTitle: {
-            fontSize: 26,
-            fontWeight: 'semibold',
-            padding: 10,
-            alignSelf: 'center',
-        },
-        button: {
-            backgroundColor: colorsStyles.mainDarkColor.color,
-            minHeight: 36,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        buttonText: {
-            fontSize: 18,
-            color: colorsStyles.mainWhiteColor.color,
-            fontWeight: 'semibold',
-        },
-        form: {
-            alignContent: 'stretch',
+        mainTextContainer: {
+            flex: 1,
+
+            marginHorizontal: 16,
         }
     }
 )

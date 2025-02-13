@@ -125,18 +125,22 @@ const ProfileSettingsIcon = (props: SvgProps) => (
 		width={24}
 		height={24}
 		viewBox="0 0 24 24"
-		fill={props.stroke ?? '#000'}
+		fill="none"
 		{...props}
 	>
 		<Path
-			fillRule="evenodd"
-			d="M11.199 2.587a1.65 1.65 0 0 1 1.602 0l7.2 4c.524.291.849.843.849 1.443v7.94c0 .6-.325 1.152-.849 1.443l-7.2 4a1.65 1.65 0 0 1-1.602 0l-7.2-4a1.65 1.65 0 0 1-.849-1.443V8.03c0-.6.325-1.152.849-1.443l7.2-4Zm.874 1.311a.15.15 0 0 0-.146 0l-7.2 4a.15.15 0 0 0-.077.132v7.94c0 .055.03.105.077.132l7.2 4a.15.15 0 0 0 .146 0l7.2-4a.15.15 0 0 0 .077-.132V8.03a.15.15 0 0 0-.077-.132l-7.2-4Z"
-			clipRule="evenodd"
+			stroke={props.stroke ?? "#fff"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.5}
+			d="m13.6 21.076 5.46-3.152c.584-.337.875-.505 1.087-.74a2 2 0 0 0 .416-.72c.097-.301.097-.637.097-1.307V8.843c0-.67 0-1.006-.098-1.307a2 2 0 0 0-.416-.72c-.21-.234-.5-.402-1.079-.736L13.6 2.924c-.583-.337-.874-.505-1.184-.57a2 2 0 0 0-.832 0c-.31.065-.601.233-1.184.57L4.938 6.077c-.582.336-.873.504-1.084.739a2 2 0 0 0-.416.72c-.098.302-.098.638-.098 1.311v6.305c0 .673 0 1.01.098 1.311a2 2 0 0 0 .416.72c.211.236.503.404 1.085.74l5.46 3.153c.584.337.875.505 1.185.57.274.059.558.059.832 0 .31-.065.602-.233 1.185-.57Z"
 		/>
 		<Path
-			fillRule="evenodd"
-			d="M7.25 12a4.75 4.75 0 1 1 9.5 0 4.75 4.75 0 0 1-9.5 0ZM12 8.75a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"
-			clipRule="evenodd"
+			stroke={props.stroke ?? "#fff"}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={props.strokeWidth ?? 1.5}
+			d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
 		/>
 	</Svg>
 )
@@ -150,13 +154,13 @@ const NotificationsIcon = (props: SvgProps) => (
 		{...props}
 	>
 		<Path
-			stroke={props.stroke ?? '#000'}
+			stroke={props.stroke ?? "#fff"}
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={1.5}
+			strokeWidth={props.strokeWidth ?? 1.5}
 			d="M6.311 10.464v-.917C6.311 6.483 8.858 4 12 4s5.689 2.483 5.689 5.547v.917c0 1.993.59 3.944 1.702 5.618L20 17H4l.61-.918a10.155 10.155 0 0 0 1.701-5.618Z"
 		/>
-		<Circle cx={12} cy={21} r={(props.strokeWidth && typeof props.strokeWidth === 'number') ? props.strokeWidth * 2 : 2} stroke={props.stroke ?? '#000'} />
+		<Circle cx={12} cy={21} r={(props.strokeWidth && typeof props.strokeWidth === 'number') ? props.strokeWidth * 1.4 : 2} fill={props.stroke ?? "#fff"} />
 	</Svg>
 )
 

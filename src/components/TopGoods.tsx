@@ -5,6 +5,7 @@ import { Product } from "@/src/interfaces/Product";
 import { StyleProp } from "react-native";
 import { Raleway600SemiBoldText } from "./Text/TextComponents";
 import ProductList from "./ProductList";
+import { dimensionsStyles } from "../styles/styles";
 
 interface TopGoodsProps {
     data: Product[];
@@ -18,16 +19,18 @@ interface TopGoodsProps {
 const TopGoods: React.FC<TopGoodsProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
-            <Raleway600SemiBoldText
-                text="Топ товары"
-                style={{ paddingHorizontal: 16, paddingTop: 12 }}
-            />
+            <View>
+                <Raleway600SemiBoldText
+                    text="Топ товары"
+                    style={{ paddingHorizontal: 16, paddingTop: 12 }}
+                />
+            </View>
             <ProductList
                 data={props.data}
                 router={props.router}
                 parentTab={props.parentTab}
                 horizontal={true}
-                productStyle={{ width: 170 }}
+                productStyle={{ width: dimensionsStyles.productListCard.width * 0.9 }}
             />
         </View>
     );

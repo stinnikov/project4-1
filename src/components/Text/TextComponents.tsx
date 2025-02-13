@@ -31,12 +31,13 @@ export const Montserrat400RegularText: React.FC<TextProps> = (props) => {
         <Text numberOfLines={props.numOfLines ?? 4} style={[styles.montserrat400Regular, props.style]}>
             {props.text ?? ''}
         </Text>
+
     );
 };
 
 export const Montserrat300LightText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.montserrat300Light, style]}>
+        <Text style={[styles.montserrat300LightText, style]}>
             {text ?? ''}
         </Text>
     );
@@ -44,7 +45,9 @@ export const Montserrat300LightText: React.FC<TextProps> = ({ text, style }) => 
 
 export const Raleway600SemiBoldText: React.FC<TextProps> = ({ text, style }) => {
     return (
-        <Text style={[styles.raleway600SemiBold, style]}>
+        <Text
+            style={[styles.raleway600SemiBold, style]}
+        >
             {text ?? ''}
         </Text>
     );
@@ -77,14 +80,14 @@ export const Raleway400RegularText: React.FC<TextProps> = ({ text, style }) => {
 };
 
 const styles = StyleSheet.create({
-
-    //-- MONTSERRAT ---
     montserrat600SemiBold: {
+        flex: 1,
         fontSize: 16,
         fontFamily: 'Montserrat_600SemiBold',
         letterSpacing: -0.03,
     },
     montserrat500Medium: {
+        flex: 1,
         fontSize: 16,
         fontFamily: 'Montserrat_500Medium',
         letterSpacing: -0.03,
@@ -93,36 +96,37 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Montserrat_400Regular',
         letterSpacing: -0.03,
+
     },
-    montserrat300Light: {
+    montserrat300LightText: {
+        flex: 1,
         fontSize: 16,
         fontFamily: 'Montserrat_300Light',
-        letterSpacing: -0.03
+        letterSpacing: -0.03,
     },
-
-    //-- RALEWAY ---
     raleway700Bold: {
+        flex: 1,
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',
-        letterSpacing: -0.03,
         includeFontPadding: false,
     },
     raleway600SemiBold: {
-        fontSize: 16,
+        flex: 1,
+        fontSize: 20,
         fontFamily: 'Raleway_600SemiBold',
-        letterSpacing: -0.03,
         includeFontPadding: false,
     },
     raleway500Medium: {
-        fontSize: 16,
+        flex: 1,
+        fontSize: 18,
         fontFamily: 'Raleway_500Medium',
-        letterSpacing: -0.03,
+
         includeFontPadding: false,
     },
     raleway400Regular: {
+        flex: 1,
         fontSize: 16,
         fontFamily: 'Raleway_400Regular',
-        letterSpacing: -0.03,
         includeFontPadding: false,
     },
 });
@@ -131,9 +135,6 @@ export default {
     RegularText: Montserrat400RegularText,
     ProductRatingCardText: Montserrat300LightText,
     BigButtonText: Montserrat600SemiBoldText,
-
-
-
     CategoryCardNameText: Raleway400RegularText,
     ScreenHeaderTitleText: Raleway500MediumText,
     ScreenSectionTitleText: Raleway600SemiBoldText,

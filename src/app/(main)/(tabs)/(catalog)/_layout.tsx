@@ -8,9 +8,9 @@ export default function () {
             {
                 headerShown: false,
                 statusBarStyle: 'dark',
-                statusBarBackgroundColor: 'transparent',
+                statusBarBackgroundColor: 'white',
                 statusBarTranslucent: true,
-                contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color },
+                contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color.toString() },
             }}>
             <Stack.Screen name="catalog" />
         </Stack>
