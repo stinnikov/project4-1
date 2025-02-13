@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 import { Montserrat400RegularText, Montserrat600SemiBoldText } from '../Text/TextComponents'
-import svgIcons from '@/src/assets/icons/svgIcons'
+import SvgIcons from '@/src/assets/icons/svgIcons'
 
 interface BonusCardProps {
 
@@ -18,7 +18,7 @@ const BonusCard: React.FC<BonusCardProps> = (props) => {
                         justifyContent: 'space-between',
                     }}>
                         <Montserrat600SemiBoldText style={{ fontSize: 50 }} text="1000" />
-                        <svgIcons.InfoIcon style={{ marginTop: 15 }} />
+                        <SvgIcons.InfoIcon style={{ marginTop: 15 }} />
                     </View>
                     <Montserrat600SemiBoldText style={{ fontSize: 22, bottom: 6 }} text="Бонусов" />
                 </View>

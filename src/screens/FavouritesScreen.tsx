@@ -53,12 +53,10 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title='Избранное'
-                        router={props.router}
-                    />
-                </View>
+                <ScreenHeader
+                    title='Избранное'
+                    router={props.router}
+                />
                 <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
@@ -81,9 +79,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     header: {
-        margin: 16,
-        flexDirection: 'row',
-        width: '100%'
+
     },
     searchBar: {
         marginHorizontal: 16,

@@ -18,7 +18,7 @@ const NewOffersForUser: React.FC<NewOffersForUserProps> = (props) => {
                         resizeMode='contain'>
                         <Montserrat400RegularText
                             style={{ paddingTop: 8, paddingLeft: 16, color: 'white' }}
-                            text='Новинки'
+                            text='Новинки новинки новинки'
                         />
                     </ImageBackground>
                 </View>

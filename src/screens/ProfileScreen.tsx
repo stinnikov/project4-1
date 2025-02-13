@@ -23,9 +23,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 	function renderScreen({ item }: { item: ProfileScreenProps }) {
 		return (
 			<View>
-				<View style={styles.screenHeader}>
-					<ScreenHeader title="Профиль" router={router}></ScreenHeader>
-				</View>
+				<ScreenHeader title="Профиль" router={router}></ScreenHeader>
 				<View style={styles.userNamePanel}>
 					<UserNamePanel router={router} userName="Имя пользователя" />
 				</View>

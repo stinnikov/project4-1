@@ -9,6 +9,8 @@ import ScreenHeader from "@/src/components/ScreenHeader";
 import { colorsStyles, dimensionsStyles } from "../styles/styles";
 import { ipv4 } from "../data/tempData";
 import { StatusBar } from "expo-status-bar";
+import { Montserrat300LightText } from "../components/Text/TextComponents";
+import Constants from 'expo-constants';
 
 interface CategoryListScreenProps {
     router: Router,
@@ -22,49 +24,58 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
         if (props.currentCategory.depth === 0) {
             return (
                 <View style={styles.container}>
-                    <StatusBar translucent style='dark' backgroundColor={'transparent'} />
+                    <StatusBar
+                        translucent style='dark'
+                        backgroundColor={'transparent'}
+                    />
                     <View style={{ flex: 1, minHeight: dimensionsStyles.categoryListImageBackground.height }}>
-                        <ImageBackground style={{ width: '100%', height: '100%' }} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
+                        <ImageBackground style={styles.imageStyle} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                             <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
-                            <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, justifyContent: 'space-between' }}>
-                                <ScreenHeader style={{ paddingVertical: 16 }} title={props.currentCategory.name} router={props.router} />
-                                <SearchBar style={{ paddingVertical: 16 }} />
-                            </SafeAreaView>
+                            <View style={{ marginTop: Constants.statusBarHeight }}>
+                                <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                            </View>
+                            <SearchBar style={{ margin: 16 }} contentStyle={{ backgroundColor: colorsStyles.mainWhiteColor.color }} />
                         </ImageBackground>
                     </View>
-
-
                     <View style={[styles.categoryList, { zIndex: 999, flex: 1 }]}>
-                        {/* <StatusBar translucent={true} backgroundColor="transparent" style='dark'></StatusBar> */}
+                        <CategoryList
+                            currentCategory={props.currentCategory}
+                            data={props.categories}
+                            router={props.router}
+                        />
                         <CategoryList
                             currentCategory={props.currentCategory}
                             data={props.categories}
                             router={props.router}
                         />
                     </View>
-                </View>
+                </View >
             )
         }
 
         return (
-            <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
-                <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                    <View style={styles.header}>
+            <SafeAreaProvider style={{ flex: 1 }}>
+                <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }} edges={['top']}>
+                    <StatusBar
+                        translucent={false}
+                        style='dark'
+                    />
+                    <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
                         <ScreenHeader title={props.currentCategory.name} router={props.router} />
-                    </View>
-                    <View style={styles.searchBar}>
-                        <SearchBar />
-                    </View>
+                        <View style={styles.searchBar}>
+                            <SearchBar />
+                        </View>
 
-                    <View style={styles.categoryList}>
-                        <CategoryList
-                            currentCategory={props.currentCategory}
-                            data={props.categories}
-                            router={props.router}
-                        />
+                        <View style={styles.categoryList}>
+                            <CategoryList
+                                currentCategory={props.currentCategory}
+                                data={props.categories}
+                                router={props.router}
+                            />
+                        </View>
                     </View>
-                </View>
-            </SafeAreaView>
+                </SafeAreaView>
+            </SafeAreaProvider>
         )
     }
 
@@ -87,8 +98,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    header: {
-        margin: 16,
+    imageStyle: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'space-between',
+        overflow: 'hidden',
+        borderBottomEndRadius: 16,
+        borderBottomStartRadius: 16,
     },
     searchBar: {
         margin: 16,

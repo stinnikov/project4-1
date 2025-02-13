@@ -55,25 +55,21 @@ export default function CategoryIdScreen() {
         if (categories.length === 0) {
             if (products && typeof categoryId === 'string')
                 return (
-                    <View style={{ flex: 1 }}>
-                        <ProductListScreen
-                            parentTab='catalog'
-                            products={products}
-                            categoryId={categoryId}
-                            router={router}
-                        />
-                    </View>
+                    <ProductListScreen
+                        parentTab='catalog'
+                        products={products}
+                        categoryId={categoryId}
+                        router={router}
+                    />
                 )
         }
 
         return (
-            <View style={{ flex: 1 }}>
-                <CategoryListScreen
-                    currentCategory={currentCategory}
-                    categories={categories}
-                    router={router}
-                />
-            </View>
+            <CategoryListScreen
+                currentCategory={currentCategory}
+                categories={categories}
+                router={router}
+            />
         )
     }
 }
