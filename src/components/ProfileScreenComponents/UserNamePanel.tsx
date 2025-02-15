@@ -5,7 +5,6 @@ import svgIcons from '@/src/assets/icons/svgIcons';
 import { Montserrat400RegularText, Raleway600SemiBoldText } from '../Text/TextComponents';
 
 interface UserPanelProps {
-	router: Router,
 	userName: string,
 }
 

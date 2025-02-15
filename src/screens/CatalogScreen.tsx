@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { View, StyleSheet, FlatList } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { Router, SplashScreen } from "expo-router";
@@ -12,15 +12,23 @@ import RecomendationsComponent from "@/src/components/Recomendations";
 import { prods } from "@/src/data/tempData";
 import { getCategoriesDepthZero } from "../services/CategoryService";
 import LoadingScreen from "./LoadingScreen";
+import useNavigationStore from "../store/navigationStore";
 
 interface CatalogScreenProps {
-    router: Router;
 }
 
 
 export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
 
     useEffect(() => {
         const getEntries = async () => {
@@ -55,13 +63,11 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
 
                     <RecomendationsComponent
                         data={prods}
-                        router={item.router}
                     />
 
                     <View style={{ margin: 16 }}>
                         <CategoryCardList
                             data={categories}
-                            router={item.router}
                         />
                     </View>
                 </View>

@@ -5,67 +5,40 @@ import { Router } from "expo-router";
 import svgIcons from "@/src/assets/icons/svgIcons";
 import { colorsStyles } from "@/src/styles/styles";
 import { Montserrat400RegularText } from "../Text/TextComponents";
+import useNavigationStore from "@/src/store/navigationStore";
 
 interface CategoryListProps {
-    currentCategory: Category | undefined, // current category
-    data: Category[], //subcats
-    router: Router,
+    currentCategory: Category, // current category
+    categories: Category[], //subcats
 }
 
 
-const CategoryList: React.FC<CategoryListProps> = (props) => {
-    function navigate({ item }: { item: Category }) {
-        if (props.currentCategory)
-            props.router.push({
-                pathname: '/(main)/(tabs)/(catalog)/categories/[categoryId]',
-                params: {
-                    categoryId: item.id,
-                    categoryDepth: item.depth,
-                },
-            })
-    }
 
-    function navigateToProductList(item: Category, router: Router) {
-        router.push(
-            {
-                pathname: '/(main)/(tabs)/(catalog)/products/[productList]',
-                params: {
-                    productList: item.id,
-                    categoryId: item.id,
-                }
-            }
-        )
-    }
+const CategoryList: React.FC<CategoryListProps> = (props) => {
+    const { navigateToProductListScreen, navigateToCategoryListScreen } = useNavigationStore();
 
     function categoryListHeader() {
-        if (isCategory(props.currentCategory)) {
-            return (
-                <TouchableOpacity
-                    style={styles.container}
-                    onPress={() => navigateToProductList(props.currentCategory as Category, props.router)}
-                >
-                    <Montserrat400RegularText
-                        style={[styles.categoryText, { color: colorsStyles.mainBrightColor.color }]}
-                        text="Все продукты категории"
-                    />
-                    <View style={styles.rightIconContainer}>
-                        <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color}></svgIcons.ArrowRightIcon>
-                    </View>
-                </TouchableOpacity>
-            )
-        }
-    }
-
-
-    function isCategory(item: any): item is Category {
-        return item && typeof item.id === 'string' && typeof item.depth === 'number';
+        return (
+            <TouchableOpacity
+                style={styles.container}
+                onPress={() => navigateToProductListScreen(props.currentCategory)}
+            >
+                <Montserrat400RegularText
+                    style={[styles.categoryText, { color: colorsStyles.mainBrightColor.color }]}
+                    text="Все продукты категории"
+                />
+                <View style={styles.rightIconContainer}>
+                    <svgIcons.ArrowRightIcon style={[styles.rightIcon]} stroke={colorsStyles.mainBrightColor.color}></svgIcons.ArrowRightIcon>
+                </View>
+            </TouchableOpacity>
+        )
     }
 
     function renderCategory({ item }: { item: Category }) {
         return (
             <TouchableOpacity
                 style={styles.container}
-                onPress={() => { navigate({ item }) }}>
+                onPress={() => { navigateToCategoryListScreen(item) }}>
                 <Montserrat400RegularText
                     style={styles.categoryText}
                     text={item.name}
@@ -79,7 +52,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
 
     return (
         <FlatList
-            data={props.data}
+            data={props.categories}
             renderItem={renderCategory}
             ListHeaderComponent={categoryListHeader}
             keyExtractor={item => item.id}

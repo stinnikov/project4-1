@@ -9,14 +9,12 @@ import { dimensionsStyles } from "../styles/styles";
 
 interface TopGoodsProps {
     data: Product[];
-    router: Router,
-    style?: StyleProp<ViewStyle>,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket'
+    style?: StyleProp<ViewStyle>;
+    parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites';
 }
 
-
-
 const TopGoods: React.FC<TopGoodsProps> = (props) => {
+
     return (
         <View style={[styles.container, props.style]}>
             <View>
@@ -26,11 +24,10 @@ const TopGoods: React.FC<TopGoodsProps> = (props) => {
                 />
             </View>
             <ProductList
-                data={props.data}
-                router={props.router}
-                parentTab={props.parentTab}
+                products={props.data}
                 horizontal={true}
                 productStyle={{ width: dimensionsStyles.productListCard.width * 0.9 }}
+                parentTab={props.parentTab}
             />
         </View>
     );

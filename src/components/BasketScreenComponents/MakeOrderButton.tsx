@@ -5,7 +5,6 @@ import { Montserrat600SemiBoldText } from '../Text/TextComponents';
 import { colorsStyles } from '@/src/styles/styles';
 
 interface MakeOrderButtonProps {
-    router: Router,
     style?: ViewStyle | ViewStyle[]
 }
 

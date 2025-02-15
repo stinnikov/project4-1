@@ -1,24 +1,20 @@
 import React, { useMemo } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { Router } from "expo-router";
-import { Product } from "@/src/interfaces/Product";
 import { dimensionsStyles } from "@/src/styles/styles";
-import CardComponent from "./CardComponent";
+import CategoryCardComponent from "./CategoryCardComponent";
 import { Raleway600SemiBoldText } from "./Text/TextComponents";
+import { Category } from "../interfaces/Category";
 
 interface RecomendationsProps {
-    data: Product[];
-    router: Router,
+    data: Category[];
 }
 
 const Recomendations: React.FC<RecomendationsProps> = React.memo((props) => {
-    const memoizedData = useMemo(() => props.data, [props.data]);
-
-    function renderProduct({ item }: { item: Product }) {
+    function renderProduct({ item }: { item: Category }) {
         return (
-            <CardComponent
-                item={item}
-                router={props.router}
+            <CategoryCardComponent
+                category={item}
                 titleText='Текст'
                 textStyle={{ color: 'white' }}
                 style={styles.card} />
@@ -33,7 +29,7 @@ const Recomendations: React.FC<RecomendationsProps> = React.memo((props) => {
             />
             <FlatList
                 style={styles.list}
-                data={memoizedData}
+                data={props.data}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 horizontal={true}

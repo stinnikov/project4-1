@@ -14,8 +14,6 @@ interface AddRemoveProductInBasketPanelProps {
     iconsSize?: number,
     addButtonStyle?: ViewStyle,
     product: Product,
-    onRemove: () => void,
-    onAdd: () => void,
 }
 
 const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps> = React.memo(({
@@ -26,8 +24,6 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
     iconsSize,
     addButtonStyle,
     product,
-    onRemove,
-    onAdd,
 }) => {
     const totalPriceTextColor: ColorValue = textStyle?.color === colorsStyles.mainWhiteColor.color || textStyle?.color === '#fff'
         ? colorsStyles.mainWhiteColor.color
@@ -40,7 +36,6 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
                 product={product}
                 iconColor={iconsColor}
                 iconSize={iconsSize}
-                onRemove={onRemove}
             />
             <View style={styles.amountInBasketContainer}>
                 <Montserrat500MediumText
@@ -57,7 +52,6 @@ const AddRemoveProductInBasketPanel: React.FC<AddRemoveProductInBasketPanelProps
                 product={product}
                 iconColor={iconsColor}
                 iconSize={iconsSize}
-                onAdd={onAdd}
             />
         </View>
     );

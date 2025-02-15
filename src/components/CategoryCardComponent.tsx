@@ -1,48 +1,25 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle, ImageStyle, TextStyle } from "react-native";
-import { Router } from "expo-router";
 import { colorsStyles } from "@/src/styles/styles";
 import { Category } from "@/src/interfaces/Category";
 import { Raleway400RegularText } from "./Text/TextComponents";
+import useNavigationStore from "../store/navigationStore";
 
-interface CardProps<T> {
-    item: T,
+interface CardProps {
+    category: Category,
     style: ViewStyle,
     imageStyle?: ImageStyle,
     imageUri?: string,
-    router: Router,
     titleText?: string,
     textStyle?: TextStyle
 }
 
-function navigateToCategory(item: Category, router: Router) {
-    router.push({
-        pathname: '/(main)/(tabs)/(catalog)/categories/[categoryId]',
-        params: {
-            categoryId: item.id,
-
-            categoryDepth: item.depth,
-        },
-    })
-}
-
-
-function navigate<T>(item: T, router: Router) {
-    if (isCategory(item)) {
-        navigateToCategory(item, router);
-    }
-
-}
-
-function isCategory(item: any): item is Category {
-    return item && typeof item.id === 'string' && typeof item.depth === 'number';
-}
-
-function CardComponent<T>(props: CardProps<T>) {
+function CategoryCardComponent<T>(props: CardProps) {
+    const { navigateToCategoryListScreen } = useNavigationStore();
     return (
         <View style={[cardStyles.container, props.style]}>
             <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => { navigate(props.item, props.router) }}>
+                onPress={() => { navigateToCategoryListScreen(props.category) }}>
                 <ImageBackground
                     source={{ uri: props.imageUri }}
                     style={cardStyles.imageBackground}
@@ -76,4 +53,4 @@ const cardStyles = StyleSheet.create({
     }
 })
 
-export default React.memo(CardComponent);
+export default React.memo(CategoryCardComponent);

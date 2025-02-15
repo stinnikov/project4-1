@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, RefreshControl, Text } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
@@ -7,79 +7,46 @@ import { getBasketByUserIdAsync } from '@/src/services/BasketService';
 import BasketProductListHeader from './BasketProductListHeader';
 import BasketListItem from './BasketListItem';
 import RequestForOrderInBasketForm from './RequestForOrderInBasketForm';
+import useBasketStore from '@/src/store/basketStore';
 
 interface BasketProductListProps {
-    data: Product[];
-    router: Router;
 }
 
-
-
-
 const BasketProductList: React.FC<BasketProductListProps> = (props) => {
-    const [products, setProducts] = useState<Product[]>(props.data);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [refreshing, setRefreshing] = useState(false);
+    const { products, totalAmount, initializeBasket } = useBasketStore();
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const favouriteProductsResponse = await getBasketByUserIdAsync();
-            if (favouriteProductsResponse) {
-                setProducts(favouriteProductsResponse);
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            await initializeBasket();
+        };
+        fetchData();
+    }, [initializeBasket]);
 
-    const clearBasket = React.useCallback(() => {
-        setProducts([]);
-    }, []);
+    useEffect(() => {
 
-    const onRefresh = React.useCallback(() => {
-        setRefreshing(true);
-        fetchData().finally(() => setRefreshing(false));
-    }, []);
-
-    function navigateToProduct(product: Product) {
-        props.router.push(
-            {
-                pathname: '/(main)/(tabs)/(basket)/product/[productId]',
-                params: {
-                    productId: product.id,
-                }
-            }
-        )
-    }
+    }, [products])
 
     function renderProduct({ item }: { item: Product }) {
         return (
-            <BasketListItem style={{ paddingHorizontal: 16, paddingBottom: 16 }} data={item} router={props.router} />
+            <BasketListItem
+                style={{ paddingHorizontal: 16, paddingBottom: 16 }}
+                product={item}
+            />
         )
     };
 
     return (
         <View style={[styles.container, shadowStyles.regularShadow]}>
-            <BasketProductListHeader style={{ marginHorizontal: 16, marginVertical: 12 }} amountOfProducts={(props.data.length).toString()} onClear={clearBasket} />
+            <BasketProductListHeader style={{ marginHorizontal: 16, marginVertical: 12 }} amount={(totalAmount).toString()}
+            />
             <FlatList
                 style={styles.list}
                 data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 initialNumToRender={2}
-                refreshControl={
-                    <RefreshControl
-                        tintColor={colorsStyles.mainBrightColor.color}
-                        colors={[colorsStyles.mainBrightColor.color]}
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
             />
-            <RequestForOrderInBasketForm router={props.router} style={{ marginHorizontal: 16, marginVertical: 12 }} />
+            <RequestForOrderInBasketForm style={{ marginHorizontal: 16, marginVertical: 12 }} />
         </View>
     );
 };

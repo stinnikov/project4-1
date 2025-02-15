@@ -5,7 +5,7 @@ import { Text, View, StyleSheet } from 'react-native';
 export default function () {
     const router = useRouter();
     return (
-        <ProfileScreen router={router} />
+        <ProfileScreen />
     );
 }
 

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, View, StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
-import { Router } from "expo-router";
+import { Router, useRouter } from "expo-router";
 import CategoryList from "@/src/components/CatalogScreenComponents/CategoryList";
 import { Category } from "@/src/interfaces/Category";
 import ScreenHeader from "@/src/components/ScreenHeader";
@@ -11,15 +11,23 @@ import { ipv4 } from "../data/tempData";
 import { StatusBar } from "expo-status-bar";
 import { Montserrat300LightText } from "../components/Text/TextComponents";
 import Constants from 'expo-constants';
+import useNavigationStore from "../store/navigationStore";
 
 interface CategoryListScreenProps {
-    router: Router,
     currentCategory: Category,
     categories: Category[],
 }
 
 
 const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props: CategoryListScreenProps) => {
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
+
     function renderScreen() {
         if (props.currentCategory.depth === 0) {
             return (
@@ -32,7 +40,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         <ImageBackground style={styles.imageStyle} resizeMode="cover" source={{ uri: `${ipv4}/getImageByCategoryId?categoryId=${props.currentCategory.id}` }}>
                             <View style={{ top: 0, position: 'absolute', backgroundColor: 'black', width: '100%', height: '100%', opacity: 0.2 }}></View>
                             <View style={{ marginTop: Constants.statusBarHeight }}>
-                                <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                                <ScreenHeader title={props.currentCategory.name} />
                             </View>
                             <SearchBar style={{ margin: 16 }} contentStyle={{ backgroundColor: colorsStyles.mainWhiteColor.color }} />
                         </ImageBackground>
@@ -40,13 +48,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                     <View style={[styles.categoryList, { zIndex: 999, flex: 1 }]}>
                         <CategoryList
                             currentCategory={props.currentCategory}
-                            data={props.categories}
-                            router={props.router}
-                        />
-                        <CategoryList
-                            currentCategory={props.currentCategory}
-                            data={props.categories}
-                            router={props.router}
+                            categories={props.categories}
                         />
                     </View>
                 </View >
@@ -61,7 +63,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         style='dark'
                     />
                     <View style={{ backgroundColor: colorsStyles.mainWhiteColor.color }}>
-                        <ScreenHeader title={props.currentCategory.name} router={props.router} />
+                        <ScreenHeader title={props.currentCategory.name} />
                         <View style={styles.searchBar}>
                             <SearchBar />
                         </View>
@@ -69,8 +71,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                         <View style={styles.categoryList}>
                             <CategoryList
                                 currentCategory={props.currentCategory}
-                                data={props.categories}
-                                router={props.router}
+                                categories={props.categories}
                             />
                         </View>
                     </View>

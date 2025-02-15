@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, FlatList, RefreshControl } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchBar from "@/src/components/SearchBar";
-import { Router, useFocusEffect } from "expo-router";
+import { useRouter } from "expo-router";
 import ScreenHeader from "@/src/components/ScreenHeader";
-import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
-import { getBasketByUserIdAsync } from "../services/BasketService";
-import { dimensionsStyles } from "@/src//styles/styles";
-import { StatusBar } from "expo-status-bar";
 import { prods } from "@/src//data/tempData";
 import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
 import DeliveryBar from "../components/DeliveryBar";
@@ -18,47 +13,34 @@ import TopGoods from "../components/TopGoods";
 import OrderAmount from "../components/BasketScreenComponents/OrderAmount";
 import PaymentDetails from "../components/BasketScreenComponents/PaymentDetails";
 import MakeOrderButton from "../components/BasketScreenComponents/MakeOrderButton";
+import useNavigationStore from "../store/navigationStore";
+import useBasketStore from "../store/basketStore";
 
 interface BasketScreenProps {
-    router: Router,
 }
 
 const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
-    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
+    const { initializeBasket } = useBasketStore();
 
-    const fetchData = async () => {
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
         setLoading(true);
-        try {
-            const favouriteProductsResponse = await getBasketByUserIdAsync();
-            if (favouriteProductsResponse) {
-                setProducts(favouriteProductsResponse);
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
-    useFocusEffect(
-        React.useCallback(() => {
-            fetchData();
-            return () => {
-                setProducts([]);
-            };
-        }, [])
-    );
-
-    const onRefresh = React.useCallback(() => {
-        setRefreshing(true);
-        fetchData().finally(() => setRefreshing(false));
+        setRouter(router);
+        initializeBasket().finally(() => { setLoading(false) });
     }, []);
 
-    const clearBasket = () => {
-        setProducts([]);
+    const refreshData = async () => {
+        try {
+            setRefreshing(true);
+            initializeBasket().finally(() => { setRefreshing(false) })
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     function renderScreen() {
@@ -66,31 +48,30 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
             <View style={{ flex: 1 }}>
                 <ScreenHeader
                     title={'Корзина'}
-                    router={props.router}
                 />
                 <View style={styles.deliveryBar}>
                     <DeliveryBar />
                 </View>
                 <View style={styles.productList}>
-                    <BasketProductList
-                        data={products}
-                        router={props.router}
-                    />
+                    <BasketProductList />
                 </View>
                 <View style={styles.promotions}>
-                    <PromotionInBasketForm router={props.router} />
+                    <PromotionInBasketForm />
                 </View>
                 <View>
-                    <TopGoods data={prods} router={props.router} parentTab="basket" />
+                    <TopGoods
+                        data={prods}
+                        parentTab="basket"
+                    />
                 </View>
                 <View style={styles.orderAmount}>
                     <OrderAmount sumOfOrder="1199.99 руб" discountOfOrder="200 руб" totalSumOfOrder="999.99 руб" />
                 </View>
                 <View style={{ margin: 16 }}>
-                    <PaymentDetails router={props.router} />
+                    <PaymentDetails />
                 </View>
                 <View style={{ margin: 16 }}>
-                    <MakeOrderButton router={props.router} />
+                    <MakeOrderButton />
                 </View>
             </View>
         )
@@ -107,6 +88,14 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                 <FlatList
                     data={[{}]}
                     renderItem={renderScreen}
+                    refreshControl={
+                        <RefreshControl
+                            tintColor={colorsStyles.mainBrightColor.color}
+                            colors={[colorsStyles.mainBrightColor.color]}
+                            refreshing={refreshing}
+                            onRefresh={refreshData}
+                        />
+                    }
                 />
             </SafeAreaView>
         </SafeAreaProvider>

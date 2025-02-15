@@ -8,11 +8,8 @@ import { StatusBar } from "expo-status-bar";
 
 
 export default function () {
-  const router = useRouter();
   return (
-
-    <MainScreen router={router}></MainScreen>
-
+    <MainScreen />
   );
 }
 

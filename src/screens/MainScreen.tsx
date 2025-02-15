@@ -1,28 +1,36 @@
-import React, { useState } from "react";
-import { View, StyleSheet, FlatList, ImageBackground } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { Router, useFocusEffect } from "expo-router";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, FlatList } from "react-native";
+import { Router, useFocusEffect, useRouter } from "expo-router";
 import { Category } from "@/src//interfaces/Category";
 import { Product } from "@/src//interfaces/Product";
 import UserPanel from "@/src/components/MainScreenComponents/UserPanel";
-import { prods } from "@/src//data/tempData";
 import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
 import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
 import TopGoods from "@/src/components/TopGoods";
-import { colorsStyles, dimensionsStyles, shadowStyles } from "@/src//styles/styles";
+import { colorsStyles, shadowStyles } from "@/src//styles/styles";
 import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
+import useNavigationStore from "../store/navigationStore";
 import { StatusBar } from "expo-status-bar";
+import useProductStore from "../store/productsStore";
 
 
 interface MainScreenProps {
     categoriesData?: Category[];
     topGoodsData?: Product[];
-    router: Router;
 }
 
-
-
 export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
+    const { products } = useProductStore();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [refreshing, setRefreshing] = useState<boolean>(false);
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
+
     function renderScreen({ item }: { item: MainScreenProps }) {
         return (
             <View style={styles.container}>
@@ -38,8 +46,7 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
                 </View>
                 <View style={styles.topGoods}>
                     <TopGoods
-                        data={prods}
-                        router={item.router}
+                        data={products.slice(0, 10)}
                         parentTab='home'
                     />
                 </View>
@@ -49,13 +56,6 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
             </View>
         )
     }
-
-    const router = props.router;
-    const [loading, setLoading] = useState<boolean>(true);
-    const [refreshing, setRefreshing] = useState<boolean>(false);
-    const [categoriesData, setCategoriesData] = useState<Category[]>(props.categoriesData ?? []);
-    const [topGoodsData, setTopGoodsData] = useState<Product[]>(props.topGoodsData ?? []);
-    const [mainScreenData, setMainScreenData] = useState<MainScreenProps[]>([{ router, categoriesData, topGoodsData }]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -84,7 +84,7 @@ export const MainScreen: React.FC<MainScreenProps> = React.memo((props) => {
     return (
         <FlatList
             overScrollMode="never"
-            data={mainScreenData}
+            data={[{}]}
             bounces={false}
             renderItem={renderScreen}
         />

@@ -4,7 +4,6 @@ import { colorsStyles, dimensionsStyles } from '@/src/styles/styles'
 import { Raleway400RegularText } from '../Text/TextComponents'
 
 export interface CircleStoryProps {
-    imgSrc: string,
 }
 
 const CirclePostForUser: React.FC<CircleStoryProps> = (props) => {

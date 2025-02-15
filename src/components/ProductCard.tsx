@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Router } from "expo-router";
-import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles";
-import { BasketButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
+import FavouriteButton from "./Buttons/FavouriteButton";
+import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles"; import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
+import useNavigationStore from "../store/navigationStore";
+import BasketButtonComponent from "./Buttons/BasketButtonComponent";
 
 interface ProductCardProps {
-    data: Product,
-    router: Router,
-    style?: ViewStyle,
-    parentTab: 'catalog' | 'favourites' | 'home' | 'profile' | 'basket',
-    navigateToProduct: (product: Product) => void;
+    product: Product;
+    style?: ViewStyle;
+    parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites';
 }
 
-const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-    const [product, setProduct] = useState<Product>(props.data);
 
-    function navigateToProduct() {
-        props.navigateToProduct(props.data);
-    }
+
+const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
+    const navigateToProductPageScreen = useNavigationStore(({ navigateToProductPageScreen }) => navigateToProductPageScreen)
 
     return (
         <View style={[styles.container, props.style, shadowStyles.regularShadow]}>
-            <TouchableOpacity style={styles.productImageContainer} onPress={navigateToProduct}>
-                <ImageBackground style={styles.productImage} source={{ uri: product.imageUrl }} resizeMode="contain">
+            <TouchableOpacity style={styles.productImageContainer} onPress={() => { navigateToProductPageScreen(props.product, props.parentTab) }}>
+                <ImageBackground style={styles.productImage} source={{ uri: props.product.imageUrl }} resizeMode="contain">
                     <View style={{ alignSelf: 'flex-end', flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 12, marginRight: 8 }}>
                         <View style={[buttonStyles.miniButton]}>
                             <Montserrat300LightText
@@ -32,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                                 text="4.3"
                             />
                         </View>
-                        <FavouriteButtonComponent product={product} style={{ alignSelf: 'flex-end' }} />
+                        <FavouriteButton product={props.product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -40,22 +36,23 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
             <View style={styles.productNameContainer}>
                 <Montserrat400RegularText
                     style={{ fontSize: 14 }}
-                    text={product.name}
+                    text={props.product.name}
                 />
             </View>
 
             <View style={styles.priceContainer}>
                 <Montserrat500MediumText
                     style={{
-                        paddingHorizontal: 8, fontSize: 14,
-                        backgroundColor: colorsStyles.mainLightGreyColor.color, paddingVertical: 6, alignSelf: 'flex-start', borderRadius: 6
+                        fontSize: 14,
+                        paddingHorizontal: 6,
                     }}
-                    text={product.price}
+                    text={props.product.price}
                 />
             </View>
 
             <View style={styles.bottomContainer}>
                 <BasketButtonComponent
+                    product={props.product}
                 />
             </View>
         </View>
@@ -83,13 +80,16 @@ const styles = StyleSheet.create({
 
     productNameContainer: {
         flex: 1.5,
-        paddingHorizontal: 12,
+        marginHorizontal: 12,
     },
 
     priceContainer: {
-        flex: 0.5,
+        flex: 0.6,
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
+        alignSelf: 'flex-start',
+        borderRadius: 6,
         justifyContent: 'center',
-        paddingHorizontal: 12,
+        marginHorizontal: 12
     },
 
     bottomContainer: {

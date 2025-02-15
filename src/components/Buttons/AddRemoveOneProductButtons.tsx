@@ -11,20 +11,10 @@ interface AddButtonProps {
     style?: ViewStyle | ViewStyle[];
     iconColor?: ColorValue;
     iconSize?: number,
-    onAdd: () => void; // Добавляем пропс для обновления состояния
 }
 
 export const AddOneProductInBasket: React.FC<AddButtonProps> = React.memo((props) => {
     function handlePressAddOneProductInBasket() {
-
-        addProductInBasketAsync(props.product.id)
-            .then(() => {
-                // Вызываем функцию для обновления состояния родительского компонента
-                props.onAdd();
-            })
-            .catch((error) => {
-                console.error('Ошибка при удалении продукта:', error);
-            });
     }
 
     return (
@@ -39,18 +29,10 @@ interface RemoveButtonProps {
     style?: ViewStyle | ViewStyle[];
     iconColor?: ColorValue;
     iconSize?: number,
-    onRemove: () => void;
 }
 
 export const RemoveOneProductFromBasket: React.FC<RemoveButtonProps> = React.memo((props) => {
     function handlePressRemoveOneProductFromBasket() {
-        deleteProductFromBasket(props.product.id)
-            .then(() => {
-                props.onRemove();
-            })
-            .catch((error) => {
-                console.error('Ошибка при удалении продукта:', error);
-            });
     }
 
     return (

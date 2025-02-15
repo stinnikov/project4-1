@@ -6,9 +6,8 @@ import { colorsStyles } from '@/src/styles/styles';
 import BasketScreen from '@/src/screens/BasketScreen';
 
 export default function () {
-	const router = useRouter();
 	return (
-		<BasketScreen router={router} />
+		<BasketScreen />
 	);
 }
 
