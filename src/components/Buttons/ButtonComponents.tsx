@@ -1,47 +1,14 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Pressable, ViewStyle, Text, View, StyleSheet, TextStyle, ColorValue } from 'react-native';
+import { Pressable, ViewStyle } from 'react-native';
 import svgIcons from '@/src/assets/icons/svgIcons';
 import { colorsStyles, buttonStyles } from '@/src/styles/styles';
-import { Router } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
-import { addFavoriteProductAsync, deleteFavoriteProductAsync } from '@/src/services/ProductService';
-import { addProductInBasketAsync, clearBasketByUserId, deleteProductFromBasket } from '@/src/services/BasketService';
 import AddRemoveProductInBasketPanel from './AddRemoveOneProductPanel';
 import useNavigationStore from '@/src/store/navigationStore';
-import { Montserrat400RegularText } from '../Text/TextComponents';
-import useBasketStore from '@/src/store/basketStore';
 
 
 
-interface FavouriteButtonProps {
-    product: Product,
-    style?: ViewStyle,
-}
 
-export const FavouriteButtonComponent: React.FC<FavouriteButtonProps> = React.memo((props) => {
-    const product = props.product;
-    const [color, setColor] = useState<string>(product.isFavourite ? colorsStyles.mainBrightColor.color.toString() : 'none')
-
-    function handlePressFavouriteButton() {
-        if (product.isFavourite === true) {
-            deleteFavoriteProductAsync(product.id);
-            setColor('none');
-            product.isFavourite = false;
-        }
-        else {
-            addFavoriteProductAsync(product.id);
-            setColor(colorsStyles.mainBrightColor.color.toString())
-            product.isFavourite = true;
-        }
-    }
-
-    return (
-        <TouchableOpacity style={[buttonStyles.miniButton, props.style]}
-            onPress={handlePressFavouriteButton}>
-            <svgIcons.FavoritesIcon width={21} height={21} fill={color} stroke={product.isFavourite ? colorsStyles.mainBrightColor.color : '#000'}></svgIcons.FavoritesIcon>
-        </TouchableOpacity>
-    )
-})
 
 interface BackButtonComponentProps {
     style?: ViewStyle,
@@ -89,20 +56,6 @@ export const BasketProductInfoPanel: React.FC<BasketProductInfoPanelProps> = Rea
         />
     )
 
-})
-
-interface ClearBasketButtonProps {
-    style?: ViewStyle;
-}
-export const ClearBasketButton: React.FC<ClearBasketButtonProps> = React.memo((props) => {
-    const { clearBasket } = useBasketStore();
-
-    return (
-        <TouchableOpacity onPress={clearBasket} style={[props.style]}>
-            <Montserrat400RegularText style={{ fontSize: 12 }} text='Очистить корзину' />
-            <svgIcons.TrashCanIcon></svgIcons.TrashCanIcon>
-        </TouchableOpacity>
-    )
 })
 
 export default {}

@@ -4,8 +4,9 @@ import ProductDescription from "./temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
 import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
-import { BackButtonComponent, FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import BasketButtonComponent from "./Buttons/AddToBasketButton";
+import { BackButtonComponent } from "./Buttons/ButtonComponents";
+import FavouriteButton from "./Buttons/FavouriteButton";
+import BasketButtonComponent from "./Buttons/BasketButtonComponent";
 import { Montserrat400RegularText, Montserrat600SemiBoldText, Raleway700BoldText } from "./Text/TextComponents";
 
 interface ProductPageProps {
@@ -15,7 +16,6 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = (props) => {
-    const [product, setProduct] = useState<Product>(props.product);
 
 
     return (
@@ -23,7 +23,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             <View style={styles.topButtons}>
                 <BackButtonComponent style={{ marginLeft: 16 }} />
 
-                <FavouriteButtonComponent product={product} style={{ marginRight: 16 }} />
+                <FavouriteButton product={props.product} style={{ marginRight: 16 }} />
             </View>
 
             <ScrollView
@@ -40,15 +40,15 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             >
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
-                        <ImageBackground source={{ uri: product.imageUrl }}
+                        <ImageBackground source={{ uri: props.product.imageUrl }}
                             style={styles.imageBackground}
                             resizeMode='contain'
                         >
                         </ImageBackground>
                     </View>
-                    <View style={styles.title}>
+                    <View style={styles.productNameContainer}>
                         <Raleway700BoldText
-                            text={product.name}
+                            text={props.product.name}
                             style={{ fontSize: 26 }}
                         />
                     </View>
@@ -56,7 +56,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                     <View style={styles.priceContainer}>
                         <Montserrat600SemiBoldText
                             style={{ paddingHorizontal: 6, paddingVertical: 4, fontSize: 26 }}
-                            text={product.price}
+                            text={props.product.price}
                         />
                     </View>
                 </View>
@@ -68,11 +68,8 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
 
             <View style={{ minHeight: '7%', position: 'absolute', width: '93%', alignSelf: 'center', bottom: 0, marginBottom: 8 }}>
                 <BasketButtonComponent
-                    textStyle={{ fontSize: 20, color: colorsStyles.mainWhiteColor.color }}
-                    product={product}
+                    product={props.product}
                     style={styles.bottomButton}
-                    iconsSize={22}
-
                 />
             </View>
         </View>
@@ -109,13 +106,15 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: colorsStyles.mainWhiteColor.color,
     },
-    title: {
+    productNameContainer: {
+        flex: 1,
         paddingHorizontal: 16,
         paddingTop: 10,
         minHeight: 100,
     },
     priceContainer:
     {
+        flex: 1,
         marginVertical: 12,
         alignSelf: 'flex-start',
         backgroundColor: colorsStyles.mainLightGreyColor.color,

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import { Router } from "expo-router";
-import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles";
-import { FavouriteButtonComponent } from "./Buttons/ButtonComponents";
-import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
+import FavouriteButton from "./Buttons/FavouriteButton";
+import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles"; import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
 import useNavigationStore from "../store/navigationStore";
-import BasketButtonComponent from "./Buttons/AddToBasketButton";
+import BasketButtonComponent from "./Buttons/BasketButtonComponent";
 
 interface ProductCardProps {
     product: Product;
@@ -30,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
                                 text="4.3"
                             />
                         </View>
-                        <FavouriteButtonComponent product={props.product} style={{ alignSelf: 'flex-end' }} />
+                        <FavouriteButton product={props.product} style={{ alignSelf: 'flex-end' }} />
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -45,8 +43,8 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
             <View style={styles.priceContainer}>
                 <Montserrat500MediumText
                     style={{
-                        paddingHorizontal: 8, fontSize: 14,
-                        backgroundColor: colorsStyles.mainLightGreyColor.color, paddingVertical: 6, alignSelf: 'flex-start', borderRadius: 6
+                        fontSize: 14,
+                        paddingHorizontal: 6,
                     }}
                     text={props.product.price}
                 />
@@ -82,13 +80,16 @@ const styles = StyleSheet.create({
 
     productNameContainer: {
         flex: 1.5,
-        paddingHorizontal: 12,
+        marginHorizontal: 12,
     },
 
     priceContainer: {
-        flex: 0.5,
+        flex: 0.6,
+        backgroundColor: colorsStyles.mainLightGreyColor.color,
+        alignSelf: 'flex-start',
+        borderRadius: 6,
         justifyContent: 'center',
-        paddingHorizontal: 12,
+        marginHorizontal: 12
     },
 
     bottomContainer: {

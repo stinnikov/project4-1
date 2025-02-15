@@ -23,7 +23,6 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
                 backgroundColor: colorsStyles.mainBrightColor.color,
                 borderRadius: 12,
                 paddingVertical: 8,
-                paddingHorizontal: 12,
             }, props.style]}
 
             onPress={() => { addProduct(props.product) }}
@@ -31,7 +30,7 @@ export const BasketButtonComponent: React.FC<BasketButtonComponentProps> = React
             <svgIcons.BasketIcon width={16} height={16} />
 
             <Montserrat400RegularText
-                style={{ color: colorsStyles.mainWhiteColor.color }}
+                style={{ color: colorsStyles.mainWhiteColor.color, fontSize: 14 }}
                 text="В корзину" />
 
         </TouchableOpacity>

@@ -3,12 +3,20 @@ import { StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Product } from '@/src/interfaces/Product';
 import FavouritesScreen from '@/src/screens/FavouritesScreen';
+import useProductStore from '@/src/store/productsStore';
 
 export default function () {
-    const router = useRouter();
+    const { fetchFavourites, favourites } = useProductStore();
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchFavourites();
+        };
+
+        fetchData();
+    }, []);
     return (
-        <FavouritesScreen categoryName={"Избранное"} />
+        <FavouritesScreen favourites={favourites} categoryName={"Избранное"} />
     );
 
 

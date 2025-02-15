@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, FlatList, RefreshControl } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
-import { Router, useFocusEffect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import ScreenHeader from "@/src/components/ScreenHeader";
-import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
-import { getFavouritesProductsAsync } from "@/src//services/ProductService";
 import FavouritesProductList from "../components/FavouritesScreenComponents/FavouritesProductList";
 import useNavigationStore from "../store/navigationStore";
+import Product from "../interfaces/Product";
 
 interface FavouritesScreenProps {
+    favourites: Product[],
     categoryName: string,
 }
 
 const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => {
-    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [refreshing, setRefreshing] = useState(false);
 
     const router = useRouter();
     const setRouter = useNavigationStore(state => state.setRouter);
@@ -25,53 +25,53 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
     useEffect(() => {
         // Устанавливаем router в Zustand хранилище
         setRouter(router);
+        setLoading(false);
     }, [router, setRouter]);
 
-    const fetchData = async () => {
-        setLoading(true);
+    const refreshData = async () => {
         try {
-            const favouriteProductsResponse = await getFavouritesProductsAsync();
-            if (favouriteProductsResponse) {
-                setProducts(favouriteProductsResponse);
-            }
+            setRefreshing(true);
+            setRefreshing(false);
         } catch (error) {
             console.error(error);
-        } finally {
-            setLoading(false);
         }
     };
-
-    useFocusEffect(
-        React.useCallback(() => {
-            fetchData();
-
-            // Функция для очистки при анфокусе
-            return () => {
-                setProducts([]); // Очищаем список продуктов при анфокусе
-            };
-        }, []) // Убедитесь, что здесь пустой массив
-    );
 
     if (loading) {
         return <LoadingScreen />;
     }
 
-    return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
-            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <View style={styles.header}>
-                    <ScreenHeader
-                        title='Избранное'
-                    />
-                </View>
+    function renderScreen() {
+        return (
+            <View style={{ flex: 1 }}>
+                <ScreenHeader
+                    title='Избранное'
+                />
                 <View style={styles.searchBar}>
                     <SearchBar />
                 </View>
                 <View style={styles.productList}>
-                    <FavouritesProductList
-                        products={products}
-                    />
+                    <FavouritesProductList favourites={props.favourites} />
                 </View>
+            </View>
+        )
+    }
+
+    return (
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: colorsStyles.mainWhiteColor.color }}>
+            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <FlatList
+                    data={[{}]}
+                    renderItem={renderScreen}
+                    refreshControl={
+                        <RefreshControl
+                            tintColor={colorsStyles.mainBrightColor.color}
+                            colors={[colorsStyles.mainBrightColor.color]}
+                            refreshing={refreshing}
+                            onRefresh={refreshData}
+                        />
+                    }
+                />
             </SafeAreaView>
         </SafeAreaProvider>
     );

@@ -24,16 +24,15 @@ const UserPanel: React.FC<UserPanelProps> = (props) => {
     function renderCircleStory({ item }: { item: CircleStoryProps }) {
         return (
             <CirclePostForUser
-                imgSrc={item.imgSrc}
             />
         )
     }
     const circleStoriesData: CircleStoryProps[] = [
-        { imgSrc: '1' },
-        { imgSrc: '1' },
-        { imgSrc: '1' },
-        { imgSrc: '1' },
-        { imgSrc: '1' },
+        {},
+        {},
+        {},
+        {},
+        {},
     ]
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, ViewStyle } from 'react-native';
-import { ClearBasketButton } from '../Buttons/ButtonComponents';
 import { Montserrat400RegularText } from '../Text/TextComponents';
+import ClearBasketButton from '../Buttons/ClearBasketButton';
 
 interface BasketProductListHeaderProps {
     amount: string,

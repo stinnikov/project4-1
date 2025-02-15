@@ -50,14 +50,6 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props:
                             currentCategory={props.currentCategory}
                             categories={props.categories}
                         />
-                        <CategoryList
-                            currentCategory={props.currentCategory}
-                            categories={props.categories}
-                        />
-                        <CategoryList
-                            currentCategory={props.currentCategory}
-                            categories={props.categories}
-                        />
                     </View>
                 </View >
             )

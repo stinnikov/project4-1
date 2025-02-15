@@ -12,71 +12,40 @@ import LoadingScreen from "./LoadingScreen";
 import { getProductsByCategoryIdAsync } from "../services/ProductService";
 import { getCategoryNameById } from "../services/CategoryService";
 import useNavigationStore from "../store/navigationStore";
+import useProductStore from "../store/productsStore";
 
 interface ProductListScreenProps {
-    products: Product[],
     categoryId: string,
     parentTab: 'basket' | 'home' | 'profile' | 'catalog' | 'favourites';
 }
 
 
 
-const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
-    const [products, setProducts] = useState<Product[]>(props.products)
-    const [categoryName, setCategoryName] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(true);
-    const [release, setRelease] = useState<boolean>(false);
-
+const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, parentTab }) => {
     const router = useRouter();
     const setRouter = useNavigationStore(state => state.setRouter);
+    const { fetchProductsByCategory, products } = useProductStore();
+    const [categoryName, setCategoryName] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
+        const fetchData = async () => {
+            await fetchProductsByCategory(categoryId);
+
+            setCategoryName(await getCategoryNameById(categoryId) ?? '')
+        };
+
         setRouter(router);
-    }, [router, setRouter]);
+        fetchData().finally(() => { setLoading(false) });
+    }, [categoryId, fetchProductsByCategory]);
 
-    const setDataAsync = async () => {
-        try {
-            const [getProductsResponse, getCategoryNameResponse] = await Promise.all(
-                [
-                    getProductsByCategoryIdAsync(props.categoryId),
-                    getCategoryNameById(props.categoryId)
-                ]
-
-            );
-
-            getProductsResponse && setProducts(getProductsResponse);
-            getCategoryNameResponse && setCategoryName(getCategoryNameResponse);
-        }
-        finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        setDataAsync();
-        return () => {
-            setProducts([]);
-        }
-    }, [])
-
-    function clearProductList() {
-        setRelease(true);
-    }
-
-    function setProductList() {
-        setRelease(false);
-    }
-
-    useFocusEffect(
-        React.useCallback(() => {
-            setProductList();
-            // Функция для очистки при анфокусе
-            return () => {
-                clearProductList();
-            };
-        }, []) // Убедитесь, что здесь пустой массив
-    );
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //         // Функция для очистки при анфокусе
+    //         return () => {
+    //         };
+    //     }, []) // Убедитесь, что здесь пустой массив
+    // );
 
     if (loading) {
         return (<LoadingScreen />)
@@ -85,11 +54,6 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
     return (
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <StatusBar
-                    translucent={false}
-                    style='dark'
-                    backgroundColor={colorsStyles.mainBrightColor.color.toString()}
-                />
                 <ScreenHeader
                     title={categoryName}
                 />
@@ -99,8 +63,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = (props) => {
                 <View style={styles.productList}>
                     <ProductList
                         products={products}
-                        release={release}
-                        parentTab={props.parentTab}
+                        parentTab={parentTab}
                     />
                 </View>
             </SafeAreaView>

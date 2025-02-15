@@ -73,7 +73,6 @@ const useNavigationStore = create<NavigationStore>()((set) => ({
     navigateBack: () => {
         set(state => {
             const { router } = state;
-            console.log(router);
             router?.canDismiss() ? router?.dismiss() : router?.canGoBack && router?.back();
             return state;
         })
