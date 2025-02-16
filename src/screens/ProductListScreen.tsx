@@ -13,6 +13,7 @@ import { getProductsByCategoryIdAsync } from "../services/ProductService";
 import { getCategoryNameById } from "../services/CategoryService";
 import useNavigationStore from "../store/navigationStore";
 import useProductStore from "../store/productsStore";
+import Constants from 'expo-constants'
 
 interface ProductListScreenProps {
     categoryId: string,
@@ -52,22 +53,20 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, paren
     }
 
     return (
-        <SafeAreaProvider style={{ flex: 1 }}>
-            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <ScreenHeader
-                    title={categoryName}
+        <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
+            <ScreenHeader
+                title={categoryName}
+            />
+            <View style={styles.searchBar}>
+                <SearchBar />
+            </View>
+            <View style={styles.productList}>
+                <ProductList
+                    products={products}
+                    parentTab={parentTab}
                 />
-                <View style={styles.searchBar}>
-                    <SearchBar />
-                </View>
-                <View style={styles.productList}>
-                    <ProductList
-                        products={products}
-                        parentTab={parentTab}
-                    />
-                </View>
-            </SafeAreaView>
-        </SafeAreaProvider>
+            </View>
+        </View>
     )
 }
 

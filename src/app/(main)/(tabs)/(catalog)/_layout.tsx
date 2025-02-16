@@ -8,7 +8,7 @@ export default function () {
             {
                 headerShown: false,
                 statusBarStyle: 'dark',
-                statusBarBackgroundColor: 'white',
+                statusBarBackgroundColor: 'transparent',
                 statusBarTranslucent: true,
                 contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color.toString() },
             }}>

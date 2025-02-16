@@ -8,6 +8,7 @@ import { BackButtonComponent } from "./Buttons/ButtonComponents";
 import FavouriteButton from "./Buttons/FavouriteButton";
 import BasketButtonComponent from "./Buttons/BasketButtonComponent";
 import { Montserrat400RegularText, Montserrat600SemiBoldText, Raleway700BoldText } from "./Text/TextComponents";
+import Constants from "expo-constants";
 
 interface ProductPageProps {
     product: Product,
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     },
     container: {
         borderBottomWidth: 12,
+        marginTop: Constants.statusBarHeight,
         borderColor: colorsStyles.mainGreyColor.color,
     },
     topButtons: {
@@ -94,6 +96,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 999,
         minHeight: 50,
+        marginTop: Constants.statusBarHeight,
         alignItems: 'center',
         justifyContent: 'space-between'
     },

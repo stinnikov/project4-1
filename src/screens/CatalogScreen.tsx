@@ -9,10 +9,10 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
 import { colorsStyles } from "../styles/styles";
 import RecomendationsComponent from "@/src/components/Recomendations";
-import { prods } from "@/src/data/tempData";
 import { getCategoriesDepthZero } from "../services/CategoryService";
 import LoadingScreen from "./LoadingScreen";
 import useNavigationStore from "../store/navigationStore";
+import useProductStore from "../store/productsStore";
 
 interface CatalogScreenProps {
 }
@@ -21,7 +21,7 @@ interface CatalogScreenProps {
 export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-
+    const { products } = useProductStore();
     const router = useRouter();
     const setRouter = useNavigationStore(state => state.setRouter);
 
@@ -62,7 +62,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
                     </View>
 
                     <RecomendationsComponent
-                        data={prods}
+                        data={products.slice(0, 10)}
                     />
 
                     <View style={{ margin: 16 }}>
@@ -75,16 +75,12 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
         }
 
         return (
-            <SafeAreaProvider style={{ flex: 1 }}>
-                <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                    <FlatList
-                        data={DATA}
-                        bounces={false}
-                        onEndReachedThreshold={10}
-                        renderItem={renderScreen}
-                    />
-                </SafeAreaView>
-            </SafeAreaProvider>
+            <FlatList
+                data={DATA}
+                bounces={false}
+                onEndReachedThreshold={10}
+                renderItem={renderScreen}
+            />
         )
     }
 }
