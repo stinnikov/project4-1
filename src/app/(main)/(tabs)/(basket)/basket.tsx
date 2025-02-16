@@ -1,7 +1,5 @@
 
 import { View, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
-import { prods } from '@/src/data/tempData';
 import { colorsStyles } from '@/src/styles/styles';
 import BasketScreen from '@/src/screens/BasketScreen';
 

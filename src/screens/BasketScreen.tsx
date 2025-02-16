@@ -5,7 +5,6 @@ import { useRouter } from "expo-router";
 import ScreenHeader from "@/src/components/ScreenHeader";
 import { colorsStyles } from "@/src//styles/styles";
 import LoadingScreen from "./LoadingScreen";
-import { prods } from "@/src//data/tempData";
 import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
 import DeliveryBar from "../components/DeliveryBar";
 import PromotionInBasketForm from "../components/BasketScreenComponents/PromotionInBasketForm";
@@ -15,6 +14,7 @@ import PaymentDetails from "../components/BasketScreenComponents/PaymentDetails"
 import MakeOrderButton from "../components/BasketScreenComponents/MakeOrderButton";
 import useNavigationStore from "../store/navigationStore";
 import useBasketStore from "../store/basketStore";
+import useProductStore from "../store/productsStore";
 
 interface BasketScreenProps {
 }
@@ -23,6 +23,7 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
     const { initializeBasket } = useBasketStore();
+    const { products } = useProductStore();
 
     const router = useRouter();
     const setRouter = useNavigationStore(state => state.setRouter);
@@ -60,7 +61,7 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                 </View>
                 <View>
                     <TopGoods
-                        data={prods}
+                        data={products.slice(0, 10)}
                         parentTab="basket"
                     />
                 </View>

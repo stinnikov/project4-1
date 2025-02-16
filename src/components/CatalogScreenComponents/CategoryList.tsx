@@ -6,6 +6,7 @@ import svgIcons from "@/src/assets/icons/svgIcons";
 import { colorsStyles } from "@/src/styles/styles";
 import { Montserrat400RegularText } from "../Text/TextComponents";
 import useNavigationStore from "@/src/store/navigationStore";
+import useCategoryStore from "@/src/store/categoryStore";
 
 interface CategoryListProps {
     currentCategory: Category, // current category
@@ -16,6 +17,7 @@ interface CategoryListProps {
 
 const CategoryList: React.FC<CategoryListProps> = (props) => {
     const { navigateToProductListScreen, navigateToCategoryListScreen } = useNavigationStore();
+    const { categories } = useCategoryStore();
 
     function categoryListHeader() {
         return (
@@ -38,7 +40,7 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
         return (
             <TouchableOpacity
                 style={styles.container}
-                onPress={() => { navigateToCategoryListScreen(item) }}>
+                onPress={() => { categories?.length === 0 ? navigateToProductListScreen(props.currentCategory) : navigateToCategoryListScreen(item) }}>
                 <Montserrat400RegularText
                     style={styles.categoryText}
                     text={item.name}
