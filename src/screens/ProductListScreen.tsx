@@ -54,6 +54,11 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, paren
     return (
         <SafeAreaProvider style={{ flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+                <StatusBar
+                    translucent={false}
+                    style='dark'
+                    backgroundColor="white"
+                />
                 <ScreenHeader
                     title={categoryName}
                 />

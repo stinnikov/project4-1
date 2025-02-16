@@ -29,9 +29,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 	function renderScreen({ item }: { item: ProfileScreenProps }) {
 		return (
 			<View>
-				<View style={styles.screenHeader}>
-					<ScreenHeader title="Профиль"></ScreenHeader>
-				</View>
+				<ScreenHeader title="Профиль"></ScreenHeader>
 				<View style={styles.userNamePanel}>
 					<UserNamePanel userName="Имя пользователя" />
 				</View>
@@ -69,11 +67,7 @@ const styles = StyleSheet.create({
 	listProfile: {
 		margin: 16,
 	},
-	screenHeader: {
-		marginVertical: 12,
-		marginHorizontal: 16,
-		// backgroundColor: 'red',
-	},
+
 	userNamePanel: {
 		margin: 16,
 		marginTop: 0,
