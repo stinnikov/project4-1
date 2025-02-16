@@ -7,7 +7,8 @@ export default function AuthLayout() {
       {{
         headerShown: false,
         statusBarStyle: 'light',
-        statusBarBackgroundColor: 'transparent',
+        statusBarBackgroundColor: colorsStyles.mainBrightColor.color.toString(),
+        statusBarTranslucent: true,
         contentStyle: { backgroundColor: colorsStyles.mainWhiteColor.color.toString() },
       }}>
     </Stack >

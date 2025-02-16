@@ -11,14 +11,16 @@ const lightThemeColors: {
   mainLightGreyColor: ColorValue,
   mainDarkGreyColor: ColorValue,
   mainBrightColor: ColorValue,
+  secondBrightColor: ColorValue,
   mainBlackColor: ColorValue,
   mainDarkColor: ColorValue,
 } = {
   mainWhiteColor: 'white',
   mainGreyColor: '#eeeeee',
-  mainLightGreyColor: '#E2E2E2',
+  mainLightGreyColor: '#EFEFEF',
   mainDarkGreyColor: '#6d6d6d',
   mainBrightColor: '#7f00ff',
+  secondBrightColor: '#D8B3FF',
   mainBlackColor: 'black',
   mainDarkColor: '#e1c4ff'
 };
@@ -70,6 +72,9 @@ export const colorsStyles = StyleSheet.create({
 
   mainBrightColor: {
     color: appColors.mainBrightColor,
+  },
+  secondBrightColor: {
+    color: appColors.secondBrightColor,
   },
 
   mainDarkColor: {
