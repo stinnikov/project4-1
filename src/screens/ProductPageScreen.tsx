@@ -6,6 +6,8 @@ import { Router, useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { getSingleProductByIdAsync } from '../services/ProductService';
 import useNavigationStore from '../store/navigationStore';
+import Constants from 'expo-constants';
+
 
 interface ProductCardProps {
     product: Product,
@@ -17,6 +19,7 @@ const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
 
     const router = useRouter();
     const setRouter = useNavigationStore(state => state.setRouter);
+
 
     useEffect(() => {
         // Устанавливаем router в Zustand хранилище
@@ -52,18 +55,15 @@ const ProductCardScreen: React.FC<ProductCardProps> = (props) => {
             };
         }, [])
     );
-
     if (product)
         return (
-            <SafeAreaProvider style={{ flex: 1 }}>
-                <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                    <ProductPage
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                        product={product}
-                    />
-                </SafeAreaView>
-            </SafeAreaProvider>
+            <View style={{ flex: 1 }}>
+                <ProductPage
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    product={product}
+                />
+            </View>
         )
 }
 

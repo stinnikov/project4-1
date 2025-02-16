@@ -5,6 +5,9 @@ import ProductListScreen from '@/src/screens/ProductListScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import useCategoryStore from '@/src/store/categoryStore';
 import { useFocusEffect } from 'expo-router';
+import { View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { colorsStyles } from '@/src/styles/styles';
 
 export default function () {
     const { categoryId } = useLocalSearchParams();
