@@ -38,7 +38,7 @@ const BasketListItem: React.FC<BasketListItemProps> = React.memo((props) => {
                     </View>
 
                     <BasketProductInfoPanel
-                        style={{ borderRadius: 6, paddingHorizontal: 12, }}
+                        style={{ borderRadius: 6 }}
                         product={props.product}
                     />
                 </View>
@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     productPriceAndPurchaseInfoContainer: {
-        width: '100%',
-        flexShrink: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
