@@ -53,6 +53,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, paren
     }
 
     return (
+
         <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
             <ScreenHeader
                 title={categoryName}
@@ -64,6 +65,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, paren
                 <ProductList
                     products={products}
                     parentTab={parentTab}
+
                 />
             </View>
         </View>

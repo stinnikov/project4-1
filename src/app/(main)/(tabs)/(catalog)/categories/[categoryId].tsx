@@ -5,20 +5,15 @@ import ProductListScreen from '@/src/screens/ProductListScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import useCategoryStore from '@/src/store/categoryStore';
 import { useFocusEffect } from 'expo-router';
-import { View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { colorsStyles } from '@/src/styles/styles';
 
 export default function () {
     const { categoryId } = useLocalSearchParams();
-    const [loading, setLoading] = useState<boolean>(true);
-    const { currentCategory, categories, fetchCategoryData } = useCategoryStore();
+    const { currentCategory, categories, fetchCategoryData, loading } = useCategoryStore();
 
     useFocusEffect(
         React.useCallback(() => {
-            setLoading(true); // Устанавливаем загрузку в true перед загрузкой данных
             if (typeof categoryId === 'string') {
-                fetchCategoryData(categoryId).finally(() => setLoading(false));
+                fetchCategoryData(categoryId);
             }
         }, [categoryId, fetchCategoryData])
     );

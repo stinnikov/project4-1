@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     productPriceAndPurchaseInfoContainer: {
-        width: '100%',
-        flexShrink: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',

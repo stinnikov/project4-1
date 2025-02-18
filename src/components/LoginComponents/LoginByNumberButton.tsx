@@ -23,12 +23,11 @@ export const LoginByNumberButton: React.FC<LoginByNumberButton> = React.memo((pr
 const styles = StyleSheet.create(
 	{
 		container: {
-			flex: 1,
 			justifyContent: "center",
 			backgroundColor: colorsStyles.mainWhiteColor.color,
 			alignItems: 'center',
-			paddingVertical: 16,
 			borderRadius: 12,
+			paddingVertical: 16,
 		}
 	}
 )
