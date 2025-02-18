@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     },
 
     bottomContainer: {
+        //flex: 0,
         margin: 12,
     }
 })

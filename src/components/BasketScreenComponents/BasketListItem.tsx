@@ -4,7 +4,7 @@ import Product from '@/src/interfaces/Product';
 import { Router } from 'expo-router';
 import { Montserrat400RegularText } from '../Text/TextComponents';
 import { colorsStyles } from '@/src/styles/styles';
-import { BasketProductInfoPanel } from '../Buttons/ButtonComponents';
+import BasketProductInfoPanel from '../Buttons/BasketProductInfoPanel';
 
 
 interface BasketListItemProps {
@@ -12,14 +12,14 @@ interface BasketListItemProps {
     style?: ViewStyle,
 }
 
-const BasketListItem: React.FC<BasketListItemProps> = React.memo((props) => {
+const BasketListItem: React.FC<BasketListItemProps> = React.memo(({ product, style }) => {
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={[styles.container, style]}>
             <View style={styles.productImgContainer}>
                 <ImageBackground
                     style={{ width: '100%', height: '100%' }}
                     imageStyle={{ borderRadius: 12 }}
-                    source={{ uri: props.product.imageUrl }} resizeMode="contain"
+                    source={{ uri: product.imageUrl }} resizeMode="contain"
                 />
             </View>
 
@@ -27,20 +27,20 @@ const BasketListItem: React.FC<BasketListItemProps> = React.memo((props) => {
                 <Montserrat400RegularText
                     numOfLines={2}
                     style={{ flex: 1, flexWrap: 'wrap', fontSize: 14 }}
-                    text={props.product.name} />
+                    text={product.name} />
 
                 <View style={styles.productPriceAndPurchaseInfoContainer}>
                     <View style={styles.priceTextContainer}>
                         <Montserrat400RegularText
                             style={{ paddingHorizontal: 12, paddingVertical: 4, fontSize: 14 }}
-                            text={props.product.price}
+                            text={product.price}
                         />
                     </View>
-
-                    <BasketProductInfoPanel
-                        style={{ borderRadius: 6, paddingHorizontal: 12, }}
-                        product={props.product}
-                    />
+                    <View style={{ width: '33%' }}>
+                        <BasketProductInfoPanel
+                            product={product}
+                        />
+                    </View>
                 </View>
             </View>
         </View>
