@@ -17,13 +17,6 @@ interface CatalogScreenProps { }
 export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
     const { categories, loading, fetchDepthZeroCategories } = useCategoryStore(); // Используем состояние из Zustand
     const { products } = useProductStore();
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
 
     useEffect(() => {
         fetchDepthZeroCategories(); // Загрузка категорий при монтировании компонента

@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import CategoryListScreen from '@/src/screens/CategoryListScreen';
 import ProductListScreen from '@/src/screens/ProductListScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import useCategoryStore from '@/src/store/categoryStore';
 import { useFocusEffect } from 'expo-router';
+import useNavigationStore from '@/src/store/navigationStore';
 
 export default function () {
     const { categoryId } = useLocalSearchParams();
     const { currentCategory, categories, fetchCategoryData, loading } = useCategoryStore();
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
 
     useFocusEffect(
         React.useCallback(() => {

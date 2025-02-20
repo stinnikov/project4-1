@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, ViewStyle } from "react-native";
 import { Product } from "@/src/interfaces/Product";
-import FavouriteButton from "./Buttons/FavouriteButton";
-import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles"; import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "./Text/TextComponents";
-import useNavigationStore from "../store/navigationStore";
-import BasketButtonComponent from "./Buttons/BasketButtonComponent";
+import FavouriteButton from "../Buttons/FavouriteButton";
+import { dimensionsStyles, colorsStyles, buttonStyles, shadowStyles } from "@/src/styles/styles";
+import { Montserrat400RegularText, Montserrat300LightText, Montserrat500MediumText } from "../Text/TextComponents";
+import useNavigationStore from "../../store/navigationStore";
+import BasketButtonComponent from "../Buttons/BasketButtonComponent";
+import Skeleton from "../temp/SkeletonLoader";
 
 interface ProductCardProps {
     product: Product;
@@ -15,7 +17,33 @@ interface ProductCardProps {
 
 
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-    const navigateToProductPageScreen = useNavigationStore(({ navigateToProductPageScreen }) => navigateToProductPageScreen)
+    const [loading, setLoading] = useState(true);
+    const navigateToProductPageScreen = useNavigationStore(({ navigateToProductPageScreen }) => navigateToProductPageScreen);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 0);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return (
+            <View style={[styles.container, props.style]}>
+                <Skeleton width="100%" height="70%" style={styles.productImageContainer} />
+                <View style={styles.productNameContainer}>
+                    <Skeleton width="80%" height={20} />
+                </View>
+                <View style={styles.priceContainer}>
+                    <Skeleton width="50%" height={20} />
+                </View>
+                <View style={styles.bottomContainer}>
+                    <Skeleton width="100%" height={40} />
+                </View>
+            </View>
+        );
+    }
 
     return (
         <View style={[styles.container, props.style, shadowStyles.regularShadow]}>
@@ -64,6 +92,10 @@ const styles = StyleSheet.create({
         height: dimensionsStyles.productListCard.height,
         width: dimensionsStyles.productListCard.width,
         backgroundColor: colorsStyles.mainWhiteColor.color,
+        elevation: shadowStyles.regularShadow.elevation,
+        shadowRadius: shadowStyles.regularShadow.shadowRadius,
+        shadowOffset: shadowStyles.regularShadow.shadowOffset,
+        shadowOpacity: shadowStyles.regularShadow.shadowOpacity,
         borderRadius: 12,
     },
 

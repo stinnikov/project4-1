@@ -8,7 +8,7 @@ import LoadingScreen from "./LoadingScreen";
 import BasketProductList from "../components/BasketScreenComponents/BasketProductList";
 import DeliveryBar from "../components/DeliveryBar";
 import PromotionInBasketForm from "../components/BasketScreenComponents/PromotionInBasketForm";
-import TopGoods from "../components/TopGoods";
+import TopGoods from "../components/ProductComponents/TopGoods";
 import OrderAmount from "../components/BasketScreenComponents/OrderAmount";
 import PaymentDetails from "../components/BasketScreenComponents/PaymentDetails";
 import MakeOrderButton from "../components/BasketScreenComponents/MakeOrderButton";
@@ -20,20 +20,9 @@ interface BasketScreenProps {
 }
 
 const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
-    const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
-    const { initializeBasket } = useBasketStore();
     const { products } = useProductStore();
-
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setLoading(true);
-        setRouter(router);
-        initializeBasket().finally(() => { setLoading(false) });
-    }, []);
+    const { initializeBasket } = useBasketStore();
 
     const refreshData = async () => {
         try {
@@ -76,11 +65,6 @@ const BasketScreen: React.FC<BasketScreenProps> = React.memo((props) => {
                 </View>
             </View>
         )
-    }
-
-
-    if (loading) {
-        return <LoadingScreen />;
     }
 
     return (

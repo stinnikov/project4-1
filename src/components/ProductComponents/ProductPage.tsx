@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, ImageBackground, RefreshControl, Text } from "react-native";
-import ProductDescription from "./temp/productDescription";
+import { View, StyleSheet, ScrollView, ImageBackground, RefreshControl } from "react-native";
+import ProductDescription from "../temp/productDescription";
 import { Product } from "@/src/interfaces/Product";
-import { Router } from "expo-router";
 import { dimensionsStyles, colorsStyles } from "@/src/styles/styles";
-import BackButtonComponent from "./Buttons/BackButton";
-import FavouriteButton from "./Buttons/FavouriteButton";
-import BasketButtonComponent from "./Buttons/BasketButtonComponent";
-import { Montserrat400RegularText, Montserrat600SemiBoldText, Raleway700BoldText } from "./Text/TextComponents";
+import BackButtonComponent from "../Buttons/BackButton";
+import FavouriteButton from "../Buttons/FavouriteButton";
+import BasketButtonComponent from "../Buttons/BasketButtonComponent";
+import { Montserrat600SemiBoldText, Raleway700BoldText } from "../Text/TextComponents";
 import Constants from "expo-constants";
 
 interface ProductPageProps {
@@ -17,8 +16,6 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = (props) => {
-
-
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.topButtons}>

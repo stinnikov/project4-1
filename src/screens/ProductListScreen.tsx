@@ -3,7 +3,7 @@ import { FlatList, View, StyleSheet, Button } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBar from "@/src/components/SearchBar";
 import { Router, SplashScreen, useFocusEffect, useRouter } from "expo-router";
-import ProductList from "@/src/components/ProductList";
+import ProductList from "../components/ProductComponents/ProductList";
 import ScreenHeader from "@/src/components/ScreenHeader";
 import { Product } from "@/src//interfaces/Product";
 import { colorsStyles } from "@/src//styles/styles";

@@ -6,7 +6,7 @@ import { Product } from "@/src//interfaces/Product";
 import UserPanel from "@/src/components/MainScreenComponents/UserPanel";
 import SpecialsForUser from "@/src/components/MainScreenComponents/SpecialsForUser";
 import NewOffersForUser from "@/src/components/MainScreenComponents/NewOffersForUser";
-import TopGoods from "@/src/components/TopGoods";
+import TopGoods from "@/src/components/ProductComponents/TopGoods";
 import { colorsStyles, shadowStyles } from "@/src//styles/styles";
 import PromotionsAndDiscounts from "@/src/components/MainScreenComponents/PromotionsAndDiscounts";
 import useNavigationStore from "../store/navigationStore";
