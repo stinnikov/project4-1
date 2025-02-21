@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import ProductListScreen from '@/src/screens/ProductListScreen';
-import LoadingScreen from '@/src/screens/LoadingScreen';
-import useProductStore from '@/src/store/productsStore';
-import Product from '@/src/interfaces/Product';
+import useNavigationStore from '@/src/store/navigationStore';
 
 export default function () {
     const { productList: categoryId } = useLocalSearchParams();
 
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
 
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
     // if (loading) {
     //     return <LoadingScreen />;
     // }

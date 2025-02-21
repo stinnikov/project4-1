@@ -2,11 +2,10 @@
 import React, { memo, useCallback } from 'react';
 import { View, FlatList, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
-import { Router } from 'expo-router';
 import { colorsStyles } from '@/src/styles/styles';
-import ProductCard from './ProductCard';
+import ProductCard from '../ProductComponents/ProductCard';
 import svgIcons from '@/src/assets/icons/svgIcons';
-import { Montserrat600SemiBoldText } from './Text/TextComponents';
+import { Montserrat600SemiBoldText } from '../Text/TextComponents';
 
 
 interface ProductListProps {

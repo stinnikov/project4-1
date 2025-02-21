@@ -16,14 +16,11 @@ const useProductStore = create<ProductStore>((set) => ({
     products: [],
     favourites: [],
     fetchProductsByCategory: async (catId: string) => {
-        console.time('fetchProductsByCategory'); // Запускаем таймер
-
         const getProductsResponse = await getProductsByCategoryIdAsync(catId);
+        setTimeout(() => { }, 5000)
         set((state) => ({
             products: getProductsResponse,
         }));
-
-        console.timeEnd('fetchProductsByCategory'); // Завершаем таймер и выводим время в консоль
     },
 
     fetchFavourites: async () => {

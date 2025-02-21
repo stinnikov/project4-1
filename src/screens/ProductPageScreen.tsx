@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Product } from '@/src/interfaces/Product';
-import ProductPage from '@/src/components/ProductPage';
+import ProductPage from '../components/ProductComponents/ProductPage';
 import { Router, useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { getSingleProductByIdAsync } from '../services/ProductService';

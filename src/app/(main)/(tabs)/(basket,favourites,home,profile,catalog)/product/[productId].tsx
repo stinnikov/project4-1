@@ -5,11 +5,20 @@ import { useState, useEffect } from 'react';
 import { getSingleProductByIdAsync } from '@/src/services/ProductService';
 import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import LoadingScreen from '@/src/screens/LoadingScreen';
+import useNavigationStore from '@/src/store/navigationStore';
 
 export default function () {
     const { productId } = useLocalSearchParams();
     const [product, setProduct] = useState<Product | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter();
+    const setRouter = useNavigationStore(state => state.setRouter);
+
+    useEffect(() => {
+        // Устанавливаем router в Zustand хранилище
+        setRouter(router);
+    }, [router, setRouter]);
+
     if (typeof productId === 'string') {
         useEffect(() => {
             const getEntries = async () => {
@@ -33,9 +42,7 @@ export default function () {
 
     if (product) {
         return (
-            <View style={styles.container}>
-                <ProductCardScreen product={product}></ProductCardScreen>
-            </View>
+            <ProductCardScreen product={product}></ProductCardScreen>
         )
     }
 }

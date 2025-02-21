@@ -1,6 +1,6 @@
 import React from "react";
 import { Product } from "@/src/interfaces/Product";
-import ProductList from "../ProductList";
+import ProductList from "../ProductComponents/ProductList";
 
 interface FavouritesProductListProps {
     favourites: Product[];

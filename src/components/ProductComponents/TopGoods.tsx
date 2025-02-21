@@ -3,9 +3,9 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Router } from "expo-router";
 import { Product } from "@/src/interfaces/Product";
 import { StyleProp } from "react-native";
-import { Raleway600SemiBoldText } from "./Text/TextComponents";
+import { Raleway600SemiBoldText } from "../Text/TextComponents";
 import ProductList from "./ProductList";
-import { dimensionsStyles } from "../styles/styles";
+import { dimensionsStyles } from "../../styles/styles";
 
 interface TopGoodsProps {
     data: Product[];
