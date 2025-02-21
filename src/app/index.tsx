@@ -1,40 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Product } from '@/src/interfaces/Product';
-import ProductCardScreen from '@/src/screens/ProductPageScreen';
 import { isAuthorisedAsync } from '@/src/services/AuthService';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 import LoginScreen from '@/src/screens/LoginScreen';
 import { enableScreens } from 'react-native-screens';
-import 'expo-dev-client';
+import AuthProvider, { useAuth } from '../components/temp/AuthContext';
 import useNavigationStore from '../store/navigationStore';
 
 const App: React.FC = () => {
+    enableScreens(true);
+    return (
+        <AuthProvider>
+            <Main />
+        </AuthProvider>
+    );
+};
+
+const Main: React.FC = () => {
     const router = useRouter();
+    const { setAuth, isAuth } = useAuth(); // Получите контекст авторизации
     const setRouter = useNavigationStore(state => state.setRouter);
+    const [loading, setLoading] = useState<boolean>(true);
+    setAuth(false);
 
     useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
         setRouter(router);
     }, [router, setRouter]);
-
-    const [isAuth, setAuth] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const getEntry = async () => {
             try {
                 const authResponse = await isAuthorisedAsync();
-                if (authResponse)
+                if (authResponse) {
                     setAuth(true);
-            }
-            finally {
+                }
+            } finally {
                 setLoading(false);
             }
-        }
+        };
         getEntry();
-    }, [])
+    }, [setAuth]);
 
     useEffect(() => {
         if (isAuth) {
@@ -43,17 +49,11 @@ const App: React.FC = () => {
     }, [isAuth]);
 
     if (loading) {
-        return (<LoadingScreen>
-
-        </LoadingScreen>)
-
+        return <LoadingScreen />;
     }
-
-    enableScreens(true);
 
     return isAuth ? null : <LoginScreen />;
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -61,17 +61,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#25292e',
-    },
-    inner: {
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    subtitle: {
-        fontSize: 16,
-        color: '#666',
     },
 });
 

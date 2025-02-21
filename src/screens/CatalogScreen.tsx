@@ -18,9 +18,11 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
     const { categories, loading, fetchDepthZeroCategories } = useCategoryStore(); // Используем состояние из Zustand
     const { products } = useProductStore();
 
-    useEffect(() => {
-        fetchDepthZeroCategories(); // Загрузка категорий при монтировании компонента
-    }, [fetchDepthZeroCategories]);
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchDepthZeroCategories();
+        }, [fetchDepthZeroCategories])
+    );
 
     if (loading) {
         return <LoadingScreen />;
