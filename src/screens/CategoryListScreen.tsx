@@ -20,13 +20,6 @@ interface CategoryListScreenProps {
 
 
 const CategoryListScreen: React.FC<CategoryListScreenProps> = React.memo((props: CategoryListScreenProps) => {
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
 
     function renderScreen() {
         if (props.currentCategory.depth === 0) {

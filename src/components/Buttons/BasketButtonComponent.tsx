@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: colorsStyles.mainBrightColor.color,
         borderRadius: 12,
         paddingVertical: 8,
+        position: 'relative', // добавьте это
     },
     panelContent: {
         justifyContent: 'center',
@@ -114,6 +115,14 @@ const styles = StyleSheet.create({
         color: colorsStyles.mainWhiteColor.color,
         fontSize: 10,
     },
+    divider: {
+        position: 'absolute',
+        width: 1, // задайте ширину
+        height: '100%',
+        backgroundColor: 'red', // используйте backgroundColor для разделителя
+        left: '33%', // или другое значение, чтобы разместить его по центру
+        transform: [{ translateX: -0.5 }], // центрируем по оси X
+    }
 });
 
 export default React.memo(BasketButtonComponent);

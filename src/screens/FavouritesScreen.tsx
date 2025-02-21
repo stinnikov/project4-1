@@ -16,17 +16,7 @@ interface FavouritesScreenProps {
 }
 
 const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => {
-    const [loading, setLoading] = useState<boolean>(true);
     const [refreshing, setRefreshing] = useState(false);
-
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-        setLoading(false);
-    }, [router, setRouter]);
 
     const refreshData = async () => {
         try {
@@ -36,10 +26,6 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = React.memo((props) => 
             console.error(error);
         }
     };
-
-    if (loading) {
-        return <LoadingScreen />;
-    }
 
     function renderScreen() {
         return (
