@@ -2,6 +2,7 @@ import React from "react";
 import { View, ViewStyle, ColorValue, TouchableOpacity, StyleSheet } from "react-native";
 import { colorsStyles } from "@/src/styles/styles";
 import { Montserrat600SemiBoldText } from "../Text/TextComponents";
+import useLoginStore from "@/src/store/loginStore";
 
 
 interface LoginByNumberButton {
@@ -9,8 +10,9 @@ interface LoginByNumberButton {
 }
 
 export const LoginByNumberButton: React.FC<LoginByNumberButton> = React.memo((props) => {
+	const { completeStep } = useLoginStore();
 	function handlePressOnButton() {
-
+		completeStep();
 	}
 
 	return (

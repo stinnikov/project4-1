@@ -3,6 +3,7 @@ import { View, ViewStyle, ColorValue, TouchableOpacity, StyleSheet } from "react
 import { colorsStyles } from "@/src/styles/styles";
 import { Montserrat600SemiBoldText } from "../Text/TextComponents";
 import { Router, useRouter } from 'expo-router';
+import useLoginStore from "@/src/store/loginStore";
 
 interface ContinueButton {
 	style?: ViewStyle | ViewStyle[];
@@ -10,18 +11,15 @@ interface ContinueButton {
 }
 
 export const ContinueButton: React.FC<ContinueButton> = React.memo((props) => {
-	const router = useRouter();
-	const [isPressed, setIsPressed] = useState(false);
-
-	function navigateToLoginScreen() {
-		router.push({
-			pathname: '/(auth)/login',
-		});
+	const { completeStep } = useLoginStore();
+	function handlePressOnButton() {
+		completeStep();
 	}
+	const [isPressed, setIsPressed] = useState(false);
 
 	return (
 		<TouchableOpacity
-			onPress={navigateToLoginScreen}
+			onPress={handlePressOnButton}
 			onPressIn={() => setIsPressed(true)} // Устанавливаем состояние нажатия
 			onPressOut={() => setIsPressed(false)} // Сбрасываем состояние нажатия
 			style={[styles.container, props.style, isPressed && styles.pressed]} // Добавляем стиль при нажатии
