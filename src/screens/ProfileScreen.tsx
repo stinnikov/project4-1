@@ -17,8 +17,6 @@ interface ProfileScreenProps {
 
 
 export const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
-	const [profileScreenData, setProfileScreenData] = useState<ProfileScreenProps[]>([{}]);
-
 	const router = useRouter();
 	const setRouter = useNavigationStore(state => state.setRouter);
 
@@ -51,7 +49,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 			<SafeAreaView style={{ flex: 1 }} edges={['top']}>
 				<FlatList
 					overScrollMode="never"
-					data={profileScreenData}
+					data={[{}]}
 					bounces={false}
 					renderItem={renderScreen}
 				/>

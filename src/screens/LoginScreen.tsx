@@ -66,7 +66,7 @@ export const LoginScreen: React.FC = () => {
                         />
                         {/* <NumberInput style={{ marginBottom: 32 }} /> */}
                         <PhoneInput style={{ marginBottom: 32 }} />
-                        <ContinueButton text="Продолжить" textColor={colorsStyles.mainDarkGreyColor.color} />
+                        <ContinueButton text="Продолжить" />
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 24 }}>
                             <Montserrat400RegularText
                                 text="Соглашаюсь получать новости и специальные предложения"
@@ -99,7 +99,7 @@ export const LoginScreen: React.FC = () => {
                         />
                         <View style={{ flex: 1 }}>
                             <CodeInput style={{ marginBottom: 32 }} />
-                            <ContinueButton text="Подтвердить" textColor={colorsStyles.mainDarkGreyColor.color} />
+                            <ContinueButton text="Подтвердить" />
                             <Montserrat400RegularText
                                 style={{ marginTop: 24 }}
                                 text="Соглашаюсь получать новости и специальные предложения"
