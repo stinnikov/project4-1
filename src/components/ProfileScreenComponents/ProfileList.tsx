@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { Router } from 'expo-router';
+import { Router, useRouter } from 'expo-router';
 import { Raleway600SemiBoldText } from '../Text/TextComponents';
 import { Montserrat400RegularText } from '../Text/TextComponents';
 import svgIcons from '@/src/assets/icons/svgIcons';
@@ -23,9 +23,20 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 		{ text: "Настройки", icon: <svgIcons.ProfileSettingsIcon strokeWidth={1.25} stroke={'black'} /> },
 		{ text: "Сотрудничество", icon: <svgIcons.CooperationIcon strokeWidth={1.25} stroke={'black'} /> },
 	]
+
+	const router = useRouter();
+	function navigateToMyAddressesScreen() {
+		router.push({
+			pathname: '/(main)/(tabs)/(profile)/adress',
+		})
+	}
+
 	function renderLineProfile({ item }: { item: ProfileLineElement }) {
 		return (
-			<TouchableOpacity style={styles.container}>
+			<TouchableOpacity
+				style={styles.container}
+				onPress={navigateToMyAddressesScreen}
+			>
 				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 					<View style={{ marginHorizontal: 4 }}>
 						{item.icon}
