@@ -1,13 +1,15 @@
+import useLoginStore from '@/src/store/loginStore';
 import { colorsStyles } from '@/src/styles/styles';
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, ViewStyle } from 'react-native';
+import LoginErrorText from './LoginErrorText';
 
 interface ChatInput {
 	style?: ViewStyle | ViewStyle[];
 }
 
 export const ChatInput: React.FC<ChatInput> = React.memo((props) => {
-	const [inputValue, setInputValue] = useState('');
+	const { setInputPhoneNumber, error, inputPhoneNumber } = useLoginStore();
 
 	const formatPhoneNumber = (number: string) => {
 		// Убираем все, кроме цифр
@@ -38,29 +40,26 @@ export const ChatInput: React.FC<ChatInput> = React.memo((props) => {
 	};
 
 	const handleChange = (text: string) => {
-		setInputValue(text);
+		setInputPhoneNumber(text);
 	};
 
-	const getPlaceholder = () => {
-		const placeholderFormat = '+7 (999) 999 99-99';
-		const enteredLength = inputValue.replace(/\D/g, '').length;
-		const remainingPlaceholder = placeholderFormat.slice(enteredLength);
-		return remainingPlaceholder;
-	};
+
 
 	return (
 		<View style={[styles.container, props.style]}>
-			<TextInput
-				style={styles.input}
-				value={formatPhoneNumber(inputValue)}
-				onChangeText={handleChange}
-				placeholder={getPlaceholder()}
-				placeholderTextColor="#888"
-				keyboardType="phone-pad"
-				maxLength={18} // Ограничиваем длину ввода
-				selectionColor={colorsStyles.mainDarkColor.color} //Выделение
-				cursorColor={colorsStyles.mainBrightColor.color} //Прямая линия ввода
-			/>
+			<View style={styles.textInputContainer}>
+				<TextInput
+					style={styles.input}
+					value={formatPhoneNumber(inputPhoneNumber ?? '+7')}
+					onChangeText={handleChange}
+					keyboardType="phone-pad"
+					maxLength={18} // Ограничиваем длину ввода
+					selectionColor={colorsStyles.mainDarkColor.color} //Выделение
+					cursorColor={colorsStyles.mainBrightColor.color} //Прямая линия ввода
+				/>
+			</View>
+			{error && <LoginErrorText />}
+
 		</View>
 	);
 });
@@ -68,10 +67,12 @@ export const ChatInput: React.FC<ChatInput> = React.memo((props) => {
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
-		backgroundColor: colorsStyles.mainGreyColor.color,
+	},
+	textInputContainer: {
 		borderRadius: 12,
 		paddingVertical: 12,
 		paddingLeft: 16,
+		backgroundColor: colorsStyles.mainGreyColor.color,
 	},
 	input: {
 		fontFamily: "Montserrat_500Medium",

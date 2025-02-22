@@ -11,9 +11,14 @@ interface ContinueButton {
 }
 
 export const ContinueButton: React.FC<ContinueButton> = React.memo((props) => {
-	const { completeStep } = useLoginStore();
+	const { completeStep, validatePhoneNumber, inputPhoneNumber } = useLoginStore();
 	function handlePressOnButton() {
-		completeStep();
+		if (inputPhoneNumber) {
+			const isValid = validatePhoneNumber(inputPhoneNumber);
+			if (isValid) {
+				completeStep();
+			}
+		}
 	}
 	const [isPressed, setIsPressed] = useState(false);
 

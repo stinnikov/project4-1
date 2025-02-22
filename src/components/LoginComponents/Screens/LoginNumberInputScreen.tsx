@@ -6,6 +6,8 @@ import ContinueButton from "../ContinueButton";
 import AgreeMailingCheckBox from "../AgreeMailingCheckBox";
 import TextWithLink from "../TextWithLink";
 import LoginScreenHeader from "../LoginScreenHeader";
+import useLoginStore from "@/src/store/loginStore";
+import LoginErrorText from "../LoginErrorText";
 
 
 export const LoginNumberInputScreen: React.FC = () => {
