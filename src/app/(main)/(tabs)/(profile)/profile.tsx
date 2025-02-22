@@ -5,13 +5,6 @@ import { useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 export default function () {
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
     return (
         <ProfileScreen />
     );

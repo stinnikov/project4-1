@@ -9,16 +9,12 @@ import useBasketStore from '@/src/store/basketStore';
 import LoadingScreen from '@/src/screens/LoadingScreen';
 
 export default function () {
-	const router = useRouter();
-	const setRouter = useNavigationStore(state => state.setRouter);
 	const [loading, setLoading] = useState<boolean>(true);
 	const { initializeBasket } = useBasketStore();
 
 	useEffect(() => {
-		// Устанавливаем router в Zustand хранилище
-		setRouter(router);
 		initializeBasket().finally(() => { setLoading(false) });
-	}, [router, setRouter, initializeBasket]);
+	}, [initializeBasket]);
 
 	if (loading) {
 		return <LoadingScreen />;

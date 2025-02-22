@@ -1,19 +1,19 @@
 "use client"
 import { ScrollView, View, StyleSheet } from 'react-native'
-import { StatusBar } from 'expo-status-bar';
-import { Stack, useRouter } from 'expo-router';
 import CatalogScreen from '@/src/screens/CatalogScreen';
-import useNavigationStore from '@/src/store/navigationStore';
 import { useEffect } from 'react';
+import useCategoryStore from '@/src/store/categoryStore';
+import LoadingScreen from '@/src/screens/LoadingScreen';
 
 export default function () {
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
+    const { catalog, loading, fetchDepthZeroCategories } = useCategoryStore(); // Используем состояние из Zustand
     useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
+        fetchDepthZeroCategories();
+    }, []);
+
+    if (loading)
+        return (<LoadingScreen />)
+
     return (
         <CatalogScreen />
     )

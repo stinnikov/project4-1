@@ -23,8 +23,6 @@ interface ProductListScreenProps {
 
 
 const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, parentTab }) => {
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
     const { fetchProductsByCategory, products } = useProductStore();
     const [categoryName, setCategoryName] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
@@ -35,8 +33,6 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ categoryId, paren
 
             setCategoryName(await getCategoryNameById(categoryId) ?? '')
         };
-
-        setRouter(router);
         fetchData().finally(() => { setLoading(false) });
     }, [categoryId, fetchProductsByCategory]);
 

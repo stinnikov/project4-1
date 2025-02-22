@@ -15,18 +15,8 @@ import useProductStore from "../store/productsStore";
 interface CatalogScreenProps { }
 
 export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
-    const { categories, loading, fetchDepthZeroCategories } = useCategoryStore(); // Используем состояние из Zustand
+    const { catalog } = useCategoryStore(); // Используем состояние из Zustand
     const { products } = useProductStore();
-
-    useFocusEffect(
-        React.useCallback(() => {
-            fetchDepthZeroCategories();
-        }, [fetchDepthZeroCategories])
-    );
-
-    if (loading) {
-        return <LoadingScreen />;
-    }
 
     const DATA = [props];
 
@@ -43,7 +33,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = (props) => {
 
                 <View style={styles.categoryList}>
                     <CategoryCardList
-                        data={categories ?? []}
+                        data={catalog ?? []}
                     />
                 </View>
             </View>

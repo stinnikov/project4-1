@@ -7,6 +7,7 @@ import { getProductsByCategoryIdAsync } from '@/src/services/ProductService';
 interface CategoryStore {
     currentCategory: Category | undefined;
     categories: Category[] | undefined;
+    catalog: Category[] | undefined;
     products: Product[] | undefined;
     loading: boolean,
     fetchCategoryData: (categoryId: string) => Promise<void>;
@@ -16,6 +17,7 @@ interface CategoryStore {
 export const useCategoryStore = create<CategoryStore>((set) => ({
     currentCategory: undefined,
     categories: undefined,
+    catalog: undefined,
     products: undefined,
     loading: true,
     fetchCategoryData: async (categoryId: string) => {
@@ -43,7 +45,7 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
         set({ loading: true });
         try {
             const response = await getCategoriesDepthZero();
-            set({ categories: response });
+            set({ catalog: response });
         } catch (error) {
             console.error(error);
         } finally {

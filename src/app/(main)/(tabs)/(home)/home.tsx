@@ -9,13 +9,6 @@ import useNavigationStore from "@/src/store/navigationStore";
 
 
 export default function () {
-  const router = useRouter();
-  const setRouter = useNavigationStore(state => state.setRouter);
-
-  useEffect(() => {
-    // Устанавливаем router в Zustand хранилище
-    setRouter(router);
-  }, [router, setRouter]);
   return (
     <MainScreen />
   );

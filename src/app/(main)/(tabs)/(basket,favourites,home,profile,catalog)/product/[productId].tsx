@@ -11,13 +11,6 @@ export default function () {
     const { productId } = useLocalSearchParams();
     const [product, setProduct] = useState<Product | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
 
     if (typeof productId === 'string') {
         useEffect(() => {

@@ -10,14 +10,6 @@ import useNavigationStore from '@/src/store/navigationStore';
 export default function () {
     const { categoryId } = useLocalSearchParams();
     const { currentCategory, categories, fetchCategoryData, loading } = useCategoryStore();
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
-
     useFocusEffect(
         React.useCallback(() => {
             if (typeof categoryId === 'string') {

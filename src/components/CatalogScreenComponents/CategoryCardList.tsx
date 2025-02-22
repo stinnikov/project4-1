@@ -48,7 +48,6 @@ const CategoryCardList: React.FC<CategoryCardListProps> = (props) => {
                 keyExtractor={(item) => item.id.toString()} // Приведение ID к строке для уникальности
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
-                initialNumToRender={2}
                 ListHeaderComponent={ListHeader}
                 columnWrapperStyle={styles.column}
                 getItemLayout={getItemLayout}

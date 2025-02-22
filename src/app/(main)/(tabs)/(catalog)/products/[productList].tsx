@@ -5,14 +5,6 @@ import useNavigationStore from '@/src/store/navigationStore';
 
 export default function () {
     const { productList: categoryId } = useLocalSearchParams();
-
-    const router = useRouter();
-    const setRouter = useNavigationStore(state => state.setRouter);
-
-    useEffect(() => {
-        // Устанавливаем router в Zustand хранилище
-        setRouter(router);
-    }, [router, setRouter]);
     // if (loading) {
     //     return <LoadingScreen />;
     // }
